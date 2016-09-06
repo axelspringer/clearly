@@ -1,0 +1,4 @@
+<md-card>
+  <img [src]="pirate$">
+  <button *ngIf="!isPirate$" md-raised-button color="primary" (click)="isPirate(true)">Are you a pirate?</button>
+</md-card>

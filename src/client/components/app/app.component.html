@@ -1,17 +1,22 @@
-<ngrx-store-log-monitor toggleCommand="ctrl-h" positionCommand="ctrl-m"></ngrx-store-log-monitor>
-<nav>
-  <span>
-    <a [routerLink]=" ['./'] ">Index</a>
-  </span> |
-  <span>
-    <a [routerLink]=" ['./home'] ">Home</a>
-  </span>
-</nav>
+<md-sidenav-layout>
 
-<main>
-  <router-outlet></router-outlet>
-</main>
+  <md-sidenav #sidenav mode="side" class="app-sidenav">
+    Sidenav
+  </md-sidenav>
 
-<footer>
-  <img src="http://i.giphy.com/26tn1ToaMhpOEetkA.gif">
-</footer>
+  <md-toolbar color="primary">
+    <span>{{ title$ }}</span>
+
+    <!-- This fills the remaining space of the current row -->
+    <span class="example-fill-remaining-space"></span>
+
+    <span>{{ version$ }}</span>
+  </md-toolbar>
+
+  <main class="app-content">
+
+    <router-outlet></router-outlet>
+
+  </main>
+
+</md-sidenav-layout>

@@ -1,4 +1,4 @@
 // Components
 export * from './app';
-export * from './home';
+export * from './dashboard';
 export * from './404';

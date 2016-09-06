@@ -1,0 +1,41 @@
+$_spin-animation-duration: 1 * 750ms;
+$_spin-border-color: rgb(0, 0, 255);
+$_spin-border-width: 24px;
+$_spin-off-border-color: rgba($_spin-border-color, 0.2);
+
+@import '~normalize.scss/normalize.scss';
+
+.critical {
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+
+  .loading {
+    animation-duration: $_spin-animation-duration;
+    animation-name: spin;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+
+    border-color: $_spin-off-border-color;
+    border-radius: 50%;
+    border-style: solid;
+    border-top-color: $_spin-border-color;
+    border-width: .25rem;
+    height: $_spin-border-width;
+    width: $_spin-border-width;
+  }
+
+}
+
+
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

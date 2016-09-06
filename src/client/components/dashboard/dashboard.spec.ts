@@ -14,11 +14,11 @@ import { MockBackend } from '@angular/http/testing';
 import { StoreModule } from '@ngrx/store';
 
 // Load the implementations that should be tested
-import { Home } from './home.component';
+import { Dashboard } from './dashboard.component';
 import reducer from '../../reducers';
 import { UserActions } from '../../actions';
 
-describe('Home', () => {
+describe('Dashboard', () => {
   // provide our implementations or mocks to the dependency injector
   beforeEach(() => TestBed.configureTestingModule({
     providers: [
@@ -31,7 +31,7 @@ describe('Home', () => {
         },
         deps: [MockBackend, BaseRequestOptions]
       },
-      Home,
+      Dashboard,
       Title,
       UserActions
     ],
@@ -41,23 +41,23 @@ describe('Home', () => {
   }));
 
   it('should have default data', async(() => {
-    inject([ Home ], (home) => {
-      expect(home.user$).toEqual({userId: ''});
+    inject([ Dashboard ], (Dashboard) => {
+      expect(Dashboard.user$).toEqual({userId: ''});
     });
   }));
 
   it('should have a title', async(() => {
-    inject([ Home, Title ], (home, title) => {
-      expect(!!home.title$).toEqual(true);
-      expect(title.getTitle()).toEqual(home.title$);
+    inject([ Dashboard, Title ], (Dashboard, title) => {
+      expect(!!Dashboard.title$).toEqual(true);
+      expect(title.getTitle()).toEqual(Dashboard.title$);
     });
   }));
 
-  it('should log ngOnInit', inject([ Home ], (home) => {
+  it('should log ngOnInit', inject([ Dashboard ], (Dashboard) => {
     spyOn(console, 'log');
     expect(console.log).not.toHaveBeenCalled();
 
-    home.ngOnInit();
+    Dashboard.ngOnInit();
     expect(console.log).toHaveBeenCalled();
   }));
 

@@ -13,6 +13,10 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ForkCheckerPlugin = require('awesome-typescript-loader').ForkCheckerPlugin;
 const HtmlElementsPlugin = require('./html-elements-plugin');
 
+const pkg = require('../package.json');
+
+consoel.log(pkg);
+
 /*
  * PostCss
  */

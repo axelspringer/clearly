@@ -29,6 +29,7 @@ import { DBService } from '../../services';
 export class App {
 
   private title$ = AppConfig.HTML5_TITLE;
+  private version$ = AppConfig.VERSION;
 
   constructor(
     private translate: TranslateService,

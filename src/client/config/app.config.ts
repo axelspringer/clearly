@@ -3,6 +3,8 @@ import { ILang } from '../common';
 // Application Configuration
 export class AppConfig {
 
+  static VERSION: string = '0.0.1-alpha.0'; // TODO@sebastian should be dynamic
+
   static DEFAULT_LANGUAGE: string = 'de';
 
   static HTML5_BASE: string = '/';

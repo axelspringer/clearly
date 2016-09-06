@@ -19,8 +19,8 @@ describe('App', () => {
     expect(subject).toEqual(result);
   });
 
-  it('should have <home>', () => {
-    let subject = element(by.css('app home')).isPresent();
+  it('should have <dasboard>', () => {
+    let subject = element(by.css('app dashboard')).isPresent();
     let result  = true;
     expect(subject).toEqual(result);
   });

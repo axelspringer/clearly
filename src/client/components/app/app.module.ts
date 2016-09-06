@@ -1,18 +1,17 @@
-import { NgModule, ApplicationRef } from '@angular/core';
+import { AuthGuard } from '../../guards';
 import { BrowserModule, Title } from '@angular/platform-browser';
+import { EffectsModule } from '@ngrx/effects';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { RouterModule } from '@angular/router';
+import { NgModule, ApplicationRef } from '@angular/core';
 import { removeNgStyles, createNewHosts } from '@angularclass/hmr';
-import { TranslateModule, TranslateLoader } from 'ng2-translate/ng2-translate';
-import { TranslateCustomLoader } from '../../common';
-import { AuthGuard } from '../../guards';
-import { StoreModule } from '@ngrx/store';
-
+import { RouterModule } from '@angular/router';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { StoreModule } from '@ngrx/store';
+import { TranslateCustomLoader } from '../../common';
+import { TranslateModule, TranslateLoader } from 'ng2-translate/ng2-translate';
 import { useLogMonitor, StoreLogMonitorModule } from '@ngrx/store-log-monitor';
-
-import { EffectsModule } from '@ngrx/effects';
+import { MdModule } from './app.material';
 
 /*
  * Platform and Environment providers/directives/pipes
@@ -24,7 +23,7 @@ import { ROUTES } from './app.routes';
 // App is our top level component
 import { App } from './app.component';
 import { APP_RESOLVER_PROVIDERS } from './app.resolver';
-import { Home } from '../home';
+import { Dashboard } from '../dashboard';
 import { NoContent } from '../404';
 
 import reducer from '../../reducers';
@@ -49,8 +48,8 @@ const APP_PROVIDERS = [
   ],
   declarations: [
     App,
-    Home,
-    NoContent
+    Dashboard,
+    NoContent,
   ],
   imports: [ // import Angular's modules
     BrowserModule,
@@ -75,7 +74,8 @@ const APP_PROVIDERS = [
         position: 'right'
       })
     }),
-    StoreLogMonitorModule
+    StoreLogMonitorModule,
+    MdModule.forRoot() // here is the magic
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     ENV_PROVIDERS,

@@ -10,24 +10,20 @@ import { UserActions } from '../../actions';
 
 
 @Component({
-  // The selector is what angular internally uses
-  // for `document.querySelectorAll(selector)` in our index.html
-  // where, in this case, selector is the string 'home'
-  selector: 'home',  // <home></home>
-  // We need to tell Angular's Dependency Injection which providers are in our app.
+  selector: 'dashboard',  // <dashboard></dashboard>
   providers: [
     UserActions
   ],
-  // Our list of styles in our component. We may add more to compose many styles together
-  styleUrls: [ './home.style.css' ],
-  // Every Angular template is first compiled by the browser before Angular runs it's compiler
-  templateUrl: './home.template.html'
+  styleUrls: [ './dashboard.style.css' ],
+  templateUrl: './dashboard.template.html'
 })
-export class Home {
+export class Dashboard {
 
   private store$: any;
   private user$: any;
-  private title$ = 'Home';
+  private title$ = 'Dashboard';
+  private pirate$ = '';
+  private isPirate$: boolean = false;
 
   // TypeScript public modifiers
   constructor(
@@ -47,9 +43,16 @@ export class Home {
 
   ngOnInit() {
 
-    console.log('hello `Home` component');
+    console.log('hello `Dashboard` component');
     this.title.setTitle(this.title$);
 
+  }
+
+  isPirate(answer: boolean) {
+    if (answer) {
+      this.isPirate$ = answer;
+      this.pirate$ = 'http://i.giphy.com/26tn1ToaMhpOEetkA.gif';
+    }
   }
 
   submitState(value) {

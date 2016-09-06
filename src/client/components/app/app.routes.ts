@@ -1,5 +1,5 @@
 import { Routes, RouterModule } from '@angular/router';
-import { Home } from '../home';
+import { Dashboard } from '../dashboard';
 import { NoContent } from '../404';
 import { AuthGuard } from '../../guards';
 
@@ -12,8 +12,8 @@ export const ROUTES: Routes = [
       AuthGuard
     ],
     path: '',
-    component: Home
+    component: Dashboard
   },
-  { path: 'home',  component: Home },
+  { path: 'dashboard',  component: Dashboard },
   { path: '**',    component: NoContent },
 ];
