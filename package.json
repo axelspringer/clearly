@@ -7,12 +7,15 @@
     "webpack",
     "typescript"
   ],
-  "author": "Sebastian Döll <sebastian.doell@axelspringer.de",
-  "homepage": "",
+  "author": {
+    "name": "Sebastian Döll",
+    "email": "sebastian.doell@axelspringer.de"
+  },
+  "homepage": "https://as-stash.axelspringer.de/projects/TORTUGA/repos/tortuga-blackbeard",
   "license": "MIT",
   "scripts": {
     "build:dev": "webpack --config config/webpack.dev.js --progress --profile",
-    "build:docker": "npm run build:prod && docker build -t angular2-webpack-start:latest .",
+    "build:docker": "npm run build:prod && docker build -t tortuga-blackbeard:latest .",
     "build:prod": "webpack --config config/webpack.prod.js  --progress --profile --bail",
     "build": "npm run build:dev",
     "ci": "npm run lint && npm test && npm run e2e",
@@ -149,10 +152,10 @@
   },
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://as-stash.axelspringer.de/scm/tortuga/tortuga-blackbeard.git"
   },
   "bugs": {
-    "url": ""
+    "url": "https://as-jira.axelspringer.de"
   },
   "engines": {
     "node": ">= 4.5.0",
