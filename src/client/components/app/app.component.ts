@@ -1,0 +1,50 @@
+/*
+ * Angular 2 decorators and services
+ */
+import {
+  Component,
+  ViewEncapsulation
+} from '@angular/core';
+import { TranslateService } from 'ng2-translate/ng2-translate';
+import { Title } from '@angular/platform-browser';
+
+import { AppConfig } from '../../config';
+import { DBService } from '../../services';
+
+
+/*
+ * App Component
+ * Top Level Component
+ */
+@Component({
+  selector: 'app',
+  encapsulation: ViewEncapsulation.None,
+  providers: [
+  ],
+  styleUrls: [
+    './app.style.scss'
+  ],
+  templateUrl: './app.component.html'
+})
+export class App {
+
+  private title$ = AppConfig.HTML5_TITLE;
+
+  constructor(
+    private translate: TranslateService,
+    private title: Title,
+    private db: DBService // comment to disable db service to be not injected
+  ) {
+
+    translate.setDefaultLang(AppConfig.DEFAULT_LANGUAGE);
+    translate.use(AppConfig.DEFAULT_LANGUAGE);
+
+  }
+
+  ngOnInit() {
+
+    this.title.setTitle(AppConfig.HTML5_TITLE);
+
+  }
+
+}
