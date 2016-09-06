@@ -1,4 +1,11 @@
-<md-card>
-  <img [src]="pirate$">
-  <button *ngIf="!isPirate$" md-raised-button color="primary" (click)="isPirate(true)">Are you a pirate?</button>
-</md-card>
+<md-tab-group>
+  <md-tab>
+    <template md-tab-label>Pirates</template>
+    <template md-tab-content>
+      <md-card>
+        <img [src]="pirate$">
+        <button *ngIf="!isPirate$" md-raised-button color="primary" (click)="isPirate(true)">Are you a pirate?</button>
+      </md-card>
+    </template>
+  </md-tab>
+</md-tab-group>
