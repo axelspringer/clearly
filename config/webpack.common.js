@@ -15,8 +15,6 @@ const HtmlElementsPlugin = require('./html-elements-plugin');
 
 const pkg = require('../package.json');
 
-consoel.log(pkg);
-
 /*
  * PostCss
  */
