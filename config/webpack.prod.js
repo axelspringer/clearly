@@ -9,11 +9,13 @@ const commonConfig = require('./webpack.common.js'); // the settings that are co
 /**
  * Webpack Plugins
  */
-const ProvidePlugin = require('webpack/lib/ProvidePlugin');
-const DefinePlugin = require('webpack/lib/DefinePlugin');
-const NormalModuleReplacementPlugin = require('webpack/lib/NormalModuleReplacementPlugin');
-const IgnorePlugin = require('webpack/lib/IgnorePlugin');
+const CompressionPlugin = require('compression-webpack-plugin');
 const DedupePlugin = require('webpack/lib/optimize/DedupePlugin');
+const DefinePlugin = require('webpack/lib/DefinePlugin');
+const IgnorePlugin = require('webpack/lib/IgnorePlugin');
+const NormalModuleReplacementPlugin = require('webpack/lib/NormalModuleReplacementPlugin');
+const OfflinePlugin = require('offline-plugin');
+const ProvidePlugin = require('webpack/lib/ProvidePlugin');
 const UglifyJsPlugin = require('webpack/lib/optimize/UglifyJsPlugin');
 const WebpackMd5Hash = require('webpack-md5-hash');
 
@@ -113,6 +115,16 @@ module.exports = webpackMerge(commonConfig, {
     // new DedupePlugin(), // see: https://github.com/angular/angular-cli/issues/1587
 
     /**
+    * Plugin: OfflinePlugin
+    * Description: Offline plugin (ServiceWorker, AppCache) for webpack (http://webpack.github.io/)
+    *
+    * See: https://github.com/NekR/offline-plugin
+    */
+    new OfflinePlugin({
+      excludes: ['**/*.gz']
+    }),
+
+    /**
      * Plugin: DefinePlugin
      * Description: Define free variables.
      * Useful for having development builds with debug logging or adding global constants.
@@ -157,7 +169,7 @@ module.exports = webpackMerge(commonConfig, {
 
 
       beautify: false, //prod
-      mangle: { screw_ie8 : true, keep_fnames: true }, //prod
+      mangle: { screw_ie8: true, keep_fnames: true }, //prod
       compress: { screw_ie8: true }, //prod
       comments: false //prod
     }),
@@ -190,11 +202,12 @@ module.exports = webpackMerge(commonConfig, {
      *
      * See: https://github.com/webpack/compression-webpack-plugin
      */
-    //  install compression-webpack-plugin
-    // new CompressionPlugin({
-    //   regExp: /\.css$|\.html$|\.js$|\.map$/,
-    //   threshold: 2 * 1024
-    // })
+    new CompressionPlugin({
+      regExp: /\.css$|\.html$|\.js$|\.map$/,
+      asset: '[path].gz[query]',
+      algorithm: 'zopfli',
+      threshold: 2 * 1024 // should be fixed
+    })
 
   ],
 

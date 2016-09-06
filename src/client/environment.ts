@@ -13,6 +13,9 @@ let PROVIDERS = [
 let _decorateModuleRef = function identity(value) { return value; };
 
 if ('production' === ENV) {
+  // offline via ServiceWorker
+  require('offline-plugin/runtime').install();
+
   // Production
   disableDebugTools();
   enableProdMode();

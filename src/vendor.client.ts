@@ -22,7 +22,6 @@ import 'pouchdb';
 if ('production' === ENV) {
   // Production
 
-
 } else {
   // Development
 
