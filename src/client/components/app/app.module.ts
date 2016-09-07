@@ -25,6 +25,10 @@ import { App } from './app.component';
 import { APP_RESOLVER_PROVIDERS } from './app.resolver';
 import { Dashboard } from '../dashboard';
 import { NoContent } from '../404';
+import { Toolbar } from '../toolbar';
+
+// Modules
+import { BackpackModule } from '../backpack';
 
 import reducer from '../../reducers';
 import { UserEffects } from '../../effects';
@@ -50,6 +54,7 @@ const APP_PROVIDERS = [
     App,
     Dashboard,
     NoContent,
+    Toolbar,
   ],
   imports: [ // import Angular's modules
     BrowserModule,
@@ -75,7 +80,8 @@ const APP_PROVIDERS = [
       })
     }),
     StoreLogMonitorModule,
-    MdModule.forRoot() // here is the magic
+    MdModule.forRoot(), // here is the magic,
+    BackpackModule
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     ENV_PROVIDERS,

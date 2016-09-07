@@ -1,4 +1,11 @@
 {
   "HELLOWORLD": "Ho ho ho! Blackbeard",
-  "404": "Komponente nicht gefunden"
+  "404": "Komponente nicht gefunden",
+
+  "TOOLBAR": {
+    "HELP": "HILFE",
+    "VERSION": "Version",
+    "SIGNOUT": "Abmelden"
+  }
+
 }

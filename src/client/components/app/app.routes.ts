@@ -12,8 +12,14 @@ export const ROUTES: Routes = [
       AuthGuard
     ],
     path: '',
+    component: Dashboard // TODO@sdoell: move to module
+  },
+  {
+    path: 'dashboard',
     component: Dashboard
   },
-  { path: 'dashboard',  component: Dashboard },
-  { path: '**',    component: NoContent },
+  {
+    path: '**',
+    component: NoContent
+  },
 ];

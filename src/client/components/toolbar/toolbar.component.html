@@ -1,0 +1,17 @@
+<md-toolbar color="primary">
+  <span>{{ title$ }}</span>
+
+  <!-- This fills the remaining space of the current row -->
+  <span class="example-fill-remaining-space"></span>
+
+  <button md-icon-button [md-menu-trigger-for]="menu">
+    <md-icon>more_vert</md-icon>
+  </button>
+
+  <md-menu #menu="mdMenu">
+    <button md-menu-item>{{ 'TOOLBAR.VERSION' | translate }}</button>
+    <button md-menu-item>{{ 'TOOLBAR.HELP' | translate }}</button>
+    <button md-menu-item disabled>{{ 'TOOLBAR.SIGNOUT' | translate }}</button>
+  </md-menu>
+
+</md-toolbar>
