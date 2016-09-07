@@ -97,7 +97,6 @@
     "@angularclass/request-idle-callback": "^1.0.7",
     "@angularclass/webpack-toolkit": "^1.3.3",
     "@ngrx/core": "^1.1.0",
-    "@ngrx/db": "git+https://github.com/ngrx/db.git#chore/build-and-rc6",
     "@ngrx/effects": "^2.0.0-beta.3",
     "@ngrx/store": "^2.1.2",
     "@ngrx/store-devtools": "^3.0.1",
