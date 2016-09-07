@@ -1,0 +1,16 @@
+version: "2"
+services:
+  db_data:
+    image: arangodb/arangodb:3.0.6
+    command: "true"
+  db:
+    image: arangodb/arangodb:3.0.6
+    restart: alwaysq
+    depends_on:
+      - db_data
+    volumes_from:
+      - db_data
+    environment:
+      ARANGO_ROOT_PASSWORD: "ho!ho!ho!"
+    ports:
+      - "8529:8529"
