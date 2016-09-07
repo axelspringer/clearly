@@ -41,23 +41,23 @@ describe('Dashboard', () => {
   }));
 
   it('should have default data', async(() => {
-    inject([ Dashboard ], (Dashboard) => {
-      expect(Dashboard.user$).toEqual({userId: ''});
+    inject([ Dashboard ], (dashboard) => {
+      expect(dashboard.user$).toEqual({userId: ''});
     });
   }));
 
   it('should have a title', async(() => {
-    inject([ Dashboard, Title ], (Dashboard, title) => {
-      expect(!!Dashboard.title$).toEqual(true);
-      expect(title.getTitle()).toEqual(Dashboard.title$);
+    inject([ Dashboard, Title ], (dashboard, title) => {
+      expect(!!dashboard.title$).toEqual(true);
+      expect(title.getTitle()).toEqual(dashboard.title$);
     });
   }));
 
-  it('should log ngOnInit', inject([ Dashboard ], (Dashboard) => {
+  it('should log ngOnInit', inject([ Dashboard ], (dashboard) => {
     spyOn(console, 'log');
     expect(console.log).not.toHaveBeenCalled();
 
-    Dashboard.ngOnInit();
+    dashboard.ngOnInit();
     expect(console.log).toHaveBeenCalled();
   }));
 
