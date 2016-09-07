@@ -3,8 +3,8 @@
   "404": "Komponente nicht gefunden",
 
   "TOOLBAR": {
-    "HELP": "HILFE",
     "VERSION": "Version",
+    "HELP": "Hilfe",
     "SIGNOUT": "Abmelden"
   }
 
