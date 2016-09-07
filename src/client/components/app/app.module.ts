@@ -8,10 +8,17 @@ import { removeNgStyles, createNewHosts } from '@angularclass/hmr';
 import { RouterModule } from '@angular/router';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreModule } from '@ngrx/store';
-import { TranslateCustomLoader } from '../../common';
-import { TranslateModule, TranslateLoader } from 'ng2-translate/ng2-translate';
+import { TranslateCustomLoader } from '../../commons';
+// import { TranslateModule, TranslateLoader } from 'ng2-translate/ng2-translate';
 import { useLogMonitor, StoreLogMonitorModule } from '@ngrx/store-log-monitor';
 import { MdModule } from './app.material';
+
+import { CommonsModule } from '../../commons';
+
+import {
+  TranslateModule,
+  TranslateLoader
+} from 'ng2-translate/ng2-translate';
 
 /*
  * Platform and Environment providers/directives/pipes
@@ -37,7 +44,7 @@ import { DBService } from '../../services';
 // Application wide providers
 const APP_PROVIDERS = [
   ...APP_RESOLVER_PROVIDERS,
-  ...HTTP_PROVIDERS,
+  // ...HTTP_PROVIDERS,
   AuthGuard,
   DBService,
   Title
@@ -60,17 +67,18 @@ const APP_PROVIDERS = [
     BrowserModule,
     FormsModule,
     HttpModule,
+    CommonsModule.forRoot(AppLocale.languages),
     EffectsModule.runAfterBootstrap(UserEffects),
     RouterModule.forRoot(ROUTES, {
       useHash: true,
       enableTracing: true
     }),
-    TranslateModule.forRoot({ // custom translation provider
-      provide: TranslateLoader,
-      useFactory: () => {
-        return new TranslateCustomLoader(AppLocale.languages);
-      }
-    }),
+    // TranslateModule.forRoot({ // custom translation provider
+    //   provide: TranslateLoader,
+    //   useFactory: () => {
+    //     return new TranslateCustomLoader(AppLocale.languages);
+    //   }
+    // }),
     StoreModule.provideStore(reducer),
     StoreDevtoolsModule.instrumentStore({ // store dev tools for debug
       maxAge: 5,

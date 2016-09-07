@@ -9,6 +9,7 @@ export class TranslateCustomLoader implements TranslateLoader {
   private _langs: {};
 
   constructor(public languages: {}) {
+    console.log(languages); // have some debug
     this._langs = languages;
   }
 
