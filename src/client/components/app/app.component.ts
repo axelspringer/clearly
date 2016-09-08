@@ -12,6 +12,7 @@ import { Title } from '@angular/platform-browser';
 
 import { AppConfig } from '../../config';
 import { DBService } from '../../services';
+import { EmitterService } from '../,,/commons';
 
 
 /*
@@ -36,9 +37,9 @@ export class App implements AfterViewInit {
   private version$ = AppConfig.VERSION;
 
   constructor(
-    private translate: TranslateService,
-    private title: Title,
-    private db: DBService // comment to disable db service to be not injected
+    public translate: TranslateService,
+    public title: Title,
+    public db: DBService // comment to disable db service to be not injected
   ) {
 
     translate.setDefaultLang(AppConfig.DEFAULT_LANGUAGE);

@@ -34,6 +34,7 @@ import { Dashboard } from '../dashboard';
 import { NoContent } from '../404';
 import { Toolbar } from '../toolbar';
 import { Menu } from '../menu';
+import { Settings } from '../settings';
 
 // Modules
 import { BackpackModule } from '../backpack';
@@ -64,6 +65,7 @@ const APP_PROVIDERS = [
     NoContent,
     Toolbar,
     Menu,
+    Settings
   ],
   imports: [ // import Angular's modules
     BrowserModule,

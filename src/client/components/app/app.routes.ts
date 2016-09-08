@@ -1,6 +1,7 @@
 import { Routes, RouterModule } from '@angular/router';
 import { Dashboard } from '../dashboard';
 import { NoContent } from '../404';
+import { Settings } from '../settings';
 import { AuthGuard } from '../../guards';
 
 import { DataResolver } from './app.resolver';
@@ -22,6 +23,10 @@ export const ROUTES: Routes = [
       order: 0,
       isMenu: true
     }
+  },
+  {
+    path: 'settings',
+    component: Settings
   },
   {
     path: '**',

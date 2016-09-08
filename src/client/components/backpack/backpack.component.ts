@@ -1,4 +1,10 @@
-import { Component } from '@angular/core';
+import {
+  Component,
+  OnInit
+} from '@angular/core';
+import { Title } from '@angular/platform-browser';
+import { EmitterService } from '../../commons';
+import { Toolbar } from '../toolbar';
 
 @Component({
   selector: 'backpack',  // <backpack></backpack>
@@ -6,9 +12,21 @@ import { Component } from '@angular/core';
   styleUrls: [ './backpack.style.scss' ],
   templateUrl: './backpack.template.html'
 })
-export class Backpack {
+export class Backpack implements OnInit {
 
-  constructor() {
+  static $title: string = 'Backpack';
+
+  constructor(
+    private title: Title
+  ) {
+
+  }
+
+  ngOnInit() {
+
+    this.title.setTitle(Backpack.$title);
+    EmitterService.get(Toolbar.prototype.constructor.name).emit(this.constructor.name);
+
   }
 
 };

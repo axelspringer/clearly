@@ -8,7 +8,8 @@ const routes: Routes = [
     path: 'backpack',
     component: Backpack,
     data: {
-      title: 'Backback',
+      title: Backpack.$title,
+      icon: 'home',
       order: 1,
       isMenu: true
     }

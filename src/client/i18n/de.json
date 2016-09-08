@@ -6,6 +6,17 @@
     "VERSION": "Version",
     "HELP": "Hilfe",
     "SIGNOUT": "Abmelden"
+  },
+
+  "SIDENAV": {
+    "SETTINGS": "Einstellungen"
+  },
+
+  "SETTINGS": {
+    "TABS": {
+      "GENERAL": "Allgemein",
+      "USER": "Benutzer"
+    }
   }
 
 }

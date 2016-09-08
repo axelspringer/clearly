@@ -1,9 +1,15 @@
-<md-list>
+<md-nav-list>
+
+  <h3 md-subheader>Workflow</h3>
 
   <template ngFor let-item [ngForOf]="$routes" let-i="index">
-    <md-list-item *ngIf="item?.data?.isMenu">
-      <a [routerLink]="[ item.path ]">{{ item?.data?.title }}</a>
+    <md-list-item (click)="trigger(item.path)">
+        {{ item.data.title }}
     </md-list-item>
   </template>
 
-</md-list>
+  <md-divider></md-divider>
+
+  <md-list-item (click)="trigger('settings')">{{ 'SIDENAV.SETTINGS' | translate }}</md-list-item>
+
+</md-nav-list>
