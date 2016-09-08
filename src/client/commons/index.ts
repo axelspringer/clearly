@@ -11,6 +11,7 @@ import {
   TranslatePipe
 } from 'ng2-translate/ng2-translate';
 import { TranslateCustomLoader } from './i18n';
+import { EmitterService } from './events';
 
 @NgModule({
   imports: [
@@ -23,7 +24,8 @@ import { TranslateCustomLoader } from './i18n';
   ],
   providers: [
     ...HTTP_PROVIDERS,
-    TranslateService
+    TranslateService,
+    EmitterService
   ]
 })
 export class CommonsModule {
@@ -44,3 +46,4 @@ export class CommonsModule {
 
 export * from './i18n';
 export * from './http';
+export * from './events';

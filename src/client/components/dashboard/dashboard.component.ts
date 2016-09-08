@@ -1,4 +1,10 @@
-import { Component } from '@angular/core';
+import {
+  Component,
+  ViewChild,
+  Inject,
+  forwardRef,
+  ApplicationRef
+} from '@angular/core';
 import { Title } from '@angular/platform-browser';
 
 import { Store } from '@ngrx/store';
@@ -7,14 +13,15 @@ import {
   getUserState
 } from '../../reducers';
 import { UserActions } from '../../actions';
-
+import { EmitterService } from '../../commons';
+import { Toolbar } from '../toolbar';
 
 @Component({
   selector: 'dashboard',  // <dashboard></dashboard>
   providers: [
     UserActions
   ],
-  styleUrls: [ './dashboard.style.css' ],
+  styleUrls: ['./dashboard.style.css'],
   templateUrl: './dashboard.template.html'
 })
 export class Dashboard {
@@ -29,7 +36,7 @@ export class Dashboard {
   constructor(
     private store: Store<AppState>,
     private userActions: UserActions,
-    private title: Title
+    private title: Title,
   ) {
 
     // map app store slice
@@ -46,6 +53,8 @@ export class Dashboard {
     console.log('hello `Dashboard` component');
     this.title.setTitle(this.title$);
 
+    EmitterService.get(Toolbar.prototype.constructor.name).emit(this.constructor.name);
+
   }
 
   isPirate(answer: boolean) {
@@ -53,6 +62,7 @@ export class Dashboard {
       this.isPirate$ = answer;
       this.pirate$ = 'http://i.giphy.com/26tn1ToaMhpOEetkA.gif';
     }
+
   }
 
   submitState(value) {

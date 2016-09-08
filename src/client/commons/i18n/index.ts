@@ -4,4 +4,5 @@ export interface ILang {
   default?: boolean;
   name: string;
 }
+
 export * from './i18n.provider';

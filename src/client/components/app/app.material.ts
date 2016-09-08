@@ -22,11 +22,12 @@ import { MdToolbarModule } from '@angular2-material/toolbar/toolbar';
 import { MdTooltipModule } from '@angular2-material/tooltip/tooltip';
 import { MdRippleModule } from '@angular2-material/core/ripple/ripple';
 // import { PortalModule } from '@angular2-material/core/portal/portal-directives';
-import { OverlayModule } from '@angular2-material/core/overlay/overlay-directives';
+// import { OverlayModule } from '@angular2-material/core/overlay/overlay-directives';
 import { MdMenuModule } from '@angular2-material/menu';
 // import { MdDialogModule } from '@angular2-material/dialog';
-import { RtlModule } from '@angular2-material/core/rtl/dir';
-import { MdLiveAnnouncer } from '@angular2-material/core/a11y/live-announcer';
+// import { RtlModule } from '@angular2-material/core/rtl/dir';
+// import { MdLiveAnnouncer } from '@angular2-material/core/a11y/live-announcer';
+import { MdCoreModule } from '@angular2-material/core';
 
 const MATERIAL_MODULES = [
   MdButtonModule,
@@ -49,30 +50,31 @@ const MATERIAL_MODULES = [
   MdTabsModule,
   MdToolbarModule,
   MdTooltipModule,
-  OverlayModule,
+  MdCoreModule
+  // OverlayModule,
   // PortalModule,
-  RtlModule,
+  // RtlModule,
 ];
 
 @NgModule({
 
   imports: [
-    MdButtonModule,
-    MdCardModule,
-    MdCheckboxModule,
-    MdGridListModule,
-    MdInputModule,
-    MdListModule,
-    MdProgressBarModule,
-    MdProgressCircleModule,
-    MdRippleModule,
-    MdSidenavModule,
-    MdSliderModule,
-    MdSlideToggleModule,
-    MdTabsModule,
-    MdToolbarModule,
+    MdButtonModule.forRoot(),
+    MdCardModule.forRoot(),
+    MdCheckboxModule.forRoot(),
+    MdGridListModule.forRoot(),
+    MdInputModule.forRoot(),
+    MdListModule.forRoot(),
+    MdProgressBarModule.forRoot(),
+    MdProgressCircleModule.forRoot(),
+    MdRippleModule.forRoot(),
+    MdSidenavModule.forRoot(),
+    MdSliderModule.forRoot(),
+    MdSlideToggleModule.forRoot(),
+    MdTabsModule.forRoot(),
+    MdToolbarModule.forRoot(),
     // PortalModule,
-    RtlModule,
+    // RtlModule,
 
     // These modules include providers.
     MdButtonToggleModule.forRoot(),
@@ -81,11 +83,12 @@ const MATERIAL_MODULES = [
     MdMenuModule.forRoot(),
     MdRadioModule.forRoot(),
     MdTooltipModule.forRoot(),
-    OverlayModule.forRoot(),
+    MdCoreModule.forRoot()
+    // OverlayModule.forRoot(),
   ],
 
   exports: MATERIAL_MODULES,
-  providers: [MdLiveAnnouncer]
+  // providers: [MdLiveAnnouncer]
 
 })
 export class MdRootModule { }

@@ -1,4 +1,4 @@
-import { ILang } from '../common';
+import { ILang } from '../commons';
 
 // Application Configuration
 export class AppConfig {

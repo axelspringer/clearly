@@ -14,7 +14,11 @@ import { routing as RoutingModule } from './backpack.routes';
     FormsModule,
     RoutingModule
   ],
-  exports: [Backpack],
-  declarations: [Backpack]
+  exports: [
+    Backpack
+  ],
+  declarations: [
+    Backpack
+  ]
 })
 export class BackpackModule {}

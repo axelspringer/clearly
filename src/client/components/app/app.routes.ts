@@ -16,7 +16,12 @@ export const ROUTES: Routes = [
   },
   {
     path: 'dashboard',
-    component: Dashboard
+    component: Dashboard,
+    data: {
+      title: 'Dashboard',
+      order: 0,
+      isMenu: true
+    }
   },
   {
     path: '**',

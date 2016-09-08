@@ -3,6 +3,8 @@
  */
 import {
   Component,
+  ViewChild,
+  AfterViewInit,
   ViewEncapsulation
 } from '@angular/core';
 import { TranslateService } from 'ng2-translate/ng2-translate';
@@ -26,7 +28,9 @@ import { DBService } from '../../services';
   ],
   templateUrl: './app.component.html'
 })
-export class App {
+export class App implements AfterViewInit {
+
+  @ViewChild('menu') menu;
 
   private title$ = AppConfig.HTML5_TITLE;
   private version$ = AppConfig.VERSION;
@@ -46,6 +50,9 @@ export class App {
 
     this.title.setTitle(AppConfig.HTML5_TITLE);
 
+  }
+
+  ngAfterViewInit() {
   }
 
 }

@@ -17,7 +17,7 @@ button.active:hover{
   flex: 1 1 auto;
 }
 
-.app-state{
+.app-state {
   margin: 15px;
   flex: 1;
 }
@@ -32,13 +32,30 @@ md-content{
   height: 100%;
 }
 
-footer{
+footer {
   flex: 0 0 60px;
   padding: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
   background: #fff;
+}
+
+// global
+.app {
+
+  &-layout {
+
+    height: 100vh;
+    width: 100vw;
+
+    &-sidenav {
+      // set to 30% of width; TODO@sdoell: perhaps should be in code
+      width: calc(.3 * 100vw);
+    }
+
+  }
+
 }
 
 .example-fill-remaining-space {
@@ -55,11 +72,13 @@ footer{
   top: 0;
   left: 0;
   height: 100%;
-  width: 100%; }
+  width: 100%;
+  }
 
 /** A single overlay pane. */
 .md-overlay-pane {
   position: absolute;
   pointer-events: auto;
   box-sizing: border-box;
-  z-index: 1000; }
+  z-index: 1000;
+}

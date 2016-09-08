@@ -7,7 +7,7 @@ import {
 // Load the implementations that should be tested
 import { App } from './app.component';
 import { TranslateModule, TranslateLoader } from 'ng2-translate/ng2-translate';
-import { TranslateCustomLoader } from '../../common';
+import { TranslateCustomLoader } from '../../commons';
 import { AppConfig } from '../../config';
 import { Title } from '@angular/platform-browser';
 import { DBService } from '../../services';

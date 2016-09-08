@@ -24,15 +24,16 @@ import {
  * Platform and Environment providers/directives/pipes
  */
 import { ENV_PROVIDERS } from '../../environment';
-import { HTTP_PROVIDERS } from '../../common';
 import { AppLocale } from '../../config';
 import { ROUTES } from './app.routes';
 // App is our top level component
 import { App } from './app.component';
 import { APP_RESOLVER_PROVIDERS } from './app.resolver';
+
 import { Dashboard } from '../dashboard';
 import { NoContent } from '../404';
 import { Toolbar } from '../toolbar';
+import { Menu } from '../menu';
 
 // Modules
 import { BackpackModule } from '../backpack';
@@ -62,6 +63,7 @@ const APP_PROVIDERS = [
     Dashboard,
     NoContent,
     Toolbar,
+    Menu,
   ],
   imports: [ // import Angular's modules
     BrowserModule,
@@ -73,17 +75,11 @@ const APP_PROVIDERS = [
       useHash: true,
       enableTracing: true
     }),
-    // TranslateModule.forRoot({ // custom translation provider
-    //   provide: TranslateLoader,
-    //   useFactory: () => {
-    //     return new TranslateCustomLoader(AppLocale.languages);
-    //   }
-    // }),
     StoreModule.provideStore(reducer),
     StoreDevtoolsModule.instrumentStore({ // store dev tools for debug
       maxAge: 5,
       monitor: useLogMonitor({
-        visible: true, // first setting
+        visible: false, // init
         position: 'right'
       })
     }),

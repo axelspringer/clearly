@@ -1,0 +1,9 @@
+<md-list>
+
+  <template ngFor let-item [ngForOf]="$routes" let-i="index">
+    <md-list-item *ngIf="item?.data?.isMenu">
+      <a [routerLink]="[ item.path ]">{{ item?.data?.title }}</a>
+    </md-list-item>
+  </template>
+
+</md-list>

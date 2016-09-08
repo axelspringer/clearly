@@ -1,4 +1,11 @@
 <md-toolbar color="primary">
+
+  <button md-icon-button (click)="toggleMenu()">
+    <md-icon>menu</md-icon>
+  </button>
+
+  <span class="example-fill-remaining-space"></span>
+
   <span>{{ title$ }}</span>
 
   <!-- This fills the remaining space of the current row -->
