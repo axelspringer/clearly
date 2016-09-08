@@ -14,3 +14,13 @@ services:
       ARANGO_ROOT_PASSWORD: "ho!ho!ho!"
     ports:
       - "8529:8529"
+  app:
+    build: '.'
+    image: blackbeard:lastest
+    links:
+      - db
+    ports:
+      - "8080:80"
+    depends_on:
+      - db
+    restart: always
