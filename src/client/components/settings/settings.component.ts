@@ -16,7 +16,7 @@ import { Toolbar } from '../toolbar';
   providers: [
   ],
   styleUrls: ['./settings.style.css'],
-  templateUrl: './settings.template.html'
+  templateUrl: './settings.component.html'
 })
 export class Settings {
 

@@ -14,7 +14,7 @@ import {
 } from '../../reducers';
 import { UserActions } from '../../actions';
 import { EmitterService } from '../../commons';
-import { Toolbar } from '../toolbar';
+import { ToolbarTitleUpdate } from '../toolbar';
 
 @Component({
   selector: 'dashboard',  // <dashboard></dashboard>
@@ -22,7 +22,7 @@ import { Toolbar } from '../toolbar';
     UserActions
   ],
   styleUrls: ['./dashboard.style.css'],
-  templateUrl: './dashboard.template.html'
+  templateUrl: './dashboard.component.html'
 })
 export class Dashboard {
 
@@ -53,7 +53,7 @@ export class Dashboard {
     console.log('hello `Dashboard` component');
     this.title.setTitle(this.title$);
 
-    EmitterService.get(Toolbar.prototype.constructor.name).emit(this.constructor.name);
+    EmitterService.get(ToolbarTitleUpdate.prototype.constructor.name).emit(this.constructor.name);
 
   }
 

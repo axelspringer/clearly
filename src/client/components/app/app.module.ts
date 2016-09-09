@@ -37,7 +37,7 @@ import { Menu } from '../menu';
 import { Settings } from '../settings';
 
 // Modules
-import { BackpackModule } from '../backpack';
+import { OrchestraModule } from '../orchestra';
 
 import reducer from '../../reducers';
 import { UserEffects } from '../../effects';
@@ -87,7 +87,7 @@ const APP_PROVIDERS = [
     }),
     StoreLogMonitorModule,
     MdModule.forRoot(), // here is the magic,
-    BackpackModule
+    OrchestraModule
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     ENV_PROVIDERS,

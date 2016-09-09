@@ -1,20 +1,27 @@
+// Importables
 import {
   EventEmitter,
   Injectable
 } from '@angular/core';
 
+// Abstracts, classes, interfaces ...
+export abstract class ComponentEvent {} // could inherit later from Evenr to capture in the browser
+
 @Injectable()
 export class EmitterService {
 
-  private static _emitters: { [ID: string]: EventEmitter<any> } = {};
+  private static _emitters: { [id: string]: EventEmitter<any>; } = {};
 
-  static get(ID: string): EventEmitter<any> {
-
-    if (!this._emitters[ID]) {
-      this._emitters[ID] = new EventEmitter();
+  static create(event: Object | String, isAsync?: boolean): EventEmitter<any> {
+    const id = typeof event === 'string' ? event : event.constructor.name;
+    if ( ! this._emitters[id] ) {
+      this._emitters[id] = new EventEmitter();
     }
-    this.log(ID); return this._emitters[ID];
+    this.log(id); return this._emitters[id];
+  }
 
+  static get(event: Object | String, isAsync?: boolean): EventEmitter<any> {
+    return this.create(event, isAsync);
   }
 
   static log(ID: string) {

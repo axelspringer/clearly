@@ -1,3 +1,20 @@
+// Preamble
+import { ComponentEvent } from '../../commons';
+
+// the init specifities
+// interface ToolbarTitleUpdateEventInit extends EventInit {
+//   title: string; // we want a title
+// }
+
+// the event itself
+export class ToolbarTitleUpdate extends ComponentEvent {
+
+  // constructor(typeArg: string, eventInit: ToolbarTitleUpdateEventInit) {
+  //   super(typeArg, eventInit);
+  // }
+
+}
+
 // Impotables
 import {
   Component,
@@ -39,7 +56,7 @@ export class Toolbar implements OnInit {
 
   ngOnInit() {
 
-    EmitterService.get(this.constructor.name).subscribe(value => this.title$ = value);
+    EmitterService.create(new ToolbarTitleUpdate()).subscribe(value => this.title$ = value);
 
   }
 
