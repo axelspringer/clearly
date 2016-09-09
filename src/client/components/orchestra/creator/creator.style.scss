@@ -1,0 +1,12 @@
+:host {
+  display: block;
+  height: 100vh;
+}
+
+:host md-sidenav-layout {
+  height: 100%;
+}
+
+:host md-sidenav { // fix
+  right: 0;
+}

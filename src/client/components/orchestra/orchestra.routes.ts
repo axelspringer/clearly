@@ -12,10 +12,10 @@ import { routing as publisherRouting } from './publisher';
 
 const routes: Routes = [
   {
-    path: 'orchestra',
+    path: 'article',
     component: Orchestra,
     data: {
-      title: 'Neue Story',
+      title: 'Neuer Artikel',
       order: 1,
       isMenu: true
     },

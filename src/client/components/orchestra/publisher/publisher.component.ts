@@ -17,7 +17,8 @@ export class Publisher implements OnInit {
 
   ngOnInit() {
 
-    EmitterService.get(ToolbarTitleUpdate.prototype.constructor.name).emit('Story publizieren ...');
+    EmitterService.get(ToolbarTitleUpdate.prototype.constructor.name)
+      .emit('Artikel publizieren ...');
 
   }
 

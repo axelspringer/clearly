@@ -19,7 +19,7 @@ export const ROUTES: Routes = [
     path: 'dashboard',
     component: Dashboard,
     data: {
-      title: 'Dashboard',
+      title: 'Übersicht',
       order: 0,
       isMenu: true
     }
