@@ -12,6 +12,8 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ForkCheckerPlugin = require('awesome-typescript-loader').ForkCheckerPlugin;
 const HtmlElementsPlugin = require('./html-elements-plugin');
+const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
+const ProvidePlugin = require('webpack/lib/ProvidePlugin');
 
 const pkg = require('../package.json');
 
@@ -267,6 +269,18 @@ module.exports = {
     new HtmlElementsPlugin({
       headTags: require('./head-config.common')
     }),
+
+    /*
+     * Plugin: LodashModuleReplacementPlugin
+     * Description: Smaller modular Lodash builds.
+     *
+     * See: https://github.com/lodash/lodash-webpack-plugin
+     */
+    new LodashModuleReplacementPlugin(),
+
+    new ProvidePlugin({
+      _: 'lodash'
+    })
 
   ],
 

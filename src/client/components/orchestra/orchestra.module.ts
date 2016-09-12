@@ -15,17 +15,18 @@ import { Editor } from './editor';
 import { Publisher } from './publisher';
 
 // TODO@sdoell: move to module
-import {
-  Dragabble,
-  Highlight
-} from '../../directives';
+import { Highlight } from '../../directives';
+import { DndModule } from '../../directives/dnd';
+import { DFormModule } from '../dform';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     RoutingModule,
-    MdModule
+    MdModule,
+    DndModule,
+    DFormModule
   ],
   exports: [
     Orchestra
@@ -35,8 +36,9 @@ import {
     Creator,
     Editor,
     Publisher,
-    Dragabble,
     Highlight
+  ],
+  providers: [
   ]
 })
 export class OrchestraModule {}

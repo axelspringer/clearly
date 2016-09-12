@@ -1,14 +1,20 @@
 <md-sidenav-layout>
 
-  <md-sidenav #end opened="true" mode="side">
+  <md-sidenav mode="side" opened="true">
 
     <md-list>
 
-      <md-list-item [draggable]>
-        <md-icon md-list-avatar>text_format</md-icon>
-        <h4 md-line>Fließtext</h4>
-        <p md-line [myHighlight]> Sammeln von Fließtext </p>
-      </md-list-item>
+      <div dnd-draggable>
+        Test 2
+      </div>
+
+      <div dnd-draggable dnd-drag-data="text">
+        <md-list-item>
+          <md-icon md-list-avatar>text_format</md-icon>
+          <h4 md-line>Fließtext</h4>
+          <p md-line myHighlight> Sammeln von Fließtext </p>
+        </md-list-item>
+      </div>
 
       <md-list-item>
         <md-icon md-list-avatar>textsms</md-icon>
@@ -34,6 +40,13 @@
 
   </md-sidenav>
 
-  Content
+  <dform [dform-model]="form"></dform>
+
+  <div dnd-droppable (onDropSuccess)="addElement($event)">
+    Drop Element
+    <div *ngFor="let element of elements">
+      {{ element }}
+    </div>
+  </div>
 
 </md-sidenav-layout>

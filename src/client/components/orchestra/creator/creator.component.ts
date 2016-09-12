@@ -5,6 +5,7 @@ import {
 import { Title } from '@angular/platform-browser';
 import { EmitterService } from '../../../commons';
 import { ToolbarTitleUpdate } from '../../toolbar';
+import { DFormTextbox, DFormElement } from '../../dform';
 
 @Component({
   selector: 'creator',  // <creator></creator>
@@ -16,11 +17,26 @@ import { ToolbarTitleUpdate } from '../../toolbar';
 })
 export class Creator implements OnInit {
 
-  constructor() {}
+  public elements: Array<String> = [];
+  public form: DFormElement<any>[] = [];
+
+  constructor() {
+  }
+
+  addElement($event) {
+    this.form.push(new DFormTextbox({
+      key: `test${ Math.floor((Math.random() * 100) + 1) }`,
+      value: 'test'
+    }));
+    this.elements.push($event.dragData);
+  }
 
   ngOnInit() {
 
+    // try tp emit new event
     EmitterService.get(ToolbarTitleUpdate.prototype.constructor.name).emit('Artikel erstellen ...');
+
+    // form builder for creator
 
   }
 

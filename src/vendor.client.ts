@@ -19,6 +19,9 @@ import 'rxjs/add/operator/switchMap'; // these are extensions to the Observable
 // PouchDB
 import 'pouchdb';
 
+// _
+import * as _ from 'lodash';
+
 if ('production' === ENV) {
   // Production
 

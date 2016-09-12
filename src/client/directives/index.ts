@@ -1,2 +1,2 @@
-export * from './dragabble';
 export * from './highlight';
+export * from './dnd';
