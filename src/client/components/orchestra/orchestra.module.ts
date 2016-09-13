@@ -10,9 +10,9 @@ import { routing as RoutingModule } from './orchestra.routes';
 import { MdModule } from '../app/app.material';
 
 // Components
-import { Creator } from './creator';
-import { Editor } from './editor';
-import { Publisher } from './publisher';
+import { Creator } from './+creator';
+import { Editor } from './+editor';
+import { Publisher } from './+publisher';
 
 // TODO@sdoell: move to module
 import { Highlight } from '../../directives';

@@ -33,6 +33,9 @@
     "node_modules",
     "dist"
   ],
+  "angularCompilerOptions": {
+    "debug": true
+  },
   "awesomeTypescriptLoaderOptions": {
     "forkChecker": true,
     "useWebpackText": true

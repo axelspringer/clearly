@@ -6,9 +6,9 @@ import { Routes, RouterModule } from '@angular/router';
 import { Orchestra } from './orchestra.component';
 
 // Routing
-import { routing as creatorRouting } from './creator';
-import { routing as editorRouting } from './editor';
-import { routing as publisherRouting } from './publisher';
+import { routing as creatorRouting } from './+creator';
+import { routing as editorRouting } from './+editor';
+import { routing as publisherRouting } from './+publisher';
 
 const routes: Routes = [
   {
