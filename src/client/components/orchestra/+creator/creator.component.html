@@ -40,6 +40,6 @@
 
   </md-sidenav>
 
-  <dform [dform-data]="backpack" (dform-group)="form=$event" dnd-droppable (onDropSuccess)="addElement($event)" class="creator"></dform>
+  <dform [dform-data]="backpack" (dform-group)="save($event)" dnd-droppable (onDropSuccess)="addElement($event)" class="creator"></dform>
 
 </md-sidenav-layout>

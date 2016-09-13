@@ -4,8 +4,6 @@ import { NoContent } from '../404';
 import { Settings } from '../settings';
 import { AuthGuard } from '../../guards';
 
-import { DataResolver } from './app.resolver';
-
 
 export const ROUTES: Routes = [
   {

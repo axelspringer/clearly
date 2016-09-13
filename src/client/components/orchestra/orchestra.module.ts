@@ -13,6 +13,7 @@ import { MdModule } from '../app/app.material';
 import { Creator } from './+creator';
 import { Editor } from './+editor';
 import { Publisher } from './+publisher';
+import { CreatorResolver } from './+creator';
 
 // TODO@sdoell: move to module
 import { Highlight } from '../../directives';
@@ -39,6 +40,7 @@ import { DFormModule } from '../dform';
     Highlight
   ],
   providers: [
+    CreatorResolver
   ]
 })
 export class OrchestraModule {}

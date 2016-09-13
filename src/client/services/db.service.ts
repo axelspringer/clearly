@@ -1,6 +1,6 @@
 // Database service
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/RX';
+import { Subject, Observable } from 'rxjs';
 import PouchDB = require('pouchdb');
 
 import { DBConfig } from '../config';
@@ -8,16 +8,61 @@ import { DBConfig } from '../config';
 @Injectable()
 export class DBService {
 
-  private db;
+  private _db;
+  private _updates: Subject<Object>;
 
   constructor() {
 
     this.initDB();
+    this._updates = <Subject<Object>>new Subject();
+
+  }
+
+  get updates() {
+
+    return this._updates.asObservable();
+
+  }
+
+  get db() {
+
+    return this._db;
 
   }
 
   initDB() {
-    this.db = new PouchDB(DBConfig.NAME); // defaults to idb
+
+    console.group(`Initializin DBService`);
+    this._db = new PouchDB(DBConfig.NAME); // defaults to idb
+    console.log(this._db);
+    console.groupEnd();
+
+  }
+
+  create(): Observable<any> {
+
+    return Observable.fromPromise(this._db.post({}));
+
+  }
+
+  update(id: string, data: Object) {
+
+    this._db.get(id).then(doc => {
+      return this._db.put(Object.assign({
+        _id: id,
+        _rev: doc._rev
+      }, data))
+        .then(res => this._updates.next(res))
+        .catch(err => this._updates.error(err));
+    });
+
+  }
+
+  // wtf
+  wtf() {
+
+    this._db.destroy();
+
   }
 
 }
