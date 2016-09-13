@@ -5,6 +5,7 @@ import {
   ApplicationRef
 } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { FormGroup } from '@angular/forms';
 
 // Components
 import { EmitterService } from '../../../commons';
@@ -28,7 +29,9 @@ import { CreatorService } from './creator.service';
 export class Creator implements OnInit {
 
   public elements: Array<string> = [];
-  public form: DFormElement<any>[] = [];
+  public backpack: DFormElement<any>[] = [];
+
+  form: FormGroup;
 
   constructor(
     public appRef: ApplicationRef,
@@ -37,18 +40,12 @@ export class Creator implements OnInit {
   }
 
   addElement($event) {
-    this.form.push(
+
+    this.backpack.push(
       this.creatorService.toDForm($event.dragData, {
-        key: `${ this.elements.push($event.dragData) - 1 }`
+        key: `${this.elements.push($event.dragData) - 1}`
       })
     );
-
-    // this.form.push(
-    //   new DFormText({
-    //   key: `${ this.elements.push($event.dragData) - 1 }`
-    // }));
-
-    // console.log( this.creatorService.toDForm('text'));
 
   }
 

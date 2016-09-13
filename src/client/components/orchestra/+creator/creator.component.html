@@ -34,8 +34,12 @@
 
     </md-list>
 
+    <div class="form-row">
+      <button md-raised-button type="submit" [disabled]="!form?.valid">{{ 'DFORM.SAMPLE_BUTTON' | translate }}</button>
+    </div>
+
   </md-sidenav>
 
-  <dform [dform-entries]="form" dnd-droppable (onDropSuccess)="addElement($event)" class="creator"></dform>
+  <dform [dform-data]="backpack" (dform-group)="form=$event" dnd-droppable (onDropSuccess)="addElement($event)" class="creator"></dform>
 
 </md-sidenav-layout>

@@ -8,6 +8,16 @@
 }
 
 .creator {
+
   display: block;
   height: 100%;
+
+  &.dnd-drag-over {
+
+    border-width: 1px;
+    border-style: dotted;
+    border-color: #222;
+
+  }
+
 }

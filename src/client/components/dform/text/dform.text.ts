@@ -39,7 +39,6 @@ export class DFormTextComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.element);
   }
 
 };

@@ -1,15 +1,7 @@
 <form (ngSubmit)="onSubmit()" [formGroup]="form">
 
-  <div *ngFor="let element of elements" class="form-row">
+  <div *ngFor="let element of data" class="form-row">
     <dform-element [element]="element" [form]="form"></dform-element>
   </div>
 
-  <div class="form-row">
-    <button md-raised-button type="submit" [disabled]="!form.valid">{{ 'DFORM.SAMPLE_BUTTON' | translate }}</button>
-  </div>
-
 </form>
-
-<div *ngIf="payload" class="form-row">
-  <strong>Saved the following values</strong><br>{{ payload }}
-</div>

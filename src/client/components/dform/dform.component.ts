@@ -2,13 +2,15 @@
 import {
   Component,
   Input,
+  Output,
   OnInit,
   OnChanges,
   SimpleChanges,
   DoCheck,
   AfterViewChecked,
   IterableDiffers,
-  CollectionChangeRecord
+  CollectionChangeRecord,
+  EventEmitter
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
@@ -24,14 +26,18 @@ import { DFormService } from './dform.service';
 })
 export class DFormComponent implements OnInit {
 
-  @Input('dform-entries') elements: Array<any> = [];
+  @Input('dform-data') data: Array<any> = [];
+  @Output('dform-group') onFormUpdate: EventEmitter<FormGroup> = new EventEmitter<FormGroup>();
+
+  // @Output('dform-updates') payload: EventEmitter<any> = new EventEmitter();
+  // @Output() onDFormUpdate: EventEmitter<any> = new EventEmitter<any>();
+  // @Output() onDFormSuccess: EventEmitter<any> = new EventEmitter<any>();
 
   // model updates
   differ: any;
 
   // this maps the form group
   form: FormGroup;
-  payload;
 
   constructor(
     private dformService: DFormService,
@@ -44,25 +50,32 @@ export class DFormComponent implements OnInit {
 
   ngOnInit() {
 
-    this.form = this.dformService.toFormGroup(this.elements);
+    this.form = this.dformService.toFormGroup(this.data);
+
+    // save for later
+    // this.form.statusChanges.subscribe(status => {
+    //   this.onDFormSuccess.emit(status === 'VALID' ? true : false );
+    // });
 
   }
 
   ngDoCheck() {
 
-    let changes = this.differ.diff(this.elements);
+    let changes = this.differ.diff(this.data);
 
     if (changes) {
       console.log(`Updating dynamic form`);
       this.dformService.diffFormGroup(changes, this.form);
+      // pass along
+      this.onFormUpdate.emit(this.form);
     }
 
   }
 
-  onSubmit() {
+  // onSubmit() {
 
-    this.payload = JSON.stringify(this.form.value);
+  //   this.payload.emit(JSON.stringify(this.form.value));
 
-  }
+  // }
 
 };
