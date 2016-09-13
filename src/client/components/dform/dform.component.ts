@@ -24,7 +24,7 @@ import { DFormService } from './dform.service';
 })
 export class DFormComponent implements OnInit {
 
-  @Input('dform-model') elements: Array<any> = [];
+  @Input('dform-entries') elements: Array<any> = [];
 
   // model updates
   differ: any;

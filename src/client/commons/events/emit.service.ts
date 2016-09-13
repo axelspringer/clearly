@@ -12,7 +12,7 @@ export class EmitterService {
 
   private static _emitters: { [id: string]: EventEmitter<any>; } = {};
 
-  static create(event: Object | String, isAsync?: boolean): EventEmitter<any> {
+  static create(event: Object | string, isAsync?: boolean): EventEmitter<any> {
     const id = typeof event === 'string' ? event : event.constructor.name;
     if ( ! this._emitters[id] ) {
       this._emitters[id] = new EventEmitter();
@@ -20,7 +20,7 @@ export class EmitterService {
     this.log(id); return this._emitters[id];
   }
 
-  static get(event: Object | String, isAsync?: boolean): EventEmitter<any> {
+  static get(event: Object | string, isAsync?: boolean): EventEmitter<any> {
     return this.create(event, isAsync);
   }
 

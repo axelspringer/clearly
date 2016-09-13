@@ -11,7 +11,7 @@ import {
 // Components
 import { DFormElement } from '../dform.element';
 
-export class DFormText extends DFormElement<String> {
+export class DFormText extends DFormElement<string> {
 
   controlType = 'text';
   type: string;
@@ -32,7 +32,7 @@ export class DFormText extends DFormElement<String> {
 })
 export class DFormTextComponent implements OnInit {
 
-  @Input() element: DFormElement<String>;
+  @Input() element: DFormElement<string>;
   @Input() form: FormGroup;
 
   constructor() {
