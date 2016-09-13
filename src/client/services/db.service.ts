@@ -49,6 +49,7 @@ export class DBService {
 
       try {
 
+        // this is alll very much sync ...
         const db = new PouchDB(name, options);
         this._db = db;
         observer.next(db);
