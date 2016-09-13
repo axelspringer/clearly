@@ -4,10 +4,6 @@
 
     <md-list>
 
-      <div dnd-draggable>
-        Test 2
-      </div>
-
       <div dnd-draggable dnd-drag-data="text">
         <md-list-item>
           <md-icon md-list-avatar>text_format</md-icon>
@@ -40,13 +36,6 @@
 
   </md-sidenav>
 
-  <dform [dform-model]="form"></dform>
-
-  <div dnd-droppable (onDropSuccess)="addElement($event)">
-    Drop Element
-    <div *ngFor="let element of elements">
-      {{ element }}
-    </div>
-  </div>
+  <dform [dform-model]="form" dnd-droppable (onDropSuccess)="addElement($event)" class="creator"></dform>
 
 </md-sidenav-layout>
