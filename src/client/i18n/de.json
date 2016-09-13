@@ -17,6 +17,13 @@
       "GENERAL": "Allgemein",
       "USER": "Benutzer"
     }
+  },
+
+  "DFORM": {
+    "SAMPLE_BUTTON": "Erstellen",
+    "TEXT": {
+      "PLACEHOLDER": "Text hinzufügen (z.B. Überschrift) ..."
+    }
   }
 
 }

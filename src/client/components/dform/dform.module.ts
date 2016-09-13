@@ -10,12 +10,14 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { DFormComponent } from './dform.component';
 import { DFormDynamicElement } from './dform.element';
 import { DFormTextComponent } from './text';
+import { CommonsModule } from '../../commons';
 // import { DFormService } from './dform.service';
 
 @NgModule({
   imports: [
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CommonsModule
   ],
   declarations: [
     DFormComponent,
@@ -27,7 +29,8 @@ import { DFormTextComponent } from './text';
     DFormDynamicElement,
     ReactiveFormsModule,
     CommonModule,
-    DFormTextComponent
+    DFormTextComponent,
+    CommonsModule
   ],
   providers: [
 

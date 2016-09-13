@@ -29,7 +29,7 @@ export class Creator implements OnInit {
   addElement($event) {
     this.form.push(new DFormText({
       key: `test${ Math.floor((Math.random() * 100) + 1) }`,
-      value: 'test'
+      value: ''
     }));
     this.elements.push($event.dragData);
   }
