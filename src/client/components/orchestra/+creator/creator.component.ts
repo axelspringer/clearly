@@ -22,6 +22,7 @@ import {
   Observable,
   Subscription
 } from 'rxjs';
+import { DBConfig } from '../../../config';
 
 @Component({
   selector: 'creator',  // <creator></creator>
@@ -75,6 +76,8 @@ export class Creator implements OnInit {
 
     // form builder for creator
     this.data$ = this.route.data.subscribe(data => this._id = data['_id']);
+
+    this.db$.open(DBConfig.NAME).subscribe(val => console.log('TEST', val));
 
   }
 

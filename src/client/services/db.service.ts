@@ -1,6 +1,10 @@
 // Database service
 import { Injectable } from '@angular/core';
-import { Subject, Observable } from 'rxjs';
+import {
+  Subject,
+  Observable,
+  Observer
+} from 'rxjs';
 import PouchDB = require('pouchdb');
 
 import { DBConfig } from '../config';
@@ -39,6 +43,28 @@ export class DBService {
 
   }
 
+  open(name: string, options?: Object): Observable<any> {
+
+    return Observable.create((observer: Observer<any>) => {
+
+      try {
+
+        const db = new PouchDB(name, options);
+        this._db = db;
+        observer.next(db);
+        observer.complete();
+
+      } catch (err) {
+
+        observer.error(err);
+
+      }
+
+    });
+
+  }
+
+
   create(): Observable<any> {
 
     return Observable.fromPromise(this._db.post({}));
@@ -52,7 +78,7 @@ export class DBService {
         _id: id,
         _rev: doc._rev
       }, data))
-        .then(res => this._updates.next(res))
+        .then(res => this._updates.error(res))
         .catch(err => this._updates.error(err));
     });
 
