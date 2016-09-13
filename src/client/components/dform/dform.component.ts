@@ -15,9 +15,6 @@ import { FormGroup } from '@angular/forms';
 // Components
 import { DFormService } from './dform.service';
 
-// test
-import { DFormTextbox } from './dform.textbox';
-
 @Component({
   selector: 'dform',
   templateUrl: './dform.component.html',

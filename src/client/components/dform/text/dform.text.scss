@@ -1,0 +1,19 @@
+:host input {
+
+  background-color: transparent;
+  border: none;
+
+  font-size: 1.15rem;
+  padding: 1rem;
+
+  -webkit-appearance: none;
+
+
+  &:focus {
+
+    border: none;
+    outline: none;
+
+  }
+
+}

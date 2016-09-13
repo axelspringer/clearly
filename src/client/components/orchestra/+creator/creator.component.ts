@@ -5,7 +5,10 @@ import {
 import { Title } from '@angular/platform-browser';
 import { EmitterService } from '../../../commons';
 import { ToolbarTitleUpdate } from '../../toolbar';
-import { DFormTextbox, DFormElement } from '../../dform';
+import {
+  DFormText,
+  DFormElement
+} from '../../dform';
 
 @Component({
   selector: 'creator',  // <creator></creator>
@@ -24,7 +27,7 @@ export class Creator implements OnInit {
   }
 
   addElement($event) {
-    this.form.push(new DFormTextbox({
+    this.form.push(new DFormText({
       key: `test${ Math.floor((Math.random() * 100) + 1) }`,
       value: 'test'
     }));

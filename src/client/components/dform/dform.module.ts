@@ -9,6 +9,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 // Components
 import { DFormComponent } from './dform.component';
 import { DFormDynamicElement } from './dform.element';
+import { DFormTextComponent } from './text';
 // import { DFormService } from './dform.service';
 
 @NgModule({
@@ -18,13 +19,15 @@ import { DFormDynamicElement } from './dform.element';
   ],
   declarations: [
     DFormComponent,
-    DFormDynamicElement
+    DFormDynamicElement,
+    DFormTextComponent
   ],
   exports: [
     DFormComponent,
     DFormDynamicElement,
     ReactiveFormsModule,
-    CommonModule
+    CommonModule,
+    DFormTextComponent
   ],
   providers: [
 

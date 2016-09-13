@@ -1,10 +1,13 @@
 <div [formGroup]="form">
 
   <label [attr.for]="element.key">{{element.label}}</label>
+
   <div [ngSwitch]="element.controlType">
-    <input *ngSwitchCase="'textbox'" [formControlName]="element.key"
-            [id]="element.key" [type]="element.type">
+
+    <dform-text [element]="element" [form]="form" *ngSwitchCase="'text'"></dform-text>
+
   </div>
+
   <div class="errorMessage" *ngIf="!isValid">{{ element.label }} is required</div>
 
 </div>
