@@ -18,7 +18,6 @@
       "es7"
     ],
     "types": [
-      "pouchdb",
       "hammerjs",
       "jasmine",
       "lodash",

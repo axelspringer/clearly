@@ -52,7 +52,7 @@ module.exports = {
    *
    * See: http://webpack.github.io/docs/configuration.html#cache
    */
-   //cache: false,
+  //cache: false,
 
   /*
    * The entry point for the bundle
@@ -63,8 +63,8 @@ module.exports = {
   entry: {
 
     'polyfills': './src/polyfills.client',
-    'vendor':    './src/vendor.client',
-    'main':      './src/main.client'
+    'vendor': './src/vendor.client',
+    'main': './src/main.client'
 
   },
 
@@ -108,7 +108,7 @@ module.exports = {
         loader: 'string-replace-loader',
         query: {
           search: '(System|SystemJS)(.*[\\n\\r]\\s*\\.|\\.)import\\((.+)\\)',
-          replace: '$1.import($3).then(mod => mod.__esModule ? mod.default : mod)',
+          replace: '$1.import($3).then(mod => mod.__esModule ? (mod.default || mod) : mod)',
           flags: 'g'
         },
         include: [helpers.root('src')]
@@ -187,6 +187,18 @@ module.exports = {
       {
         test: /\.(jpg|png|gif)$/,
         loader: 'file'
+      }
+    ],
+
+    postLoaders: [
+      {
+        test: /\.js$/,
+        loader: 'string-replace-loader',
+        query: {
+          search: 'var sourceMappingUrl = extractSourceMappingUrl\\(cssText\\);',
+          replace: 'var sourceMappingUrl = "";',
+          flags: 'g'
+        }
       }
     ]
 
@@ -289,7 +301,7 @@ module.exports = {
    *
    * See: https://github.com/postcss/postcss-loader
    */
-  postcss: function() {
+  postcss: function () {
     return [autoprefix];
   },
 

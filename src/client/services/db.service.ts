@@ -20,6 +20,8 @@ export class DBService {
     this.initDB();
     this._updates = <Subject<Object>>new Subject();
 
+    console.log('test2');
+
   }
 
   get updates() {
