@@ -1,3 +1,3 @@
 // Services
-export * from './db.service';
+export * from './docs.service';
 

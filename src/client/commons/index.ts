@@ -11,7 +11,12 @@ import {
   TranslatePipe
 } from 'ng2-translate/ng2-translate';
 import { TranslateCustomLoader } from './i18n';
-import { EmitterService } from './events';
+import { EventEmitterBus } from './events';
+import {
+  LogService,
+  LOGGING_ERROR_HANDLER_PROVIDERS
+} from './log';
+import { DatabaseProvider } from './db';
 
 @NgModule({
   imports: [
@@ -23,9 +28,21 @@ import { EmitterService } from './events';
     TranslatePipe
   ],
   providers: [
-    ...HTTP_PROVIDERS,
+    // Error
+    LogService,
+    ...LOGGING_ERROR_HANDLER_PROVIDERS,
+
+    // Translation
     TranslateService,
-    EmitterService
+
+    // Events
+    EventEmitterBus,
+
+    // Database
+    DatabaseProvider,
+
+    // Angular
+    ...HTTP_PROVIDERS
   ]
 })
 export class CommonsModule {
@@ -47,3 +64,5 @@ export class CommonsModule {
 export * from './i18n';
 export * from './http';
 export * from './events';
+export * from './db';
+export * from './log';

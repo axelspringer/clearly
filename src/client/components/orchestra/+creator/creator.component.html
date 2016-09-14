@@ -12,6 +12,14 @@
         </md-list-item>
       </div>
 
+      <div dnd-draggable dnd-drag-data="textArea">
+        <md-list-item>
+          <md-icon md-list-avatar>text_format</md-icon>
+          <h4 md-line>Fließtext</h4>
+          <p md-line myHighlight> z.B. Haupttext </p>
+        </md-list-item>
+      </div>
+
       <md-list-item>
         <md-icon md-list-avatar>textsms</md-icon>
         <h4 md-line>Schlagworte</h4>
@@ -35,11 +43,11 @@
     </md-list>
 
     <div class="form-row">
-      <button md-raised-button type="submit" [disabled]="!form?.valid">{{ 'DFORM.SAMPLE_BUTTON' | translate }}</button>
+      <button md-raised-button type="submit" [disabled]="!form?.valid" (click)="create($event)">{{ 'DFORM.SAMPLE_BUTTON' | translate }}</button>
     </div>
 
   </md-sidenav>
 
-  <dform [dform-data]="backpack" (dform-group)="save($event)" dnd-droppable (onDropSuccess)="addElement($event)" class="creator"></dform>
+  <dform [dform-data]="store$" (dform-group)="onFormUpdate($event)" dnd-droppable (onDropSuccess)="addItem($event)" class="creator"></dform>
 
 </md-sidenav-layout>

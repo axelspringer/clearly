@@ -10,12 +10,14 @@ import {
 
 // DForm
 import { DFormText } from '../../dform';
+import { DFormTextArea } from './../../dform/textarea/dform.textarea';
 
 @Injectable()
 export class CreatorService {
 
   static proto = {
-    'text' : (options => new DFormText(options))
+    'text': (options => new DFormText(options)),
+    'textArea': (options => new DFormTextArea(options))
   };
 
   constructor() { }

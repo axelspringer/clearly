@@ -1,2 +1,2 @@
-// Guards
+// Exportables
 export * from './auth.guard';

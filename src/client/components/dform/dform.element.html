@@ -6,6 +6,8 @@
 
     <dform-text [element]="element" [form]="form" *ngSwitchCase="'text'"></dform-text>
 
+    <dform-textarea [element]="element" [form]="form" *ngSwitchCase="'textArea'"></dform-textarea>
+
   </div>
 
   <div class="errorMessage" *ngIf="!isValid">{{ element.label }} is required</div>

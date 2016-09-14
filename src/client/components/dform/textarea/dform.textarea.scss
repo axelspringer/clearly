@@ -1,0 +1,27 @@
+:host textarea {
+
+  background-color: transparent;
+  border-bottom-color: lightgrey;
+  border-bottom-style: dotted;
+  border-bottom-width: 1px;
+  border: none;
+
+  width: calc(100% - 32px); // TODO@sdoell: fix width
+  min-height: 10vh;
+  max-height: 30vh;
+
+  font-size: 1.15rem;
+  padding: 1rem;
+
+  -webkit-appearance: none;
+
+  resize: vertical;
+
+  &:focus {
+
+    border: none;
+    outline: none;
+
+  }
+
+}

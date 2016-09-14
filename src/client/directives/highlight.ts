@@ -19,7 +19,6 @@ export class Highlight {
     private el: ElementRef,
     private renderer: Renderer
   ) {
-    console.log('HIGHTLIGHT');
   }
 
 }

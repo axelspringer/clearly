@@ -12,7 +12,7 @@ import { Title } from '@angular/platform-browser';
 
 import { AppConfig } from '../../config';
 import { DBService } from '../../services';
-import { EmitterService } from '../,,/commons';
+import { EventEmitterBus } from '../,,/commons';
 
 
 /*

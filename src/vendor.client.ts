@@ -14,10 +14,17 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/let';
 import 'rxjs/add/operator/do';
+import 'rxjs/add/operator/skip';
 import 'rxjs/add/operator/switchMap'; // these are extensions to the Observable
 
 // PouchDB
 import 'pouchdb';
+
+// RSVP
+import 'rsvp';
+
+// Ramda
+import R from 'ramda';
 
 // _
 import * as _ from 'lodash';

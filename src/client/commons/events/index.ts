@@ -1,2 +1,2 @@
 // Events
-export * from './emit.service';
+export * from './bus.service';

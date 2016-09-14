@@ -11,7 +11,7 @@ import {
   Router,
   NavigationEnd
 } from '@angular/router';
-import { EmitterService } from '../../commons';
+import { EventEmitterBus } from '../../commons';
 
 import { App } from '../app';
 

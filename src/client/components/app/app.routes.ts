@@ -4,7 +4,6 @@ import { NoContent } from '../404';
 import { Settings } from '../settings';
 import { AuthGuard } from '../../guards';
 
-
 export const ROUTES: Routes = [
   {
     canActivate: [
@@ -12,15 +11,6 @@ export const ROUTES: Routes = [
     ],
     path: '',
     component: Dashboard // TODO@sdoell: move to module
-  },
-  {
-    path: 'dashboard',
-    component: Dashboard,
-    data: {
-      title: 'Übersicht',
-      order: 0,
-      isMenu: true
-    }
   },
   {
     path: 'settings',

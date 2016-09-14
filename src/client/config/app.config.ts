@@ -26,6 +26,8 @@ export class AppConfig {
     }
   };
 
+  static DEBUG: boolean = 'production' !== ENV;
+
   static API_BASE: string = 'https://localhost:8080';
 
 };

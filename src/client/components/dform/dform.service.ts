@@ -1,3 +1,4 @@
+// Importables
 import {
   Injectable,
   IterableDiffer,
@@ -8,6 +9,8 @@ import {
   FormGroup,
   Validators
 } from '@angular/forms';
+
+// Components
 import { DFormElement } from './dform.element';
 
 @Injectable()
@@ -15,17 +18,7 @@ export class DFormService {
 
   constructor() { }
 
-  toFormGroup(elements: Array<any>) {
-
-    let group = {};
-    elements.forEach(el => {
-      group[el.key] = this.toFormControl(el);
-    });
-    return new FormGroup(group);
-
-  }
-
-  diffFormGroup(changes: DefaultIterableDiffer, form: FormGroup) {
+  updateFormGroup(changes: DefaultIterableDiffer, form: FormGroup): FormGroup {
 
     // this is simple delete and replace in the form group
     changes.forEachAddedItem(change => {
@@ -34,6 +27,8 @@ export class DFormService {
     changes.forEachRemovedItem(change => {
       form.removeControl(change.item.key);
     });
+
+    return form;
 
   }
 

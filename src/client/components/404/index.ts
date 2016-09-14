@@ -1,1 +1,1 @@
-export * from './404.component.ts';
+export * from './404.component';

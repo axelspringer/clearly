@@ -18,7 +18,6 @@ export default function (state = initialState, action: Action): UserState {
   switch (action.type) {
 
     case UserActions.UPDATE: {
-      console.log('test');
       return Object.assign({}, action.payload);
     }
 

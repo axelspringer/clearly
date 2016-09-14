@@ -23,6 +23,15 @@
     "SAMPLE_BUTTON": "Erstellen",
     "TEXT": {
       "PLACEHOLDER": "Text hinzufügen (z.B. Überschrift) ..."
+    },
+    "TEXTAREA": {
+      "PLACEHOLDER": "Fließtext schreiben ..."
+    }
+  },
+
+  "ORCHESTRA": {
+    "CREATOR": {
+      "TITLE": "Artikel erstellen ..."
     }
   }
 

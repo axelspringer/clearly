@@ -1,9 +1,14 @@
 // Importables
 import {
   Routes,
-  RouterModule
+  RouterModule,
+  CanActivate,
+  ActivatedRouteSnapshot,
+  RouterStateSnapshot
 } from '@angular/router';
 import { Creator } from './creator.component';
+import { Observable } from 'rxjs';
+import { CreatorGuard } from './creator.guard';
 import { CreatorResolver } from './creator.resolver';
 
 const routes: Routes = [
@@ -15,12 +20,10 @@ const routes: Routes = [
     path: '',
     component: Creator,
     resolve: {
-      _id: CreatorResolver
-    }
-  },
-  {
-    path: 'edit',
-    component: Creator,
+      doc: CreatorResolver
+    },
+    canActivate: [CreatorGuard],
+    canDeactivate: [CreatorGuard]
   }
 ];
 

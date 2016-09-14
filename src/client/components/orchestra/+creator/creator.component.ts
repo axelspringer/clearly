@@ -7,27 +7,35 @@ import {
 } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { FormGroup } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import {
+  ActivatedRoute,
+  Router
+} from '@angular/router';
+import { Store } from '@ngrx/store';
+import { TranslateService } from 'ng2-translate';
 
 // Components
-import { EmitterService } from '../../../commons';
+import { EventEmitterBus } from '../../../commons';
 import { ToolbarTitleUpdate } from '../../toolbar';
 import {
   DFormText,
   DFormElement
 } from '../../dform';
 import { CreatorService } from './creator.service';
-import { DBService } from '../../../services';
+
 import {
-  Observable,
-  Subscription
-} from 'rxjs';
-import { DBConfig } from '../../../config';
+  AppState,
+  getCreatorItems
+} from '../../app';
+
+import { CreatorActions } from './creator.actions';
+import { DBService } from '../../../services';
 
 @Component({
   selector: 'creator',  // <creator></creator>
   providers: [
-    CreatorService
+    CreatorService,
+    CreatorActions
   ],
   styleUrls: [
     './creator.style.scss'
@@ -36,62 +44,59 @@ import { DBConfig } from '../../../config';
 })
 export class Creator implements OnInit {
 
-  public elements: Array<string> = [];
-  public backpack: DFormElement<any>[] = [];
-
   form: FormGroup;
 
-  private _id: string;
-
-  private db$: DBService;
-  private data$: Subscription;
-  private updates$: Subscription;
+  private elements: number = 0;
+  private i18nTitle = 'ORCHESTRA.CREATOR.TITLE';
+  private store$: any;
+  private doc$: any;
+  private doc: any;
 
   constructor(
-    private appRef: ApplicationRef,
     private creatorService: CreatorService,
+
+    private creatorActions: CreatorActions,
+    private store: Store<AppState>,
+    private translate: TranslateService,
+
+    private router: Router,
     private route: ActivatedRoute,
-    db$: DBService
+    private db: DBService
   ) {
 
-    this.db$ = db$;
-    this.updates$ = this.db$.updates.subscribe(val => console.log(val));
-
-  }
-
-  addElement($event) {
-
-    this.backpack.push(
-      this.creatorService.toDForm($event.dragData, {
-        key: `${this.elements.push($event.dragData) - 1}`
-      })
-    );
+    this.store$ = this.store.let(getCreatorItems());
+    this.doc$ = this.route.data
+      .select(s => s['doc'])
+      .subscribe(doc => this.doc = doc);
 
   }
 
   ngOnInit() {
-
-    // try tp emit new event
-    EmitterService.get(ToolbarTitleUpdate.prototype.constructor.name).emit('Artikel erstellen ...');
-
-    // form builder for creator
-    this.data$ = this.route.data.subscribe(data => this._id = data['_id']);
-
-    // this.db$.open(DBConfig.NAME).last().subscribe(val => console.log('TEST', val));
-
+    this.translate.get(this.i18nTitle).subscribe(t =>
+      EventEmitterBus.get(ToolbarTitleUpdate.prototype.constructor.name).emit(t));
   }
 
   ngOnDestory() {
+    this.store$.unsubscribe();
+  }
 
-    // should destroy remaining references to db
-    this.data$.unsubscribe();
-    this.updates$.unsubscribe();
+  addItem($event) {
+    const item = this.creatorService.toDForm($event.dragData, {
+      key: `${++this.elements - 1}`
+    });
+    this.store.dispatch(this.creatorActions.addItem(item));
+  }
+
+  onFormUpdate($event) {
+    this.form = $event;
+
+    // update to dispatch
+    // this.store.dispatch(this.creatorActions.update($event.value));
 
   }
 
-  save($event) {
-    this.form = $event;
-    this.db$.update(this._id['id'], $event.value);
+  create($event) {
+    this.router.navigate(['article', this.doc.id, 'edit']);
   }
 
 };

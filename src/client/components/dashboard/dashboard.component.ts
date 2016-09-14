@@ -3,7 +3,8 @@ import {
   ViewChild,
   Inject,
   forwardRef,
-  ApplicationRef
+  ApplicationRef,
+  EventEmitter
 } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 
@@ -13,8 +14,9 @@ import {
   getUserState
 } from '../../reducers';
 import { UserActions } from '../../actions';
-import { EmitterService } from '../../commons';
+import { EventEmitterBus } from '../../commons';
 import { ToolbarTitleUpdate } from '../toolbar';
+import { DBService } from '../../services';
 
 @Component({
   selector: 'dashboard',  // <dashboard></dashboard>
@@ -31,12 +33,14 @@ export class Dashboard {
   private title$ = 'Übersicht';
   private pirate$ = '';
   private isPirate$: boolean = false;
+  private test;
 
   // TypeScript public modifiers
   constructor(
     private store: Store<AppState>,
     private userActions: UserActions,
     private title: Title,
+    private db: DBService
   ) {
 
     // map app store slice
@@ -46,18 +50,28 @@ export class Dashboard {
         this.user$ = Object.assign({}, state);
       });
 
+    this.db.updates
+      .map(u => {
+        console.log('TEST', u);
+        return `UPDATE: ${JSON.stringify(u)}`;
+      })
+      .subscribe(u => console.log(u));
+
   }
 
   ngOnInit() {
-
     console.log('hello `Dashboard` component');
     this.title.setTitle(this.title$);
 
-    EmitterService.get(ToolbarTitleUpdate.prototype.constructor.name).emit(this.title$);
+    EventEmitterBus.get(ToolbarTitleUpdate.prototype.constructor.name).emit(this.title$);
+
+    // this.db.allDocs()
+    //   .subscribe(val => console.log(val));
 
   }
 
   isPirate(answer: boolean) {
+
     if (answer) {
       this.isPirate$ = answer;
       this.pirate$ = 'http://i.giphy.com/26tn1ToaMhpOEetkA.gif';
