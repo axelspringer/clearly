@@ -14,6 +14,7 @@ const ForkCheckerPlugin = require('awesome-typescript-loader').ForkCheckerPlugin
 const HtmlElementsPlugin = require('./html-elements-plugin');
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 const ProvidePlugin = require('webpack/lib/ProvidePlugin');
+const ContextReplacementPlugin = require('webpack/lib/ContextReplacementPlugin');
 
 const pkg = require('../package.json');
 
@@ -289,6 +290,19 @@ module.exports = {
      * See: https://github.com/lodash/lodash-webpack-plugin
      */
     new LodashModuleReplacementPlugin(),
+
+    /**
+       * Plugin: ContextReplacementPlugin
+       * Description: Provides context to Angular's use of System.import
+       *
+       * See: https://webpack.github.io/docs/list-of-plugins.html#contextreplacementplugin
+       * See: https://github.com/angular/angular/issues/11580
+       */
+    new ContextReplacementPlugin(
+      // The (\\|\/) piece accounts for path separators in *nix and Windows
+      /angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
+      __dirname // location of your src
+    ),
 
     new ProvidePlugin({
       _: 'lodash'
