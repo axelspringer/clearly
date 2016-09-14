@@ -40,7 +40,10 @@ import { Settings } from '../settings';
 import { OrchestraModule } from '../orchestra';
 
 import reducer from '../../reducers';
-import { UserEffects } from '../../effects';
+import {
+  AppEffects,
+  // UserEffects
+} from '../../effects';
 import { DBService } from '../../services';
 
 // Application wide providers
@@ -72,7 +75,7 @@ const APP_PROVIDERS = [
     FormsModule,
     HttpModule,
     CommonsModule.forRoot(AppLocale.languages),
-    EffectsModule.runAfterBootstrap(UserEffects),
+    EffectsModule.run(AppEffects),
     RouterModule.forRoot(ROUTES, {
       useHash: true,
       enableTracing: true

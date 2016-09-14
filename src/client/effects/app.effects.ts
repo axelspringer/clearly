@@ -4,13 +4,17 @@ import {
   Actions,
   Effect
 } from '@ngrx/effects';
-import { UserActions } from '../actions';
 import { DBService } from '../services';
 import { DBConfig } from '../config';
 
 @Injectable()
-export class UserEffects {
+export class AppEffects {
 
-  constructor() { }
+  @Effect() openDB = this.db.open(DBConfig.NAME)
+    .filter(() => false);
+
+  constructor(
+    private db: DBService
+  ) { }
 
 }

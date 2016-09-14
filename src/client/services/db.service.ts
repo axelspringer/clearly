@@ -20,8 +20,6 @@ export class DBService {
     this.initDB();
     this._updates = <Subject<Object>>new Subject();
 
-    console.log('test2');
-
   }
 
   get updates() {
@@ -51,7 +49,7 @@ export class DBService {
 
       try {
 
-        // this is alll very much sync ...
+        // this is all really sync ...
         const db = new PouchDB(name, options);
         this._db = db;
         observer.next(db);
@@ -81,7 +79,7 @@ export class DBService {
         _id: id,
         _rev: doc._rev
       }, data))
-        .then(res => this._updates.error(res))
+        .then(res => this._updates.next(res))
         .catch(err => this._updates.error(err));
     });
 
