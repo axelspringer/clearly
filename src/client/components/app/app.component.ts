@@ -1,46 +1,40 @@
-/*
- * Angular 2 decorators and services
- */
-import {
-  Component,
-  ViewChild,
-  AfterViewInit,
-  ViewEncapsulation
-} from '@angular/core';
-import { TranslateService } from 'ng2-translate/ng2-translate';
+// Importables
+import { Component } from '@angular/core';
+import { OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { TranslateService } from 'ng2-translate/ng2-translate';
+import { ViewChild } from '@angular/core';
+import { ViewEncapsulation } from '@angular/core';
 
+// Compponents
 import { AppConfig } from '../../config';
-import { DBService } from '../../services';
-import { EventEmitterBus } from '../,,/commons';
+import { EventEmitterProvider } from '../,,/commons';
 
-
-/*
- * App Component
- * Top Level Component
- */
 @Component({
-  selector: 'app',
   encapsulation: ViewEncapsulation.None,
   providers: [
   ],
+  selector: 'app',
   styleUrls: [
     './app.style.scss'
   ],
   templateUrl: './app.component.html'
 })
-export class App implements AfterViewInit {
+export class App implements OnInit {
 
   @ViewChild('menu') menu;
 
-  private title$ = AppConfig.HTML5_TITLE;
-  private version$ = AppConfig.VERSION;
+  private _title: Title;
+  private _translate: TranslateService;
+  private _version$: string = AppConfig.VERSION;
 
   constructor(
-    public translate: TranslateService,
-    public title: Title,
-    public db: DBService // comment to disable db service to be not injected
+    translate: TranslateService,
+    title: Title
   ) {
+
+    this._title = title;
+    this._translate = translate;
 
     translate.setDefaultLang(AppConfig.DEFAULT_LANGUAGE);
     translate.use(AppConfig.DEFAULT_LANGUAGE);
@@ -49,11 +43,8 @@ export class App implements AfterViewInit {
 
   ngOnInit() {
 
-    this.title.setTitle(AppConfig.HTML5_TITLE);
+    this._title.setTitle(AppConfig.HTML5_TITLE);
 
-  }
-
-  ngAfterViewInit() {
   }
 
 }

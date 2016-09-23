@@ -8,7 +8,7 @@ import {
 export abstract class ComponentEvent { } // could inherit later from Evenr to capture in the browser
 
 @Injectable()
-export class EventEmitterBus {
+export class EventEmitterProvider {
 
   private static emitters$: { [id: string]: EventEmitter<any>; } = {};
 

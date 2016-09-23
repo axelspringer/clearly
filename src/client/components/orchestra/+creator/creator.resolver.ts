@@ -1,32 +1,45 @@
-// Authentication Guard
+// Importables
+import { ActivatedRouteSnapshot } from '@angular/router';
 import { Injectable } from '@angular/core';
-import { DBService } from '../../../services';
 import { Observable } from 'rxjs';
+import { Resolve } from '@angular/router';
+import { Router } from '@angular/router';
+import { RouterStateSnapshot } from '@angular/router';
 import { Store } from '@ngrx/store';
+
+// Components
 import { AppState, getDoc } from '../../app';
+import { DatabaseProvider } from '../../../commons';
 import { OrchestraActions } from '../orchestra.actions';
-import { Resolve, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 
 @Injectable()
 export class CreatorResolver implements Resolve<any> {
 
   private store$: any;
 
+  private _router: Router;
+  private _db: DatabaseProvider;
+
   constructor(
-    private router: Router,
-    private db: DBService,
-  ) { }
+    router: Router,
+    db: DatabaseProvider,
+  ) {
 
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<DBService> | boolean {
+    this._db = db;
+    this._router = router;
 
-    return this.db.create().toPromise()
-      .then(res => {
-        return res;
-      })
-      .catch(err => {
-        this.router.navigate(['/']);
-        return false;
-      });
+  }
+
+  resolve(route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot): Promise<DatabaseProvider> | boolean {
+
+      return this._db.create()
+        .toPromise()
+        .then(res => res)
+        .catch(err => {
+           this._router.navigate(['/']);
+            return false;
+        });
 
   }
 

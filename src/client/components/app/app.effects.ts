@@ -1,36 +1,25 @@
 // Importables
-import {
-  Injectable,
-  OnDestroy
-} from '@angular/core';
-import {
-  Actions,
-  Effect,
-  mergeEffects
-} from '@ngrx/effects';
+import { Action } from '@ngrx/store';
+import { Actions } from '@ngrx/effects';
+import { Effect } from '@ngrx/effects';
+import { Injectable } from '@angular/core';
+import { mergeEffects } from '@ngrx/effects';
+import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
-import {
-  Action,
-  Store
-} from '@ngrx/store';
 
 // Components
-import { DBService } from '../../services';
-import { DBConfig } from '../../config';
+import { DatabaseProvider } from '../../commons';
 
 @Injectable()
-export class AppEffects implements OnDestroy {
+export class AppEffects {
 
-  subscription: Subscription;
-
-  @Effect() openDB = this.db.open(DBConfig.NAME)
-    .filter(() => false);
+  private _db: DatabaseProvider;
 
   constructor(
-    private db: DBService
-  ) {}
+    db: DatabaseProvider // have database connect
+  ) {
 
-  ngOnDestroy() {
+    this._db = db;
 
   }
 

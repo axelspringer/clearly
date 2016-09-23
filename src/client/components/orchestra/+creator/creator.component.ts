@@ -15,7 +15,7 @@ import { Store } from '@ngrx/store';
 import { TranslateService } from 'ng2-translate';
 
 // Components
-import { EventEmitterBus } from '../../../commons';
+import { EventEmitterProvider } from '../../../commons';
 import { ToolbarTitleUpdate } from '../../toolbar';
 import {
   DFormText,
@@ -29,7 +29,6 @@ import {
 } from '../../app';
 
 import { CreatorActions } from './creator.actions';
-import { DBService } from '../../../services';
 
 @Component({
   selector: 'creator',  // <creator></creator>
@@ -61,7 +60,6 @@ export class Creator implements OnInit {
 
     private router: Router,
     private route: ActivatedRoute,
-    private db: DBService
   ) {
 
     this.store$ = this.store.let(getCreatorItems());
@@ -73,7 +71,7 @@ export class Creator implements OnInit {
 
   ngOnInit() {
     this.translate.get(this.i18nTitle).subscribe(t =>
-      EventEmitterBus.get(ToolbarTitleUpdate.prototype.constructor.name).emit(t));
+      EventEmitterProvider.get(ToolbarTitleUpdate.prototype.constructor.name).emit(t));
   }
 
   ngOnDestory() {

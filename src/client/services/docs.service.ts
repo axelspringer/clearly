@@ -1,4 +1,4 @@
-// Database service
+// Importables
 import { Injectable } from '@angular/core';
 import {
   Subject,
@@ -8,10 +8,10 @@ import {
   Observable,
   Observer
 } from 'rxjs';
-
 import * as PouchDB from 'pouchdb';
-import { DBConfig } from '../config';
-import { Observable } from 'rxjs/Observable';
+
+// Components
+import { DBConfig } from '../config'; // should remove this
 
 @Injectable()
 export class DBService {
@@ -84,13 +84,13 @@ export class DBService {
   }
 
   allDocs(options?: Object) { // TODO@sdoell: fet
-    return Observable.when()
+    // return Observable.when()
 
-    .of(this._db$)().switchMap(db => {
-      return Observable.from(this._db$.allDocs(options || {
-        include_docs: true
-      }));
-    });
+    // .of(this._db$)().switchMap(db => {
+    //   return Observable.from(this._db$.allDocs(options || {
+    //     include_docs: true
+    //   }));
+    // });
 
     // Observable.from(this._db$.allDocs(options || {
     //   include_docs: true

@@ -12,7 +12,6 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ForkCheckerPlugin = require('awesome-typescript-loader').ForkCheckerPlugin;
 const HtmlElementsPlugin = require('./html-elements-plugin');
-const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 const ProvidePlugin = require('webpack/lib/ProvidePlugin');
 const ContextReplacementPlugin = require('webpack/lib/ContextReplacementPlugin');
 
@@ -83,11 +82,8 @@ module.exports = {
      */
     extensions: ['', '.ts', '.js', '.json'],
 
-    // Make sure root is src
-    root: helpers.root('src'),
-
-    // remove other default values
-    modules: ['node_modules'],
+    // An array of directory names to be resolved to the current directory
+    modules: [helpers.root('src'), 'node_modules'],
 
   },
 
@@ -283,14 +279,6 @@ module.exports = {
       headTags: require('./head-config.common')
     }),
 
-    /*
-     * Plugin: LodashModuleReplacementPlugin
-     * Description: Smaller modular Lodash builds.
-     *
-     * See: https://github.com/lodash/lodash-webpack-plugin
-     */
-    new LodashModuleReplacementPlugin(),
-
     /**
        * Plugin: ContextReplacementPlugin
        * Description: Provides context to Angular's use of System.import
@@ -303,10 +291,6 @@ module.exports = {
       /angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
       __dirname // location of your src
     ),
-
-    new ProvidePlugin({
-      _: 'lodash'
-    })
 
   ],
 

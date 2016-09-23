@@ -1,19 +1,25 @@
 // Importables
+import { ApplicationRef } from '@angular/core';
 import { AuthGuard } from '../../guards';
 import { BrowserModule, Title } from '@angular/platform-browser';
+import { createInputTransfer } from '@angularclass/hmr';
+import { createNewHosts } from '@angularclass/hmr';
 import { EffectsModule } from '@ngrx/effects';
+import { ErrorHandler } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { NgModule, ApplicationRef, ErrorHandler } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import {
-  Store,
-  StoreModule
-} from '@ngrx/store';
-import { useLogMonitor, StoreLogMonitorModule } from '@ngrx/store-log-monitor';
 import { MdModule } from './app.material';
-import { removeNgStyles, createNewHosts, createInputTransfer } from '@angularclass/hmr';
+import { NgModule } from '@angular/core';
+import { removeNgStyles } from '@angularclass/hmr';
+import { RouterModule } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { StoreLogMonitorModule } from '@ngrx/store-log-monitor';
+import { StoreModule } from '@ngrx/store';
+import { useLogMonitor } from '@ngrx/store-log-monitor';
+import { WorkerAppModule } from '@angular/platform-webworker';
+
+import { getPlatform } from '@angular/core';
 
 // Modules
 import { CommonsModule } from '../../commons';
@@ -23,12 +29,10 @@ import { OrchestraModule } from '../orchestra';
 /*
  * Platform and Environment providers/directives/pipes
  */
-import { ENV_PROVIDERS } from '../../environment';
+import { AppConfig } from '../../config';
+import { AppLocale } from '../../config';
 import { DATABASE_PROVIDER_OPTIONS } from '../../commons';
-import {
-  AppConfig,
-  AppLocale
-} from '../../config';
+import { ENV_PROVIDERS } from '../../environment';
 import { ROUTES } from './app.routes';
 // App is our top level component
 import { App } from './app.component';
@@ -60,7 +64,7 @@ const APP_PROVIDERS = [
 ];
 
 class NullLoggingErrorHandler implements ErrorHandler {
-  public handleError(error: any): void {}
+  public handleError(error: any): void { }
 }
 
 /**
@@ -116,38 +120,54 @@ class NullLoggingErrorHandler implements ErrorHandler {
 })
 export class AppModule {
 
-  constructor(
-    public appRef: ApplicationRef,
-    private store: Store<any>
-  ) { }
+  private _appRef: ApplicationRef;
+  private _store$: Store<any>;
 
-  hmrOnInit(store) {
+  constructor(
+    appRef: ApplicationRef,
+    store$: Store<any>
+  ) {
+
+    this._appRef = appRef;
+    this._store$ = store$;
+
+  }
+
+  hmrOnInit(store: any) {
+
     if (!store || !store.rootState) return;
 
     // restore state by dispatch a SET_ROOT_STATE action
     if (store.rootState) {
-      this.store.dispatch({
+      this._store$.dispatch({
         type: 'RESET_STATE',
         payload: store.rootState
       });
     }
 
-    if ('restoreInputValues' in store) { store.restoreInputValues(); }
-    this.appRef.tick()
+    if ('restoreInputValues' in store) {
+      store.restoreInputValues();
+    }
+    this._appRef.tick();
     Object.keys(store).forEach(prop => delete store[prop]);
+
   }
 
-  hmrOnDestroy(store) {
-    const cmpLocation = this.appRef.components.map(cmp => cmp.location.nativeElement);
-    this.store.take(1).subscribe(s => store.rootState = s);
+  hmrOnDestroy(store: any) {
+
+    const cmpLocation = this._appRef.components.map(cmp => cmp.location.nativeElement);
+    this._store$.take(1).subscribe(s => store.rootState = s);
     store.disposeOldHosts = createNewHosts(cmpLocation);
     store.restoreInputValues = createInputTransfer();
-    removeNgStyles()
+    removeNgStyles();
+
   }
 
-  hmrAfterDestroy(store) {
+  hmrAfterDestroy(store: any) {
+
     store.disposeOldHosts();
     delete store.disposeOldHosts;
+
   }
 
 }

@@ -14,7 +14,7 @@ import {
   getUserState
 } from '../../reducers';
 import { UserActions } from '../../actions';
-import { EventEmitterBus } from '../../commons';
+import { EventEmitterProvider } from '../../commons';
 import { ToolbarTitleUpdate } from '../toolbar';
 import { DBService } from '../../services';
 
@@ -63,7 +63,7 @@ export class Dashboard {
     console.log('hello `Dashboard` component');
     this.title.setTitle(this.title$);
 
-    EventEmitterBus.get(ToolbarTitleUpdate.prototype.constructor.name).emit(this.title$);
+    EventEmitterProvider.get(ToolbarTitleUpdate.prototype.constructor.name).emit(this.title$);
 
     // this.db.allDocs()
     //   .subscribe(val => console.log(val));

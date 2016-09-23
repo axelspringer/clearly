@@ -1,10 +1,10 @@
 // Importables
-import {
-  Inject,
-  Injectable,
-  EventEmitter
-} from '@angular/core';
-import { EventEmitterBus } from './../events';
+import { EventEmitter } from '@angular/core';
+import { Inject } from '@angular/core';
+import { Injectable } from '@angular/core';
+
+// Components
+import { EventEmitterProvider } from './../events';
 
 export interface ILogEvent {
   level;
@@ -81,15 +81,14 @@ export class ConsoleLogEmitter extends LogEmitter {};
 
 export class LogSubjectConsole extends LogSubject {
 
-  private _eventEmitterBus: EventEmitterBus;
   private _emitter$: EventEmitter<any>;
 
-  constructor(eventEmitterBus: EventEmitterBus) {
+  constructor() {
 
     super();
 
     if (console && console.group && console.error) { // console statement
-      this._emitter$ = EventEmitterBus.create(new ConsoleLogEmitter());
+      this._emitter$ = EventEmitterProvider.create(new ConsoleLogEmitter());
 
       this.emitter.subscribe(event => {
         console.group(`Log Service`);
@@ -143,15 +142,11 @@ export class LogSubjectConsole extends LogSubject {
 export class LogService {
 
   private _emitters$: Array<any> = [];
-  private _eventEmitterBus: EventEmitterBus;
 
-  constructor(
-    eventEmitterBus: EventEmitterBus
-  ) {
+  constructor() {
 
-    this._eventEmitterBus = eventEmitterBus;
     this._emitters$ = this._emitters$.concat(this._emitters$.length ||
-      new LogSubjectConsole(eventEmitterBus));
+      new LogSubjectConsole());
 
   }
 

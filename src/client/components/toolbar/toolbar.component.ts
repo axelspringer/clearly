@@ -25,7 +25,7 @@ import {
 } from '@angular/core';
 import { AppConfig } from '../../config';
 import { App } from '../app';
-import { EventEmitterBus } from '../../commons';
+import { EventEmitterProvider } from '../../commons';
 
 @Component({
   selector: 'toolbar',  // <toolbar></toolbar>
@@ -56,7 +56,7 @@ export class Toolbar implements OnInit {
 
   ngOnInit() {
 
-    EventEmitterBus.create(new ToolbarTitleUpdate()).subscribe(value => this.title$ = value);
+    EventEmitterProvider.create(new ToolbarTitleUpdate()).subscribe(value => this.title$ = value);
 
   }
 

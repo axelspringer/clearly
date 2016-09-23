@@ -1,14 +1,12 @@
 // Importables
-import {
-  ErrorHandler,
-  forwardRef,
-  Inject,
-  Injectable
-} from '@angular/core';
+import { ErrorHandler } from '@angular/core';
+import { forwardRef } from '@angular/core';
+import { Inject } from '@angular/core';
+import { Injectable } from '@angular/core';
 
 // Components
-import { LogService } from './log.service';
 import { LogEventError } from './log.service';
+import { LogService } from './log.service';
 
 export interface LoggingErrorHandlerOptions {
   sinkError: boolean;

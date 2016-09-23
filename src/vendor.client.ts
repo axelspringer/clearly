@@ -26,9 +26,6 @@ import 'rsvp';
 // Ramda
 import R from 'ramda';
 
-// _
-import * as _ from 'lodash';
-
 if ('production' === ENV) {
   // Production
 

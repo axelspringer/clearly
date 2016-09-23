@@ -15,7 +15,6 @@ import {
 } from '@ngrx/store';
 
 // Components
-import { DBService } from '../../../services';
 import { CreatorActions } from './creator.actions';
 import { getCreatorItems } from '../../app';
 import { DatabaseProvider } from '../../../commons';
@@ -58,7 +57,6 @@ export class CreatorEffects {
   constructor(
     private actions$: Actions,
     private store: Store<AppState>,
-    private db: DBService,
     private databaseProvider: DatabaseProvider
   ) {
 

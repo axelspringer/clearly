@@ -1,89 +1,137 @@
-import { Observable } from 'rxjs';
 // Importables
-import {
-  Inject,
-  Injectable
-} from '@angular/core';
+import { AsyncSubject } from 'rxjs';
+import { Inject } from '@angular/core';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Observer } from 'rxjs';
-import { LogService } from '../log';
+import { ReplaySubject } from 'rxjs';
+import * as PouchDB from 'pouchdb';
+import * as R from 'ramda';
+
+// Components
 import { LogEventError } from '../log';
-import { LogEventLog } from '../log';
 import { LogEventInfo } from '../log';
+import { LogEventLog } from '../log';
+import { LogService } from '../log';
+
 
 export interface DatabaseProviderOptions {
   name: string;
+  retry: number;
+  debugFilter: string;
 };
 
+// put here to avoid side-effects
 export var DATABASE_PROVIDER_OPTIONS: DatabaseProviderOptions = {
-  name: 'default'
+  name: 'blackbeard',
+  retry: 5,
+  debugFilter: 'pouchdb:api'
 };
+
 
 @Injectable()
 export class DatabaseProvider implements DatabaseProvider {
 
+  private _db: any; // should be PouchDB
+  private _log: LogService;
   private _options: DatabaseProviderOptions;
-  private _logService: LogService;
 
   constructor(
     logService: LogService,
     @Inject(DATABASE_PROVIDER_OPTIONS) options: DatabaseProviderOptions
   ) {
 
-    this._logService = logService;
+    this._log = logService;
     this._options = options;
+
+    this._log.log(new LogEventLog(`Initializing Database`));
+
+    try {
+
+      // sync for now...
+      const db = new PouchDB(options.name);
+      this._log.log(new LogEventLog(db));
+
+      PouchDB.debug.enable(options.debugFilter);
+
+      this._db = db; // sync
+
+    } catch (err) {
+
+      this._log.log(new LogEventError(err));
+
+    }
 
   }
 
-  open(name?: string, options?: Object) {
+  get db(): any {
 
-    return Observable.create((observer: Observer<any>) => {
+    return this._db;
 
-      try {
+  }
 
-        this._logService.log(new LogEventLog(`Initializing Database ...`));
-        this._logService.log(new LogEventInfo(`Enabling PouchDB (*) debug mode ...`));
+  create(doc: any = {}): Observable<any> {
 
-      } catch (dbError) {
+    return this.post();
 
+  }
 
+  update(id: string, doc) {
 
-      }
+    return this.get(id)
+      .switchMap(_doc => {
+        return this.put(R.merge({
+          _id: id,
+          _rev: _doc._rev
+        }, doc));
+      });
 
-    });
+  }
+
+  get(id: string): Observable<any> {
+
+    return this._fromPromise(this.db.get(id));
+
+  }
+
+  post(doc: any = {}): Observable<any> {
+
+    return this._fromPromise(this.db.post(doc));
+
+  }
+
+  put(doc: any = {}) {
+
+    return this._fromPromise(this.db.put(doc));
+
+  }
+
+  _fromPromise(promise): Observable<any> {
+
+    return Observable.fromPromise(promise)
+      .retry(this._options.retry); // retry operations
+
+  }
+
+  // yep, wtf
+  wtf(): any {
+
+    // should be disposed
+    if (!!this._db)
+      return this._db.destroy();
 
   }
 
 };
 
 
-// open(name: string, options?: Object): Observable<any> {
-
-//     return Observable.create((observer: Observer<any>) => {
-
-//       try {
-
-//         console.group(`Initializing Database ...`);
-
-//         console.log(`Enabling PouchDB (*) debug mode ...`);
-//         PouchDB.debug.enable('*');
-
-//         // this is all really sync ...
-//         const db = new PouchDB(name, options);
-
-
-//         // this._db$ = db;
-
-//         console.log(this._db);
-//         observer.next(db);
-//         observer.complete();
-//         console.groupEnd();
-
-//       } catch (err) {
-
-//         observer.error(err);
-
-//       }
-
-//     });
-
-//   }
+export var DATABASE_PROVIDERS = [
+  {
+    provide: DATABASE_PROVIDER_OPTIONS,
+    useValue: DATABASE_PROVIDER_OPTIONS
+  },
+  {
+    provide: DatabaseProvider,
+    useClass: DatabaseProvider
+  }
+];
