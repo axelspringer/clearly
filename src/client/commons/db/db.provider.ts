@@ -83,7 +83,7 @@ export class DatabaseProvider implements DatabaseProvider {
         return this.put(R.merge({
           _id: id,
           _rev: _doc._rev
-        }, doc));
+        }, R.omit(['id', 'rev'], doc))); // could be chained
       });
 
   }
