@@ -80,10 +80,7 @@ export class DatabaseProvider implements DatabaseProvider {
 
     return this.get(id)
       .switchMap(_doc => {
-        return this.put(R.merge({
-          _id: id,
-          _rev: _doc._rev
-        }, R.omit(['id', 'rev'], doc))); // could be chained
+        return this.put(doc); // could be chained
       });
 
   }
@@ -109,7 +106,10 @@ export class DatabaseProvider implements DatabaseProvider {
   _fromPromise(promise): Observable<any> {
 
     return Observable.fromPromise(promise)
-      .retry(this._options.retry); // retry operations
+      .catch(err => {
+        this._log.log(new LogEventError(err));
+        return Observable.of({}); // cached version
+      });
 
   }
 
