@@ -1,8 +1,6 @@
-// Importables
-import {
-  EventEmitter,
-  Injectable
-} from '@angular/core';
+// Exportables
+import { EventEmitter } from '@angular/core';
+import { Injectable } from '@angular/core';
 
 // Abstracts, classes, interfaces ...
 export abstract class ComponentEvent { } // could inherit later from Evenr to capture in the browser
@@ -25,9 +23,11 @@ export class EventEmitterProvider {
   }
 
   static log(id: string): void {
+
     console.group(`Event: ${id}`);
     console.log(this.emitters$[id]);
     console.groupEnd();
+
   }
 
 };

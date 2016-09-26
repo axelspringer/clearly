@@ -87,23 +87,23 @@ export class DatabaseProvider implements DatabaseProvider {
 
   get(id: string): Observable<any> {
 
-    return this._fromPromise(this.db.get(id));
+    return this._toPromise(this.db.get(id));
 
   }
 
   post(doc: any = {}): Observable<any> {
 
-    return this._fromPromise(this.db.post(doc));
+    return this._toPromise(this.db.post(doc));
 
   }
 
   put(doc: any = {}) {
 
-    return this._fromPromise(this.db.put(doc));
+    return this._toPromise(this.db.put(doc));
 
   }
 
-  _fromPromise(promise): Observable<any> {
+  _toPromise(promise): Observable<any> {
 
     return Observable.fromPromise(promise)
       .catch(err => {

@@ -1,19 +1,16 @@
 // Authentication Guard
-import { Injectable } from '@angular/core';
-import {
-  CanActivate,
-  CanDeactivate,
-  Router,
-  ActivatedRouteSnapshot,
-  RouterStateSnapshot,
-  ActivatedRoute
-} from '@angular/router';
-import { DBService } from '../../../services';
-import { Observable } from 'rxjs';
-import { Store } from '@ngrx/store';
+import { ActivatedRoute } from '@angular/router';
+import { ActivatedRouteSnapshot } from '@angular/router';
 import { AppState, getDoc } from '../../app';
+import { CanActivate } from '@angular/router';
+import { CanDeactivate } from '@angular/router';
 import { CreatorActions } from './creator.actions';
 import { FormGroup } from '@angular/forms';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
+import { RouterStateSnapshot } from '@angular/router';
+import { Store } from '@ngrx/store';
 
 export interface CanComponentDeactive {
   canActivate: () => Observable<boolean> | Promise<boolean> | boolean;
@@ -28,7 +25,6 @@ export class CreatorGuard implements CanActivate {
 
   constructor(
     private router: Router,
-    private db: DBService,
     private store: Store<AppState>,
     private creatorActions: CreatorActions
   ) {}
@@ -51,12 +47,12 @@ export class CreatorGuard implements CanActivate {
   ) {
     console.log(`Guarding the deactivation to ${route.url} ...`);
 
-    return component['form'] ?
-      this.db.save(component['doc']['id'], component.form.value)
-        .then(res => {
-          return true;
-        })
-        .catch(err => false) : true;
+    // return component['form'] ?
+    //   this.db.save(component['doc']['id'], component.form.value)
+    //     .then(res => {
+    //       return true;
+    //     })
+    //     .catch(err => false) : true;
   }
 
   /**

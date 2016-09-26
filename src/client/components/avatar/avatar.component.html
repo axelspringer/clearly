@@ -1,0 +1,4 @@
+<div class="spinner" *ngIf="shouldLoad$ | async">
+</div>
+
+<div class="notifications" *ngIf="(hasNotifications | async)?.length != 0">{{ (hasNotifications$ | async).length }}</div>

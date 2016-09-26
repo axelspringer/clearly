@@ -29,25 +29,25 @@ import { OrchestraModule } from '../orchestra';
 /*
  * Platform and Environment providers/directives/pipes
  */
+import { App } from './app.component';
+import { APP_RESOLVER_PROVIDERS } from './app.resolver';
 import { AppConfig } from '../../config';
 import { AppLocale } from '../../config';
 import { DATABASE_PROVIDER_OPTIONS } from '../../commons';
+import { DBConfig } from './../../config/db.config';
 import { ENV_PROVIDERS } from '../../environment';
 import { ROUTES } from './app.routes';
-// App is our top level component
-import { App } from './app.component';
-import { APP_RESOLVER_PROVIDERS } from './app.resolver';
 
-
-import { NoContent } from '../404';
-import { Toolbar } from '../toolbar';
+// Components
+import { Avatar } from '../avatar';
 import { Menu } from '../menu';
+import { NoContent } from '../404';
 import { Settings } from '../settings';
+import { Toolbar } from '../toolbar';
 
 import AppStore from './app.store';
 import { AppEffects } from './app.effects';
-import { DBService } from '../../services';
-import { DBConfig } from './../../config/db.config';
+
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -59,7 +59,6 @@ const APP_PROVIDERS = [
     }
   },
   AuthGuard,
-  DBService,
   Title
 ];
 
@@ -76,10 +75,11 @@ class NullLoggingErrorHandler implements ErrorHandler {
   ],
   declarations: [
     App,
-    NoContent,
-    Toolbar,
+    Avatar,
     Menu,
-    Settings
+    NoContent,
+    Settings,
+    Toolbar
   ],
   imports: [
     // Angular

@@ -13,15 +13,10 @@ import {
 })
 export class ArticlesList implements OnInit {
 
-  constructor(
-    private db: DBService
-  ) {
+  constructor() {
   }
 
   ngOnInit() {
-
-    this.db.allDocs();
-
   }
 
 };

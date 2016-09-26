@@ -1,0 +1,76 @@
+$_avatar-spinner-border-width: 3px;
+$_avatar-spinner-border-color: rgba(255, 255, 255, 0.5);
+$_loading-animation-duration: 1 * 750ms;
+
+:host {
+
+  display: block;
+  height: 35px;
+  width: 35px;
+  background-image: url('../../../assets/img/superheroes.png');
+  background-repeat: no-repeat;
+  background-position-x: center;
+  background-position-y: center;
+  background-size: 100%;
+  border-radius: 50%;
+
+  position: relative;
+
+}
+
+img {
+  width: 100%;
+}
+
+.notifications {
+
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+
+  background-color: orange;
+  border-radius: 50%;
+  height: 100%;
+  width: 100%;
+
+}
+
+.spinner {
+
+  display: block;
+  width: 100%;
+  height: 100%;
+
+  border-width: $_avatar-spinner-border-width;
+  border-style: solid;
+  border-top-color: green;
+  border-radius: 50%;
+  border-left-color: $_avatar-spinner-border-color;
+  border-right-color: $_avatar-spinner-border-color;
+  border-bottom-color: $_avatar-spinner-border-color;
+
+  margin-left: (-$_avatar-spinner-border-width);
+  margin-top: (-$_avatar-spinner-border-width);
+
+  animation-duration: $_loading-animation-duration;
+  animation-name: spin;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+
+
+
+

@@ -39,8 +39,7 @@ export class Dashboard {
   constructor(
     private store: Store<AppState>,
     private userActions: UserActions,
-    private title: Title,
-    private db: DBService
+    private title: Title
   ) {
 
     // map app store slice
@@ -49,13 +48,6 @@ export class Dashboard {
       .subscribe(state => {
         this.user$ = Object.assign({}, state);
       });
-
-    this.db.updates
-      .map(u => {
-        console.log('TEST', u);
-        return `UPDATE: ${JSON.stringify(u)}`;
-      })
-      .subscribe(u => console.log(u));
 
   }
 

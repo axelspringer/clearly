@@ -1,8 +1,9 @@
-// Components
-export * from './app';
-export * from './dashboard';
+// Exportables
 export * from './404';
-export * from './toolbar';
+export * from './app';
+export * from './avatar';
+export * from './dashboard';
+export * from './dform';
 export * from './orchestra';
 export * from './settings';
-export * from './dform';
+export * from './toolbar';
