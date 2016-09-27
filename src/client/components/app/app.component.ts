@@ -43,12 +43,15 @@ export class App implements OnInit {
     translate.setDefaultLang(AppConfig.DEFAULT_LANGUAGE);
     translate.use(AppConfig.DEFAULT_LANGUAGE);
 
-    EventEmitterProvider.emit(new NotifyEvent('test1', 'test12'));
-    EventEmitterProvider.emit(new NotifyEvent('test1', 'test12'));
-    EventEmitterProvider.emit(new NotifyEvent('test1', 'test12'));
-    EventEmitterProvider.emit(new NotifyEvent('test1', 'test12'));
+    EventEmitterProvider.emit(new NotifyEvent('Artikel gespeichert', 'Lorem ipsum ...'));
+    EventEmitterProvider.emit(new NotifyEvent('Artikel gespeichert', 'Lorem ipsum ...'));
+    EventEmitterProvider.emit(new NotifyEvent('Artikel gespeichert', 'Lorem ipsum ...'));
+    EventEmitterProvider.emit(new NotifyEvent('Artikel gespeichert', 'Lorem ipsum ...'));
 
-    setTimeout(() => {EventEmitterProvider.emit(new AvatarSpinnerEvent(true));}, 5000);
+    // demo
+    setTimeout(() => {
+      EventEmitterProvider.emit(new AvatarSpinnerEvent(true));
+    }, 5000);
 
   }
 

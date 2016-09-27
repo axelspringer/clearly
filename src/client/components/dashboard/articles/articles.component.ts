@@ -1,9 +1,10 @@
-import { DBService } from './../../../services/docs.service';
 // Impotables
-import {
-  Component,
-  OnInit
-} from '@angular/core';
+import { Component } from '@angular/core';
+import { OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+
+// Components
+import { DatabaseProvider } from '../../../commons';
 
 @Component({
   selector: 'articles-list',  // <articles-list></articles-list>
@@ -13,10 +14,18 @@ import {
 })
 export class ArticlesList implements OnInit {
 
-  constructor() {
+  private _db: DatabaseProvider;
+  private allDocs$: Observable<any>;
+
+  constructor(
+    db: DatabaseProvider
+  ) {
+    this._db = db;
+    this.allDocs$ = this._db.allDocs().map(docs => docs.rows);
   }
 
   ngOnInit() {
+
   }
 
 };

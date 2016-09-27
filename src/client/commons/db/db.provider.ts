@@ -87,23 +87,29 @@ export class DatabaseProvider {
 
   get(id: string): Observable<any> {
 
-    return this._toPromise(this.db.get(id));
+    return this._fromPromise(this.db.get(id));
 
   }
 
   post(doc: any = {}): Observable<any> {
 
-    return this._toPromise(this.db.post(doc));
+    return this._fromPromise(this.db.post(doc));
 
   }
 
   put(doc: any = {}) {
 
-    return this._toPromise(this.db.put(doc));
+    return this._fromPromise(this.db.put(doc));
 
   }
 
-  _toPromise(promise): Observable<any> {
+  allDocs(options: any = { include_docs: true }) {
+
+    return this._fromPromise(this.db.allDocs(options));
+
+  }
+
+  _fromPromise(promise): Observable<any> {
 
     return Observable.fromPromise(promise)
       .catch(err => {
