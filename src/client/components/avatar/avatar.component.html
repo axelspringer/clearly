@@ -1,4 +1,4 @@
-<div class="spinner" *ngIf="shouldLoad$ | async">
+<div class="spinner" *ngIf="shouldLoad | async">
 </div>
 
-<div class="notifications" *ngIf="(hasNotifications | async)?.length != 0">{{ (hasNotifications$ | async).length }}</div>
+<div class="notifications" *ngIf="events?.length != 0">{{ events?.length }}</div>

@@ -1,31 +1,28 @@
-// Preamble
-import { ComponentEvent } from '../../commons';
+// Importables
+import { Component } from '@angular/core';
+import { forwardRef } from '@angular/core';
+import { Inject } from '@angular/core';
+import { Injectable } from '@angular/core';
+import { OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 
-// the init specifities
-// interface ToolbarTitleUpdateEventInit extends EventInit {
-//   title: string; // we want a title
-// }
+// Components
+import { App } from '../app';
+import { AppConfig } from '../../config';
+import { Event } from '../../commons';
+import { EventEmitterProvider } from '../../commons';
+import { NotifyProvider } from './../../commons';
 
-// the event itself
-export class ToolbarTitleUpdate extends ComponentEvent {
+// Interface
+export class ToolbarTitleUpdate extends Event {
 
-  // constructor(typeArg: string, eventInit: ToolbarTitleUpdateEventInit) {
-  //   super(typeArg, eventInit);
-  // }
+  constructor(payload: any = {}) {
+
+    super(payload);
+
+  }
 
 }
-
-// Impotables
-import {
-  Component,
-  Inject,
-  forwardRef,
-  Injectable,
-  OnInit
-} from '@angular/core';
-import { AppConfig } from '../../config';
-import { App } from '../app';
-import { EventEmitterProvider } from '../../commons';
 
 @Component({
   selector: 'toolbar',  // <toolbar></toolbar>
@@ -39,12 +36,19 @@ export class Toolbar implements OnInit {
   private title$: string = AppConfig.HTML5_TITLE; // TODO@sdoell: should be moved to service
 
   private _appRef: App;
+  private _notify: NotifyProvider;
+  private notify$: Observable<any>;
+  private load$: Observable<Boolean>;
 
   constructor(
-    @Inject(forwardRef(() => App)) app: App
+    @Inject(forwardRef(() => App)) app: App,
+    notify: NotifyProvider
   ) {
 
     this._appRef = app;
+    this._notify = notify;
+    this.notify$ = this._notify.subscribe();
+    this.load$ = Observable.of(true);
 
   }
 

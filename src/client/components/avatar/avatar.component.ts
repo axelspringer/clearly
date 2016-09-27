@@ -5,6 +5,7 @@ import { OnInit } from '@angular/core';
 import { Inject } from '@angular/core';
 import { Component } from '@angular/core';
 
+import { NotifyProvider } from '../../commons';
 import { AppConfig } from '../../config';
 import { EventEmitterProvider } from '../../commons';
 import { App } from '../app';
@@ -17,18 +18,24 @@ import { App } from '../app';
 })
 export class Avatar implements OnInit {
 
-  @Input('should-load') shouldLoad$: Observable<Boolean>;
-  @Input('has-notifications') hasNotifications$: Observable<Array<number>>;
+  @Input('should-load') shouldLoad: Observable<Boolean>;
+  @Input() notify: Observable<any>;
 
-  constructor() {
+  private _events: Array<any> = [];
 
-    this.shouldLoad$ = Observable.of(true);
+  constructor() {}
 
-    this.hasNotifications$ = Observable.of([0, 1, 2]);
+  get events() {
+
+    return this._events;
 
   }
 
-  ngOnInit () {
+  ngOnInit() {
+
+    this.notify
+      .do(event => this._events.push(event))
+      .subscribe();
 
   }
 

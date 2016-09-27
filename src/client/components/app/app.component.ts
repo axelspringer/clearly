@@ -8,7 +8,9 @@ import { ViewEncapsulation } from '@angular/core';
 
 // Compponents
 import { AppConfig } from '../../config';
-import { EventEmitterProvider } from '../,,/commons';
+import { EventEmitterProvider } from '../../commons';
+import { NotifyProvider } from '../../commons';
+import { NotifyEvent } from '../../commons';
 
 @Component({
   encapsulation: ViewEncapsulation.None,
@@ -30,7 +32,8 @@ export class App implements OnInit {
 
   constructor(
     translate: TranslateService,
-    title: Title
+    title: Title,
+    notify: NotifyProvider
   ) {
 
     this._title = title;
@@ -38,6 +41,11 @@ export class App implements OnInit {
 
     translate.setDefaultLang(AppConfig.DEFAULT_LANGUAGE);
     translate.use(AppConfig.DEFAULT_LANGUAGE);
+
+    EventEmitterProvider.emit(new NotifyEvent('test1', 'test12'));
+    EventEmitterProvider.emit(new NotifyEvent('test1', 'test12'));
+    EventEmitterProvider.emit(new NotifyEvent('test1', 'test12'));
+    EventEmitterProvider.emit(new NotifyEvent('test1', 'test12'));
 
   }
 

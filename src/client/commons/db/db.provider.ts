@@ -30,7 +30,7 @@ export var DATABASE_PROVIDER_OPTIONS: DatabaseProviderOptions = {
 
 
 @Injectable()
-export class DatabaseProvider implements DatabaseProvider {
+export class DatabaseProvider {
 
   private _db: any; // should be PouchDB
   private _log: LogService;

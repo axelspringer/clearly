@@ -8,11 +8,13 @@ import { TranslatePipe } from 'ng2-translate/ng2-translate';
 import { TranslateService } from 'ng2-translate/ng2-translate';
 
 // Components
+import { DATABASE_PROVIDERS } from './db';
 import { DatabaseProvider } from './db';
 import { EventEmitterProvider } from './events';
 import { LOGGING_ERROR_HANDLER_PROVIDERS } from './log';
-import { DATABASE_PROVIDERS } from './db';
 import { LogService } from './log';
+import { NOTIFY_PROVIDERS } from './notify/notify.provider';
+import { NotifyProvider } from './notify';
 import { TranslateCustomLoader } from './i18n';
 
 @NgModule({
@@ -31,6 +33,10 @@ import { TranslateCustomLoader } from './i18n';
     // Database
     DatabaseProvider,
     ...DATABASE_PROVIDERS,
+
+    // NotifyEvent
+    NotifyProvider,
+    ...NOTIFY_PROVIDERS,
 
     // Error
     LogService,
