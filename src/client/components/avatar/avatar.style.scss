@@ -16,10 +16,15 @@ $_loading-animation-duration: 1 * 750ms;
 
   position: relative;
 
+  margin-left: .35rem;
+  margin-right: .35rem;
+
 }
 
 img {
+
   width: 100%;
+
 }
 
 .notifications {
@@ -34,6 +39,24 @@ img {
   border-radius: 50%;
   height: 100%;
   width: 100%;
+
+  cursor: pointer;
+
+  &-list {
+
+    &--title {
+
+      color: rgba(0, 0, 0, 0.54);
+      font-size: 14px;
+      font-weight: normal;
+      margin: 0;
+      padding-left: 16px;
+      padding-right: 16px;
+      padding-top: 16px;
+
+    }
+
+  }
 
 }
 

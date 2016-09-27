@@ -7,3 +7,4 @@ export * from './dform';
 export * from './orchestra';
 export * from './settings';
 export * from './toolbar';
+export * from './avatar';

@@ -36,32 +36,20 @@ export class Toolbar implements OnInit {
   private title$: string = AppConfig.HTML5_TITLE; // TODO@sdoell: should be moved to service
 
   private _appRef: App;
-  private _notify: NotifyProvider;
-  private notify$: Observable<any>;
-  private load$: Observable<Boolean>;
 
   constructor(
     @Inject(forwardRef(() => App)) app: App,
     notify: NotifyProvider
   ) {
-
     this._appRef = app;
-    this._notify = notify;
-    this.notify$ = this._notify.subscribe();
-    this.load$ = Observable.of(true);
-
   }
 
   toggleMenu() {
-
     this._appRef.menu.toggle();
-
   }
 
   ngOnInit() {
-
     EventEmitterProvider.create(new ToolbarTitleUpdate()).subscribe(value => this.title$ = value);
-
   }
 
 };

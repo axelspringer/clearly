@@ -11,6 +11,7 @@ import { AppConfig } from '../../config';
 import { EventEmitterProvider } from '../../commons';
 import { NotifyProvider } from '../../commons';
 import { NotifyEvent } from '../../commons';
+import { AvatarSpinnerEvent } from '../avatar';
 
 @Component({
   encapsulation: ViewEncapsulation.None,
@@ -46,6 +47,8 @@ export class App implements OnInit {
     EventEmitterProvider.emit(new NotifyEvent('test1', 'test12'));
     EventEmitterProvider.emit(new NotifyEvent('test1', 'test12'));
     EventEmitterProvider.emit(new NotifyEvent('test1', 'test12'));
+
+    setTimeout(() => {EventEmitterProvider.emit(new AvatarSpinnerEvent(true));}, 5000);
 
   }
 

@@ -41,6 +41,18 @@ footer {
   background: #fff;
 }
 
+.notifications-list {
+
+  md-list md-list-item.md-2-line .md-list-item {
+
+    height: inherit;
+    padding-top: 4px;
+    padding-bottom: 4px;
+
+  }
+
+}
+
 // global
 .app {
 

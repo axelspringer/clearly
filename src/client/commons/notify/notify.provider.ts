@@ -18,19 +18,15 @@ export class NotifyEvent extends Event {
   private _read: boolean = false;
 
   constructor(title?: string, message?: string) {
-    super(Object.assign({}, { title, message }));
+    super({ title, message });
   }
 
   read() {
-
     return this._read = true;
-
   }
 
   unread() {
-
     return this._read = false;
-
   }
 
 }
@@ -54,21 +50,21 @@ export class NotifyProvider {
 
     this._emitter$
       // .distinctUntilChanged()
-      .do(events => this._events.push(event))
+      .do(event => this._events.push(event))
       .subscribe(this._replay$);
 
   }
 
   get events() {
-
     return this._events;
+  }
 
+  reset(events: Array<any> = []) {
+    return this._events = [];
   }
 
   subscribe(): Observable<NotifyEvent> {
-
     return this._replay$.asObservable();
-
   }
 
 };

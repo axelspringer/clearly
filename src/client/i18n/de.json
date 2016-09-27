@@ -33,6 +33,12 @@
     "CREATOR": {
       "TITLE": "Artikel erstellen ..."
     }
-  }
+  },
 
+  "AVATAR": {
+    "MENU": {
+      "CLEAR": "Alles löschen",
+      "TITLE" : "Benachrichtigungen"
+    }
+  }
 }

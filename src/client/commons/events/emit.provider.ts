@@ -5,6 +5,8 @@ import { Injectable } from '@angular/core';
 // Abstracts, classes, interfaces ...
 export abstract class Event {
 
+  public test: string = 'test';
+
   private _payload: any;
 
   constructor(payload: any = {}) {
@@ -23,15 +25,11 @@ export class EventEmitterProvider {
   private static emitters$: { [id: string]: EventEmitter<any>; } = {};
 
   static emit(event: any) {
-
     this.get(event).emit(event);
-
   }
 
   static subscribe(event: Object, isAsync?: boolean): EventEmitter<any> {
-
     return this.create(event, isAsync);
-
   }
 
   static create(event: Object | string, isAsync?: boolean): EventEmitter<any> {
@@ -48,11 +46,9 @@ export class EventEmitterProvider {
   }
 
   static log(id: string): void {
-
     console.group(`Event: ${id}`);
     console.log(this.emitters$[id]);
     console.groupEnd();
-
   }
 
 };

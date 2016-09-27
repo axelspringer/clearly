@@ -11,8 +11,6 @@
   <!-- This fills the remaining space of the current row -->
   <span class="example-fill-remaining-space"></span>
 
-  <avatar [should-load]="load$" [notify]="notify$"></avatar>
-
   <button md-icon-button [md-menu-trigger-for]="menu">
     <md-icon>more_vert</md-icon>
   </button>
@@ -22,5 +20,7 @@
     <button md-menu-item>{{ 'TOOLBAR.HELP' | translate }}</button>
     <button md-menu-item disabled>{{ 'TOOLBAR.SIGNOUT' | translate }}</button>
   </md-menu>
+
+  <avatar></avatar>
 
 </md-toolbar>
