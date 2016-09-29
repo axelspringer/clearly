@@ -3,7 +3,7 @@
   <md-list>
 
     <h3>Drafts</h3>
-    <md-list-item *ngFor="let doc of (allDocs$ | async)">
+    <md-list-item *ngFor="let doc of (docs | async)">
       <md-icon md-list-avatar>description</md-icon>
       <h4>{{ doc?.doc._id }}</h4>
     </md-list-item>

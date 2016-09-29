@@ -1,1 +1,2 @@
-// Services
+// Exportables
+export * from './docs.service';

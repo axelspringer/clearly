@@ -60,6 +60,15 @@ img {
 
 }
 
+.spin {
+
+  animation-duration: $_loading-animation-duration;
+  animation-name: spin;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+
+}
+
 .spinner {
 
   display: block;
@@ -68,8 +77,9 @@ img {
 
   border-width: $_avatar-spinner-border-width;
   border-style: solid;
-  border-top-color: green;
+
   border-radius: 50%;
+  border-top-color: $_avatar-spinner-border-color;
   border-left-color: $_avatar-spinner-border-color;
   border-right-color: $_avatar-spinner-border-color;
   border-bottom-color: $_avatar-spinner-border-color;
@@ -77,10 +87,16 @@ img {
   margin-left: (-$_avatar-spinner-border-width);
   margin-top: (-$_avatar-spinner-border-width);
 
-  animation-duration: $_loading-animation-duration;
+  &.isLoading {
+
+    animation-duration: $_loading-animation-duration;
   animation-name: spin;
   animation-timing-function: ease-in-out;
   animation-iteration-count: infinite;
+
+    border-top-color: green;
+
+  }
 
 }
 

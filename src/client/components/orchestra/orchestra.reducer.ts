@@ -10,7 +10,7 @@ export interface OrchestraState {
   docRev: string;
 }
 
-let init: OrchestraState = {
+const init: OrchestraState = {
   docId: '0', // identifiert for the data base, have a side effect for that
   docRev: '0'
 };

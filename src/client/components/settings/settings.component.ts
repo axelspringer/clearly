@@ -8,7 +8,7 @@ import {
 } from '../../reducers';
 
 // changing title
-import { EventEmitterProvider } from '../../commons';
+import { EventEmitProvider } from '../../commons';
 import { Toolbar } from '../toolbar';
 
 @Component({
@@ -34,7 +34,7 @@ export class Settings {
     console.log('hello `Settings` component');
     this.title.setTitle(this.title$);
 
-    EventEmitterProvider.get(Toolbar.prototype.constructor.name).emit(this.constructor.name);
+    EventEmitProvider.connect(Toolbar.prototype.constructor.name).emit(this.constructor.name);
 
   }
 

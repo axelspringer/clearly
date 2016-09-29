@@ -1,28 +1,20 @@
-import {
-  Component,
-  ViewChild,
-  Inject,
-  forwardRef,
-  ApplicationRef,
-  EventEmitter
-} from '@angular/core';
-import { Title } from '@angular/platform-browser';
-
+// Importables
+import { Component } from '@angular/core';
+import { Inject } from 'angular/core';
 import { Store } from '@ngrx/store';
-import {
-  AppState,
-  getUserState
-} from '../../reducers';
-import { UserActions } from '../../actions';
-import { EventEmitterProvider } from '../../commons';
+import { Title } from '@angular/platform-browser';
+import { Actions } from '@ngrx/effects';
+import { Observable } from 'rxjs';
+
+// Components
+import { EventEmitProvider } from '../../commons';
 import { ToolbarTitleUpdate } from '../toolbar';
-import { DBService } from '../../services';
+import { DocsActions } from '../../actions';
+import { AppState } from '../app';
+import { getDocs } from '../app';
 
 @Component({
   selector: 'dashboard',  // <dashboard></dashboard>
-  providers: [
-    UserActions
-  ],
   styleUrls: ['./dashboard.style.css'],
   templateUrl: './dashboard.component.html'
 })
@@ -33,21 +25,26 @@ export class Dashboard {
   private title$ = 'Übersicht';
   private pirate$ = '';
   private isPirate$: boolean = false;
-  private test;
+
+  private articles$: Observable<any>;
+  private actions: Actions;
 
   // TypeScript public modifiers
   constructor(
     private store: Store<AppState>,
-    private userActions: UserActions,
-    private title: Title
+    private title: Title,
+    private docsActions: DocsActions
   ) {
 
     // map app store slice
-    this.store$ = this.store.let(getUserState())
-      .distinctUntilChanged() // wait to real changes to the user
-      .subscribe(state => {
-        this.user$ = Object.assign({}, state);
-      });
+    // this.store$ = this.store.let(getUserState())
+    //   .distinctUntilChanged() // wait to real changes to the user
+    //   .subscribe(state => {
+    //     this.user$ = Object.assign({}, state);
+    //   });
+
+    this.articles$ = this.store.let(getDocs());
+    this.store.dispatch(this.docsActions.load());
 
   }
 
@@ -55,7 +52,7 @@ export class Dashboard {
     console.log('hello `Dashboard` component');
     this.title.setTitle(this.title$);
 
-    EventEmitterProvider.get(ToolbarTitleUpdate.prototype.constructor.name).emit(this.title$);
+    EventEmitProvider.connect(ToolbarTitleUpdate.prototype.constructor.name).emit(this.title$);
 
     // this.db.allDocs()
     //   .subscribe(val => console.log(val));

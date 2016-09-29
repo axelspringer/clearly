@@ -8,8 +8,7 @@ export interface UserState {
   userId: string;
 };
 
-//
-let initialState: UserState = {
+const initialState: UserState = {
   userId: ''
 };
 

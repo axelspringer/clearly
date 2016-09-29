@@ -10,7 +10,7 @@ import { TranslateService } from 'ng2-translate/ng2-translate';
 // Components
 import { DATABASE_PROVIDERS } from './db';
 import { DatabaseProvider } from './db';
-import { EventEmitterProvider } from './events';
+import { EventEmitProvider } from './events';
 import { LOGGING_ERROR_HANDLER_PROVIDERS } from './log';
 import { LogService } from './log';
 import { NOTIFY_PROVIDERS } from './notify/notify.provider';
@@ -28,7 +28,7 @@ import { TranslateCustomLoader } from './i18n';
   ],
   providers: [
     // Events
-    EventEmitterProvider,
+    EventEmitProvider,
 
     // Database
     DatabaseProvider,

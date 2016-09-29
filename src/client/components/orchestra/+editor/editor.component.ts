@@ -3,7 +3,7 @@ import {
   OnInit
 } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { EventEmitterProvider } from '../../../commons';
+import { EventEmitProvider } from '../../../commons';
 import { ToolbarTitleUpdate } from '../../toolbar';
 
 @Component({
@@ -17,7 +17,7 @@ export class Editor implements OnInit {
 
   ngOnInit() {
 
-    EventEmitterProvider.get(ToolbarTitleUpdate.prototype.constructor.name)
+    EventEmitProvider.connect(ToolbarTitleUpdate.prototype.constructor.name)
       .emit('Story entwickeln ...');
 
   }

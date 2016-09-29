@@ -5,7 +5,7 @@ import { EventEmitter } from '@angular/core';
 import { Subject, ReplaySubject } from 'rxjs';
 
 // Components
-import { EventEmitterProvider } from '../events';
+import { EventEmitProvider } from '../events';
 import { Event } from '../events';
 import { Observable } from 'rxjs/Rx';
 
@@ -45,7 +45,7 @@ export class NotifyProvider {
 
   constructor() {
 
-    this._emitter$ = EventEmitterProvider.subscribe(new NotifyEvent());
+    this._emitter$ = EventEmitProvider.connect(new NotifyEvent());
     this._replay$ = new ReplaySubject();
 
     this._emitter$

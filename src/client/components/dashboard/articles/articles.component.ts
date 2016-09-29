@@ -1,5 +1,6 @@
 // Impotables
 import { Component } from '@angular/core';
+import { Input } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -14,14 +15,20 @@ import { DatabaseProvider } from '../../../commons';
 })
 export class ArticlesList implements OnInit {
 
-  private _db: DatabaseProvider;
-  private allDocs$: Observable<any>;
+  @Input() docs: Observable<any>;
 
   constructor(
-    db: DatabaseProvider
   ) {
-    this._db = db;
-    this.allDocs$ = this._db.allDocs().map(docs => docs.rows);
+
+    // setTimeout(() => {
+    //   this.allDocs$ = this._db.allDocs().map(docs => docs.rows);
+    // }, 3000);
+
+    // setTimeout(() => {
+    //   this.allDocs$ = this._db.allDocs().map(docs => docs.rows);
+    //    this.allDocs$ = this._db.allDocs().map(docs => docs.rows);
+    // }, 5000);
+
   }
 
   ngOnInit() {

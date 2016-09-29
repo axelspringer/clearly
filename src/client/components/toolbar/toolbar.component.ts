@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 import { App } from '../app';
 import { AppConfig } from '../../config';
 import { Event } from '../../commons';
-import { EventEmitterProvider } from '../../commons';
+import { EventEmitProvider } from '../../commons';
 import { NotifyProvider } from './../../commons';
 
 // Interface
@@ -49,7 +49,7 @@ export class Toolbar implements OnInit {
   }
 
   ngOnInit() {
-    EventEmitterProvider.create(new ToolbarTitleUpdate()).subscribe(value => this.title$ = value);
+    EventEmitProvider.connect(new ToolbarTitleUpdate()).subscribe(value => this.title$ = value);
   }
 
 };

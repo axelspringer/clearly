@@ -1,2 +1,2 @@
 // Exportables
-export * from './user.effects';
+export * from './docs.effects';

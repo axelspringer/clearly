@@ -8,10 +8,10 @@ import { ViewEncapsulation } from '@angular/core';
 
 // Compponents
 import { AppConfig } from '../../config';
-import { EventEmitterProvider } from '../../commons';
+import { EventEmitProvider } from '../../commons';
 import { NotifyProvider } from '../../commons';
 import { NotifyEvent } from '../../commons';
-import { AvatarSpinnerEvent } from '../avatar';
+import { DatabaseProvider } from './../../commons';
 
 @Component({
   encapsulation: ViewEncapsulation.None,
@@ -43,15 +43,31 @@ export class App implements OnInit {
     translate.setDefaultLang(AppConfig.DEFAULT_LANGUAGE);
     translate.use(AppConfig.DEFAULT_LANGUAGE);
 
-    EventEmitterProvider.emit(new NotifyEvent('Artikel gespeichert', 'Lorem ipsum ...'));
-    EventEmitterProvider.emit(new NotifyEvent('Artikel gespeichert', 'Lorem ipsum ...'));
-    EventEmitterProvider.emit(new NotifyEvent('Artikel gespeichert', 'Lorem ipsum ...'));
-    EventEmitterProvider.emit(new NotifyEvent('Artikel gespeichert', 'Lorem ipsum ...'));
+    const test = EventEmitProvider
+      .connect(DatabaseProvider.name)
+      .subscribe(val => console.log(val));
 
-    // demo
-    setTimeout(() => {
-      EventEmitterProvider.emit(new AvatarSpinnerEvent(true));
-    }, 5000);
+    // test.emit(new NotifyEvent('Artikel gespeichert', 'Lorem ipsum ...'));
+    // test.emit(new NotifyEvent('Artikel gespeichert', 'Lorem ipsum ...'));
+    // test.emit(new NotifyEvent('Artikel gespeichert', 'Lorem ipsum ...'));
+    // test.emit(new NotifyEvent('Artikel gespeichert', 'Lorem ipsum ...'));
+
+    // const event1 = new AvatarSpinnerEvent(true);
+    // const event2 = new AvatarSpinnerEvent(true);
+    // const event3 = new AvatarSpinnerEvent(true);
+
+    // // demo
+    // setTimeout(() => {
+    //   EventEmitProvider.emit(event1);
+    // }, 5000);
+
+    // setTimeout(() => {
+    //   EventEmitProvider.emit(event2);
+    // }, 6000);
+
+    // setTimeout(() => {
+    //   EventEmitProvider.emit(event3);
+    // }, 7000);
 
   }
 

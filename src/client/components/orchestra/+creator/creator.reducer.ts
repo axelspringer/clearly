@@ -6,7 +6,7 @@ import { Observable } from 'rxjs/Observable';
 import { CreatorActions } from './creator.actions';
 import { DFormElement } from '../../dform';
 
-let init = [];
+const init = [];
 
 export default function (state = init, action: Action)  {
 

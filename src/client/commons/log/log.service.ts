@@ -4,7 +4,7 @@ import { Inject } from '@angular/core';
 import { Injectable } from '@angular/core';
 
 // Components
-import { EventEmitterProvider } from './../events';
+import { EventEmitProvider } from './../events';
 
 export interface ILogEvent {
   level;
@@ -88,7 +88,7 @@ export class LogSubjectConsole extends LogSubject {
     super();
 
     if (console && console.group && console.error) { // console statement
-      this._emitter$ = EventEmitterProvider.create(new ConsoleLogEmitter());
+      this._emitter$ = EventEmitProvider.connect(new ConsoleLogEmitter());
 
       this.emitter.subscribe(event => {
         console.group(`Log Service`);

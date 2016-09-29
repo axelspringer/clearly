@@ -1,2 +1,2 @@
-// Actions
-export * from './user.actions';
+// Exportables
+export * from './docs.actions';

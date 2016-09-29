@@ -10,19 +10,9 @@ import { Subject } from 'rxjs';
 // Components
 import { NotifyProvider } from '../../commons';
 import { AppConfig } from '../../config';
-import { EventEmitterProvider } from '../../commons';
+import { EventEmitProvider } from '../../commons';
 import { App } from '../app';
-
-import { Event } from '../../commons';
-
-// Interfaces
-export class AvatarSpinnerEvent extends Event {
-
-  constructor(show?: boolean) {
-    super({ show });
-  }
-
-}
+import { DatabaseProvider } from '../../commons';
 
 @Component({
   selector: 'avatar',  // <menu></menu>
@@ -32,11 +22,13 @@ export class AvatarSpinnerEvent extends Event {
 })
 export class Avatar implements OnInit {
 
-  public loading$: Observable<boolean>;
+  public loading$: Observable<any>;
 
   private _emitter$: EventEmitter<any>;
   private _subject$: Subject<any> = new Subject();
   private _notify: NotifyProvider;
+
+  private _isLoading: true;
 
   constructor(
     notify: NotifyProvider
@@ -53,10 +45,13 @@ export class Avatar implements OnInit {
   }
 
   ngOnInit() {
-    this._emitter$ = EventEmitterProvider.subscribe(new AvatarSpinnerEvent());
+    this._emitter$ = EventEmitProvider.connect(DatabaseProvider.name);
     this._emitter$.subscribe(this._subject$);
+    this.loading$ = this._subject$.asObservable()
+      .map(event => event.payload);
+  }
 
-    this.loading$ = this._subject$.asObservable().map(event => event.payload.show);
+  test() {
 
   }
 

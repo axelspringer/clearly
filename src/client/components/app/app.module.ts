@@ -46,7 +46,9 @@ import { Settings } from '../settings';
 import { Toolbar } from '../toolbar';
 
 import AppStore from './app.store';
+import { DocsEffects } from '../../effects';
 import { AppEffects } from './app.effects';
+import { DocsActions } from '../../actions';
 
 
 // Application wide providers
@@ -59,7 +61,13 @@ const APP_PROVIDERS = [
     }
   },
   AuthGuard,
-  Title
+  Title,
+  DocsActions
+];
+
+// Effects
+const EFFECTS = [
+  DocsEffects
 ];
 
 class NullLoggingErrorHandler implements ErrorHandler {
@@ -94,7 +102,8 @@ class NullLoggingErrorHandler implements ErrorHandler {
     }),
 
     // @ngrx
-    EffectsModule.run(AppEffects),
+    EffectsModule.runAfterBootstrap(DocsEffects),
+    // EffectsModule.run(AppEffects),
     StoreModule.provideStore(AppStore),
     StoreDevtoolsModule.instrumentStore({ // store dev tools for debug
       maxAge: 5,

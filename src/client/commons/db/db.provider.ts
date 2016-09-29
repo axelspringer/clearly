@@ -1,9 +1,10 @@
 // Importables
 import { AsyncSubject } from 'rxjs';
-import { Inject } from '@angular/core';
+import { Inject, EventEmitter } from '@angular/core';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Observer } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { ReplaySubject } from 'rxjs';
 import * as PouchDB from 'pouchdb';
 import * as R from 'ramda';
@@ -14,6 +15,12 @@ import { LogEventInfo } from '../log';
 import { LogEventLog } from '../log';
 import { LogService } from '../log';
 
+import { EventEmitProvider } from '../events';
+import { Event } from '../events';
+
+// Interface
+export class DatabaseProviderProgressEvent extends Event {
+}
 
 export interface DatabaseProviderOptions {
   name: string;
@@ -33,91 +40,85 @@ export var DATABASE_PROVIDER_OPTIONS: DatabaseProviderOptions = {
 export class DatabaseProvider {
 
   private _db: any; // should be PouchDB
-  private _log: LogService;
+  private _logging: LogService;
   private _options: DatabaseProviderOptions;
 
+  private _emitter$: EventEmitter<any>;
+  private _requests: number = 0;
+
   constructor(
-    logService: LogService,
+    log: LogService,
     @Inject(DATABASE_PROVIDER_OPTIONS) options: DatabaseProviderOptions
   ) {
 
-    this._log = logService;
+    this._logging = log;
+    this._logging.log(new LogEventLog(`Initializing Database`));
     this._options = options;
 
-    this._log.log(new LogEventLog(`Initializing Database`));
+    // connect to emitter
+    this._emitter$ = EventEmitProvider.connect(DatabaseProvider.name);
 
     try {
-
       // sync for now...
-      const db = new PouchDB(options.name);
-      this._log.log(new LogEventLog(db));
-
       PouchDB.debug.enable(options.debugFilter);
+      const db = new PouchDB(options.name);
 
+      if (!!R.is(Function, db))
+        throw new Error(`${PouchDB.constructor.name} - Promise missing`);
+
+      this._logging.log(new LogEventLog(db));
       this._db = db; // sync
-
     } catch (err) {
-
-      this._log.log(new LogEventError(err));
-
+      this._logging.log(new LogEventError(err));
     }
 
   }
 
   get db(): any {
-
     return this._db;
-
-  }
-
-  create(doc: any = {}): Observable<any> {
-
-    return this.post();
-
-  }
-
-  update(id: string, doc) {
-
-    return this.get(id)
-      .switchMap(_doc => {
-        return this.put(doc); // could be chained
-      });
-
   }
 
   get(id: string): Observable<any> {
-
     return this._fromPromise(this.db.get(id));
-
   }
 
   post(doc: any = {}): Observable<any> {
-
     return this._fromPromise(this.db.post(doc));
-
   }
 
-  put(doc: any = {}) {
-
+  put(doc: any = {}): Observable<any> {
     return this._fromPromise(this.db.put(doc));
-
   }
 
-  allDocs(options: any = { include_docs: true }) {
-
+  allDocs(options: any = { include_docs: true }): Observable<any> {
     return this._fromPromise(this.db.allDocs(options));
+  }
 
+  create(doc: any = {}): Observable<any> {
+    return this.post();
+  }
+
+  update(id: string, doc): Observable<any> {
+    return this.get(id)
+      .switchMap(_doc => this.put(doc));
   }
 
   _fromPromise(promise): Observable<any> {
-
-    return Observable.fromPromise(promise)
+    return Observable
+      .fromPromise(promise)
       .catch(err => {
-        this._log.log(new LogEventError(err));
+        this._logging.log(new LogEventError(err));
         return Observable.of({}); // cached version
       });
-
   }
+
+  // _progress(inc: number) {
+
+  //   return this._emitter$
+  //     .emit(new DatabaseProviderProgressEvent(inc
+  //       ? this._requests = ++this._requests
+  //       : this._requests = --this._requests));
+  // }
 
   // yep, wtf
   wtf(): any {
