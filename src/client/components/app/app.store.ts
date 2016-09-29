@@ -31,8 +31,9 @@ export default compose(hmrState, storeLogger(), combineReducers)({
 
 // hmr
 export function hmrState(reducer: ActionReducer<any>): ActionReducer<any> {
+  const ACTION = 'RESET_STATE';
   return function (state, action) {
-    if (action.type === 'RESET_STATE') {
+    if (action.type === ACTION) {
       console.log(action.payload);
       return action.payload;
     }
@@ -40,7 +41,7 @@ export function hmrState(reducer: ActionReducer<any>): ActionReducer<any> {
   };
 }
 
-// selectors
+// slices
 export function getCreatorState() {
   return (state$: Observable<AppState>) => state$
     .map(s => s.creator);
@@ -53,9 +54,10 @@ export function getOrchestraState() {
 
 export function getDocsState() {
   return (state$: Observable<AppState>) => state$
-    .select(s => s.docs);
+    .map(s => s.docs);
 }
 
+// selectors
 export function getCreatorItems() {
   return compose(fromCreator.getItems(), getCreatorState());
 }
@@ -64,6 +66,10 @@ export function getDocs() {
   return compose(fromDocsReducer.getDocs(), getDocsState());
 }
 
-export function getDoc() {
-  return compose(fromOrchestra.getDoc(), getOrchestraState());
+export function isDocsLoading() {
+  return compose(fromDocsReducer.getDocsLoading(), getDocsState());
+}
+
+export function isDocsLoaded() {
+  return compose(fromDocsReducer.getDocsLoaded(), getDocsState());
 }

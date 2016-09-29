@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { MdModule } from '../app/app.material';
 import { Dashboard } from './dashboard.component';
 import { ArticlesList } from './articles';
+import { CoreModule } from '../../core';
 
 // Routes
 import { Routing } from './dashboard.routes';
@@ -16,9 +17,10 @@ import { Routing } from './dashboard.routes';
 @NgModule({
   imports: [
     CommonModule,
+    CoreModule,
     FormsModule,
     MdModule,
-    Routing
+    Routing,
   ],
   exports: [
     Dashboard,

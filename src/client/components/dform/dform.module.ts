@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 
 // Components
-import { CommonsModule } from '../../commons';
+import { CoreModule } from '../../core';
 import { DFormComponent } from './dform.component';
 import { DFormDynamicElement } from './dform.element';
 import { DFormTextComponent } from './text';
@@ -14,7 +14,7 @@ import { DFormTextAreaComponent } from './textarea';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    CommonsModule
+    CoreModule
   ],
   declarations: [
     DFormComponent,
@@ -24,7 +24,7 @@ import { DFormTextAreaComponent } from './textarea';
   ],
   exports: [
     CommonModule,
-    CommonsModule,
+    CoreModule,
     DFormComponent,
     DFormDynamicElement,
     DFormTextAreaComponent,

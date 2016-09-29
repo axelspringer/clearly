@@ -9,7 +9,7 @@ import { Store } from '@ngrx/store';
 
 // Components
 import { AppState, getDoc } from '../../app';
-import { DatabaseProvider } from '../../../commons';
+import { DatabaseProvider } from '../../../core';
 import { OrchestraActions } from '../orchestra.actions';
 
 @Injectable()

@@ -6,13 +6,16 @@ import { Inject } from '@angular/core';
 import { Component } from '@angular/core';
 import { EventEmitter } from '@angular/core';
 import { Subject } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { AppState } from '../app';
+import { isDocsLoading } from '../app';
 
 // Components
-import { NotifyProvider } from '../../commons';
+import { NotifyProvider } from '../../core';
 import { AppConfig } from '../../config';
-import { EventEmitProvider } from '../../commons';
+import { EventEmitProvider } from '../../core';
 import { App } from '../app';
-import { DatabaseProvider } from '../../commons';
+import { DatabaseProvider } from '../../core';
 
 @Component({
   selector: 'avatar',  // <menu></menu>
@@ -29,11 +32,14 @@ export class Avatar implements OnInit {
   private _notify: NotifyProvider;
 
   private _isLoading: true;
+  private isLoading$: Observable<any>;
 
   constructor(
-    notify: NotifyProvider
+    notify: NotifyProvider,
+    private store: Store<AppState>
   ) {
     this._notify = notify;
+    this.isLoading$ = this.store.let(isDocsLoading());
   }
 
   get events() {

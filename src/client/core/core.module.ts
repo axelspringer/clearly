@@ -49,11 +49,11 @@ import { TranslateCustomLoader } from './i18n';
     ...HTTP_PROVIDERS
   ]
 })
-export class CommonsModule {
+export class CoreModule {
 
   static forRoot(languages: Object) {
     return {
-      ngModule: CommonsModule,
+      ngModule: CoreModule,
       providers: [{ // custom translation provider
         provide: TranslateLoader,
         useFactory: () => {

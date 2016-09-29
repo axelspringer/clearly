@@ -7,7 +7,7 @@ import { Actions } from '@ngrx/effects';
 import { Observable } from 'rxjs';
 
 // Components
-import { EventEmitProvider } from '../../commons';
+import { EventEmitProvider } from '../../core';
 import { ToolbarTitleUpdate } from '../toolbar';
 import { DocsActions } from '../../actions';
 import { AppState } from '../app';
@@ -45,6 +45,9 @@ export class Dashboard {
 
     this.articles$ = this.store.let(getDocs());
     this.store.dispatch(this.docsActions.load());
+    setTimeout(() => {
+      this.store.dispatch(this.docsActions.load());
+    }, 2500);
 
   }
 

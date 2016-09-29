@@ -8,10 +8,10 @@ import { ViewEncapsulation } from '@angular/core';
 
 // Compponents
 import { AppConfig } from '../../config';
-import { EventEmitProvider } from '../../commons';
-import { NotifyProvider } from '../../commons';
-import { NotifyEvent } from '../../commons';
-import { DatabaseProvider } from './../../commons';
+import { EventEmitProvider } from '../../core';
+import { NotifyProvider } from '../../core';
+import { NotifyEvent } from '../../core';
+import { DatabaseProvider } from './../../core';
 
 @Component({
   encapsulation: ViewEncapsulation.None,

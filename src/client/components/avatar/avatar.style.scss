@@ -89,10 +89,7 @@ img {
 
   &.isLoading {
 
-    animation-duration: $_loading-animation-duration;
-  animation-name: spin;
-  animation-timing-function: ease-in-out;
-  animation-iteration-count: infinite;
+    @extend .spin;
 
     border-top-color: green;
 

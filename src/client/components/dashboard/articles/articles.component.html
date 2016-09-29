@@ -1,13 +1,11 @@
 <div>
 
+  <h3>{{ 'DASHBOARD.ARTICLES.DRAFTS.TITLE' | translate }}</h3>
   <md-list>
-
-    <h3>Drafts</h3>
     <md-list-item *ngFor="let doc of (docs | async)">
       <md-icon md-list-avatar>description</md-icon>
       <h4>{{ doc?.doc._id }}</h4>
     </md-list-item>
-
   </md-list>
 
 </div>

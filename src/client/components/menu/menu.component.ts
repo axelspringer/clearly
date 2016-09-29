@@ -11,7 +11,7 @@ import {
   Router,
   NavigationEnd
 } from '@angular/router';
-import { EventEmitProvider } from '../../commons';
+import { EventEmitProvider } from '../../core';
 
 import { App } from '../app';
 

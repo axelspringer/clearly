@@ -8,7 +8,7 @@ import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 
 // Components
-import { DatabaseProvider } from '../../commons';
+import { DatabaseProvider } from '../../core';
 
 @Injectable()
 export class AppEffects {

@@ -9,9 +9,9 @@ import { Observable } from 'rxjs';
 // Components
 import { App } from '../app';
 import { AppConfig } from '../../config';
-import { Event } from '../../commons';
-import { EventEmitProvider } from '../../commons';
-import { NotifyProvider } from './../../commons';
+import { Event } from '../../core';
+import { EventEmitProvider } from '../../core';
+import { NotifyProvider } from './../../core';
 
 // Interface
 export class ToolbarTitleUpdate extends Event {

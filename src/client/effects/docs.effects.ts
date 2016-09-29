@@ -9,7 +9,7 @@ import { OnDestroy } from '@angular/core';
 
 // Components
 import { DocsActions } from '../actions';
-import { DatabaseProvider } from '../commons';
+import { DatabaseProvider } from '../core';
 
 @Injectable()
 export class DocsEffects implements OnDestroy {

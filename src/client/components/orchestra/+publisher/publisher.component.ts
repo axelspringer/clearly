@@ -3,7 +3,7 @@ import {
   OnInit
 } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { EventEmitProvider } from '../../../commons';
+import { EventEmitProvider } from '../../../core';
 import { ToolbarTitleUpdate } from '../../toolbar';
 
 @Component({

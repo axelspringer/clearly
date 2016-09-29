@@ -40,5 +40,14 @@
       "CLEAR": "Alles löschen",
       "TITLE" : "Benachrichtigungen"
     }
+  },
+
+  "DASHBOARD": {
+    "ARTICLES": {
+      "DRAFTS": {
+        "TITLE": "Entwürfe"
+      }
+    }
   }
+
 }

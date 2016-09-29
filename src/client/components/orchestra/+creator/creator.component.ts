@@ -15,7 +15,7 @@ import { Store } from '@ngrx/store';
 import { TranslateService } from 'ng2-translate';
 
 // Components
-import { EventEmitProvider } from '../../../commons';
+import { EventEmitProvider } from '../../../core';
 import { ToolbarTitleUpdate } from '../../toolbar';
 import {
   DFormText,

@@ -1,5 +1,5 @@
 // Exportables
-export * from './commons.module';
+export * from './core.module';
 export * from './db';
 export * from './events';
 export * from './http';

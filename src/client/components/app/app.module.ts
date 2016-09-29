@@ -22,7 +22,7 @@ import { WorkerAppModule } from '@angular/platform-webworker';
 import { getPlatform } from '@angular/core';
 
 // Modules
-import { CommonsModule } from '../../commons';
+import { CoreModule } from '../../core';
 import { DashboardModule } from '../dashboard';
 import { OrchestraModule } from '../orchestra';
 
@@ -33,7 +33,7 @@ import { App } from './app.component';
 import { APP_RESOLVER_PROVIDERS } from './app.resolver';
 import { AppConfig } from '../../config';
 import { AppLocale } from '../../config';
-import { DATABASE_PROVIDER_OPTIONS } from '../../commons';
+import { DATABASE_PROVIDER_OPTIONS } from '../../core';
 import { DBConfig } from './../../config/db.config';
 import { ENV_PROVIDERS } from '../../environment';
 import { ROUTES } from './app.routes';
@@ -44,6 +44,7 @@ import { Menu } from '../menu';
 import { NoContent } from '../404';
 import { Settings } from '../settings';
 import { Toolbar } from '../toolbar';
+import { Loading } from '../loading';
 
 import AppStore from './app.store';
 import { DocsEffects } from '../../effects';
@@ -84,6 +85,7 @@ class NullLoggingErrorHandler implements ErrorHandler {
   declarations: [
     App,
     Avatar,
+    Loading,
     Menu,
     NoContent,
     Settings,
@@ -120,7 +122,7 @@ class NullLoggingErrorHandler implements ErrorHandler {
     // Custom Modules
     OrchestraModule,
     DashboardModule,
-    CommonsModule.forRoot(AppLocale.languages)
+    CoreModule.forRoot(AppLocale.languages)
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     ...ENV_PROVIDERS,

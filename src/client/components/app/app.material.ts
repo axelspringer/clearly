@@ -3,31 +3,31 @@
 
 import { NgModule, ModuleWithProviders } from '@angular/core';
 
-import { MdButtonToggleModule } from '@angular2-material/button-toggle';
-import { MdButtonModule } from '@angular2-material/button';
-import { MdCheckboxModule } from '@angular2-material/checkbox';
-import { MdRadioModule } from '@angular2-material/radio';
-import { MdSlideToggleModule } from '@angular2-material/slide-toggle';
-import { MdSliderModule } from '@angular2-material/slider';
-import { MdSidenavModule } from '@angular2-material/sidenav';
-import { MdListModule } from '@angular2-material/list';
-import { MdGridListModule } from '@angular2-material/grid-list';
-import { MdCardModule } from '@angular2-material/card/card';
-import { MdIconModule } from '@angular2-material/icon';
-import { MdProgressCircleModule } from '@angular2-material/progress-circle';
-import { MdProgressBarModule } from '@angular2-material/progress-bar';
-import { MdInputModule } from '@angular2-material/input/input';
-import { MdTabsModule } from '@angular2-material/tabs/tabs';
-import { MdToolbarModule } from '@angular2-material/toolbar/toolbar';
-import { MdTooltipModule } from '@angular2-material/tooltip/tooltip';
-import { MdRippleModule } from '@angular2-material/core/ripple/ripple';
+import { MdButtonToggleModule } from '@angular/material';
+import { MdButtonModule } from '@angular/material';
+import { MdCheckboxModule } from '@angular/material';
+import { MdRadioModule } from '@angular/material';
+import { MdSlideToggleModule } from '@angular/material';
+import { MdSliderModule } from '@angular/material';
+import { MdSidenavModule } from '@angular/material';
+import { MdListModule } from '@angular/material';
+import { MdGridListModule } from '@angular/material';
+import { MdCardModule } from '@angular/material';
+import { MdIconModule } from '@angular/material';
+import { MdProgressCircleModule } from '@angular/material';
+import { MdProgressBarModule } from '@angular/material';
+import { MdInputModule } from '@angular/material';
+import { MdTabsModule } from '@angular/material';
+import { MdToolbarModule } from '@angular/material';
+import { MdTooltipModule } from '@angular/material';
+import { MdRippleModule } from '@angular/material';
 // import { PortalModule } from '@angular2-material/core/portal/portal-directives';
 // import { OverlayModule } from '@angular2-material/core/overlay/overlay-directives';
-import { MdMenuModule } from '@angular2-material/menu';
+import { MdMenuModule } from '@angular/material';
 // import { MdDialogModule } from '@angular2-material/dialog';
 // import { RtlModule } from '@angular2-material/core/rtl/dir';
 // import { MdLiveAnnouncer } from '@angular2-material/core/a11y/live-announcer';
-import { MdCoreModule } from '@angular2-material/core';
+import { MdCoreModule } from '@angular/material';
 
 const MATERIAL_MODULES = [
   MdButtonModule,

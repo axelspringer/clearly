@@ -8,7 +8,7 @@ import {
 } from '../../reducers';
 
 // changing title
-import { EventEmitProvider } from '../../commons';
+import { EventEmitProvider } from '../../core';
 import { Toolbar } from '../toolbar';
 
 @Component({
