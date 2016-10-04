@@ -1,3 +1,5 @@
+@import '../../components/app/app.material';
+
 $_avatar-spinner-border-width: 3px;
 $_avatar-spinner-border-color: rgba(255, 255, 255, 0.5);
 $_loading-animation-duration: 1 * 750ms;
@@ -91,7 +93,7 @@ img {
 
     @extend .spin;
 
-    border-top-color: green;
+    border-top-color: md-color($accent);
 
   }
 
