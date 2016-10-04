@@ -9,8 +9,8 @@ import {
 } from '@angular/forms';
 
 // DForm
-import { DFormText } from '../../dform';
-import { DFormTextArea } from './../../dform/textarea/dform.textarea';
+import { DFormText } from '../dform';
+import { DFormTextArea } from '../dform/textarea/dform.textarea';
 
 @Injectable()
 export class CreatorService {

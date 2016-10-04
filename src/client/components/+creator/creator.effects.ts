@@ -16,8 +16,8 @@ import {
 
 // Components
 import { CreatorActions } from './creator.actions';
-import { getCreatorItems } from '../../app';
-import { DatabaseProvider } from '../../../core';
+import { getCreatorItems } from '../app';
+import { DatabaseProvider } from '../../core';
 
 import {
   AppState,

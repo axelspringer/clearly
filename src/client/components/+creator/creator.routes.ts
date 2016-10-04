@@ -1,11 +1,5 @@
 // Importables
-import {
-  Routes,
-  RouterModule,
-  CanActivate,
-  ActivatedRouteSnapshot,
-  RouterStateSnapshot
-} from '@angular/router';
+import { Routes } from '@angular/router';
 import { Creator } from './creator.component';
 import { Observable } from 'rxjs';
 import { CreatorGuard } from './creator.guard';
@@ -22,8 +16,8 @@ const routes: Routes = [
     resolve: {
       doc: CreatorResolver
     },
-    canActivate: [CreatorGuard],
-    canDeactivate: [CreatorGuard]
+    // canActivate: [CreatorGuard],
+    // canDeactivate: [CreatorGuard]
   }
 ];
 

@@ -1,0 +1,7 @@
+<dform [dform-data]="store$" (dform-group)="onFormUpdate($event)" (onDropSuccess)="addItem($event)" class="creator"></dform>
+
+<div class="form-row">
+  <button md-raised-button type="submit" [disabled]="!form?.valid" (click)="create($event)">{{ 'DFORM.SAMPLE_BUTTON' | translate }}</button>
+</div>
+
+<editor></editor>

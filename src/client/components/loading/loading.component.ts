@@ -11,7 +11,7 @@ import { Output } from '@angular/core';
   styleUrls: ['./loading.style.scss'],
   templateUrl: './loading.component.html'
 })
-export class Loading implements OnInit {
+export class Loading implements OnInit, OnDestroy {
 
   @Input() shouldBeLoading: Observable<boolean>;
 

@@ -1,34 +1,23 @@
 // Importables
-import {
-  Component,
-  OnInit,
-  OnDestroy,
-  ApplicationRef
-} from '@angular/core';
-import { Title } from '@angular/platform-browser';
+import { ActivatedRoute } from '@angular/router';
+import { Component } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import {
-  ActivatedRoute,
-  Router
-} from '@angular/router';
+import { OnDestroy } from '@angular/core';
+import { OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { Title } from '@angular/platform-browser';
 import { TranslateService } from 'ng2-translate';
 
 // Components
-import { EventEmitProvider } from '../../../core';
-import { ToolbarTitleUpdate } from '../../toolbar';
-import {
-  DFormText,
-  DFormElement
-} from '../../dform';
-import { CreatorService } from './creator.service';
-
-import {
-  AppState,
-  getCreatorItems
-} from '../../app';
-
+import { AppState } from '../app';
 import { CreatorActions } from './creator.actions';
+import { CreatorService } from './creator.service';
+import { DFormElement } from '../dform';
+import { DFormText } from '../dform';
+import { EventEmitProvider } from '../../core';
+import { getCreatorItems } from '../app';
+import { ToolbarTitleUpdate } from '../toolbar';
 
 @Component({
   selector: 'creator',  // <creator></creator>
@@ -41,15 +30,13 @@ import { CreatorActions } from './creator.actions';
   ],
   templateUrl: './creator.component.html',
 })
-export class Creator implements OnInit {
+export class Creator implements OnInit, OnDestroy {
 
   form: FormGroup;
 
   private elements: number = 0;
   private i18nTitle = 'ORCHESTRA.CREATOR.TITLE';
   private store$: any;
-  private doc$: any;
-  private doc: any;
 
   constructor(
     private creatorService: CreatorService,
@@ -62,19 +49,24 @@ export class Creator implements OnInit {
     private route: ActivatedRoute,
   ) {
 
-    this.store$ = this.store.let(getCreatorItems());
-    this.doc$ = this.route.data
-      .select(s => s['doc'])
-      .subscribe(doc => this.doc = doc);
-
   }
 
   ngOnInit() {
+    this.store$ = this.store.let(getCreatorItems());
+
+    this.route.data.subscribe(val => console.log(val));
+
+    // pre publish model with title
+    const item = this.creatorService.toDForm('text', {
+      key: `${++this.elements - 1}`
+    });
+    this.store.dispatch(this.creatorActions.addItem(item));
+
     this.translate.get(this.i18nTitle).subscribe(t =>
       EventEmitProvider.connect(ToolbarTitleUpdate.prototype.constructor.name).emit(t));
   }
 
-  ngOnDestory() {
+  ngOnDestroy() {
     this.store$.unsubscribe();
   }
 
@@ -91,10 +83,6 @@ export class Creator implements OnInit {
     // update to dispatch
     // this.store.dispatch(this.creatorActions.update($event.value));
 
-  }
-
-  create($event) {
-    this.router.navigate(['article', this.doc.id, 'edit']);
   }
 
 };

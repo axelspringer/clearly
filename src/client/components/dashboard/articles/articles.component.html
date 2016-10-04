@@ -4,7 +4,7 @@
   <md-list>
     <md-list-item *ngFor="let doc of (docs | async)">
       <md-icon md-list-avatar>description</md-icon>
-      <h4>{{ doc?.doc._id }}</h4>
+      <h4>{{ doc?.doc.title }}</h4>
     </md-list-item>
   </md-list>
 

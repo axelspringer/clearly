@@ -6,16 +6,18 @@ import { Observable } from 'rxjs/Observable';
 import { storeLogger } from 'ngrx-store-logger';
 
 // Reducers
-import creatorReducer, * as fromCreator from '../orchestra/+creator';
-import orchestraReducer, * as fromOrchestra from '../orchestra';
+import { creatorReducer } from '../+creator';
+import { fromCreatorReducer } from '../+creator';
 import { docsReducer } from '../../reducers';
 import { fromDocsReducer } from '../../reducers';
+import { editorReducer } from '../editor';
+import { fromEditorReducer } from '../editor';
 
 // app state
 export interface AppState {
   creator: any;
   docs: any;
-  orchestra: fromOrchestra.OrchestraState;
+  editor: any;
 };
 
 // slices as interface
@@ -26,7 +28,7 @@ export {
 export default compose(hmrState, storeLogger(), combineReducers)({
   creator: creatorReducer,
   docs: docsReducer,
-  orchestra: orchestraReducer,
+  editor: editorReducer
 });
 
 // hmr
@@ -47,19 +49,23 @@ export function getCreatorState() {
     .map(s => s.creator);
 }
 
-export function getOrchestraState() {
-  return (state$: Observable<AppState>) => state$
-    .map(s => s.orchestra);
-}
-
 export function getDocsState() {
   return (state$: Observable<AppState>) => state$
     .map(s => s.docs);
 }
 
+export function getEditorState() {
+  return (state$: Observable<AppState>) => state$
+    .map(s => s.editor);
+}
+
 // selectors
 export function getCreatorItems() {
-  return compose(fromCreator.getItems(), getCreatorState());
+  return compose(fromCreatorReducer.getItems(), getCreatorState());
+}
+
+export function getEditorItems() {
+  return compose(fromEditorReducer.getItems(), getEditorState());
 }
 
 export function getDocs() {

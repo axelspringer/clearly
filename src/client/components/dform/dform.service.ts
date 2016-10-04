@@ -1,14 +1,10 @@
 // Importables
-import {
-  Injectable,
-  IterableDiffer,
-  DefaultIterableDiffer
-} from '@angular/core';
-import {
-  FormControl,
-  FormGroup,
-  Validators
-} from '@angular/forms';
+import { Injectable } from '@angular/core';
+import { IterableDiffer } from '@angular/core';
+import { DefaultIterableDiffer } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
+import { Validators } from '@angular/forms';
 
 // Components
 import { DFormElement } from './dform.element';

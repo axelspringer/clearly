@@ -24,11 +24,10 @@ import { getPlatform } from '@angular/core';
 // Modules
 import { CoreModule } from '../../core';
 import { DashboardModule } from '../dashboard';
-import { OrchestraModule } from '../orchestra';
+import { DFormModule } from '../dform';
+import { CreatorModule } from '../+creator';
 
-/*
- * Platform and Environment providers/directives/pipes
- */
+// Environment
 import { App } from './app.component';
 import { APP_RESOLVER_PROVIDERS } from './app.resolver';
 import { AppConfig } from '../../config';
@@ -45,12 +44,13 @@ import { NoContent } from '../404';
 import { Settings } from '../settings';
 import { Toolbar } from '../toolbar';
 import { Loading } from '../loading';
+import { Creator } from '../+creator';
 
+// Store
 import AppStore from './app.store';
 import { DocsEffects } from '../../effects';
 import { AppEffects } from './app.effects';
 import { DocsActions } from '../../actions';
-
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -120,8 +120,9 @@ class NullLoggingErrorHandler implements ErrorHandler {
     MdModule.forRoot(), // here is the magic,
 
     // Custom Modules
-    OrchestraModule,
     DashboardModule,
+    DFormModule,
+    CreatorModule,
     CoreModule.forRoot(AppLocale.languages)
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection

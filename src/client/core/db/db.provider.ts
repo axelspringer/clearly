@@ -18,10 +18,6 @@ import { LogService } from '../log';
 import { EventEmitProvider } from '../events';
 import { Event } from '../events';
 
-// Interface
-export class DatabaseProviderProgressEvent extends Event {
-}
-
 export interface DatabaseProviderOptions {
   name: string;
   retry: number;
@@ -95,7 +91,7 @@ export class DatabaseProvider {
   }
 
   create(doc: any = {}): Observable<any> {
-    return this.post();
+    return this.post(doc);
   }
 
   update(id: string, doc): Observable<any> {
@@ -111,14 +107,6 @@ export class DatabaseProvider {
         return Observable.of({}); // cached version
       });
   }
-
-  // _progress(inc: number) {
-
-  //   return this._emitter$
-  //     .emit(new DatabaseProviderProgressEvent(inc
-  //       ? this._requests = ++this._requests
-  //       : this._requests = --this._requests));
-  // }
 
   // yep, wtf
   wtf(): any {

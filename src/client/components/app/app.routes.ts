@@ -1,8 +1,10 @@
-import { Routes, RouterModule } from '@angular/router';
+import { Routes } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { Dashboard } from '../dashboard';
 import { NoContent } from '../404';
 import { Settings } from '../settings';
 import { AuthGuard } from '../../guards';
+import { routing as creatorRouting } from '../+creator';
 
 export const ROUTES: Routes = [
   {
@@ -10,14 +12,23 @@ export const ROUTES: Routes = [
       AuthGuard
     ],
     path: '',
-    component: Dashboard // TODO@sdoell: move to module
+    component: Dashboard, // TODO@sdoell: move to module
+  },
+  {
+    path: 'article',
+    children: creatorRouting,
+    data: {
+      title: 'Neuer Artikel',
+      order: 1,
+      isMenu: true
+    },
   },
   {
     path: 'settings',
-    component: Settings
+    component: Settings,
   },
   {
     path: '**',
-    component: NoContent
+    component: NoContent,
   },
 ];
