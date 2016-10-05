@@ -23,6 +23,9 @@ import 'pouchdb';
 // RSVP
 import 'rsvp';
 
+// Apollo
+import 'apollo-client';
+
 // Ramda
 import R from 'ramda';
 

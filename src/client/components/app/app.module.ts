@@ -19,7 +19,12 @@ import { StoreModule } from '@ngrx/store';
 import { useLogMonitor } from '@ngrx/store-log-monitor';
 import { WorkerAppModule } from '@angular/platform-webworker';
 
-import { getPlatform } from '@angular/core';
+// Apollo
+import { ApolloModule } from 'angular2-apollo';
+import client from './app.apollo.ts';
+
+// Aot
+// import { getPlatform } from '@angular/core';
 
 // Modules
 import { CoreModule } from '../../core';
@@ -103,6 +108,9 @@ class NullLoggingErrorHandler implements ErrorHandler {
       enableTracing: AppConfig.DEBUG
     }),
 
+    // Apollo
+    ApolloModule.withClient(client),
+
     // @ngrx
     EffectsModule.runAfterBootstrap(DocsEffects),
     // EffectsModule.run(AppEffects),
@@ -116,7 +124,7 @@ class NullLoggingErrorHandler implements ErrorHandler {
     }),
     StoreLogMonitorModule,
 
-    // Materila
+    // Material
     MdModule.forRoot(), // here is the magic,
 
     // Custom Modules
