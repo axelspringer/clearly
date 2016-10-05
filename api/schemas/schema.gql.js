@@ -3,7 +3,7 @@
 // const casual    = require('casual');
 const schema = `
 type Query {
-  testString: String
+  testString(answer:String): String
 }
 
 schema {
@@ -13,7 +13,9 @@ schema {
 
 const resolvers = {
   Query: {
-    testString: () => 'It Works!'
+    testString(_, args) {
+      return `It Works! ${args.answer || 'empty'}`;
+    }
   }
 };
 
