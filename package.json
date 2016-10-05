@@ -14,7 +14,8 @@
   "homepage": "https://as-stash.axelspringer.de/projects/TORTUGA/repos/tortuga-blackbeard",
   "license": "MIT",
   "scripts": {
-    "api:docs": "node api/api.js",
+    "api:docs": "node api/docs.js",
+    "api:dev": "node api/mock.js",
     "build:dev": "webpack --config config/webpack.dev.js --progress --profile",
     "build:docker": "npm run build:prod && docker build -t tortuga-blackbeard:latest .",
     "build:prod": "webpack --config config/webpack.prod.js  --progress --profile --bail",
@@ -131,6 +132,7 @@
     "karma-webpack": "1.8.0",
     "node-sass": "^3.10.0",
     "offline-plugin": "^3.4.2",
+    "osprey-mock-service": "^0.1.0",
     "parse5": "^2.2.1",
     "phantomjs-prebuilt": "^2.1.7",
     "postcss-loader": "^0.13.0",
