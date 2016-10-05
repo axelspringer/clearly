@@ -31,33 +31,43 @@ export var DATABASE_PROVIDER_OPTIONS: DatabaseProviderOptions = {
   debugFilter: 'pouchdb:api'
 };
 
+export class DatabaseProviderOptions {
+
+  constructor(options?: any) {
+    const defaults = {
+      name: 'blackbeard',
+      retry: 5,
+      debugFilter: 'pouchdb:api'
+    }
+    return Object.assign(defaults, options);
+  }
+
+}
 
 @Injectable()
 export class DatabaseProvider {
 
   private _db: any; // should be PouchDB
-  private _logging: LogService;
-  private _options: DatabaseProviderOptions;
+  private _options: any;
 
   private _emitter$: EventEmitter<any>;
   private _requests: number = 0;
 
   constructor(
-    log: LogService,
+    private _logging: LogService,
     @Inject(DATABASE_PROVIDER_OPTIONS) options: DatabaseProviderOptions
   ) {
 
-    this._logging = log;
     this._logging.log(new LogEventLog(`Initializing Database`));
-    this._options = options;
+    this._options = Object.assign(DATABASE_PROVIDER_OPTIONS, options); // could be moved to class
 
     // connect to emitter
     this._emitter$ = EventEmitProvider.connect(DatabaseProvider.name);
 
     try {
       // sync for now...
-      PouchDB.debug.enable(options.debugFilter);
-      const db = new PouchDB(options.name);
+      PouchDB.debug.enable(this._options.debugFilter);
+      const db = new PouchDB(this._options.name);
 
       if (!!R.is(Function, db))
         throw new Error(`${PouchDB.constructor.name} - Promise missing`);

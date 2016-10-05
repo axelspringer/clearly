@@ -1,0 +1,21 @@
+{
+  "required" : true ,
+  "$schema" : "http://json-schema.org/draft-03/schema" ,
+  "type" : "object" ,
+  "properties" : {
+    "id": {
+      "type": "integer" ,
+      "required": true
+    } ,
+    "name": {
+      "type": "string" ,
+      "required": true
+    } ,
+    "displayName": {
+      "type": "string"
+    },
+    "type": {
+      "type": "any"
+    }
+  }
+}

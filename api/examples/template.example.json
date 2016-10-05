@@ -1,0 +1,16 @@
+{
+  "ok": true ,
+  "id": 123 ,
+  "name": "example" ,
+  "displayName": "Example Template" ,
+  "meta": [
+    1 ,
+    2 ,
+    3
+  ],
+  "content": [
+    1 ,
+    2 ,
+    3
+  ]
+}

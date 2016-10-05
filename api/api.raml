@@ -1,0 +1,38 @@
+#%RAML 0.8
+title: Blackbeard
+version: v1
+protocols: [ HTTP, HTTPS ]
+baseUri: https://localhost:8080/{version}
+mediaType: application/json
+documentation:
+  - title: Overview
+    content: This is the documentation of the "Blackbeard" Editorial System
+schemas:
+  - channel: !include schemas/channel.schema.json
+  - ok: !include schemas/ok.schema.json
+  - creation: !include schemas/creation.schema.json
+  - template: !include schemas/template.schema.json
+  - contenTypes: !include schemas/contentTypes.schema.json
+  - content: !include schemas/content.schema.json
+/template:
+  /{templateId}:
+    type: base
+    description: A specific template, identified by its `id`
+    uriParameters:
+      templateId:
+        description: |
+          The `id` of the template to retrieve
+        required: true
+        example: 123
+    get:
+      description: |
+        Retrieve the template with `id`
+      responses:
+        200:
+          body:
+            application/json:
+              schema: template
+              example: !include examples/template.example.json
+
+/templates:
+  description: The collection of available templates
