@@ -12,10 +12,10 @@ const doc   = 'api.html';
 raml2html.render(path.join(root, spec), defaults)
   .then(html => {
 
-    fs.writeFile(path.join(root, doc));
+    fs.writeFile(path.join(root, doc), html);
 
   }, err => {
 
-    console.log(err); process.exit(1); // a bit lame
+    console.error(new Error(err));
 
   });

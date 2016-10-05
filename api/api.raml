@@ -14,6 +14,11 @@ schemas:
   - template: !include schemas/template.schema.json
   - contenTypes: !include schemas/contentTypes.schema.json
   - content: !include schemas/content.schema.json
+resourceTypes:
+  - base: !include resources/base.rs.raml
+traits:
+  - limitable: !include traits/limitable.trait.raml
+  - acceptCallback: !include traits/acceptCallback.trait.raml
 /template:
   /{templateId}:
     type: base
