@@ -1,4 +1,6 @@
 // Importables
+import { ApolloQueryObservable } from 'angular2-apollo';
+import { ApolloQueryResult } from 'apollo-client';
 import { ActivatedRouteSnapshot } from '@angular/router';
 import { Inject } from '@angular/core';
 import { Injectable } from '@angular/core';
@@ -25,30 +27,32 @@ export var CREATOR_RESOLVER_OPTIONS: CreatorResolverOptions = {
 @Injectable()
 export class CreatorResolver implements Resolve<any> {
 
-  private _options: any;
+  private options: any;
 
   constructor(
-    private _router: Router,
-    private _db: DatabaseProvider,
-    @Inject(forwardRef(() => CREATOR_RESOLVER_OPTIONS)) _options: CreatorResolverOptions,
+    private router: Router,
+    private db: DatabaseProvider,
+    @Inject(forwardRef(() => CREATOR_RESOLVER_OPTIONS)) options: CreatorResolverOptions,
   ) {
-    this._options = _options;
+    this.options = options;
   }
 
   resolve(route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Promise<DatabaseProvider> | boolean {
 
-      const doc = {
-        title: this._options.title
-      };
+      return true || false;
 
-      return this._db.create(doc)
-        .toPromise()
-        .then(res => res)
-        .catch(err => {
-           this._router.navigate(['/']);
-            return false;
-        });
+      // const doc = {
+      //   title: this._options.title
+      // };
+
+      // return this.db.create(doc)
+      //   .toPromise()
+      //   .then(res => res)
+      //   .catch(err => {
+      //      this.router.navigate(['/']);
+      //       return false;
+      //   });
 
   }
 

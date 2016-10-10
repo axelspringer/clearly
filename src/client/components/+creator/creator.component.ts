@@ -12,18 +12,21 @@ import { TranslateService } from 'ng2-translate';
 // Components
 import { AppState } from '../app';
 import { CreatorActions } from './creator.actions';
+import { ChannelsActions } from '../../actions';
 import { CreatorService } from './creator.service';
 import { DFormElement } from '../dform';
 import { DFormText } from '../dform';
 import { EventEmitProvider } from '../../core';
 import { getCreatorItems } from '../app';
 import { ToolbarTitleUpdate } from '../toolbar';
+import { getChannels } from '../app';
 
 @Component({
   selector: 'creator',  // <creator></creator>
   providers: [
     CreatorService,
-    CreatorActions
+    CreatorActions,
+    ChannelsActions,
   ],
   styleUrls: [
     './creator.style.scss'
@@ -34,14 +37,16 @@ export class Creator implements OnInit, OnDestroy {
 
   form: FormGroup;
 
-  private elements: number = 0;
-  private i18nTitle = 'ORCHESTRA.CREATOR.TITLE';
-  private store$: any;
+  public elements: number = 0;
+  public i18nTitle = 'ORCHESTRA.CREATOR.TITLE';
+  public creatorStore$: any;
+  public channelsStore$: any;
 
   constructor(
     private creatorService: CreatorService,
 
     private creatorActions: CreatorActions,
+    private channelsActions: ChannelsActions,
     private store: Store<AppState>,
     private translate: TranslateService,
 
@@ -52,9 +57,12 @@ export class Creator implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.store$ = this.store.let(getCreatorItems());
+    this.creatorStore$ = this.store.let(getCreatorItems());
+    this.channelsStore$ = this.store.let(getChannels());
 
-    this.route.data.subscribe(val => console.log(val));
+    // this.route.data.subscribe(data => this.channels = data.channels);
+
+    this.store.dispatch(this.channelsActions.load());
 
     // pre publish model with title
     const item = this.creatorService.toDForm('text', {

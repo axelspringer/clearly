@@ -46,13 +46,6 @@ export class Dashboard {
     private apollo: Angular2Apollo,
   ) {
 
-    // map app store slice
-    // this.store$ = this.store.let(getUserState())
-    //   .distinctUntilChanged() // wait to real changes to the user
-    //   .subscribe(state => {
-    //     this.user$ = Object.assign({}, state);
-    //   });
-
     this.ok = this.apollo.query({
       query: gql`
         query RootQuery {
@@ -64,9 +57,6 @@ export class Dashboard {
     }) as ApolloQueryObservable<any>;
 
     this.ok.then(res => this.ok = res.data.ok.status);
-
-
-    // this.ok.subscribe(res => console.log('TEST', res));
 
     this.articles$ = this.store.let(getDocs());
     this.store.dispatch(this.docsActions.load());

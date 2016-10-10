@@ -14,7 +14,7 @@ const routes: Routes = [
     path: '',
     component: Creator,
     resolve: {
-      doc: CreatorResolver
+      channels: CreatorResolver
     },
     // canActivate: [CreatorGuard],
     // canDeactivate: [CreatorGuard]

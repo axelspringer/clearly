@@ -38,7 +38,7 @@ export class DatabaseProviderOptions {
       name: 'blackbeard',
       retry: 5,
       debugFilter: 'pouchdb:api'
-    }
+    };
     return Object.assign(defaults, options);
   }
 

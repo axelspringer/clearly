@@ -5,13 +5,16 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 // Components
 import { CoreModule } from '../../core';
+import { MdModule } from '../app/app.material';
 import { DFormModule } from '../dform';
 import { EditorModule } from '../editor';
 import { Creator } from './creator.component';
+import { ChannelsActions } from '../../actions';
 import { CREATOR_RESOLVER_PROVIDERS } from './creator.resolver';
 
 const CREATOR_PROVIDERS = [
-  ...CREATOR_RESOLVER_PROVIDERS
+  ...CREATOR_RESOLVER_PROVIDERS,
+  ChannelsActions
 ];
 
 @NgModule({
@@ -20,7 +23,8 @@ const CREATOR_PROVIDERS = [
     ReactiveFormsModule,
     CoreModule,
     DFormModule,
-    EditorModule
+    EditorModule,
+    MdModule
   ],
   declarations: [
     Creator
@@ -40,7 +44,7 @@ const CREATOR_PROVIDERS = [
     ReactiveFormsModule
   ],
   providers: [
-    ...CREATOR_PROVIDERS
+    ...CREATOR_PROVIDERS,
   ]
 })
 export class CreatorModule { };
