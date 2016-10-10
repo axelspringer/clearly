@@ -1,6 +1,5 @@
 // Importables
 import { ActivatedRoute } from '@angular/router';
-import { Component } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { OnDestroy } from '@angular/core';
 import { OnInit } from '@angular/core';
@@ -8,6 +7,11 @@ import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Title } from '@angular/platform-browser';
 import { TranslateService } from 'ng2-translate';
+import { Component } from '@angular/core';
+import { ViewContainerRef } from '@angular/core';
+import { MdDialog } from '@angular/material';
+import { MdDialogConfig } from '@angular/material';
+import { MdDialogRef } from '@angular/material';
 
 // Components
 import { AppState } from '../app';
@@ -20,6 +24,7 @@ import { EventEmitProvider } from '../../core';
 import { getCreatorItems } from '../app';
 import { ToolbarTitleUpdate } from '../toolbar';
 import { getChannels } from '../app';
+import { ChannelsDialog } from './dialogs';
 
 @Component({
   selector: 'creator',  // <creator></creator>
@@ -37,6 +42,9 @@ export class Creator implements OnInit, OnDestroy {
 
   form: FormGroup;
 
+  public dialogRef: MdDialogRef<ChannelsDialog>;
+  public lastCloseResult: string;
+
   public elements: number = 0;
   public i18nTitle = 'ORCHESTRA.CREATOR.TITLE';
   public creatorStore$: any;
@@ -52,6 +60,9 @@ export class Creator implements OnInit, OnDestroy {
 
     private router: Router,
     private route: ActivatedRoute,
+
+    private dialog: MdDialog,
+    private viewContainerRef: ViewContainerRef
   ) {
 
   }
@@ -83,6 +94,20 @@ export class Creator implements OnInit, OnDestroy {
       key: `${++this.elements - 1}`
     });
     this.store.dispatch(this.creatorActions.addItem(item));
+  }
+
+  open() {
+    let config = new MdDialogConfig();
+    config.viewContainerRef = this.viewContainerRef;
+
+    console.log(ChannelsDialog);
+
+    this.dialogRef = this.dialog.open(ChannelsDialog, config);
+
+    this.dialogRef.afterClosed().subscribe(result => {
+      this.lastCloseResult = result;
+      this.dialogRef = null;
+    });
   }
 
   onFormUpdate($event) {

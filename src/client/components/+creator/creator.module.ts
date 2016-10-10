@@ -11,6 +11,7 @@ import { EditorModule } from '../editor';
 import { Creator } from './creator.component';
 import { ChannelsActions } from '../../actions';
 import { CREATOR_RESOLVER_PROVIDERS } from './creator.resolver';
+import { ChannelsDialog } from './dialogs';
 
 const CREATOR_PROVIDERS = [
   ...CREATOR_RESOLVER_PROVIDERS,
@@ -27,11 +28,15 @@ const CREATOR_PROVIDERS = [
     MdModule
   ],
   declarations: [
-    Creator
+    Creator,
+    ChannelsDialog
     // DFormComponent,
     // DFormDynamicElement,
     // DFormTextComponent,
     // DFormTextAreaComponent
+  ],
+  entryComponents: [
+    ChannelsDialog
   ],
   exports: [
     CommonModule,

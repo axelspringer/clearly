@@ -8,6 +8,10 @@
     "SIGNOUT": "Abmelden"
   },
 
+  "BUTTON": {
+    "CLOSE": "Schließen"
+  },
+
   "SIDENAV": {
     "SETTINGS": "Einstellungen"
   },

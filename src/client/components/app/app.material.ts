@@ -21,6 +21,7 @@ import { MdTabsModule } from '@angular/material';
 import { MdToolbarModule } from '@angular/material';
 import { MdTooltipModule } from '@angular/material';
 import { MdRippleModule } from '@angular/material';
+import { MdDialogModule } from '@angular/material';
 // import { PortalModule } from '@angular2-material/core/portal/portal-directives';
 // import { OverlayModule } from '@angular2-material/core/overlay/overlay-directives';
 import { MdMenuModule } from '@angular/material';
@@ -50,7 +51,8 @@ const MATERIAL_MODULES = [
   MdTabsModule,
   MdToolbarModule,
   MdTooltipModule,
-  MdCoreModule
+  MdCoreModule,
+  MdDialogModule
   // OverlayModule,
   // PortalModule,
   // RtlModule,
@@ -78,12 +80,13 @@ const MATERIAL_MODULES = [
 
     // These modules include providers.
     MdButtonToggleModule.forRoot(),
-    // MdDialogModule.forRoot(),
+
     MdIconModule.forRoot(),
     MdMenuModule.forRoot(),
     MdRadioModule.forRoot(),
     MdTooltipModule.forRoot(),
-    MdCoreModule.forRoot()
+    MdCoreModule.forRoot(),
+    MdDialogModule.forRoot()
     // OverlayModule.forRoot(),
   ],
 
