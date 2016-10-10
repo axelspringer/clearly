@@ -5,6 +5,7 @@ import { NoContent } from '../404';
 import { Settings } from '../settings';
 import { AuthGuard } from '../../guards';
 import { routing as creatorRouting } from '../+creator';
+import { ContentBuilderComponent } from '../content-builder';
 
 export const ROUTES: Routes = [
   {
@@ -28,7 +29,15 @@ export const ROUTES: Routes = [
     component: Settings,
   },
   {
+    path: 'content-builder',
+    component: ContentBuilderComponent,
+    data: {
+      title: 'Content Builder',
+      isMenu: true
+    }
+  },
+  {
     path: '**',
     component: NoContent,
-  },
+  }
 ];
