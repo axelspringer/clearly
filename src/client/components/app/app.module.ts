@@ -21,7 +21,7 @@ import { WorkerAppModule } from '@angular/platform-webworker';
 
 // Apollo
 import { ApolloModule } from 'angular2-apollo';
-import client from './app.apollo.ts';
+import { client } from './app.apollo.ts';
 
 // Aot
 // import { getPlatform } from '@angular/core';
