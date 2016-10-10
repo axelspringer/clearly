@@ -52,6 +52,14 @@
         "TITLE": "Entwürfe"
       }
     }
+  },
+
+  "CREATOR": {
+    "DIALOG": {
+      "CHANNELS": {
+        "TITEL": "Kanäle auswählen:"
+      }
+    }
   }
 
 }

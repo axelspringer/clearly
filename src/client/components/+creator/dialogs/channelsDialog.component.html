@@ -1,3 +1,5 @@
-<p>Select the channels:</p>
-<p>Selection to be added</p>
+<p>{{ 'CREATOR.DIALOG.CHANNELS.TITEL' | translate }}</p>
+<md-slide-toggle [checked]="channel?.template.isEnabled" *ngFor="let channel of channels">
+  {{ channel?.template.displayName }}
+</md-slide-toggle>
 <button md-raised-button color="primary" (click)="dialogRef.close()">{{ 'BUTTON.CLOSE' | translate }}</button>

@@ -29,6 +29,9 @@ import 'apollo-client';
 // Ramda
 import R from 'ramda';
 
+// Hammer.js
+import 'hammerjs';
+
 if ('production' === ENV) {
   // Production
 

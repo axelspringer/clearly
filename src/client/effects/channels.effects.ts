@@ -35,14 +35,15 @@ export class ChannelsEffects implements OnDestroy {
                   id,
                   name,
                   displayName,
-                  formType
+                  formType,
                 },
                 metaDataTypes {
                   id,
                   name,
                   displayName,
                   formType
-                }
+                },
+                isEnabled
               }
             }
           }

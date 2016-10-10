@@ -10,7 +10,6 @@ export class ChannelsActions {
   static RESET        = '[CHANNELS:RESET]';
 
   load(): Action { // do not do any query now
-    console.log('ACTION');
     return {
       type: ChannelsActions.LOAD
     };

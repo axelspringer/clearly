@@ -31,7 +31,6 @@ import { CoreModule } from '../../core';
 import { DashboardModule } from '../dashboard';
 import { DFormModule } from '../dform';
 import { CreatorModule } from '../+creator';
-import { ContentBuilderModule } from '../content-builder';
 
 // Environment
 import { App } from './app.component';
@@ -138,7 +137,6 @@ class NullLoggingErrorHandler implements ErrorHandler {
     DFormModule,
     CreatorModule,
     CoreModule.forRoot(AppLocale.languages),
-    ContentBuilderModule
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     ...ENV_PROVIDERS,

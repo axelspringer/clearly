@@ -69,7 +69,10 @@ export class Creator implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.creatorStore$ = this.store.let(getCreatorItems());
-    this.channelsStore$ = this.store.let(getChannels());
+    this.channelsStore$ = this.store.let(getChannels())
+      .do(channels => {
+        if (channels.length > 0) this.open();
+      });
 
     // this.route.data.subscribe(data => this.channels = data.channels);
 
@@ -84,7 +87,7 @@ export class Creator implements OnInit, OnDestroy {
     this.translate.get(this.i18nTitle).subscribe(t =>
       EventEmitProvider.connect(ToolbarTitleUpdate.prototype.constructor.name).emit(t));
 
-    this.open();
+    // this.open();
 
   }
 
