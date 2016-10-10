@@ -34,7 +34,7 @@ import { ChannelsDialog } from './dialogs';
     ChannelsActions,
   ],
   styleUrls: [
-    './creator.style.scss'
+    './creator.component.scss'
   ],
   templateUrl: './creator.component.html',
 })
@@ -69,10 +69,7 @@ export class Creator implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.creatorStore$ = this.store.let(getCreatorItems());
-    this.channelsStore$ = this.store.let(getChannels())
-      .do(channels => {
-        if (channels.length > 0) this.open();
-      });
+    this.channelsStore$ = this.store.let(getChannels());
 
     // this.route.data.subscribe(data => this.channels = data.channels);
 
@@ -87,7 +84,7 @@ export class Creator implements OnInit, OnDestroy {
     this.translate.get(this.i18nTitle).subscribe(t =>
       EventEmitProvider.connect(ToolbarTitleUpdate.prototype.constructor.name).emit(t));
 
-    // this.open();
+    this.toggleChannels();
 
   }
 
@@ -102,7 +99,7 @@ export class Creator implements OnInit, OnDestroy {
     this.store.dispatch(this.creatorActions.addItem(item));
   }
 
-  open() {
+  toggleChannels() {
     let config = new MdDialogConfig();
     config.viewContainerRef = this.viewContainerRef;
 
@@ -111,6 +108,7 @@ export class Creator implements OnInit, OnDestroy {
     this.dialogRef.afterClosed().subscribe(result => {
       this.lastCloseResult = result;
       this.dialogRef = null;
+      this.store.dispatch(this.channelsActions.updateChannels(result));
     });
   }
 

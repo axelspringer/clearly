@@ -58,7 +58,7 @@ export class ChannelsEffects implements OnDestroy {
       .catch(err => Observable.of({
           type: 'LOAD_FAILURE',
           paylod: err
-        }));
+        })));
 
   constructor(
     private actions$: Actions,

@@ -1,8 +1,18 @@
-<md-tab-group>
-  <md-tab *ngFor="let channel of (channelsStore$ | async)">
-    <template md-tab-label>{{ channel.template.displayName }}</template>
-    <template md-tab-content>
-      {{ channel.template | json }}
-    </template>
-  </md-tab>
-</md-tab-group>
+<md-sidenav-layout>
+
+  <md-sidenav #start mode="side" opened="true" [ngClass]="'custom-quick-access'">
+    <quick-access></quick-access>
+  </md-sidenav>
+
+	<md-tab-group>
+		<template ngFor let-channel [ngForOf]="(channelsStore$ | async)" let-i="index">
+			<md-tab *ngIf="channel.template.isEnabled">
+				<template md-tab-label>{{ channel.template.displayName }}</template>
+				<template md-tab-content>
+					{{ channel.template | json }}
+				</template>
+			</md-tab>
+		</template>
+	</md-tab-group>
+
+</md-sidenav-layout>

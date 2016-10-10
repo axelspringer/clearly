@@ -16,15 +16,21 @@ import { LogService } from './log';
 import { NOTIFY_PROVIDERS } from './notify/notify.provider';
 import { NotifyProvider } from './notify';
 import { TranslateCustomLoader } from './i18n';
+import { AtLeastValidator } from './forms';
 
 @NgModule({
   imports: [
   ],
   exports: [
     TranslatePipe, // should be used
+    AtLeastValidator
   ],
   declarations: [
-    TranslatePipe
+    // Pipes
+    TranslatePipe,
+
+    // Validators
+    AtLeastValidator
   ],
   providers: [
     // Events

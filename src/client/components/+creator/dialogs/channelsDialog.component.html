@@ -1,5 +1,7 @@
-<p>{{ 'CREATOR.DIALOG.CHANNELS.TITEL' | translate }}</p>
-<md-slide-toggle [checked]="channel?.template.isEnabled" *ngFor="let channel of channels">
-  {{ channel?.template.displayName }}
-</md-slide-toggle>
-<button md-raised-button color="primary" (click)="dialogRef.close()">{{ 'BUTTON.CLOSE' | translate }}</button>
+<form (ngSubmit)="onSubmit(toggleChannels)" validateAtLeast [formGroup]="channelsForm">
+	<h3>{{ 'CREATOR.DIALOG.CHANNELS.TITEL' | translate }}</h3>
+	<md-slide-toggle name="ngModel" [formControl]="channelsForm.get(channel.template.name)" [(ngModel)]="channel?.template.isEnabled" *ngFor="let channel of channels">
+		{{ channel?.template.displayName }}
+	</md-slide-toggle>
+	<button md-raised-button color="secondary" type="submit" [disabled]="!channelsForm.valid">{{ 'BUTTON.APPLY' | translate }}</button>
+</form>

@@ -9,7 +9,7 @@
   },
 
   "BUTTON": {
-    "CLOSE": "Schließen"
+    "APPLY": "Anwenden"
   },
 
   "SIDENAV": {
@@ -57,7 +57,10 @@
   "CREATOR": {
     "DIALOG": {
       "CHANNELS": {
-        "TITEL": "Kanäle auswählen:"
+        "TITEL": "Kanäle auswählen:",
+        "ERROR": {
+          "ATLEAST": "Du musst mindestens einen Kanal auswählen"
+        }
       }
     }
   }

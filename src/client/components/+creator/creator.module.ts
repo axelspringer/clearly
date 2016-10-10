@@ -2,6 +2,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 
 // Components
 import { CoreModule } from '../../core';
@@ -12,6 +13,7 @@ import { Creator } from './creator.component';
 import { ChannelsActions } from '../../actions';
 import { CREATOR_RESOLVER_PROVIDERS } from './creator.resolver';
 import { ChannelsDialog } from './dialogs';
+import { QuickAccess } from './quickAccess';
 
 const CREATOR_PROVIDERS = [
   ...CREATOR_RESOLVER_PROVIDERS,
@@ -23,13 +25,15 @@ const CREATOR_PROVIDERS = [
     CommonModule,
     ReactiveFormsModule,
     CoreModule,
+    FormsModule,
     DFormModule,
     EditorModule,
     MdModule
   ],
   declarations: [
     Creator,
-    ChannelsDialog
+    ChannelsDialog,
+    QuickAccess
     // DFormComponent,
     // DFormDynamicElement,
     // DFormTextComponent,
@@ -42,6 +46,7 @@ const CREATOR_PROVIDERS = [
     CommonModule,
     CoreModule,
     Creator,
+    QuickAccess,
     // DFormComponent,
     // DFormDynamicElement,
     // DFormTextAreaComponent,

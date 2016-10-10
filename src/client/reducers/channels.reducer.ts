@@ -34,6 +34,10 @@ export default function (state = init, action: Action): ChannelsState  {
       });
     }
 
+    case ChannelsActions.UPDATE_CHANNELS: {
+      return Object.assign({}, state, { channels: action.payload });
+    }
+
     default:
       return state;
 
