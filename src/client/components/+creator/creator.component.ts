@@ -83,10 +83,13 @@ export class Creator implements OnInit, OnDestroy {
 
     this.translate.get(this.i18nTitle).subscribe(t =>
       EventEmitProvider.connect(ToolbarTitleUpdate.prototype.constructor.name).emit(t));
+
+    this.open();
+
   }
 
   ngOnDestroy() {
-    this.store$.unsubscribe();
+    // should be unsubscribed
   }
 
   addItem($event) {
@@ -99,8 +102,6 @@ export class Creator implements OnInit, OnDestroy {
   open() {
     let config = new MdDialogConfig();
     config.viewContainerRef = this.viewContainerRef;
-
-    console.log(ChannelsDialog);
 
     this.dialogRef = this.dialog.open(ChannelsDialog, config);
 
@@ -117,5 +118,7 @@ export class Creator implements OnInit, OnDestroy {
     // this.store.dispatch(this.creatorActions.update($event.value));
 
   }
+
+
 
 };
