@@ -8,7 +8,7 @@ export class ChannelsActions {
   static LOAD             = '[CHANNELS:LOAD]';
   static LOAD_SUCCESS     = '[CHANNELS:LOAD_SUCCESS]';
   static RESET            = '[CHANNELS:RESET]';
-  static UPDATE_CHANNELS  = '[CHANELS:UPDATE]';
+  static UPDATE_CHANNELS  = '[CHANNELS:UPDATE]';
 
   load(): Action { // do not do any query now
     return {

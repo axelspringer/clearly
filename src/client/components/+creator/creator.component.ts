@@ -108,7 +108,6 @@ export class Creator implements OnInit, OnDestroy {
     this.dialogRef.afterClosed().subscribe(result => {
       this.lastCloseResult = result;
       this.dialogRef = null;
-      this.store.dispatch(this.channelsActions.updateChannels(result));
     });
   }
 

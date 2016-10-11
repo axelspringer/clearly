@@ -50,7 +50,6 @@ export class QuickAccess implements OnInit {
     this.dialogRef.afterClosed().subscribe(result => {
       this.lastCloseResult = result;
       this.dialogRef = null;
-      this.store.dispatch(this.channelsActions.updateChannels(result));
     });
   }
 
