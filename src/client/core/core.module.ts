@@ -17,17 +17,20 @@ import { NOTIFY_PROVIDERS } from './notify/notify.provider';
 import { NotifyProvider } from './notify';
 import { TranslateCustomLoader } from './i18n';
 import { AtLeastValidator } from './forms';
+import { IteratableObjectPipe } from './pipes';
 
 @NgModule({
   imports: [
   ],
   exports: [
     TranslatePipe, // should be used
-    AtLeastValidator
+    AtLeastValidator,
+    IteratableObjectPipe
   ],
   declarations: [
     // Pipes
     TranslatePipe,
+    IteratableObjectPipe,
 
     // Validators
     AtLeastValidator
