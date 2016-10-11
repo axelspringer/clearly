@@ -32,25 +32,24 @@ export class Avatar implements OnInit {
 
   private emitter$: EventEmitter<any>;
   private subject$: Subject<any> = new Subject();
-  private notify: NotifyProvider;
 
   private isDocsLoading$: Observable<any>;
   private isChannelsLoading$: Observable<any>;
   private isLoading$: Observable<any>;
 
   constructor(
-    notify: NotifyProvider,
+    private notify: NotifyProvider,
     private store: Store<AppState>
   ) {
-    this.notify = notify;
     this.isDocsLoading$ = this.store.let(isDocsLoading());
     this.isChannelsLoading$ = this.store.let(isChannelsLoading());
 
-    this.isLoading$ = Observable.combineLatest(
-      this.isDocsLoading$,
-      this.isChannelsLoading$,
-      (s1, s2) => s1 + s2 > 0
-    );
+    this.isLoading$ = Observable
+      .zip(
+        this.isDocsLoading$,
+        this.isChannelsLoading$
+      )
+      .map(state => state.reduce((cur, prev) => cur + prev));
 
   }
 
@@ -63,16 +62,10 @@ export class Avatar implements OnInit {
   }
 
   ngOnInit() {
-
-    this.emitter$ = EventEmitProvider.connect(DatabaseProvider.name);
+    this.emitter$ = EventEmitProvider.connect(DatabaseProvider.name); // could be better
     this.emitter$.subscribe(this.subject$);
     this.loading$ = this.subject$.asObservable()
       .map(event => event.payload);
-
-  }
-
-  test() {
-
   }
 
 };

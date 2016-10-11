@@ -66,6 +66,7 @@ footer {
     &-sidenav {
       // set to 30% of width; TODO@sdoell: perhaps should be in code
       width: calc(.3 * 100vw);
+      max-width: 250px;
 
       .md-list-item {
         cursor: pointer;
