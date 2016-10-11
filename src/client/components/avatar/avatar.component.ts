@@ -7,54 +7,68 @@ import { Component } from '@angular/core';
 import { EventEmitter } from '@angular/core';
 import { Subject } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { AppState } from '../app';
-import { isDocsLoading } from '../app';
 
 // Components
-import { NotifyProvider } from '../../core';
-import { AppConfig } from '../../config';
-import { EventEmitProvider } from '../../core';
 import { App } from '../app';
+import { AppConfig } from '../../config';
+import { AppState } from '../app';
 import { DatabaseProvider } from '../../core';
+import { EventEmitProvider } from '../../core';
+import { isDocsLoading } from '../app';
+import { NotifyProvider } from '../../core';
+import { isChannelsLoading } from '../app';
 
 @Component({
-  selector: 'avatar',  // <menu></menu>
+  selector: 'avatar',  // <avatar></avatar>
   providers: [],
-  styleUrls: ['./avatar.style.scss'],
+  styleUrls: [
+    './avatar.component.scss'
+  ],
   templateUrl: './avatar.component.html'
 })
 export class Avatar implements OnInit {
 
   public loading$: Observable<any>;
 
-  private _emitter$: EventEmitter<any>;
-  private _subject$: Subject<any> = new Subject();
-  private _notify: NotifyProvider;
+  private emitter$: EventEmitter<any>;
+  private subject$: Subject<any> = new Subject();
+  private notify: NotifyProvider;
 
-  private _isLoading: true;
+  private isDocsLoading$: Observable<any>;
+  private isChannelsLoading$: Observable<any>;
   private isLoading$: Observable<any>;
 
   constructor(
     notify: NotifyProvider,
     private store: Store<AppState>
   ) {
-    this._notify = notify;
-    this.isLoading$ = this.store.let(isDocsLoading());
+    this.notify = notify;
+    this.isDocsLoading$ = this.store.let(isDocsLoading());
+    this.isChannelsLoading$ = this.store.let(isChannelsLoading());
+
+    this.isLoading$ = Observable.combineLatest(
+      this.isDocsLoading$,
+      this.isChannelsLoading$,
+      (s1, s2) => s1 + s2 > 0
+    );
+
   }
 
   get events() {
-    return this._notify.events;
+    return this.notify.events;
   }
 
   clear() {
-    this._notify.reset();
+    this.notify.reset();
   }
 
   ngOnInit() {
-    this._emitter$ = EventEmitProvider.connect(DatabaseProvider.name);
-    this._emitter$.subscribe(this._subject$);
-    this.loading$ = this._subject$.asObservable()
+
+    this.emitter$ = EventEmitProvider.connect(DatabaseProvider.name);
+    this.emitter$.subscribe(this.subject$);
+    this.loading$ = this.subject$.asObservable()
       .map(event => event.payload);
+
   }
 
   test() {

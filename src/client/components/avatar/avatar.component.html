@@ -1,4 +1,4 @@
-<div class="spinner" [class.isLoading]="(isLoading$ | async) > 0">
+<div class="spinner" [class.isLoading]="(isLoading$ | async)">
 </div>
 
 <div class="notifications" *ngIf="events?.length != 0" [md-menu-trigger-for]="menu">{{ events?.length }}</div>

@@ -97,6 +97,6 @@ export function isChannelsLoaded() {
   return compose(fromChannelsReducer.getChannelsLoaded(), getChannelsState());
 }
 
-export function isChannelsLoaded() {
+export function isChannelsLoading() {
   return compose(fromChannelsReducer.getChannelsLoading(), getChannelsState());
 }
