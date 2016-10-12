@@ -1,7 +1,11 @@
 <form (ngSubmit)="onSubmit(toggleChannels)" validateAtLeast [formGroup]="form">
 	<h3>{{ 'CREATOR.DIALOG.CHANNELS.TITEL' | translate }}</h3>
-	<md-slide-toggle name="ngModel" [formControl]="form.get(channel.template.name)" [(ngModel)]="channel?.template.isEnabled" *ngFor="let channel of channels">
-		{{ channel?.template.displayName }}
-	</md-slide-toggle>
+  <md-list>
+    <md-list-item *ngFor="let channel of channels">
+      <md-checkbox name="ngModel" [formControl]="form.get(channel.name)" [(ngModel)]="channel.isEnabled">
+		  {{ channel.displayName }}
+	    </md-checkbox>
+    </md-list-item>
+  </md-list>
 	<button md-raised-button color="secondary" type="submit" [disabled]="!form.valid">{{ 'BUTTON.APPLY' | translate }}</button>
 </form>

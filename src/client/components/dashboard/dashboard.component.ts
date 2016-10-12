@@ -27,7 +27,7 @@ import { client } from './../app/app.apollo';
 })
 export class Dashboard {
 
-  public ok: Boolean;
+  public ok: ApolloQueryObservable<any>;
 
   private store$: any;
   private user$: any;

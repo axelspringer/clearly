@@ -16,7 +16,7 @@ import { MdDialogRef } from '@angular/material';
 // Components
 import { AppState } from '../app';
 import { CreatorActions } from './creator.actions';
-import { ChannelsActions } from '../../actions';
+import { ArticleActions } from '../../actions';
 import { CreatorService } from './creator.service';
 import { DFormElement } from '../dform';
 import { DFormText } from '../dform';
@@ -31,7 +31,7 @@ import { ChannelsDialog } from './dialogs';
   providers: [
     CreatorService,
     CreatorActions,
-    ChannelsActions,
+    ArticleActions,
   ],
   styleUrls: [
     './creator.component.scss'
@@ -48,13 +48,13 @@ export class Creator implements OnInit, OnDestroy {
   public elements: number = 0;
   public i18nTitle = 'ORCHESTRA.CREATOR.TITLE';
   public creatorStore$: any;
-  public channelsStore$: any;
+  public articleStore$: any;
 
   constructor(
     private creatorService: CreatorService,
 
     private creatorActions: CreatorActions,
-    private channelsActions: ChannelsActions,
+    private articleActions: ArticleActions,
     private store: Store<AppState>,
     private translate: TranslateService,
 
@@ -69,11 +69,11 @@ export class Creator implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.creatorStore$ = this.store.let(getCreatorItems());
-    this.channelsStore$ = this.store.let(getChannels());
+    this.articleStore$ = this.store.let(getChannels());
 
     // this.route.data.subscribe(data => this.channels = data.channels);
 
-    this.store.dispatch(this.channelsActions.load());
+    this.store.dispatch(this.articleActions.load());
 
     // pre publish model with title
     const item = this.creatorService.toDForm('text', {

@@ -10,14 +10,14 @@ import { MdModule } from '../app/app.material';
 import { DFormModule } from '../dform';
 import { EditorModule } from '../editor';
 import { Creator } from './creator.component';
-import { ChannelsActions } from '../../actions';
+import { ArticleActions } from '../../actions';
 import { CREATOR_RESOLVER_PROVIDERS } from './creator.resolver';
 import { ChannelsDialog } from './dialogs';
 import { QuickAccess } from './quickAccess';
 
 const CREATOR_PROVIDERS = [
   ...CREATOR_RESOLVER_PROVIDERS,
-  ChannelsActions
+  ArticleActions
 ];
 
 @NgModule({

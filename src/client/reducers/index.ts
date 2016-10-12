@@ -1,7 +1,7 @@
 // Exportables
 import docsReducer, * as fromDocsReducer from './docs.reducer';
-import channelsReducer, * as fromChannelsReducer from './channels.reducer';
+import articleReducer, * as fromArticleReducer from './article.reducer';
 
 // Exportables
 export { docsReducer, fromDocsReducer };
-export { channelsReducer, fromChannelsReducer };
+export { articleReducer, fromArticleReducer };

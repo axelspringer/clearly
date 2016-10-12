@@ -30,7 +30,6 @@ export class App implements OnInit {
 
   @ViewChild('menu') menu;
 
-  public ok: ApolloQueryResult<any>;
   private version$: string = AppConfig.VERSION;
 
   constructor(

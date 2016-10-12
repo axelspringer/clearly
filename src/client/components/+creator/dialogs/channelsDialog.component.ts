@@ -13,7 +13,7 @@ import { FormGroup } from '@angular/forms';
 // Composition
 import { getChannels } from '../../app';
 import { AppState } from '../../app';
-import { ChannelsActions } from '../../../actions';
+import { ArticleActions } from '../../../actions';
 
 @Component({
   selector: 'channels-dialog',
@@ -28,36 +28,32 @@ import { ChannelsActions } from '../../../actions';
 export class ChannelsDialog implements OnInit, OnDestroy {
 
   public channels: Array<any> = [];
-  public form: FormGroup;
+  public form: FormGroup = new FormGroup({});
   public channels$: Subscription;
 
   constructor(
     public dialogRef: MdDialogRef<ChannelsDialog>,
     private store: Store<AppState>,
-    private channelsActions: ChannelsActions
-  ) {
-
-    this.form = new FormGroup({});
-
-  }
+    private articleActions: ArticleActions
+  ) {}
 
   ngOnInit() {
-
     this.channels$ = this.store.let(getChannels())
       .distinctUntilChanged()
       .filter(channels => channels !== undefined)
+      .map(channels => channels.map(channel => JSON.parse(JSON.stringify(channel))))
       .subscribe(channels => {
-        this.channels = channels.map(channel => JSON.parse(JSON.stringify(channel))); // that is not nice
+        this.channels = channels;
         this.form = new FormGroup({});
         this.channels.forEach(channel => {
-          this.form.addControl(channel.template.name,
-            new FormControl(channel, [Validators.nullValidator]));
+          this.form.addControl(channel.name,
+            new FormControl(JSON.parse(JSON.stringify(channel)), [Validators.nullValidator]));
         });
       });
   }
 
   onSubmit(value) {
-    this.store.dispatch(this.channelsActions.updateChannels(this.channels));
+    this.store.dispatch(this.articleActions.updateChannels(this.channels));
     this.dialogRef.close();
   }
 

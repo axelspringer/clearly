@@ -54,10 +54,10 @@ import { Creator } from '../+creator';
 // Store
 import AppStore from './app.store';
 import { DocsEffects } from '../../effects';
-import { ChannelsEffects } from '../../effects';
+import { ArticleEffects } from '../../effects';
 import { AppEffects } from './app.effects';
 import { DocsActions } from '../../actions';
-import { ChannelsActions } from '../../actions';
+import { ArticleActions } from '../../actions';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -71,13 +71,13 @@ const APP_PROVIDERS = [
   AuthGuard,
   Title,
   DocsActions,
-  ChannelsActions
+  ArticleActions
 ];
 
 // Effects
 const EFFECTS = [
   DocsEffects,
-  ChannelsEffects
+  ArticleEffects
 ];
 
 class NullLoggingErrorHandler implements ErrorHandler {
@@ -117,7 +117,7 @@ class NullLoggingErrorHandler implements ErrorHandler {
 
     // @ngrx
     EffectsModule.runAfterBootstrap(DocsEffects),
-    EffectsModule.runAfterBootstrap(ChannelsEffects),
+    EffectsModule.runAfterBootstrap(ArticleEffects),
     // EffectsModule.run(AppEffects),
     StoreModule.provideStore(AppStore),
     StoreDevtoolsModule.instrumentStore({ // store dev tools for debug

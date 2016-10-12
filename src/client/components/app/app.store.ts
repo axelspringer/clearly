@@ -9,8 +9,8 @@ import { storeLogger } from 'ngrx-store-logger';
 import { creatorReducer } from '../+creator';
 import { fromCreatorReducer } from '../+creator';
 import { docsReducer } from '../../reducers';
-import { fromChannelsReducer } from '../../reducers';
-import { channelsReducer } from '../../reducers';
+import { fromArticleReducer } from '../../reducers';
+import { articleReducer } from '../../reducers';
 import { fromDocsReducer } from '../../reducers';
 import { editorReducer } from '../editor';
 import { fromEditorReducer } from '../editor';
@@ -20,7 +20,7 @@ export interface AppState {
   creator: any;
   docs: any;
   editor: any;
-  channels: any;
+  article: any;
 };
 
 // slices as interface
@@ -32,7 +32,7 @@ export default compose(hmrState, storeLogger(), combineReducers)({
   creator: creatorReducer,
   docs: docsReducer,
   editor: editorReducer,
-  channels: channelsReducer
+  article: articleReducer
 });
 
 // hmr
@@ -63,9 +63,9 @@ export function getEditorState() {
     .map(s => s.editor);
 }
 
-export function getChannelsState() {
+export function getArticleState() {
   return (state$: Observable<AppState>) => state$
-    .map(s => s.channels);
+    .map(s => s.article);
 }
 
 // selectors
@@ -90,13 +90,13 @@ export function isDocsLoaded() {
 }
 
 export function getChannels() {
-  return compose(fromChannelsReducer.getChannels(), getChannelsState());
+  return compose(fromArticleReducer.getChannels(), getArticleState());
 }
 
 export function isChannelsLoaded() {
-  return compose(fromChannelsReducer.getChannelsLoaded(), getChannelsState());
+  return compose(fromArticleReducer.getArticleLoaded(), getArticleState());
 }
 
 export function isChannelsLoading() {
-  return compose(fromChannelsReducer.getChannelsLoading(), getChannelsState());
+  return compose(fromArticleReducer.getArticleLoading(), getArticleState());
 }

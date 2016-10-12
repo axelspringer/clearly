@@ -11,16 +11,12 @@ import { ViewContainerRef } from '@angular/core';
 // Composition
 import { ChannelsDialog } from '../dialogs';
 import { AppState } from '../../app';
-import { ChannelsActions } from '../../../actions';
 
 @Component({
   encapsulation: ViewEncapsulation.None,
   selector: 'quick-access',
   styleUrls: [
     './quickAccess.component.scss'
-  ],
-  providers: [
-    ChannelsActions,
   ],
   templateUrl: './quickAccess.component.html'
 })
@@ -32,8 +28,7 @@ export class QuickAccess implements OnInit {
   constructor(
     private dialog: MdDialog,
     private viewContainerRef: ViewContainerRef,
-    private store: Store<AppState>,
-    private channelsActions: ChannelsActions
+    private store: Store<AppState>
   ) {
   }
 
