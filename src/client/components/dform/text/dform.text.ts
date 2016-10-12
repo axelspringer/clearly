@@ -1,12 +1,8 @@
 // Importables
-import {
-  Component,
-  OnInit,
-  Input
-} from '@angular/core';
-import {
-  FormGroup
-} from '@angular/forms';
+import { Component } from '@angular/core';
+import { OnInit } from '@angular/core';
+import { Input } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 
 // Components
 import { DFormElement } from '../dform.element';

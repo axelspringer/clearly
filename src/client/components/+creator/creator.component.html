@@ -1,19 +1,20 @@
-<md-sidenav-layout>
+<md-tab-group>
+	<template ngFor let-channel [ngForOf]="(articleStore$ | async)" let-i="index">
+		<md-tab *ngIf="channel.isEnabled">
+			{{ channel.displayName | json }}
+			<template md-tab-label>{{ channel.displayName }}</template>
+			<template md-tab-content>
+				<md-sidenav-layout class="creator-full-height">
 
-  <md-sidenav #start mode="side" opened="true" [ngClass]="'custom-quick-access'">
-    <quick-access></quick-access>
-  </md-sidenav>
+					<md-sidenav #start mode="side" opened="true" [ngClass]="'custom-quick-access'">
+						<quick-access></quick-access>
+					</md-sidenav>
 
-	<md-tab-group>
-		<template ngFor let-channel [ngForOf]="(articleStore$ | async)" let-i="index">
-			<md-tab *ngIf="channel.isEnabled">
-				{{ channel.displayName | json }}
-				<template md-tab-label>{{ channel.displayName }}</template>
-				<template md-tab-content>
-					{{ channel.content | json }} {{ channel.metaData | json }}
-				</template>
-			</md-tab>
-		</template>
-	</md-tab-group>
+          <article></article>
+				  {{ channel.content | json }} {{ channel.metaData | json }}
 
-</md-sidenav-layout>
+				</md-sidenav-layout>
+			</template>
+		</md-tab>
+	</template>
+</md-tab-group>

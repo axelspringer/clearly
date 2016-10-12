@@ -14,6 +14,9 @@ import { ArticleActions } from '../../actions';
 import { CREATOR_RESOLVER_PROVIDERS } from './creator.resolver';
 import { ChannelsDialog } from './dialogs';
 import { QuickAccess } from './quickAccess';
+import { Article } from './article';
+import { ArticleMeta } from './article';
+import { ArticleContent } from './article';
 
 const CREATOR_PROVIDERS = [
   ...CREATOR_RESOLVER_PROVIDERS,
@@ -33,7 +36,10 @@ const CREATOR_PROVIDERS = [
   declarations: [
     Creator,
     ChannelsDialog,
-    QuickAccess
+    QuickAccess,
+    Article,
+    ArticleMeta,
+    ArticleContent,
     // DFormComponent,
     // DFormDynamicElement,
     // DFormTextComponent,
@@ -47,6 +53,9 @@ const CREATOR_PROVIDERS = [
     CoreModule,
     Creator,
     QuickAccess,
+    Article,
+    ArticleMeta,
+    ArticleContent,
     // DFormComponent,
     // DFormDynamicElement,
     // DFormTextAreaComponent,
