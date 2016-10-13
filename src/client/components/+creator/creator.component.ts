@@ -49,6 +49,7 @@ export class Creator implements OnInit, OnDestroy {
   public i18nTitle = 'ORCHESTRA.CREATOR.TITLE';
   public creatorStore$: any;
   public articleStore$: any;
+  public form$: any;
 
   constructor(
     private creatorService: CreatorService,
@@ -64,19 +65,20 @@ export class Creator implements OnInit, OnDestroy {
     private dialog: MdDialog,
     private viewContainerRef: ViewContainerRef
   ) {
-
   }
 
   ngOnInit() {
     this.creatorStore$ = this.store.let(getCreatorItems());
     this.articleStore$ = this.store.let(getChannels());
 
+    this.form$ = this.creatorService.form$; // mapt nicely to dom
+
     // this.route.data.subscribe(data => this.channels = data.channels);
 
     this.store.dispatch(this.articleActions.load());
 
     // pre publish model with title
-    const item = this.creatorService.toDForm('text', {
+    const item = this.creatorService.toDFormElement('text', {
       key: `${++this.elements - 1}`
     });
     this.store.dispatch(this.creatorActions.addItem(item));
@@ -93,7 +95,7 @@ export class Creator implements OnInit, OnDestroy {
   }
 
   addItem($event) {
-    const item = this.creatorService.toDForm($event.dragData, {
+    const item = this.creatorService.toDFormElement($event.dragData, {
       key: `${++this.elements - 1}`
     });
     this.store.dispatch(this.creatorActions.addItem(item));

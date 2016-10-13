@@ -40,7 +40,6 @@ export class DFormComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    console.log(this.data);
     this.sup = this.data.subscribe(data => {
       let changes = this.differ.diff(data);
       if (changes) {

@@ -6,6 +6,7 @@ import { AppState } from '../components/app';
 import { Actions } from '@ngrx/effects';
 import { Effect } from '@ngrx/effects';
 import { OnDestroy } from '@angular/core';
+import * as R from 'ramda';
 
 import { Angular2Apollo } from 'angular2-apollo';
 import { ApolloQueryObservable } from 'angular2-apollo';
@@ -30,14 +31,17 @@ const articleQuery = () => {
           metaData {
             name
             displayName
-            formType
+            formType,
+            isRequired
           }
           content {
             name
             displayName
-            formType
+            formType,
+            isRequired
           }
-          isEnabled
+          isEnabled,
+          isMaster
         }
       }
     }
@@ -53,10 +57,11 @@ export class ArticleEffects implements OnDestroy {
       Observable.fromPromise(this.apollo.query({
         query: articleQuery()
       }))
+        .map(res => res['data'].articleType) // should be sorted later
         .map(res => {
           return {
             type: ArticleActions.LOAD_SUCCESS,
-            payload: res['data'].articleType
+            payload: res
           };
         })
         .catch(err => Observable.of({

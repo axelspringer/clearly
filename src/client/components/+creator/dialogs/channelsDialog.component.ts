@@ -9,6 +9,7 @@ import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { Validators } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
+import * as R from 'ramda';
 
 // Composition
 import { getChannels } from '../../app';
@@ -41,13 +42,13 @@ export class ChannelsDialog implements OnInit, OnDestroy {
     this.channels$ = this.store.let(getChannels())
       .distinctUntilChanged()
       .filter(channels => channels !== undefined)
-      .map(channels => channels.map(channel => JSON.parse(JSON.stringify(channel))))
+      .map(channels => channels.map(channel => R.clone(channel)))
       .subscribe(channels => {
         this.channels = channels;
         this.form = new FormGroup({});
         this.channels.forEach(channel => {
           this.form.addControl(channel.name,
-            new FormControl(JSON.parse(JSON.stringify(channel)), [Validators.nullValidator]));
+            new FormControl({}, [Validators.nullValidator]));
         });
       });
   }
