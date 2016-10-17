@@ -8,7 +8,7 @@ function validateFormGroup() {
   return (c: FormGroup) => {
     return Object.keys(c.controls).reduce((prev, curr, i) => {
       return !!c.controls[curr].value ? prev : ++prev;
-    }, 0) > 1 ? {
+    }, 0) > 2 ? { // this should be a adopted to a parameter
       valid: false
     } : null;
   };

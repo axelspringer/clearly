@@ -14,6 +14,7 @@ import * as R from 'ramda';
 // DForm
 import { DFormText } from '../dform';
 import { DFormTextArea } from '../dform/textarea/dform.textarea';
+import { DFormMetaText } from '../dform/metaText/dform.metaText';
 import { AppState } from '../app';
 import { getChannels } from '../app';
 import { DFormElement } from '../dform';
@@ -22,6 +23,7 @@ import { DFormElement } from '../dform';
 export class CreatorService {
 
   static formElements = {
+    'metaText': (options => new DFormMetaText(options)),
     'text': (options => new DFormText(options)),
     'textArea': (options => new DFormTextArea(options))
   };
@@ -50,7 +52,8 @@ export class CreatorService {
 
   private toDForm(elements: any) {
     return elements.map(element => this.toDFormElement(element.formType, {
-      key: element.name
+      key: element.name,
+      placeholder: element.displayName
     }));
   }
 
@@ -70,13 +73,15 @@ export class CreatorService {
     channels.forEach(channel => { // could be optimized
       if (!channel.isMaster) {
         // this does not occurs in the channel
-        channel.content = channel.content.concat(
-          R.differenceWith((x, y) => x['key'] === y['key'], master.content, channel.content)
-          .map((el: DFormElement<any>) => {
-            el.disabled = true;
-            return el;
-          })
-        );
+        ['content', 'metaData'].forEach(type => {
+          channel[type] = channel[type].concat(
+            R.differenceWith((x, y) => x['key'] === y['key'], master.content, channel.content)
+              .map((el: DFormElement<any>) => {
+                el.disabled = true;
+                return el;
+              })
+          );
+        });
       }
     });
     return channels;

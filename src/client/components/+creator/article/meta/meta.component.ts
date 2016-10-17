@@ -1,16 +1,18 @@
 // Importables
 import { OnInit } from '@angular/core';
+import { Input } from '@angular/core';
 import { OnDestroy } from '@angular/core';
 import { Component } from '@angular/core';
 import { DFormText } from '../../../dform';
 import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
 
 // Components
+import { AppState } from '../../../app';
+import { CreatorService } from '../../creator.service';
 
 @Component({
   selector: 'article-meta',  // <article-meta></article-meta>
-  providers: [
-  ],
   styleUrls: [
     './meta.component.scss'
   ],
@@ -18,16 +20,13 @@ import { Observable } from 'rxjs';
 })
 export class ArticleMeta implements OnInit, OnDestroy {
 
-  public data: any;
+  @Input() data: Observable<any>;
 
-  constructor() {
-    this.data = Observable.of([
-      new DFormText()
-    ]);
+  constructor(
+  ) {
   }
 
   ngOnInit() {
-
   }
 
   ngOnDestroy() {

@@ -9,6 +9,8 @@ import { DFormComponent } from './dform.component';
 import { DFormDynamicElement } from './dform.element';
 import { DFormTextComponent } from './text';
 import { DFormTextAreaComponent } from './textarea';
+import { DFormMetaTextComponent } from './metaText';
+import { MdModule } from '../app/app.material';
 
 @NgModule({
   imports: [
@@ -20,7 +22,8 @@ import { DFormTextAreaComponent } from './textarea';
     DFormComponent,
     DFormDynamicElement,
     DFormTextComponent,
-    DFormTextAreaComponent
+    DFormTextAreaComponent,
+    DFormMetaTextComponent
   ],
   exports: [
     CommonModule,
@@ -29,7 +32,8 @@ import { DFormTextAreaComponent } from './textarea';
     DFormDynamicElement,
     DFormTextAreaComponent,
     DFormTextComponent,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    DFormMetaTextComponent
   ],
   providers: [
   ]

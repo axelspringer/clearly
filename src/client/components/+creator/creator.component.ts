@@ -71,7 +71,7 @@ export class Creator implements OnInit, OnDestroy {
     this.creatorStore$ = this.store.let(getCreatorItems());
     this.articleStore$ = this.store.let(getChannels());
 
-    this.form$ = this.creatorService.form$; // mapt nicely to dom
+    this.form$ = this.creatorService.form$;
 
     // this.route.data.subscribe(data => this.channels = data.channels);
 

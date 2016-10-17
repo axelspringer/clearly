@@ -2,7 +2,7 @@
 	<h3>{{ 'CREATOR.DIALOG.CHANNELS.TITEL' | translate }}</h3>
   <md-list>
     <md-list-item *ngFor="let channel of channels">
-      <md-checkbox name="ngModel" [disabled]="channel.isMaster" [formControl]="form.get(channel.name)" [(ngModel)]="channel.isEnabled">
+      <md-checkbox name="ngModel" [formControl]="form.get(channel.name)" [(ngModel)]="channel.isEnabled">
 		  {{ channel.displayName }}
 	    </md-checkbox>
     </md-list-item>

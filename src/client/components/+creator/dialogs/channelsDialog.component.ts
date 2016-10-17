@@ -40,6 +40,7 @@ export class ChannelsDialog implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.channels$ = this.store.let(getChannels())
+      .do(val => console.log('CHANNEL', val))
       .distinctUntilChanged()
       .filter(channels => channels !== undefined)
       .map(channels => channels.map(channel => R.clone(channel)))
