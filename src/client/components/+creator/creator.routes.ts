@@ -5,20 +5,28 @@ import { Observable } from 'rxjs';
 import { CreatorGuard } from './creator.guard';
 import { CreatorResolver } from './creator.resolver';
 
-const routes: Routes = [
+export const ROUTES: Routes = [
   {
-    path: ':id',
-    component: Creator,
-  },
-  {
-    path: '',
-    component: Creator,
-    resolve: {
-      channels: CreatorResolver
+    path: 'article',
+    data: {
+      title: 'Neuer Artikel',
+      order: 1,
+      isMenu: true
     },
-    // canActivate: [CreatorGuard],
-    // canDeactivate: [CreatorGuard]
-  }
+    children: [
+      {
+        path: ':id',
+        component: Creator,
+      },
+      {
+        path: '',
+        component: Creator,
+        resolve: {
+          channels: CreatorResolver
+        },
+        // canActivate: [CreatorGuard],
+        // canDeactivate: [CreatorGuard]
+      }
+    ]
+  },
 ];
-
-export const routing: Routes = routes;

@@ -15,15 +15,6 @@ export const ROUTES: Routes = [
     component: Dashboard, // TODO@sdoell: move to module
   },
   {
-    path: 'article',
-    children: creatorRouting,
-    data: {
-      title: 'Neuer Artikel',
-      order: 1,
-      isMenu: true
-    },
-  },
-  {
     path: 'settings',
     component: Settings,
   },

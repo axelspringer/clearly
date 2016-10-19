@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 // Components
 import { Article } from './article';
@@ -18,6 +19,7 @@ import { CreatorService } from './creator.service';
 import { DFormModule } from '../dform';
 import { MdModule } from '../app/app.material';
 import { QuickAccess } from './quickAccess';
+import { ROUTES } from './creator.routes';
 
 // providers
 const CREATOR_PROVIDERS = [
@@ -34,7 +36,8 @@ const CREATOR_PROVIDERS = [
     DFormModule,
     FormsModule,
     MdModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterModule.forChild(ROUTES)
   ],
   declarations: [
     Article,
@@ -43,10 +46,6 @@ const CREATOR_PROVIDERS = [
     ChannelsDialog,
     Creator,
     QuickAccess,
-    // DFormComponent,
-    // DFormDynamicElement,
-    // DFormTextComponent,
-    // DFormTextAreaComponent
   ],
   entryComponents: [
     ChannelsDialog
@@ -59,10 +58,6 @@ const CREATOR_PROVIDERS = [
     CoreModule,
     Creator,
     QuickAccess,
-    // DFormComponent,
-    // DFormDynamicElement,
-    // DFormTextAreaComponent,
-    // DFormTextComponent,
     ReactiveFormsModule
   ],
   providers: [
