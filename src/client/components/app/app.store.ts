@@ -12,14 +12,11 @@ import { docsReducer } from '../../reducers';
 import { fromArticleReducer } from '../../reducers';
 import { articleReducer } from '../../reducers';
 import { fromDocsReducer } from '../../reducers';
-import { editorReducer } from '../editor';
-import { fromEditorReducer } from '../editor';
 
 // app state
 export interface AppState {
   creator: any;
   docs: any;
-  editor: any;
   article: any;
 };
 
@@ -31,7 +28,6 @@ export {
 export default compose(hmrState, storeLogger(), combineReducers)({
   creator: creatorReducer,
   docs: docsReducer,
-  editor: editorReducer,
   article: articleReducer
 });
 
@@ -58,11 +54,6 @@ export function getDocsState() {
     .map(s => s.docs);
 }
 
-export function getEditorState() {
-  return (state$: Observable<AppState>) => state$
-    .map(s => s.editor);
-}
-
 export function getArticleState() {
   return (state$: Observable<AppState>) => state$
     .map(s => s.article);
@@ -71,10 +62,6 @@ export function getArticleState() {
 // selectors
 export function getCreatorItems() {
   return compose(fromCreatorReducer.getItems(), getCreatorState());
-}
-
-export function getEditorItems() {
-  return compose(fromEditorReducer.getItems(), getEditorState());
 }
 
 export function getDocs() {
