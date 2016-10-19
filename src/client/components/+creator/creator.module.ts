@@ -1,8 +1,8 @@
 // Importables
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { FormsModule } from '@angular/forms';
 
 // Components
 import { Article } from './article';
@@ -19,6 +19,7 @@ import { DFormModule } from '../dform';
 import { MdModule } from '../app/app.material';
 import { QuickAccess } from './quickAccess';
 
+// providers
 const CREATOR_PROVIDERS = [
   ...CREATOR_RESOLVER_PROVIDERS,
   ArticleActions,

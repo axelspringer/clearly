@@ -1,10 +1,10 @@
 /*
  * Angular bootstraping
  */
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-import { decorateModuleRef } from './client/environment';
 import { ApplicationRef } from '@angular/core';
 import { bootloader } from '@angularclass/hmr';
+import { decorateModuleRef } from './client/environment';
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
 // for later, with Web Worker
 // import { platformWorkerAppDynamic } from '@angular/platform-webworker-dynamic';
