@@ -29,7 +29,6 @@ import { ChannelsDialog } from './dialogs';
 @Component({
   selector: 'creator',  // <creator></creator>
   providers: [
-    CreatorService,
     CreatorActions,
     ArticleActions,
   ],
@@ -71,17 +70,15 @@ export class Creator implements OnInit, OnDestroy {
     this.creatorStore$ = this.store.let(getCreatorItems());
     this.articleStore$ = this.store.let(getChannels());
 
-    this.form$ = this.creatorService.form$;
-
-    // this.route.data.subscribe(data => this.channels = data.channels);
-
     this.store.dispatch(this.articleActions.load());
 
-    // pre publish model with title
-    const item = this.creatorService.toDFormElement('text', {
-      key: `${++this.elements - 1}`
+    // map form from form service in creator
+    this.form$ = this.creatorService.form$;
+
+    this.route.data.subscribe(data => {
+      console.log('resolve', data);
+      // this.channels = data.channels
     });
-    this.store.dispatch(this.creatorActions.addItem(item));
 
     this.translate.get(this.i18nTitle).subscribe(t =>
       EventEmitProvider.connect(ToolbarTitleUpdate.prototype.constructor.name).emit(t));
@@ -94,12 +91,12 @@ export class Creator implements OnInit, OnDestroy {
     // should be unsubscribed
   }
 
-  addItem($event) {
-    const item = this.creatorService.toDFormElement($event.dragData, {
-      key: `${++this.elements - 1}`
-    });
-    this.store.dispatch(this.creatorActions.addItem(item));
-  }
+  // addItem($event) {
+  //   const item = this.creatorService.toDFormElement($event.dragData, {
+  //     key: `${++this.elements - 1}`
+  //   });
+  //   this.store.dispatch(this.creatorActions.addItem(item));
+  // }
 
   toggleChannels() {
     let config = new MdDialogConfig();

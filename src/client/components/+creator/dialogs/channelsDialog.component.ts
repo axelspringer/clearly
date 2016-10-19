@@ -22,9 +22,6 @@ import { ArticleActions } from '../../../actions';
     './channelsDialog.component.scss'
   ],
   templateUrl: './channelsDialog.component.html',
-  providers: [
-
-  ]
 })
 export class ChannelsDialog implements OnInit, OnDestroy {
 
@@ -39,18 +36,18 @@ export class ChannelsDialog implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
+    // console.log(`'${this.constructor.name}' is init ...`);
     this.channels$ = this.store.let(getChannels())
-      .do(val => console.log('CHANNEL', val))
       .distinctUntilChanged()
       .filter(channels => channels !== undefined)
       .map(channels => channels.map(channel => R.clone(channel)))
+      .map(channels => this.channels = channels)
       .subscribe(channels => {
-        this.channels = channels;
-        this.form = new FormGroup({});
-        this.channels.forEach(channel => {
-          this.form.addControl(channel.name,
-            new FormControl({}, [Validators.nullValidator]));
-        });
+        this.form = new FormGroup(this.channels.reduce((prev, curr) => {
+          prev[curr.name] =
+            new FormControl({ value: 'n/a', disabled: curr.isMaster },
+            [Validators.nullValidator]); return prev;
+        }, {}));
       });
   }
 
@@ -61,6 +58,7 @@ export class ChannelsDialog implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.channels$.unsubscribe();
+    // console.log(`'${this.constructor.name}' is destroyed ...`);
   }
 
 };

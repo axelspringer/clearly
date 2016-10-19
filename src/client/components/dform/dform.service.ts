@@ -8,6 +8,9 @@ import { Validators } from '@angular/forms';
 
 // Components
 import { DFormElement } from './dform.element';
+import { DFormMetaText } from './metaText';
+import { DFormText } from './text';
+import { DFormTextArea } from './textarea';
 
 @Injectable()
 export class DFormService {
@@ -15,7 +18,6 @@ export class DFormService {
   constructor() { }
 
   updateFormGroup(changes: DefaultIterableDiffer, form: FormGroup): FormGroup {
-
     // this is simple delete and replace in the form group
     changes.forEachAddedItem(change => {
       form.addControl(change.item.key, this.toFormControl(change.item));
@@ -23,17 +25,22 @@ export class DFormService {
     changes.forEachRemovedItem(change => {
       form.removeControl(change.item.key);
     });
-
     return form;
-
   }
 
   toFormControl(el: DFormElement<any>) {
-
     return el.required ? // TODO@sdoell: pass along all validators
       new FormControl(el.value || '', Validators.required) :
       new FormControl(el.value || '');
   }
 
+  toFormElement(el) {
+    // this is a bit spooky; will have small class
+    return {
+      'metaText': (options => new DFormMetaText(options)),
+      'text': (options => new DFormText(options)),
+      'textArea': (options => new DFormTextArea(options))
+    }[el];
+  }
 
 }

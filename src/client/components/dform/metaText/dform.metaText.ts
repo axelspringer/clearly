@@ -41,4 +41,9 @@ export class DFormMetaTextComponent implements OnInit {
   ngOnInit() {
   }
 
+  toggle(event: any, key) {
+    this.form.controls[key].setValue('');
+    this.element['disabled'] = event.checked;
+  }
+
 };

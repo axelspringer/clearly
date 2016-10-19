@@ -5,41 +5,45 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 
 // Components
+import { Article } from './article';
+import { ArticleActions } from '../../actions';
+import { ArticleContent } from './article';
+import { ArticleMeta } from './article';
+import { ChannelsDialog } from './dialogs';
 import { CoreModule } from '../../core';
-import { MdModule } from '../app/app.material';
+import { Creator } from './creator.component';
+import { CREATOR_RESOLVER_PROVIDERS } from './creator.resolver';
+import { CreatorActions } from './creator.actions';
+import { CreatorService } from './creator.service';
 import { DFormModule } from '../dform';
 import { EditorModule } from '../editor';
-import { Creator } from './creator.component';
-import { ArticleActions } from '../../actions';
-import { CREATOR_RESOLVER_PROVIDERS } from './creator.resolver';
-import { ChannelsDialog } from './dialogs';
+import { MdModule } from '../app/app.material';
 import { QuickAccess } from './quickAccess';
-import { Article } from './article';
-import { ArticleMeta } from './article';
-import { ArticleContent } from './article';
 
 const CREATOR_PROVIDERS = [
   ...CREATOR_RESOLVER_PROVIDERS,
-  ArticleActions
+  ArticleActions,
+  CreatorActions,
+  CreatorService
 ];
 
 @NgModule({
   imports: [
     CommonModule,
-    ReactiveFormsModule,
     CoreModule,
-    FormsModule,
     DFormModule,
     EditorModule,
-    MdModule
+    FormsModule,
+    MdModule,
+    ReactiveFormsModule
   ],
   declarations: [
-    Creator,
-    ChannelsDialog,
-    QuickAccess,
     Article,
-    ArticleMeta,
     ArticleContent,
+    ArticleMeta,
+    ChannelsDialog,
+    Creator,
+    QuickAccess,
     // DFormComponent,
     // DFormDynamicElement,
     // DFormTextComponent,
@@ -49,13 +53,13 @@ const CREATOR_PROVIDERS = [
     ChannelsDialog
   ],
   exports: [
+    Article,
+    ArticleContent,
+    ArticleMeta,
     CommonModule,
     CoreModule,
     Creator,
     QuickAccess,
-    Article,
-    ArticleMeta,
-    ArticleContent,
     // DFormComponent,
     // DFormDynamicElement,
     // DFormTextAreaComponent,

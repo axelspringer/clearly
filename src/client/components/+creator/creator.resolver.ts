@@ -1,6 +1,4 @@
 // Importables
-import { ApolloQueryObservable } from 'angular2-apollo';
-import { ApolloQueryResult } from 'apollo-client';
 import { ActivatedRouteSnapshot } from '@angular/router';
 import { Inject } from '@angular/core';
 import { Injectable } from '@angular/core';
@@ -12,15 +10,17 @@ import { RouterStateSnapshot } from '@angular/router';
 import { Store } from '@ngrx/store';
 
 // Components
-import { AppState, getDoc } from '../../app';
-import { DatabaseProvider } from '../../core';
+import { AppState } from '../app';
+import { ArticleActions } from '../../actions';
+import { CreatorService } from './creator.service';
+import { CreatorActions } from './creator.actions';
 
 export interface CreatorResolverOptions {
   title: string;
 };
 
 // put here to avoid side-effects
-export var CREATOR_RESOLVER_OPTIONS: CreatorResolverOptions = {
+export const CREATOR_RESOLVER_OPTIONS: CreatorResolverOptions = {
   title: 'Ohne Titel' // should be a translation
 };
 
@@ -28,37 +28,30 @@ export var CREATOR_RESOLVER_OPTIONS: CreatorResolverOptions = {
 export class CreatorResolver implements Resolve<any> {
 
   private options: any;
+  private creatorService: any;
 
   constructor(
     private router: Router,
-    private db: DatabaseProvider,
+    private creatorActions: CreatorActions,
+    private store: Store<AppState>,
+    private articleActions: ArticleActions,
+    @Inject(forwardRef(() => CreatorService)) creatorService: CreatorService,
     @Inject(forwardRef(() => CREATOR_RESOLVER_OPTIONS)) options: CreatorResolverOptions,
   ) {
     this.options = options;
+    this.creatorService = creatorService;
   }
 
   resolve(route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Promise<DatabaseProvider> | boolean {
-
+    state: RouterStateSnapshot): Observable<any> | boolean {
       return true || false;
-
-      // const doc = {
-      //   title: this._options.title
-      // };
-
-      // return this.db.create(doc)
-      //   .toPromise()
-      //   .then(res => res)
-      //   .catch(err => {
-      //      this.router.navigate(['/']);
-      //       return false;
-      //   });
-
+      // this.store.dispatch(this.articleActions.load());
+      // return this.creatorService.form$.do(val => console.log(val));
   }
 
 }
 
-export var CREATOR_RESOLVER_PROVIDERS = [
+export const CREATOR_RESOLVER_PROVIDERS = [
   {
     provide: CREATOR_RESOLVER_OPTIONS,
     useValue: CREATOR_RESOLVER_OPTIONS

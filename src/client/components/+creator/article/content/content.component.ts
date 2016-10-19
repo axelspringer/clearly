@@ -21,18 +21,13 @@ export class ArticleContent implements OnInit, OnDestroy {
   public data: any;
 
   constructor() {
-    this.data = Observable.of([
-      new DFormText()
-    ]);
   }
 
   ngOnInit() {
-
   }
 
   ngOnDestroy() {
     // should be unsubscribed
   }
-
 
 };

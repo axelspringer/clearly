@@ -2,6 +2,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 
 // Components
 import { CoreModule } from '../../core';
@@ -11,12 +12,15 @@ import { DFormTextComponent } from './text';
 import { DFormTextAreaComponent } from './textarea';
 import { DFormMetaTextComponent } from './metaText';
 import { MdModule } from '../app/app.material';
+import { DFormService } from './dform.service';
 
 @NgModule({
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    CoreModule
+    CoreModule,
+    FormsModule,
+    MdModule
   ],
   declarations: [
     DFormComponent,
@@ -36,6 +40,7 @@ import { MdModule } from '../app/app.material';
     DFormMetaTextComponent
   ],
   providers: [
+    DFormService
   ]
 })
 export class DFormModule { };

@@ -1,6 +1,6 @@
 <md-tab-group>
 	<template ngFor let-channel [ngForOf]="(form$ | async)" let-i="index">
-		<md-tab *ngIf="channel.isEnabled">
+    <md-tab *ngIf="channel.isEnabled">
 			{{ channel.displayName | json }}
 			<template md-tab-label>{{ channel.displayName }}</template>
 			<template md-tab-content>
@@ -11,7 +11,6 @@
 					</md-sidenav>
 
           <article [content]="channel.content" [meta]="channel.metaData"></article>
-				  {{ channel.content | json }} {{ channel.metaData | json }}
 
 				</md-sidenav-layout>
 			</template>

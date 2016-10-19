@@ -17,6 +17,7 @@
       "es7"
     ],
     "types": [
+      "chai",
       "hammerjs",
       "jasmine",
       "node",

@@ -10,6 +10,7 @@ export class DFormElement<T> {
   order: number;
   controlType: string;
   disabled: boolean;
+  fromMaster: boolean;
 
   constructor(options: {
       value?: T,
@@ -18,7 +19,9 @@ export class DFormElement<T> {
       required?: boolean,
       order?: number,
       controlType?: string,
-      disabled?: boolean
+      disabled?: boolean,
+      fromMaster?: boolean
+      isMaster?: boolean
     } = {}) {
     this.value = options.value;
     this.key = options.key || '';
@@ -27,6 +30,7 @@ export class DFormElement<T> {
     this.order = options.order === undefined ? 1 : options.order;
     this.controlType = options.controlType || '';
     this.disabled = options.disabled || false;
+    this.fromMaster = options.fromMaster || false;
     // by default do not disable, could be enabled later
   }
 
