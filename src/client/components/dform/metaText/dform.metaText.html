@@ -1,9 +1,10 @@
 <div class="metaTextForm">
 	<div [formGroup]="form">
 		<md-input [disabled]="element.fromMaster && !element.disabled" [formControlName]="element.key" [id]="element.key" [placeholder]="element.placeholder">
-			<md-hint align="end" *ngIf="!element.disabled && element.fromMaster">Master</md-hint>
 		</md-input>
-		<md-checkbox [hidden]="!element.fromMaster" [checked]="element.disabled" (change)="toggle($event, element.key)">
-		</md-checkbox>
+    <ul *ngIf="element.fromMaster">
+      <li [hidden]="element.disabled">Master</li>
+      <li (click)="toggle($event, element.key)">{{ (element.disabled ? 'DFORM.META_TEXT.LABEL.EDIT.OFF' : 'DFORM.META_TEXT.LABEL.EDIT.ON') | translate }}</li>
+    </ul>
 	</div>
 </div>

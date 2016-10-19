@@ -30,6 +30,14 @@
     },
     "TEXTAREA": {
       "PLACEHOLDER": "Fließtext schreiben ..."
+    },
+    "META_TEXT": {
+      "LABEL": {
+        "EDIT": {
+          "ON": "Bearbeiten",
+          "OFF": "Sperren"
+        }
+      }
     }
   },
 
