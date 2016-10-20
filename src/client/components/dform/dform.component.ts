@@ -13,6 +13,7 @@ import { Subscription } from 'rxjs';
 
 // Components
 import { DFormService } from './dform.service';
+import { DFormElement } from './dform.element';
 
 @Component({
   selector: 'dform',
@@ -24,33 +25,22 @@ import { DFormService } from './dform.service';
 })
 export class DFormComponent implements OnInit, OnDestroy {
 
-  @Input('dform-data') data: Observable<any>;
-  @Output('dform-update') update: EventEmitter<FormGroup> = new EventEmitter<FormGroup>();
+  @Input() elements: Array<DFormElement<any>>;
+  @Output() update: EventEmitter<FormGroup> = new EventEmitter<FormGroup>();
 
-  public sup: Subscription;
-  public differ: any;
   public form: FormGroup;
 
   constructor(
-    private dform: DFormService,
-    private differs: IterableDiffers
+    private dFormService: DFormService
   ) {
-    this.differ = differs.find([]).create(null);
-    this.form = new FormGroup({});
   }
 
   ngOnInit() {
-    this.sup = this.data.subscribe(data => {
-      let changes = this.differ.diff(data);
-      if (changes) {
-        this.form = this.dform.updateFormGroup(changes, this.form);
-        this.update.emit(this.form);
-      }
-    });
+    this.form = this.dFormService.toDForm(new FormGroup({}), this.elements);
   }
 
   ngOnDestroy() {
-    this.sup.unsubscribe();
+    // this.sup.unsubscribe();
   }
 
 };

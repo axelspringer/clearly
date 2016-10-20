@@ -28,6 +28,13 @@ export class DFormService {
     return form;
   }
 
+  toDForm(form: FormGroup, elements: Array<DFormElement<any>>) {
+    elements.forEach(element => {
+      form.addControl(element.key, this.toFormControl(element));
+    });
+    return form;
+  }
+
   toFormControl(el: DFormElement<any>) {
     return el.required ? // TODO@sdoell: pass along all validators
       new FormControl(el.value || '', Validators.required) :

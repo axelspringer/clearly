@@ -9,6 +9,7 @@ import { Store } from '@ngrx/store';
 
 // Components
 import { AppState } from '../../../app';
+import { DFormElement } from '../../../dform';
 import { CreatorService } from '../../creator.service';
 
 @Component({
@@ -20,13 +21,10 @@ import { CreatorService } from '../../creator.service';
 })
 export class ArticleMeta implements OnInit, OnDestroy {
 
-  @Input() data: Observable<any>;
-
-  constructor(
-  ) {
-  }
+  @Input('data') metaData: Array<DFormElement<any>>;
 
   ngOnInit() {
+
   }
 
   ngOnDestroy() {

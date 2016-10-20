@@ -6,7 +6,7 @@ import { Input } from '@angular/core';
 
 // Components
 import { DFormElement } from './../../dform';
-import { Observable, Subject, BehaviorSubject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'article',  // <article></article>
@@ -20,12 +20,9 @@ export class Article implements OnInit, OnDestroy {
   @Input() content: Array<DFormElement<any>>;
   @Input() meta: Array<DFormElement<any>>;
 
-  public meta$: any;
-
   ngOnInit() {
     console.log(`'${this.constructor.name}' is initialized ...`);
 
-    this.meta$ = new BehaviorSubject(this.meta);
   }
 
   ngOnDestroy() {
