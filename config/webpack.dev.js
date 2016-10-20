@@ -11,7 +11,6 @@ const commonConfig = require('./webpack.common.js'); // the settings that are co
 /**
  * Webpack Plugins
  */
-const DashboardPlugin = require('webpack-dashboard/plugin');
 const DefinePlugin = require('webpack/lib/DefinePlugin');
 const LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin');
 const NamedModulesPlugin = require('webpack/lib/NamedModulesPlugin');
@@ -140,15 +139,6 @@ module.exports = function () {
 
         }
       }),
-
-
-      /**
-       * Plugin: DashboardPlugin (experimental)
-       * Description: `Nasa for webpack`
-       *
-       * See: https://github.com/FormidableLabs/webpack-dashboard
-       */
-      new DashboardPlugin(),
 
     ],
 

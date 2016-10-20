@@ -18,6 +18,7 @@ const HtmlElementsPlugin = require('./html-elements-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
+const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 
 /*
  * PostCss
@@ -167,6 +168,8 @@ module.exports = function () {
      * See: http://webpack.github.io/docs/configuration.html#plugins
      */
     plugins: [
+
+      new LodashModuleReplacementPlugin(),
 
       /*
        * Add additional plugins to the compiler.
