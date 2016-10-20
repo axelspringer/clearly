@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 // import { Store } from '@ngrx/store';
 import { AppState } from '../components/app';
 import { Actions } from '@ngrx/effects';
+import { Action } from '@ngrx/store';
 import { Effect } from '@ngrx/effects';
 import { OnDestroy } from '@angular/core';
 
@@ -14,7 +15,7 @@ import { DatabaseProvider } from '../core';
 @Injectable()
 export class DocsEffects implements OnDestroy {
 
-  @Effect() loadDocs$: Observable<Actions> = this.actions$
+  @Effect() loadDocs$: Observable<Action> = this.actions$
     .ofType(DocsActions.LOAD)
     .switchMap(action =>
       this.db.allDocs()

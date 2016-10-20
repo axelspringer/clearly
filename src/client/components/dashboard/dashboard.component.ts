@@ -56,7 +56,7 @@ export class Dashboard {
       `,
     }) as ApolloQueryObservable<any>;
 
-    this.ok.then(res => this.ok = res.data.ok.status);
+    // this.ok.then(res => this.ok = res.data.ok.status);
 
     this.articles$ = this.store.let(getDocs());
     this.store.dispatch(this.docsActions.load());
@@ -83,13 +83,6 @@ export class Dashboard {
       this.isPirate$ = answer;
       this.pirate$ = 'http://i.giphy.com/26tn1ToaMhpOEetkA.gif';
     }
-
-  }
-
-  submitState(value) {
-
-    console.log('submitState', value);
-    this.store.dispatch(this.userActions.updateUser(this.user$));
 
   }
 

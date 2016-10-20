@@ -25,7 +25,7 @@ export interface DatabaseProviderOptions {
 };
 
 // put here to avoid side-effects
-export var DATABASE_PROVIDER_OPTIONS: DatabaseProviderOptions = {
+export const DATABASE_PROVIDER_OPTIONS: DatabaseProviderOptions = {
   name: 'blackbeard',
   retry: 5,
   debugFilter: 'pouchdb:api'
@@ -130,7 +130,7 @@ export class DatabaseProvider {
 };
 
 
-export var DATABASE_PROVIDERS = [
+export const DATABASE_PROVIDERS = [
   {
     provide: DATABASE_PROVIDER_OPTIONS,
     useValue: DATABASE_PROVIDER_OPTIONS

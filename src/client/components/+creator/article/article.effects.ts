@@ -1,9 +1,10 @@
 // Importables
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-// import { Store } from '@ngrx/store';
+// import { Store, Action } from '@ngrx/store';
 import { AppState } from '../components/app';
 import { Actions } from '@ngrx/effects';
+import { Action } from '@ngrx/store';
 import { Effect } from '@ngrx/effects';
 import { OnDestroy } from '@angular/core';
 import * as R from 'ramda';
@@ -51,7 +52,7 @@ const articleQuery = () => {
 @Injectable()
 export class ArticleEffects implements OnDestroy {
 
-  @Effect() loadArticle$: Observable<Actions> = this.actions$
+  @Effect() loadArticle$: Observable<Action> = this.actions$
     .ofType(ArticleActions.LOAD)
     .switchMap(action =>
       Observable.fromPromise(this.apollo.query({

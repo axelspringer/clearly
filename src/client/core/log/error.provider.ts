@@ -14,7 +14,7 @@ export interface LoggingErrorHandlerOptions {
   unwrapError: boolean;
 };
 
-export var LOGGING_ERROR_HANDLER_OPTIONS: LoggingErrorHandlerOptions = {
+export const LOGGING_ERROR_HANDLER_OPTIONS: LoggingErrorHandlerOptions = {
   sinkError: true,
   rethrowError: false,
   unwrapError: false
@@ -98,7 +98,7 @@ export class LoggingErrorHandler implements ErrorHandler {
 };
 
 
-export var LOGGING_ERROR_HANDLER_PROVIDERS = [
+export const LOGGING_ERROR_HANDLER_PROVIDERS = [
   {
     provide: LOGGING_ERROR_HANDLER_OPTIONS,
     useValue: LOGGING_ERROR_HANDLER_OPTIONS

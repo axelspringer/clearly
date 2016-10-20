@@ -1,28 +1,19 @@
 // Importables
-import {
-  Injectable,
-  OnDestroy
-} from '@angular/core';
-import {
-  Actions,
-  Effect,
-  mergeEffects
-} from '@ngrx/effects';
-import { Subscription, Observable } from 'rxjs';
-import {
-  Action,
-  Store
-} from '@ngrx/store';
+import { Action } from '@ngrx/store';
+import { Actions } from '@ngrx/effects';
+import { Effect } from '@ngrx/effects';
+import { Injectable } from '@angular/core';
+import { mergeEffects } from '@ngrx/effects';
+import { Observable } from 'rxjs';
+import { OnDestroy } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Subscription } from 'rxjs';
 
 // Components
 import { CreatorActions } from './creator.actions';
 import { getCreatorItems } from '../app';
 import { DatabaseProvider } from '../../core';
-
-import {
-  AppState,
-  getCreatorState
-} from '../../app';
+import { AppState } from '../app';
 
 @Injectable()
 export class CreatorEffects {

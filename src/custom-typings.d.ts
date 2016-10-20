@@ -38,7 +38,6 @@ declare var $: any;
  *
 
 import * as _ from 'lodash'
-
  * You can include your type definitions in this file until you create one for the @types
  *
  */
@@ -60,6 +59,10 @@ interface GlobalEnvironment {
   HMR;
   SystemJS: SystemJS;
   System: SystemJS;
+}
+
+interface PouchDB {
+  debug?: boolean
 }
 
 interface Es6PromiseLoader {
