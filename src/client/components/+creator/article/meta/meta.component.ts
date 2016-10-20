@@ -24,7 +24,6 @@ export class ArticleMeta implements OnInit, OnDestroy {
   @Input('data') metaData: Array<DFormElement<any>>;
 
   ngOnInit() {
-
   }
 
   ngOnDestroy() {

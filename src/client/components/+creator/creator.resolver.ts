@@ -14,6 +14,7 @@ import { AppState } from '../app';
 import { ArticleActions } from './article';
 import { CreatorService } from './creator.service';
 import { CreatorActions } from './creator.actions';
+import { getChannels } from '../app';
 
 export interface CreatorResolverOptions {
   title: string;
@@ -43,10 +44,28 @@ export class CreatorResolver implements Resolve<any> {
   }
 
   resolve(route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<any> | boolean {
-      return true || false;
-      // this.store.dispatch(this.articleActions.load());
-      // return this.creatorService.form$.do(val => console.log(val));
+    state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
+
+    this.store.dispatch(this.articleActions.load());
+
+    return new Promise(resolve => {
+      this.store.let(getChannels())
+        .switchMap(slice => {
+          if (slice.length === 0) {
+            return Observable.throw(new Error());
+          }
+          return Observable.of(slice);
+        })
+        .retryWhen(error => error.delay(16 * 10))
+        .timeout(60 * 1000 * 2)
+        .map(channels => channels)
+        .subscribe(channels => {
+          resolve(channels);
+        },
+        error => console.log(error)
+        );
+    });
+
   }
 
 }

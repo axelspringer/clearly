@@ -17,16 +17,16 @@ export class DFormService {
 
   constructor() { }
 
-  updateFormGroup(changes: DefaultIterableDiffer, form: FormGroup): FormGroup {
-    // this is simple delete and replace in the form group
-    changes.forEachAddedItem(change => {
-      form.addControl(change.item.key, this.toFormControl(change.item));
-    });
-    changes.forEachRemovedItem(change => {
-      form.removeControl(change.item.key);
-    });
-    return form;
-  }
+  // updateFormGroup(changes: DefaultIterableDiffer, form: FormGroup): FormGroup {
+  //   // this is simple delete and replace in the form group
+  //   changes.forEachAddedItem(change => {
+  //     form.addControl(change.item.key, this.toFormControl(change.item));
+  //   });
+  //   changes.forEachRemovedItem(change => {
+  //     form.removeControl(change.item.key);
+  //   });
+  //   return form;
+  // }
 
   toDForm(form: FormGroup, elements: Array<DFormElement<any>>) {
     elements.forEach(element => {

@@ -9,12 +9,12 @@ import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { Validators } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
+import { Observable } from 'rxjs';
 import * as R from 'ramda';
 
 // Composition
-import { getChannels } from '../../app';
-import { AppState } from '../../app';
-import { ArticleActions } from '../article';
+import { CreatorService } from '../creator.service';
+import { DFormElement } from '../../dform';
 
 @Component({
   selector: 'channels-dialog',
@@ -25,39 +25,34 @@ import { ArticleActions } from '../article';
 })
 export class ChannelsDialog implements OnInit, OnDestroy {
 
-  public channels: Array<any> = [];
-  public form: FormGroup = new FormGroup({});
-  public channels$: Subscription;
+  public form = new FormGroup({});
+  public channels = [];
 
   constructor(
     public dialogRef: MdDialogRef<ChannelsDialog>,
-    private store: Store<AppState>,
-    private articleActions: ArticleActions
-  ) {}
+    public creatorService: CreatorService
+  ) { }
 
   ngOnInit() {
-    // console.log(`'${this.constructor.name}' is init ...`);
-    this.channels$ = this.store.let(getChannels())
-      .distinctUntilChanged()
-      .filter(channels => channels !== undefined)
-      .map(channels => channels.map(channel => R.clone(channel)))
-      .map(channels => this.channels = channels)
-      .subscribe(channels => {
-        this.form = new FormGroup(this.channels.reduce((prev, curr) => {
+    this.creatorService
+      .form.subscribe(form => {
+        this.channels = this.creatorService.channels;
+        this.form = this.form = new FormGroup(this.channels.reduce((prev, curr) => {
           prev[curr.name] =
             new FormControl({ value: 'n/a', disabled: curr.isMaster },
-            [Validators.nullValidator]); return prev;
+              [Validators.nullValidator]); return prev;
         }, {}));
       });
   }
 
-  onSubmit(value) {
-    this.store.dispatch(this.articleActions.updateChannels(this.channels));
+  onSubmit() {
+    // this.store.dispatch(this.articleActions.updateChannels(this.channels));
+    this.creatorService.filter(this.form.value);
     this.dialogRef.close();
   }
 
   ngOnDestroy() {
-    this.channels$.unsubscribe();
+    // this.channels$.unsubscribe();
     // console.log(`'${this.constructor.name}' is destroyed ...`);
   }
 

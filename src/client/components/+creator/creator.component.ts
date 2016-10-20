@@ -4,7 +4,6 @@ import { FormGroup } from '@angular/forms';
 import { OnDestroy } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Store } from '@ngrx/store';
 import { Title } from '@angular/platform-browser';
 import { TranslateService } from 'ng2-translate';
 import { Component } from '@angular/core';
@@ -12,18 +11,13 @@ import { ViewContainerRef } from '@angular/core';
 import { MdDialog } from '@angular/material';
 import { MdDialogConfig } from '@angular/material';
 import { MdDialogRef } from '@angular/material';
+import { Observable } from 'rxjs';
+import * as R from 'ramda';
 
 // Components
-import { AppState } from '../app';
-import { CreatorActions } from './creator.actions';
-import { ArticleActions } from './article';
 import { CreatorService } from './creator.service';
-import { DFormElement } from '../dform';
-import { DFormText } from '../dform';
 import { EventEmitProvider } from '../../core';
-import { getCreatorItems } from '../app';
 import { ToolbarTitleUpdate } from '../toolbar';
-import { getChannels } from '../app';
 import { ChannelsDialog } from './dialogs';
 
 @Component({
@@ -40,21 +34,13 @@ export class Creator implements OnInit, OnDestroy {
   public dialogRef: MdDialogRef<ChannelsDialog>;
   public lastCloseResult: string;
 
-  public elements: number = 0;
   public i18nTitle = 'ORCHESTRA.CREATOR.TITLE';
-  public creatorStore$: any;
-  public articleStore$: any;
   public form$: any;
 
   constructor(
     private creatorService: CreatorService,
-
-    private creatorActions: CreatorActions,
-    private articleActions: ArticleActions,
-    private store: Store<AppState>,
     private translate: TranslateService,
 
-    private router: Router,
     private route: ActivatedRoute,
 
     private dialog: MdDialog,
@@ -63,23 +49,17 @@ export class Creator implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.creatorStore$ = this.store.let(getCreatorItems());
-    this.articleStore$ = this.store.let(getChannels());
-
-    this.store.dispatch(this.articleActions.load());
-
-    // map form from form service in creator
-    this.form$ = this.creatorService.form$;
-
-    this.route.data.subscribe(data => {
-      // this.channels = data.channels
-    });
+    this.form$ = this.route.data
+      .map(data => data['channels'])
+      .switchMap(channels => {
+        this.creatorService.channels = channels;
+        return this.creatorService.form;
+      });
 
     this.translate.get(this.i18nTitle).subscribe(t =>
       EventEmitProvider.connect(ToolbarTitleUpdate.prototype.constructor.name).emit(t));
 
     this.toggleChannels();
-
   }
 
   ngOnDestroy() {
@@ -100,6 +80,7 @@ export class Creator implements OnInit, OnDestroy {
     this.dialogRef = this.dialog.open(ChannelsDialog, config);
 
     this.dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
       this.lastCloseResult = result;
       this.dialogRef = null;
     });

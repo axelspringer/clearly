@@ -22,7 +22,6 @@ export class Article implements OnInit, OnDestroy {
 
   ngOnInit() {
     console.log(`'${this.constructor.name}' is initialized ...`);
-
   }
 
   ngOnDestroy() {

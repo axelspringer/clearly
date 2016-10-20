@@ -6,17 +6,11 @@ import { Inject } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
 import { Validators } from '@angular/forms';
-import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
-import { Subscription } from 'rxjs';
 import { BehaviorSubject } from 'rxjs';
-import { Subject } from 'rxjs';
-import { forwardRef } from '@angular/core';
 import * as R from 'ramda';
 import * as _ from 'lodash';
 
 // DForm
-import { AppState } from '../app';
 import { getChannels } from '../app';
 import { DFormElement } from '../dform';
 import { DFormService } from '../dform';
@@ -24,23 +18,33 @@ import { DFormService } from '../dform';
 @Injectable()
 export class CreatorService {
 
-  private _form$: BehaviorSubject<any> = new BehaviorSubject([]); // first empty channnels
+  private _dForm = new BehaviorSubject([]);
+  private _channels = [];
 
   constructor(
-    private store: Store<AppState>,
     private dFormService: DFormService
   ) {
-    this.store.let(getChannels())
-      .distinctUntilChanged()
-      .filter(channels => channels.length !== 0)
-      .map(channels => this.mapChannels(R.clone(channels)))
-      .map(channels => this.toDForm(channels))
-      .subscribe(this._form$);
   }
 
-  // access transformed form
-  get form$(): Observable<any> {
-    return this._form$.asObservable();
+  get channels() {
+    return this._channels;
+  }
+
+  set channels(channels) {
+    this._channels = channels;
+    this.next(channels);
+  }
+
+  get form() {
+    return this._dForm.asObservable();
+  }
+
+  filter(channels) {
+    this.next(this._channels.filter(channel => channel.isMaster || channels[channel.name]));
+  }
+
+  next(channels) {
+    this._dForm.next(this.toDForm(this.differChannel(R.clone(channels))));
   }
 
   // transform to form element
@@ -50,8 +54,8 @@ export class CreatorService {
   }
 
   // to deform
-  private toDForm(channels: any) {
-    const test = channels.map(channel => {
+  public toDForm(channels: any) {
+    return channels.map(channel => {
       ['content', 'metaData'].forEach(type => {
         channel[type] = channel[type].map(el => this.toDFormElement(el.formType, {
           key: el['name'],
@@ -61,11 +65,10 @@ export class CreatorService {
       });
       return channel;
     });
-    return test;
   }
 
   // transform a form to dform
-  private mapChannels(channels: any, key = 'name') {
+  public differChannel(channels: any, key = 'name') {
     const master = _.first(channels.splice(channels.findIndex(el => el.isMaster), 1));
     channels.map(channel => {
       ['content', 'metaData'].forEach(type => {
