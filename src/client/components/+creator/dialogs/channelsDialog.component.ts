@@ -14,7 +14,7 @@ import * as R from 'ramda';
 // Composition
 import { getChannels } from '../../app';
 import { AppState } from '../../app';
-import { ArticleActions } from '../../../actions';
+import { ArticleActions } from '../article';
 
 @Component({
   selector: 'channels-dialog',

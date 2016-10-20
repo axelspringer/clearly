@@ -16,7 +16,7 @@ import { MdDialogRef } from '@angular/material';
 // Components
 import { AppState } from '../app';
 import { CreatorActions } from './creator.actions';
-import { ArticleActions } from '../../actions';
+import { ArticleActions } from './article';
 import { CreatorService } from './creator.service';
 import { DFormElement } from '../dform';
 import { DFormText } from '../dform';
@@ -28,10 +28,6 @@ import { ChannelsDialog } from './dialogs';
 
 @Component({
   selector: 'creator',  // <creator></creator>
-  providers: [
-    CreatorActions,
-    ArticleActions,
-  ],
   styleUrls: [
     './creator.component.scss'
   ],
@@ -76,7 +72,6 @@ export class Creator implements OnInit, OnDestroy {
     this.form$ = this.creatorService.form$;
 
     this.route.data.subscribe(data => {
-      console.log('resolve', data);
       // this.channels = data.channels
     });
 

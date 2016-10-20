@@ -7,9 +7,10 @@ import { RouterModule } from '@angular/router';
 
 // Components
 import { Article } from './article';
-import { ArticleActions } from '../../actions';
+import { ArticleActions } from './article';
 import { ArticleContent } from './article';
 import { ArticleMeta } from './article';
+import { CanActivateArticle } from './creator.guard';
 import { ChannelsDialog } from './dialogs';
 import { CoreModule } from '../../core';
 import { Creator } from './creator.component';
@@ -26,7 +27,9 @@ const CREATOR_PROVIDERS = [
   ...CREATOR_RESOLVER_PROVIDERS,
   ArticleActions,
   CreatorActions,
-  CreatorService
+  CreatorService,
+  CanActivateArticle,
+  CreatorActions,
 ];
 
 @NgModule({

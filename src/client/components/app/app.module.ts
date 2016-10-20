@@ -54,10 +54,9 @@ import { Creator } from '../+creator';
 // Store
 import AppStore from './app.store';
 import { DocsEffects } from '../../effects';
-import { ArticleEffects } from '../../effects';
+import { ArticleEffects } from '../+creator/article';
 import { AppEffects } from './app.effects';
 import { DocsActions } from '../../actions';
-import { ArticleActions } from '../../actions';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -71,7 +70,6 @@ const APP_PROVIDERS = [
   AuthGuard,
   Title,
   DocsActions,
-  ArticleActions
 ];
 
 // Effects

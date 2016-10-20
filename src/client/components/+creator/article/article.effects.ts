@@ -16,7 +16,7 @@ import { ApolloQueryResult } from 'apollo-client';
 import gql from 'graphql-tag';
 
 // Components
-import { ArticleActions } from '../actions';
+import { ArticleActions } from './article.actions';
 
 // Queries, for now; could also be a function, or should be?
 const articleQuery = () => {

@@ -9,8 +9,8 @@ import { storeLogger } from 'ngrx-store-logger';
 import { creatorReducer } from '../+creator';
 import { fromCreatorReducer } from '../+creator';
 import { docsReducer } from '../../reducers';
-import { fromArticleReducer } from '../../reducers';
-import { articleReducer } from '../../reducers';
+import { fromArticleReducer } from '../+creator/article';
+import { articleReducer } from '../+creator/article';
 import { fromDocsReducer } from '../../reducers';
 
 // app state
@@ -36,7 +36,6 @@ export function hmrState(reducer: ActionReducer<any>): ActionReducer<any> {
   const ACTION = 'RESET_STATE';
   return function (state, action) {
     if (action.type === ACTION) {
-      console.log(action.payload);
       return action.payload;
     }
     return reducer(state, action);

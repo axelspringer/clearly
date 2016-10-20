@@ -1,25 +1,26 @@
 // Importables
-import { Routes } from '@angular/router';
+import { CanActivateArticle } from './creator.guard';
 import { Creator } from './creator.component';
-import { Observable } from 'rxjs';
-import { CreatorGuard } from './creator.guard';
 import { CreatorResolver } from './creator.resolver';
+import { Observable } from 'rxjs';
+import { Routes, CanActivate } from '@angular/router';
 
 export const ROUTES: Routes = [
   {
-    path: 'article',
+    path: 'create',
     data: {
       title: 'Neuer Artikel',
       order: 1,
       isMenu: true
     },
+    // canActivateChild: [CanActivateArticle],
     children: [
       {
         path: ':id',
-        component: Creator,
+        component: Creator
       },
       {
-        path: '',
+        path: '', // later move to a url
         component: Creator,
         resolve: {
           channels: CreatorResolver

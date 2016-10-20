@@ -11,7 +11,7 @@ import { Store } from '@ngrx/store';
 
 // Components
 import { AppState } from '../app';
-import { ArticleActions } from '../../actions';
+import { ArticleActions } from './article';
 import { CreatorService } from './creator.service';
 import { CreatorActions } from './creator.actions';
 

@@ -10,8 +10,6 @@ import { Observable, Subject, BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'article',  // <article></article>
-  providers: [
-  ],
   styleUrls: [
     './article.component.scss'
   ],
@@ -24,16 +22,15 @@ export class Article implements OnInit, OnDestroy {
 
   public meta$: any;
 
-  constructor() {
-
-  }
-
   ngOnInit() {
+    console.log(`'${this.constructor.name}' is initialized ...`);
+
     this.meta$ = new BehaviorSubject(this.meta);
   }
 
   ngOnDestroy() {
     // should be unsubscribed
+    console.log(`'${this.constructor.name}' is destroyed ...`);
   }
 
 
