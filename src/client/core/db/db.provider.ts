@@ -66,7 +66,7 @@ export class DatabaseProvider {
 
     try {
       // sync for now...
-      PouchDB.debug.enable(this._options.debugFilter);
+      PouchDB['debug'].enable(this._options.debugFilter);
       const db = new PouchDB(this._options.name);
 
       if (!!R.is(Function, db))

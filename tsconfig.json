@@ -32,11 +32,16 @@
       "protractor",
       "ramda",
       "selenium-webdriver",
+      "isomorphic-fetch",
       "source-map",
       "uglify-js",
       "webpack"
     ]
   },
+  "files": [
+    "node_modules/typed-graphql/graphql.d.ts",
+    "src/custom-typings.d.ts"
+  ],
   "exclude": [
     "node_modules",
     "dist"
