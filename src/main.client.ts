@@ -9,10 +9,6 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 // for later, with Web Worker
 // import { platformWorkerAppDynamic } from '@angular/platform-webworker-dynamic';
 
-// saved for later
-// import { platformBrowser } from '@angular/platform-browser';
-// import { AppModulNgFactory } from './main.client.factory';
-
 /*
  * App Module
  * our top level module that holds all of our components
@@ -32,4 +28,12 @@ export function main(): Promise<any> {
 
 }
 
-bootloader(main);
+export function bootstrap(main) {
+  if (document.readyState === 'complete') {
+    main();
+  } else {
+    document.addEventListener('DOMContentLoaded', main);
+  }
+}
+
+bootstrap(main);
