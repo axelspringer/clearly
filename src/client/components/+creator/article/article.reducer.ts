@@ -9,12 +9,14 @@ export interface ArticleState {
   loaded: boolean;
   loading: number;
   channels: Array<any>;
+  selected: Array<any>;
 }
 
 const init: ArticleState = {
   loaded: false,
   loading: 0,
-  channels: []
+  channels: [],
+  selected: [] // selected channels for the article -> control via effects
 };
 
 export default function (state = init, action: Action): ArticleState  {
