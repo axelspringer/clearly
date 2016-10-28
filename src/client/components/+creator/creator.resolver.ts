@@ -1,28 +1,27 @@
 // Importables
-import { ActivatedRouteSnapshot } from '@angular/router';
+// import { ActivatedRouteSnapshot } from '@angular/router';
 import { Inject } from '@angular/core';
 import { Injectable } from '@angular/core';
 import { forwardRef } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Resolve } from '@angular/router';
-import { Router } from '@angular/router';
-import { RouterStateSnapshot } from '@angular/router';
+// import { Router } from '@angular/router';
+// import { RouterStateSnapshot } from '@angular/router';
 import { Store } from '@ngrx/store';
 
 // Components
-import { AppState } from '../app';
+import { IAppState } from '../app';
 import { ArticleActions } from './article';
 import { CreatorService } from './creator.service';
-import { CreatorActions } from './creator.actions';
 import { getChannels } from '../app';
 
-export interface CreatorResolverOptions {
+export interface ICreatorResolverOptions {
   title: string;
 };
 
 // put here to avoid side-effects
-export const CREATOR_RESOLVER_OPTIONS: CreatorResolverOptions = {
-  title: 'Ohne Titel' // should be a translation
+export const CREATOR_RESOLVER_OPTIONS: ICreatorResolverOptions = {
+  title: 'Ohne Titel', // should be a translation
 };
 
 @Injectable()
@@ -32,19 +31,19 @@ export class CreatorResolver implements Resolve<any> {
   private creatorService: any;
 
   constructor(
-    private router: Router,
-    private creatorActions: CreatorActions,
-    private store: Store<AppState>,
+    private store: Store<IAppState>,
     private articleActions: ArticleActions,
     @Inject(forwardRef(() => CreatorService)) creatorService: CreatorService,
-    @Inject(forwardRef(() => CREATOR_RESOLVER_OPTIONS)) options: CreatorResolverOptions,
+    @Inject(forwardRef(() => CREATOR_RESOLVER_OPTIONS)) options: ICreatorResolverOptions,
   ) {
     this.options = options;
     this.creatorService = creatorService;
   }
 
-  resolve(route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
+  public resolve(
+    // route: ActivatedRouteSnapshot,
+    // state: RouterStateSnapshot
+  ): Observable<boolean> | Promise<boolean> | boolean {
 
     this.store.dispatch(this.articleActions.load());
 
@@ -62,7 +61,7 @@ export class CreatorResolver implements Resolve<any> {
         .subscribe(channels => {
           resolve(channels);
         },
-        error => console.log(error)
+        error => console.log(error),
         );
     });
 
@@ -73,7 +72,7 @@ export class CreatorResolver implements Resolve<any> {
 export const CREATOR_RESOLVER_PROVIDERS = [
   {
     provide: CREATOR_RESOLVER_OPTIONS,
-    useValue: CREATOR_RESOLVER_OPTIONS
+    useValue: CREATOR_RESOLVER_OPTIONS,
   },
-  CreatorResolver
+  CreatorResolver,
 ];

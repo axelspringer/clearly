@@ -1,8 +1,10 @@
 // Languages
+import de = require('../i18n/de');
+
 export class AppLocale {
 
-  static languages = {
-    'de': require('../i18n/de.json')
+  public static languages = {
+    'de': de,
   };
 
 }

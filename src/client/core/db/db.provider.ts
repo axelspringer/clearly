@@ -1,22 +1,15 @@
 // Importables
-import { AsyncSubject } from 'rxjs';
 import { Inject, EventEmitter } from '@angular/core';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Observer } from 'rxjs';
-import { BehaviorSubject } from 'rxjs';
-import { ReplaySubject } from 'rxjs';
 import * as PouchDB from 'pouchdb';
 import * as R from 'ramda';
 
 // Components
+import { EventEmitProvider } from '../events';
 import { LogEventError } from '../log';
-import { LogEventInfo } from '../log';
 import { LogEventLog } from '../log';
 import { LogService } from '../log';
-
-import { EventEmitProvider } from '../events';
-import { Event } from '../events';
 
 export interface DatabaseProviderOptions {
   name: string;
@@ -51,7 +44,7 @@ export class DatabaseProvider {
   private _options: any;
 
   private _emitter$: EventEmitter<any>;
-  private _requests: number = 0;
+  // private _requests: number = 0;
 
   constructor(
     private _logging: LogService,

@@ -6,23 +6,23 @@ import { FormGroup } from '@angular/forms';
 
 function validateFormGroup() {
   return (c: FormGroup) => {
-    return Object.keys(c.controls).reduce((prev, curr, i) => {
+    return Object.keys(c.controls).reduce((prev, curr) => {
       return !!c.controls[curr].value ? prev : ++prev;
     }, 0) > 2 ? { // this should be a adopted to a parameter
-      valid: false
+      valid: false,
     } : null;
   };
 }
 
 @Directive({
-  selector: '[validateAtLeast][formGroup]',
+  selector: '[sgValidateAtLeast][formGroup]',
   providers: [{
     provide: NG_VALIDATORS,
-    useExisting: forwardRef(() => AtLeastValidator),
-    multi: true
-  }]
+    useExisting: forwardRef(() => AtLeastValidatorDirective),
+    multi: true,
+  }],
 })
-export class AtLeastValidator {
+export class AtLeastValidatorDirective {
 
   public validator: Function;
 
@@ -30,7 +30,7 @@ export class AtLeastValidator {
     this.validator = validateFormGroup();
   }
 
-  validate(c: FormGroup) {
+  public validate(c: FormGroup) {
     return this.validator(c);
   }
 

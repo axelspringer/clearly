@@ -1,33 +1,17 @@
 // Importables
-import { OnInit } from '@angular/core';
-import { OnDestroy } from '@angular/core';
 import { Component } from '@angular/core';
-import { DFormText } from '../../../dform';
-import { Observable } from 'rxjs';
+import { Input } from '@angular/core';
 
 // Components
+import { DFormElement } from '../../../../core';
 
 @Component({
-  selector: 'article-content',  // <article-content></article-content>
-  providers: [
-  ],
-  styleUrls: [
-    './content.component.scss'
-  ],
+  selector: 'sg-article-content',  // <sg-article-content></sg-article-content>
+  styleUrls: ['./content.component.scss'],
   templateUrl: './content.component.html',
 })
-export class ArticleContent implements OnInit, OnDestroy {
+export class ArticleContentComponent {
 
-  public data: any;
-
-  constructor() {
-  }
-
-  ngOnInit() {
-  }
-
-  ngOnDestroy() {
-    // should be unsubscribed
-  }
+  @Input() public content: Array<DFormElement<any>>;
 
 };

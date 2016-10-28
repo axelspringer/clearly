@@ -2,54 +2,42 @@
 import { Component } from '@angular/core';
 import { forwardRef } from '@angular/core';
 import { Inject } from '@angular/core';
-import { Injectable } from '@angular/core';
 import { OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 
 // Components
-import { App } from '../app';
+import { AppComponent } from '../app';
 import { AppConfig } from '../../config';
 import { Event } from '../../core';
 import { EventEmitProvider } from '../../core';
-import { NotifyProvider } from './../../core';
 
 // Interface
 export class ToolbarTitleUpdate extends Event {
-
   constructor(payload: any = {}) {
-
     super(payload);
-
   }
-
 }
 
 @Component({
-  selector: 'toolbar',  // <toolbar></toolbar>
-  providers: [],
+  selector: 'sg-toolbar',  // <sg-toolbar></sg-toolbar>
   styleUrls: ['./toolbar.style.scss'],
-  templateUrl: './toolbar.component.html'
+  templateUrl: './toolbar.component.html',
 })
-export class Toolbar implements OnInit {
+export class ToolbarComponent implements OnInit {
 
-  private version$: string = AppConfig.VERSION;
-  private title$: string = AppConfig.HTML5_TITLE; // TODO@sdoell: should be moved to service
-
-  private _appRef: App;
+  public title: string = AppConfig.HTML5_TITLE; // TODO@sdoell: should be moved to service
 
   constructor(
-    @Inject(forwardRef(() => App)) app: App,
-    notify: NotifyProvider
-  ) {
-    this._appRef = app;
+    @Inject(forwardRef(() => AppComponent)) private __app: AppComponent,
+  ) { }
+
+  public toggleMenu() {
+    this.__app['menu'].toggle();
   }
 
-  toggleMenu() {
-    this._appRef.menu.toggle();
-  }
-
-  ngOnInit() {
-    EventEmitProvider.connect(new ToolbarTitleUpdate()).subscribe(value => this.title$ = value);
+  public ngOnInit() {
+    EventEmitProvider
+      .connect(new ToolbarTitleUpdate())
+      .subscribe(value => this.title = value);
   }
 
 };

@@ -2,7 +2,6 @@ import {
   Component,
   OnInit
 } from '@angular/core';
-import { Title } from '@angular/platform-browser';
 import { EventEmitProvider } from '../../../core';
 import { ToolbarTitleUpdate } from '../../toolbar';
 
@@ -15,9 +14,10 @@ export class Publisher implements OnInit {
 
   constructor() {}
 
-  ngOnInit() {
+  public ngOnInit() {
 
-    EventEmitProvider.connect(ToolbarTitleUpdate.prototype.constructor.name)
+    EventEmitProvider
+      .connect(ToolbarTitleUpdate.prototype.constructor.name)
       .emit('Artikel publizieren ...');
 
   }

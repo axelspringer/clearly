@@ -5,29 +5,25 @@ import { Component } from '@angular/core';
 import { Input } from '@angular/core';
 
 // Components
-import { DFormElement } from './../../dform';
-import { BehaviorSubject } from 'rxjs';
+import { DFormElement } from '../../../core';
 
 @Component({
-  selector: 'article',  // <article></article>
-  styleUrls: [
-    './article.component.scss'
-  ],
+  selector: 'sg-article',  // <sg-article></sg-article>
+  styleUrls: ['./article.component.scss'],
   templateUrl: './article.component.html',
 })
-export class Article implements OnInit, OnDestroy {
+export class ArticleComponent implements OnInit, OnDestroy {
 
-  @Input() content: Array<DFormElement<any>>;
-  @Input() meta: Array<DFormElement<any>>;
+  @Input() public content: Array<DFormElement<any>>;
+  @Input() public metaData: Array<DFormElement<any>>;
 
-  ngOnInit() {
+  public ngOnInit() {
     console.log(`'${this.constructor.name}' is initialized ...`);
   }
 
-  ngOnDestroy() {
+  public ngOnDestroy() {
     // should be unsubscribed
     console.log(`'${this.constructor.name}' is destroyed ...`);
   }
-
 
 };

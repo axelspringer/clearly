@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'no-content',
-  templateUrl: './404.component.html'
+  selector: 'sg-no-content',
+  templateUrl: './404.component.html',
 })
-export class NoContent {
+export class NoContentComponent {
 
 }

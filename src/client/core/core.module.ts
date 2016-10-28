@@ -1,11 +1,12 @@
 // Importables
 import { HTTP_PROVIDERS } from './http';
-import { ModuleWithProviders } from '@angular/core';
 import { NgModule } from '@angular/core';
 import { TranslateLoader } from 'ng2-translate/ng2-translate';
-import { TranslateModule } from 'ng2-translate/ng2-translate';
 import { TranslatePipe } from 'ng2-translate/ng2-translate';
 import { TranslateService } from 'ng2-translate/ng2-translate';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 
 // Components
 import { DATABASE_PROVIDERS } from './db';
@@ -16,16 +17,39 @@ import { LogService } from './log';
 import { NOTIFY_PROVIDERS } from './notify/notify.provider';
 import { NotifyProvider } from './notify';
 import { TranslateCustomLoader } from './i18n';
-import { AtLeastValidator } from './forms';
+import { AtLeastValidatorDirective } from './forms';
 import { IteratableObjectPipe } from './pipes';
+import { LoadingComponent } from './loading';
+import { DForm } from './dform';
+import { DFormComponent } from './dform';
+import { DFormDynamicElementComponent } from './dform';
+import { DFormTextComponent } from './dform';
+import { DFormTextAreaComponent } from './dform';
+import { DFormMetaTextComponent } from './dform';
+import { DFormQuickBarComponent } from './dform';
+import { DFormElementEventsDirective } from './dform';
+import { MdModule } from '../components/app/app.material';
 
 @NgModule({
   imports: [
+    CommonModule,
+    FormsModule,
+    MdModule,
+    ReactiveFormsModule,
   ],
   exports: [
     TranslatePipe, // should be used
-    AtLeastValidator,
-    IteratableObjectPipe
+    AtLeastValidatorDirective,
+    IteratableObjectPipe,
+    LoadingComponent,
+    // Dynamic Forms
+    DFormComponent,
+    DFormDynamicElementComponent,
+    DFormTextComponent,
+    DFormTextAreaComponent,
+    DFormMetaTextComponent,
+    DFormQuickBarComponent,
+    DFormElementEventsDirective,
   ],
   declarations: [
     // Pipes
@@ -33,7 +57,19 @@ import { IteratableObjectPipe } from './pipes';
     IteratableObjectPipe,
 
     // Validators
-    AtLeastValidator
+    AtLeastValidatorDirective,
+
+    // Components
+    LoadingComponent,
+
+    // Dynamic Forms
+    DFormComponent,
+    DFormDynamicElementComponent,
+    DFormTextComponent,
+    DFormTextAreaComponent,
+    DFormMetaTextComponent,
+    DFormQuickBarComponent,
+    DFormElementEventsDirective,
   ],
   providers: [
     // Events
@@ -54,21 +90,24 @@ import { IteratableObjectPipe } from './pipes';
     // Translation
     TranslateService,
 
+    // Dynamic Forms
+    DForm,
+
     // Angular
-    ...HTTP_PROVIDERS
-  ]
+    ...HTTP_PROVIDERS,
+  ],
 })
 export class CoreModule {
 
-  static forRoot(languages: Object) {
+  public static forRoot(languages: Object) {
     return {
       ngModule: CoreModule,
       providers: [{ // custom translation provider
         provide: TranslateLoader,
         useFactory: () => {
           return new TranslateCustomLoader(languages);
-        }
-      }]
+        },
+      }],
     };
   }
 

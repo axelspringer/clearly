@@ -1,0 +1,5 @@
+<sg-dform-quickbar [element]="element">
+  <div [formGroup]="form">
+    <textarea [formControlName]="element.key" [id]="element.key" placeholder="{{ 'DFORM.TEXTAREA.PLACEHOLDER' | translate}}" [dFormElementEvents]="element"></textarea>
+  </div>
+</sg-dform-quickbar>

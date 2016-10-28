@@ -1,24 +1,22 @@
 // Importables
 import { ModuleWithProviders } from '@angular/core';
-import {
-  Routes,
-  RouterModule
-} from '@angular/router';
+import { Routes } from '@angular/router';
+import { RouterModule } from '@angular/router';
 
 // Component
-import { Dashboard } from './dashboard.component';
+import { DashboardComponent } from './dashboard.component';
 
 const routes: Routes = [
   {
     path: 'dashboard',
-    component: Dashboard,
+    component: DashboardComponent,
     data: {
       title: 'Übersicht',
       order: 0,
-      isMenu: true
+      isMenu: true,
     },
-    children: [].concat([])
-  }
+    children: [].concat([]),
+  },
 ];
 
 export const Routing: ModuleWithProviders

@@ -1,37 +1,30 @@
-import {
-  Directive, // to have the directive
-  Input, // to pass along an input
-  Output,
-  EventEmitter,
-  ElementRef,
-  ChangeDetectorRef,
-  Injectable
-} from '@angular/core';
-
-import { DragImage } from './dnd.config';
-import { DragDropService } from './dnd.service';
-import { createImage } from './dnd.utils';
+// import { createImage } from './dnd.utils';
+import { ChangeDetectorRef } from '@angular/core';
 import { DragDropDefaults } from './dnd.module';
+import { DragDropService } from './dnd.service';
+import { DragImage } from './dnd.config';
+import { ElementRef } from '@angular/core';
+import { Injectable } from '@angular/core';
 
 // Directive
 @Injectable()
 export abstract class DndAbstractDirective {
 
-  // private properties
-  _el: HTMLElement; // native ElementRef
-  _dragHelper: HTMLElement; // to clone an node
-  _defaultCursor: string;
-
   // drop
-  dropEnabled: boolean = false;
-  effectAllowed: string;
-  effectCursor: string;
+  public dropEnabled: boolean = false;
+  public effectAllowed: string;
+  public effectCursor: string;
 
-  allowDrop: (dropData: any) => boolean;
-  dropZones: string[] = [];
+  public allowDrop: (dropData: any) => boolean;
+  public dropZones: string[] = [];
 
-  dragImage: string | DragImage | Function;
-  cloneItem: boolean = false;
+  public dragImage: string | DragImage | Function;
+  public cloneItem: boolean = false;
+
+   // private properties
+  public _el: HTMLElement; // native ElementRef
+  public _dragHelper: HTMLElement; // to clone an node
+  public _defaultCursor: string;
 
   // let this control only from the class
   private _isDragEnabled: boolean = false;
@@ -48,7 +41,7 @@ export abstract class DndAbstractDirective {
   constructor(
     elRef: ElementRef,
     public dragDropService: DragDropService,
-    private changeRef: ChangeDetectorRef
+    private changeRef: ChangeDetectorRef,
   ) {
 
     // get the element
@@ -126,17 +119,29 @@ export abstract class DndAbstractDirective {
 
   }
 
-  detectChanges() {
+  public detectChanges() {
     this.changeRef.markForCheck();
   }
 
-  _onDragEnterCallback(event: Event) {}
-  _onDragOverCallback(event: Event) {}
-  _onDragLeaveCallback(event: Event) {}
-  _onDropCallback(event: Event) {}
+  _onDragEnterCallback(event: Event) {
+    console.log(event);
+  }
+  _onDragOverCallback(event: Event) {
+    console.log(event);
+  }
+  _onDragLeaveCallback(event: Event) {
+    console.log(event);
+  }
+  _onDropCallback(event: Event) {
+    console.log(event);
+  }
 
-  _onDragStartCallback(event: Event) {}
-  _onDragEndCallback(event: Event) {}
+  _onDragStartCallback(event: Event) {
+    console.log(event);
+  }
+  _onDragEndCallback(event: Event) {
+    console.log(event);
+  }
 
   private _onDragEnter(event: Event): void {
     if (this._isDropAllowed) {

@@ -1,19 +1,10 @@
 <ngrx-store-log-monitor toggleCommand="ctrl-h" positionCommand="ctrl-m"></ngrx-store-log-monitor>
-
-<md-sidenav-layout class="app-layout">
-
-  <md-sidenav #menu mode="over" class="app-layout-sidenav" align="start">
-
-    <menu></menu>
-
+<md-sidenav-layout class="sg-app-sidenav-layout">
+  <md-sidenav #menu mode="over" class="sg-app-sidenav" align="start">
+    <sg-menu></sg-menu>
   </md-sidenav>
-
-  <toolbar></toolbar>
-
-  <main class="app-content">
-
+  <sg-toolbar></sg-toolbar>
+  <main class="sg-content">
     <router-outlet></router-outlet>
-
   </main>
-
 </md-sidenav-layout>

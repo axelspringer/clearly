@@ -1,16 +1,18 @@
 <md-tab-group>
 	<template ngFor let-channel [ngForOf]="(form$ | async)" let-i="index">
     <md-tab *ngIf="channel.isEnabled">
-			{{ channel.displayName | json }}
+			{{ channel.displayName }}
 			<template md-tab-label>{{ channel.displayName }}</template>
 			<template md-tab-content>
 				<md-sidenav-layout class="creator-full-height">
 
 					<md-sidenav #start mode="side" opened="true" [ngClass]="'custom-quick-access'">
-						<quick-access></quick-access>
+						<sg-quick-access></sg-quick-access>
 					</md-sidenav>
 
-          <article [content]="channel.content" [meta]="channel.metaData"></article>
+          <sg-article [metaData]="channel.metaData"></sg-article>
+
+          <sg-quick-write [content]="channel.content"></sg-quick-write>
 
 				</md-sidenav-layout>
 			</template>

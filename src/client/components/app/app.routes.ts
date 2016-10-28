@@ -1,25 +1,24 @@
 // Importables
 import { Routes } from '@angular/router';
-import { RouterModule } from '@angular/router';
-import { Dashboard } from '../dashboard';
-import { NoContent } from '../404';
-import { Settings } from '../settings';
+import { DashboardComponent } from '../dashboard';
+import { NoContentComponent } from '../404';
+import { SettingsComponent } from '../settings';
 import { AuthGuard } from '../../guards';
 
 export const ROUTES: Routes = [
   {
     canActivate: [
-      AuthGuard
+      AuthGuard,
     ],
     path: '',
-    component: Dashboard, // TODO@sdoell: move to module
+    component: DashboardComponent, // TODO@sdoell: move to module
   },
   {
     path: 'settings',
-    component: Settings,
+    component: SettingsComponent,
   },
   {
     path: '**',
-    component: NoContent,
-  }
+    component: NoContentComponent,
+  },
 ];

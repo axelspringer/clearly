@@ -3,31 +3,33 @@ import { ILang } from '../core';
 // Application Configuration
 export class AppConfig {
 
-  static VERSION: string = '0.0.1-alpha.0'; // TODO@sebastian should be dynamic
+  public static VERSION: string = '0.0.1-alpha.0'; // TODO@sebastian should be dynamic
 
-  static DEFAULT_LANGUAGE: string = 'de';
+  public static DEFAULT_LANGUAGE: string = 'de';
 
-  static HTML5_BASE: string = '/';
+  public static HTML5_BASE: string = '/';
 
-  static HTML5_TITLE: string = 'Blackbeard';
+  public static HTML5_TITLE: string = 'Blackbeard';
 
-  static LANGUAGES: Array<ILang> = [
+  public static LANGUAGES: Array<ILang> = [
     {
       code: 'de',
       default: true,
-      name: 'Deutsch'
-    }
+      name: 'Deutsch',
+    },
   ];
 
-  static HTTP = {
+  public static HTTP = {
     TIMEOUT: 2000,
     DELAY: 500,
     REQUEST: {
-    }
+    },
   };
 
-  static DEBUG: boolean = 'production' !== ENV;
+  public static DEBUG: boolean = 'production' !== ENV;
 
-  static API_BASE: string = 'https://localhost:8080';
+  public static API_BASE: string = 'production' === ENV
+    ? 'http://editor.test.tortuga.cloud:5012/'
+    : 'https://localhost:8080';
 
 };

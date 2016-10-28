@@ -1,23 +1,20 @@
-import {
-  Directive,
-  ElementRef,
-  HostListener,
-  Input,
-  Renderer
-} from '@angular/core';
+import { Directive } from '@angular/core';
+import { ElementRef } from '@angular/core';
+import { Input } from '@angular/core';
+import { Renderer } from '@angular/core';
 
 @Directive({
-  selector: '[myHighlight]'
+  selector: '[myHighlight]',
 })
-export class Highlight {
+export class HighlightDirective {
 
-  @Input('myHighlight') highlightColor: string;
+  @Input() public highlightColor: string;
 
   private _defaultColor = 'red';
 
   constructor(
     private el: ElementRef,
-    private renderer: Renderer
+    private renderer: Renderer,
   ) {
   }
 

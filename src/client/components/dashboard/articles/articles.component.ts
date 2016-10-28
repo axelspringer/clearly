@@ -1,28 +1,28 @@
 // Impotables
 import { Component } from '@angular/core';
 import { Input } from '@angular/core';
-import { OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
 
 // Components
-import { DatabaseProvider } from '../../../core';
+import { IAppState } from '../../app';
+import { isDocsLoading } from '../../app';
 
 @Component({
-  selector: 'articles-list',  // <articles-list></articles-list>
+  selector: 'sg-articles-list',  // <sg-articles-list></sg-articles-list>
   styleUrls: ['./articles.component.scss'],
-  templateUrl: './articles.component.html'
+  templateUrl: './articles.component.html',
 })
-export class ArticlesList implements OnInit {
+export class ArticlesListComponent {
 
-  @Input() docs: Observable<any>;
+  @Input() public docs: Observable<any>;
+
+  private isDocsLoading$: Observable<any>;
 
   constructor(
+    private store: Store<IAppState>,
   ) {
-
-  }
-
-  ngOnInit() {
-
+    this.isDocsLoading$ = this.store.let(isDocsLoading());
   }
 
 };

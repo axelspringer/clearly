@@ -9,7 +9,7 @@ npm install @types/lodash
  * If you can't find the type definition in the registry we can make an ambient/global definition in
  * this file for now. For example
 
-declare module 'my-module' {
+declare module 'sg-module' {
  export function doesSomething(value: string): string;
 }
 
@@ -38,6 +38,7 @@ declare var $: any;
  *
 
 import * as _ from 'lodash'
+
  * You can include your type definitions in this file until you create one for the @types
  *
  */
@@ -48,44 +49,39 @@ declare module '*';
 // Extra variables that live on Global that will be replaced by webpack DefinePlugin
 declare var ENV: string;
 declare var HMR: boolean;
-declare var System: SystemJS;
+declare var System: ISystemJS;
 
-interface SystemJS {
+interface ISystemJS {
   import: (path?: string) => Promise<any>;
 }
 
-type Static = {
-  debug?: boolean
+interface IGlobalEnvironment {
+  ENV: string;
+  HMR: boolean;
+  SystemJS: ISystemJS;
+  System: ISystemJS;
 }
 
-interface GlobalEnvironment {
-  ENV;
-  HMR;
-  SystemJS: SystemJS;
-  System: SystemJS;
-}
-
-interface Es6PromiseLoader {
+interface IEs6PromiseLoader {
   (id: string): (exportName?: string) => Promise<any>;
 }
 
-type FactoryEs6PromiseLoader = () => Es6PromiseLoader;
+type FactoryEs6PromiseLoader = () => IEs6PromiseLoader;
 type FactoryPromise = () => Promise<any>;
 
 type AsyncRoutes = {
-  [component: string]: Es6PromiseLoader |
+  [component: string]: IEs6PromiseLoader |
   Function |
   FactoryEs6PromiseLoader |
-  FactoryPromise
+  FactoryPromise,
 };
 
-
-type IdleCallbacks = Es6PromiseLoader |
+type IdleCallbacks = IEs6PromiseLoader |
   Function |
   FactoryEs6PromiseLoader |
   FactoryPromise;
 
-interface WebpackModule {
+interface IWebpackModule {
   hot: {
     data?: any,
     idle: any,
@@ -101,26 +97,24 @@ interface WebpackModule {
   };
 }
 
-
-interface WebpackRequire {
+interface IWebpackRequire {
   (id: string): any;
   (paths: string[], callback: (...modules: any[]) => void): void;
-  ensure(ids: string[], callback: (req: WebpackRequire) => void, chunkName?: string): void;
-  context(directory: string, useSubDirectories?: boolean, regExp?: RegExp): WebpackContext;
+  ensure(ids: string[], callback: (req: IWebpackRequire) => void, chunkName?: string): void;
+  context(directory: string, useSubDirectories?: boolean, regExp?: RegExp): IWebpackContext;
 }
 
-interface WebpackContext extends WebpackRequire {
+interface IWebpackContext extends IWebpackRequire {
   keys(): string[];
 }
 
-interface ErrorStackTraceLimit {
+interface IErrorStackTraceLimit {
   stackTraceLimit: number;
 }
 
-
 // Extend typings
-interface NodeRequire extends WebpackRequire { }
-interface ErrorConstructor extends ErrorStackTraceLimit { }
-interface NodeRequireFunction extends Es6PromiseLoader { }
-interface NodeModule extends WebpackModule { }
-interface Global extends GlobalEnvironment { }
+interface INodeRequire extends IWebpackRequire { }
+interface IErrorConstructor extends IErrorStackTraceLimit { }
+interface INodeRequireFunction extends IEs6PromiseLoader { }
+interface INodeModule extends IWebpackModule { }
+interface IGlobal extends IGlobalEnvironment { }

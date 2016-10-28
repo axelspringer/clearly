@@ -12,12 +12,9 @@ let PROVIDERS = [
 // https://github.com/angular/angular/blob/86405345b781a9dc2438c0fbe3e9409245647019/TOOLS_JS.md
 let _decorateModuleRef = function identity(value) { return value; };
 
-// require critical Css
-require('!!style!css!postcss!sass!./boot.scss');
-
 if ('production' === ENV) {
   // offline via ServiceWorker
-  require('offline-plugin/runtime').install();
+  // require('offline-plugin/runtime').install();
 
   // Production
   disableDebugTools();
@@ -34,10 +31,10 @@ if ('production' === ENV) {
     const appRef = modRef.injector.get(ApplicationRef);
     const cmpRef = appRef.components[0];
 
-    let _ng = (<any>window).ng;
+    let _ng = (<any> window).ng;
     enableDebugTools(cmpRef);
-    (<any>window).ng.probe = _ng.probe;
-    (<any>window).ng.coreTokens = _ng.coreTokens;
+    (<any> window).ng.probe = _ng.probe;
+    (<any> window).ng.coreTokens = _ng.coreTokens;
     return modRef;
   };
 
@@ -52,5 +49,5 @@ if ('production' === ENV) {
 export const decorateModuleRef = _decorateModuleRef;
 
 export const ENV_PROVIDERS = [
-  ...PROVIDERS
+  ...PROVIDERS,
 ];

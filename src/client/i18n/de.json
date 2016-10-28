@@ -70,6 +70,14 @@
           "ATLEAST": "Du musst mindestens einen Kanal auswählen"
         }
       }
+    },
+    "ARTICLE": {
+      "META" : {
+        "TITLE": "Meta"
+      },
+      "CONTENT": {
+        "TITLE": "Inhalt"
+      }
     }
   }
 

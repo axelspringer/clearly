@@ -2,22 +2,22 @@
 import { ApplicationRef } from '@angular/core';
 import { AuthGuard } from '../../guards';
 import { BrowserModule, Title } from '@angular/platform-browser';
-import { createInputTransfer } from '@angularclass/hmr';
-import { createNewHosts } from '@angularclass/hmr';
+// import { createInputTransfer } from '@angularclass/hmr';
+// import { createNewHosts } from '@angularclass/hmr';
 import { EffectsModule } from '@ngrx/effects';
-import { ErrorHandler } from '@angular/core';
+// import { ErrorHandler } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { MdModule } from './app.material';
 import { NgModule } from '@angular/core';
-import { removeNgStyles } from '@angularclass/hmr';
+// import { removeNgStyles } from '@angularclass/hmr';
 import { RouterModule } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreLogMonitorModule } from '@ngrx/store-log-monitor';
 import { StoreModule } from '@ngrx/store';
 import { useLogMonitor } from '@ngrx/store-log-monitor';
-import { WorkerAppModule } from '@angular/platform-webworker';
+// import { WorkerAppModule } from '@angular/platform-webworker';
 
 // Apollo
 import { ApolloModule } from 'angular2-apollo';
@@ -29,11 +29,10 @@ import { client } from './app.apollo.ts';
 // Modules
 import { CoreModule } from '../../core';
 import { DashboardModule } from '../dashboard';
-import { DFormModule } from '../dform';
 import { CreatorModule } from '../+creator';
 
 // Environment
-import { App } from './app.component';
+import { AppComponent } from './app.component';
 import { APP_RESOLVER_PROVIDERS } from './app.resolver';
 import { AppConfig } from '../../config';
 import { AppLocale } from '../../config';
@@ -43,19 +42,17 @@ import { ENV_PROVIDERS } from '../../environment';
 import { ROUTES } from './app.routes';
 
 // Components
-import { Avatar } from '../avatar';
-import { Menu } from '../menu';
-import { NoContent } from '../404';
-import { Settings } from '../settings';
-import { Toolbar } from '../toolbar';
-import { Loading } from '../loading';
-import { Creator } from '../+creator';
+import { AvatarComponent } from '../avatar';
+import { MenuComponent } from '../menu';
+import { NoContentComponent } from '../404';
+import { SettingsComponent } from '../settings';
+import { ToolbarComponent } from '../toolbar';
 
 // Store
 import AppStore from './app.store';
 import { DocsEffects } from '../../effects';
 import { ArticleEffects } from '../+creator/article';
-import { AppEffects } from './app.effects';
+// import { AppEffects } from './app.effects';
 import { DocsActions } from '../../actions';
 
 // Application wide providers
@@ -64,39 +61,32 @@ const APP_PROVIDERS = [
   {
     provide: DATABASE_PROVIDER_OPTIONS,
     useValue: {
-      name: DBConfig.NAME
-    }
+      name: DBConfig.NAME,
+    },
   },
   AuthGuard,
   Title,
   DocsActions,
 ];
 
-// Effects
-const EFFECTS = [
-  DocsEffects,
-  ArticleEffects
-];
-
-class NullLoggingErrorHandler implements ErrorHandler {
-  public handleError(error: any): void { }
-}
+// class NullLoggingErrorHandler implements ErrorHandler {
+//   public handleError(error: any): void { }
+// }
 
 /**
  * `AppModule` is the main entry point into Angular2's bootstraping process
  */
 @NgModule({
   bootstrap: [
-    App
+    AppComponent,
   ],
   declarations: [
-    App,
-    Avatar,
-    Loading,
-    Menu,
-    NoContent,
-    Settings,
-    Toolbar
+    AppComponent,
+    AvatarComponent,
+    MenuComponent,
+    NoContentComponent,
+    SettingsComponent,
+    ToolbarComponent,
   ],
   imports: [
     // Angular
@@ -107,7 +97,7 @@ class NullLoggingErrorHandler implements ErrorHandler {
     // Routing
     RouterModule.forRoot(ROUTES, {
       useHash: true,
-      enableTracing: AppConfig.DEBUG
+      enableTracing: AppConfig.DEBUG,
     }),
 
     // Apollo
@@ -122,8 +112,8 @@ class NullLoggingErrorHandler implements ErrorHandler {
       maxAge: 5,
       monitor: useLogMonitor({
         visible: !AppConfig.DEBUG, // init
-        position: 'right'
-      })
+        position: 'right',
+      }),
     }),
     StoreLogMonitorModule,
 
@@ -132,14 +122,13 @@ class NullLoggingErrorHandler implements ErrorHandler {
 
     // Custom Modules
     DashboardModule,
-    DFormModule,
     CreatorModule,
     CoreModule.forRoot(AppLocale.languages),
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     ...ENV_PROVIDERS,
-    ...APP_PROVIDERS
-  ]
+    ...APP_PROVIDERS,
+  ],
 })
 export class AppModule {
 
@@ -148,7 +137,7 @@ export class AppModule {
 
   constructor(
     appRef: ApplicationRef,
-    store$: Store<any>
+    store$: Store<any>,
   ) {
 
     this._appRef = appRef;
@@ -156,41 +145,41 @@ export class AppModule {
 
   }
 
-  hmrOnInit(store: any) {
+  // hmrOnInit(store: any) {
 
-    if (!store || !store.rootState) return;
+  //   if (!store || !store.rootState) return;
 
-    // restore state by dispatch a SET_ROOT_STATE action
-    if (store.rootState) {
-      this._store$.dispatch({
-        type: 'RESET_STATE',
-        payload: store.rootState
-      });
-    }
+  //   // restore state by dispatch a SET_ROOT_STATE action
+  //   if (store.rootState) {
+  //     this._store$.dispatch({
+  //       type: 'RESET_STATE',
+  //       payload: store.rootState,
+  //     });
+  //   }
 
-    if ('restoreInputValues' in store) {
-      store.restoreInputValues();
-    }
-    this._appRef.tick();
-    Object.keys(store).forEach(prop => delete store[prop]);
+  //   if ('restoreInputValues' in store) {
+  //     store.restoreInputValues();
+  //   }
+  //   this._appRef.tick();
+  //   Object.keys(store).forEach(prop => delete store[prop]);
 
-  }
+  // }
 
-  hmrOnDestroy(store: any) {
+  // hmrOnDestroy(store: any) {
 
-    const cmpLocation = this._appRef.components.map(cmp => cmp.location.nativeElement);
-    this._store$.take(1).subscribe(s => store.rootState = s);
-    store.disposeOldHosts = createNewHosts(cmpLocation);
-    store.restoreInputValues = createInputTransfer();
-    removeNgStyles();
+  //   const cmpLocation = this._appRef.components.map(cmp => cmp.location.nativeElement);
+  //   this._store$.take(1).subscribe(s => store.rootState = s);
+  //   store.disposeOldHosts = createNewHosts(cmpLocation);
+  //   store.restoreInputValues = createInputTransfer();
+  //   removeNgStyles();
 
-  }
+  // }
 
-  hmrAfterDestroy(store: any) {
+  // hmrAfterDestroy(store: any) {
 
-    store.disposeOldHosts();
-    delete store.disposeOldHosts;
+  //   store.disposeOldHosts();
+  //   delete store.disposeOldHosts;
 
-  }
+  // }
 
 }

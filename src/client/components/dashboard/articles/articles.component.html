@@ -1,11 +1,11 @@
 <div>
-
-  <h3>{{ 'DASHBOARD.ARTICLES.DRAFTS.TITLE' | translate }}</h3>
-  <md-list>
-    <md-list-item *ngFor="let doc of (docs | async)">
-      <md-icon md-list-avatar>description</md-icon>
-      <h4>{{ doc?.doc.title }}</h4>
-    </md-list-item>
-  </md-list>
-
+  <sg-loading [shouldBeLoading]="isDocsLoading$">
+    <h3>{{ 'DASHBOARD.ARTICLES.DRAFTS.TITLE' | translate }}</h3>
+    <md-list>
+      <md-list-item *ngFor="let doc of (docs | async)">
+        <md-icon md-list-avatar>description</md-icon>
+        <h4>{{ doc?.doc.title }}</h4>
+      </md-list-item>
+    </md-list>
+  </sg-loading>
 </div>

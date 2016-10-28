@@ -1,48 +1,39 @@
 // Custom Http
+import { ConnectionBackend } from '@angular/http';
+import { Http } from '@angular/http';
+import { HTTP_STATUS_CODES } from './index';
 import { Injectable } from '@angular/core';
-import {
-  ConnectionBackend,
-  Http,
-  Request,
-  RequestOptions,
-  RequestOptionsArgs,
-  Response
-} from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import { Observer } from 'rxjs/Observer';
-import { AppConfig } from '../../config';
+import { RequestOptions } from '@angular/http';
+import { RequestOptionsArgs } from '@angular/http';
 
-
-// service
+// inject
 @Injectable()
 export class CustomHttp extends Http {
 
   constructor(
-    private backend: ConnectionBackend,
-    private defaultOptions: RequestOptions
-    /* Error should go here */
+    public backend: ConnectionBackend,
+    public defaultOptions: RequestOptions,
   ) {
-    super(backend, defaultOptions); // call to Http^
+    super(backend, defaultOptions);
   }
 
-  // wrap to functions
-  post( url: string, body: any, options?: RequestOptionsArgs): Observable<any> {
+  public post( url: string, body: any, options?: RequestOptionsArgs): Observable<any> {
     return this.factory('post', url, body, options);
   }
 
-  // factory
   private factory(method: string = 'get', ...args) {
-    // default methods
     return [
       'post',
-      'put'
+      'put',
     ].includes(method) ? super[method](...args)
     // retry & timeout etc.
     // .retryWhen(err => err.delay(AppConfig.HTTP.DELAY))
     // .timeout(AppConfig.HTTP.TIMEOUT, 'Timeout has occured')
     .map(res => res.json())
     .catch(err => {
-      if (err.status === 400 || err.status === 422) {
+      if (err.status === HTTP_STATUS_CODES.BAD_REQUEST
+        || err.status === HTTP_STATUS_CODES.UNPROCESSABLE_ENTITY ) {
         return Observable.throw(err);
       } else {
         // push to error service ;-)
@@ -51,7 +42,7 @@ export class CustomHttp extends Http {
     })
     .finally(() => {
       console.log('After the request ... cleanup ...');
-    }) : Observable.throw(''); //
+    }) : Observable.throw('');
   }
 
 }

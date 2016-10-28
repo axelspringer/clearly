@@ -1,9 +1,0 @@
-<div [formGroup]="form">
-  <label [attr.for]="element.key">{{element.label}}</label>
-  <div [ngSwitch]="element.controlType">
-    <dform-text [element]="element" [form]="form" *ngSwitchCase="'text'"></dform-text>
-    <dform-textarea [element]="element" [form]="form" *ngSwitchCase="'textArea'"></dform-textarea>
-    <dform-meta-text [element]="element" [form]="form" *ngSwitchCase="'metaText'"></dform-meta-text>
-  </div>
-  <div class="errorMessage" *ngIf="!isValid">{{ element.label }} is required</div>
-</div>

@@ -14,7 +14,7 @@ import { articleReducer } from '../+creator/article';
 import { fromDocsReducer } from '../../reducers';
 
 // app state
-export interface AppState {
+export interface IAppState {
   creator: any;
   docs: any;
   article: any;
@@ -28,7 +28,7 @@ export {
 export default compose(hmrState, storeLogger(), combineReducers)({
   creator: creatorReducer,
   docs: docsReducer,
-  article: articleReducer
+  article: articleReducer,
 });
 
 // hmr
@@ -44,17 +44,17 @@ export function hmrState(reducer: ActionReducer<any>): ActionReducer<any> {
 
 // slices
 export function getCreatorState() {
-  return (state$: Observable<AppState>) => state$
+  return (state$: Observable<IAppState>) => state$
     .map(s => s.creator);
 }
 
 export function getDocsState() {
-  return (state$: Observable<AppState>) => state$
+  return (state$: Observable<IAppState>) => state$
     .map(s => s.docs);
 }
 
 export function getArticleState() {
-  return (state$: Observable<AppState>) => state$
+  return (state$: Observable<IAppState>) => state$
     .map(s => s.article);
 }
 
