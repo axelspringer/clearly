@@ -1,8 +1,7 @@
 // Importables
 import { Injectable } from '@angular/core';
-import { Inject } from '@angular/core';
 import { EventEmitter } from '@angular/core';
-import { Subject, ReplaySubject } from 'rxjs';
+import { ReplaySubject } from 'rxjs';
 
 // Components
 import { EventEmitProvider } from '../events';
@@ -10,7 +9,7 @@ import { Event } from '../events';
 import { Observable } from 'rxjs/Rx';
 
 // Interfaces
-export interface NotifyProviderOptions {
+export interface INotifyProviderOptions {
 };
 
 export class NotifyEvent extends Event {
@@ -21,18 +20,18 @@ export class NotifyEvent extends Event {
     super({ title, message });
   }
 
-  read() {
+  public read() {
     return this._read = true;
   }
 
-  unread() {
+  public unread() {
     return this._read = false;
   }
 
 }
 
 // put here to avoid side-effects
-export var NOTIFY_PROVIDER_OPTIONS: NotifyProviderOptions = {
+export const NOTIFY_PROVIDER_OPTIONS: INotifyProviderOptions = {
 };
 
 
@@ -59,24 +58,24 @@ export class NotifyProvider {
     return this._events;
   }
 
-  reset(events: Array<any> = []) {
+  public reset(events: Array<any> = []) {
     return this._events = [];
   }
 
-  subscribe(): Observable<NotifyEvent> {
+  public subscribe(): Observable<NotifyEvent> {
     return this._replay$.asObservable();
   }
 
 };
 
 
-export var NOTIFY_PROVIDERS = [
+export const NOTIFY_PROVIDERS = [
   {
     provide: NOTIFY_PROVIDER_OPTIONS,
-    useValue: NOTIFY_PROVIDER_OPTIONS
+    useValue: NOTIFY_PROVIDER_OPTIONS,
   },
   {
     provide: NotifyProvider,
-    useClass: NotifyProvider
-  }
+    useClass: NotifyProvider,
+  },
 ];

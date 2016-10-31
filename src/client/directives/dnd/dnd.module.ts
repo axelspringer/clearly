@@ -1,8 +1,5 @@
 // Drag & Drop Module
-import {
-   NgModule,
-   ModuleWithProviders
-} from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 // TODO@sdoell: move to module
@@ -12,43 +9,43 @@ import { DragDropService } from './dnd.service';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
   ],
   exports: [
     DraggableDirective,
-    DroppableDirective
+    DroppableDirective,
   ],
   declarations: [
     DraggableDirective,
-    DroppableDirective
+    DroppableDirective,
   ],
   providers: [
-    DragDropService
-  ]
+    DragDropService,
+  ],
 })
 export class DndModule {}
 
 // interfaces
-export interface DragDropEvent {
+export interface IDragDropEvent {
   dragData: any;
   mouseEvent: MouseEvent;
 }
 
 export class DataTransferEffect {
-  static COPY: string = 'copy';
-  static LINK: string = 'link';
-  static MOVE: string = 'move';
-  static NONE: string = 'none';
+  public static COPY: string = 'copy';
+  public static LINK: string = 'link';
+  public static MOVE: string = 'move';
+  public static NONE: string = 'none';
 }
 
 export class DragDropDefaults {
-  static onDragStartClass: string     = 'dnd-drag-start';
-  static onDragEnterClass: string     = 'dnd-drag-enter';
-  static onDragOverClass: string      = 'dnd-drag-over';
-  static onSortableDragClass: string  = 'dnd-sortable-drag';
+  public static onDragStartClass: string     = 'dnd-drag-start';
+  public static onDragEnterClass: string     = 'dnd-drag-enter';
+  public static onDragOverClass: string      = 'dnd-drag-over';
+  public static onSortableDragClass: string  = 'dnd-sortable-drag';
 
-  static dragEffect: string = DataTransferEffect.COPY;
-  static dropEffect: string = DataTransferEffect.COPY;
-  static dragCursor: string = DataTransferEffect.MOVE;
+  public static dragEffect: string = DataTransferEffect.COPY;
+  public static dropEffect: string = DataTransferEffect.COPY;
+  public static dragCursor: string = DataTransferEffect.MOVE;
   // public dragImage: DragImage;
 }

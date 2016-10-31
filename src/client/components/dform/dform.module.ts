@@ -7,7 +7,7 @@ import { FormsModule } from '@angular/forms';
 // Components
 import { CoreModule } from '../../core';
 import { DFormComponent } from './dform.component';
-import { DFormDynamicElement } from './dform.element';
+import { DFormDynamicElementComponent } from './dform.element';
 import { DFormTextComponent } from './text';
 import { DFormTextAreaComponent } from './textarea';
 import { DFormMetaTextComponent } from './metaText';
@@ -20,27 +20,27 @@ import { DFormService } from './dform.service';
     ReactiveFormsModule,
     CoreModule,
     FormsModule,
-    MdModule
+    MdModule,
   ],
   declarations: [
     DFormComponent,
-    DFormDynamicElement,
+    DFormDynamicElementComponent,
     DFormTextComponent,
     DFormTextAreaComponent,
-    DFormMetaTextComponent
+    DFormMetaTextComponent,
   ],
   exports: [
     CommonModule,
     CoreModule,
     DFormComponent,
-    DFormDynamicElement,
+    DFormDynamicElementComponent,
     DFormTextAreaComponent,
     DFormTextComponent,
     ReactiveFormsModule,
-    DFormMetaTextComponent
+    DFormMetaTextComponent,
   ],
   providers: [
-    DFormService
-  ]
+    DFormService,
+  ],
 })
 export class DFormModule { };

@@ -3,14 +3,14 @@ import { FormGroup } from '@angular/forms';
 
 export class DFormElement<T> {
 
-  value: T;
-  key: string;
-  label: string;
-  required: boolean;
-  order: number;
-  controlType: string;
-  disabled: boolean;
-  fromMaster: boolean;
+  public value: T;
+  public key: string;
+  public label: string;
+  public required: boolean;
+  public order: number;
+  public controlType: string;
+  public disabled: boolean;
+  public fromMaster: boolean;
 
   constructor(options: {
       value?: T,
@@ -21,7 +21,7 @@ export class DFormElement<T> {
       controlType?: string,
       disabled?: boolean,
       fromMaster?: boolean
-      isMaster?: boolean
+      isMaster?: boolean,
     } = {}) {
     this.value = options.value;
     this.key = options.key || '';
@@ -37,13 +37,13 @@ export class DFormElement<T> {
 };
 
 @Component({
-  selector: 'dform-element',
-  templateUrl: './dform.element.html'
+  selector: 'my-dform-element',
+  templateUrl: './dform.element.html',
 })
-export class DFormDynamicElement {
+export class DFormDynamicElementComponent {
 
-  @Input() element: DFormElement<any>;
-  @Input() form: FormGroup;
+  @Input() public element: DFormElement<any>;
+  @Input() public form: FormGroup;
 
   get isValid() {
     return this.form.controls[this.element.key].valid;

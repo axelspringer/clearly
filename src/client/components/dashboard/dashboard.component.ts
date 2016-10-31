@@ -1,12 +1,12 @@
 // Importables
 import { Angular2Apollo } from 'angular2-apollo';
 import { ApolloQueryObservable } from 'angular2-apollo';
-import { ApolloQueryResult } from 'apollo-client';
+import { OnInit } from '@angular/core';
+// import { ApolloQueryResult } from 'apollo-client';
 import { Component } from '@angular/core';
-import { Inject } from 'angular/core';
+// import { Inject } from 'angular/core';
 import { Store } from '@ngrx/store';
 import { Title } from '@angular/platform-browser';
-import { Actions } from '@ngrx/effects';
 import { Observable } from 'rxjs';
 
 // We need this to parse graphql string
@@ -16,31 +16,27 @@ import gql from 'graphql-tag';
 import { EventEmitProvider } from '../../core';
 import { ToolbarTitleUpdate } from '../toolbar';
 import { DocsActions } from '../../actions';
-import { AppState } from '../app';
+import { IAppState } from '../app';
 import { getDocs } from '../app';
-import { client } from './../app/app.apollo';
 
 @Component({
-  selector: 'dashboard',  // <dashboard></dashboard>
+  selector: 'my-dashboard',  // <my-dashboard></my-dashboard>
   styleUrls: ['./dashboard.style.css'],
-  templateUrl: './dashboard.component.html'
+  templateUrl: './dashboard.component.html',
 })
-export class Dashboard {
+export class DashboardComponent implements OnInit {
 
   public ok: ApolloQueryObservable<any>;
 
-  private store$: any;
-  private user$: any;
   private title$ = 'Übersicht';
   private pirate$ = '';
   private isPirate$: boolean = false;
 
   private articles$: Observable<any>;
-  private actions: Actions;
 
   // TypeScript public modifiers
   constructor(
-    private store: Store<AppState>,
+    private store: Store<IAppState>,
     private title: Title,
     private docsActions: DocsActions,
     private apollo: Angular2Apollo,
@@ -66,7 +62,7 @@ export class Dashboard {
 
   }
 
-  ngOnInit() {
+  public ngOnInit() {
     console.log('hello `Dashboard` component');
     this.title.setTitle(this.title$);
 
@@ -77,7 +73,7 @@ export class Dashboard {
 
   }
 
-  isPirate(answer: boolean) {
+  public isPirate(answer: boolean) {
 
     if (answer) {
       this.isPirate$ = answer;

@@ -1,17 +1,10 @@
 // Importables
 import { Injectable } from '@angular/core';
-import { Inject } from '@angular/core';
-// import { OnDestroy } from '@angular/core';
-// import { OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import { FormGroup } from '@angular/forms';
-import { Validators } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
 import * as R from 'ramda';
 import * as _ from 'lodash';
 
 // DForm
-import { getChannels } from '../app';
 import { DFormElement } from '../dform';
 import { DFormService } from '../dform';
 
@@ -22,7 +15,7 @@ export class CreatorService {
   private _channels = [];
 
   constructor(
-    private dFormService: DFormService
+    private dFormService: DFormService,
   ) {
   }
 
@@ -39,11 +32,11 @@ export class CreatorService {
     return this._dForm.asObservable();
   }
 
-  filter(channels) {
+  public filter(channels) {
     this.next(this._channels.filter(channel => channel.isMaster || channels[channel.name]));
   }
 
-  next(channels) {
+  public next(channels) {
     this._dForm.next(this.toDForm(this.differChannel(R.clone(channels))));
   }
 
@@ -60,7 +53,7 @@ export class CreatorService {
         channel[type] = channel[type].map(el => this.toDFormElement(el.formType, {
           key: el['name'],
           placeholder: el['displayName'],
-          fromMaster: el['fromMaster']
+          fromMaster: el['fromMaster'],
         }));
       });
       return channel;
@@ -78,7 +71,7 @@ export class CreatorService {
               el = _.clone(el);
               el.fromMaster = true;
               return el;
-            })
+            }),
         );
       });
       return channels;

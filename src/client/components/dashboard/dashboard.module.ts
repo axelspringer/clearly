@@ -1,14 +1,14 @@
 // Importables
 import {
-   NgModule
+   NgModule,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 // Components
 import { MdModule } from '../app/app.material';
-import { Dashboard } from './dashboard.component';
-import { ArticlesList } from './articles';
+import { DashboardComponent } from './dashboard.component';
+import { ArticlesListComponent } from './articles';
 import { CoreModule } from '../../core';
 
 // Routes
@@ -23,14 +23,12 @@ import { Routing } from './dashboard.routes';
     Routing,
   ],
   exports: [
-    Dashboard,
-    ArticlesList
+    DashboardComponent,
+    ArticlesListComponent,
   ],
   declarations: [
-    Dashboard,
-    ArticlesList
+    DashboardComponent,
+    ArticlesListComponent,
   ],
-  providers: [
-  ]
 })
 export class DashboardModule {}

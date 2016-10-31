@@ -1,9 +1,10 @@
 // Importables
-import { CanActivateArticle } from './creator.guard';
-import { Creator } from './creator.component';
+// import { CanActivate } from '@angular/router';
+// import { CanActivateArticle } from './creator.guard';
+// import { Observable } from 'rxjs';
+import { CreatorComponent } from './creator.component';
 import { CreatorResolver } from './creator.resolver';
-import { Observable } from 'rxjs';
-import { Routes, CanActivate } from '@angular/router';
+import { Routes } from '@angular/router';
 
 export const ROUTES: Routes = [
   {
@@ -11,23 +12,23 @@ export const ROUTES: Routes = [
     data: {
       title: 'Neuer Artikel',
       order: 1,
-      isMenu: true
+      isMenu: true,
     },
     // canActivateChild: [CanActivateArticle],
     children: [
       {
         path: ':id',
-        component: Creator
+        component: CreatorComponent,
       },
       {
         path: '', // later move to a url
-        component: Creator,
+        component: CreatorComponent,
         resolve: {
-          channels: CreatorResolver
+          channels: CreatorResolver,
         },
         // canActivate: [CreatorGuard],
         // canDeactivate: [CreatorGuard]
-      }
-    ]
+      },
+    ],
   },
 ];

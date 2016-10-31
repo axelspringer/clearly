@@ -2,16 +2,14 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 // import { Store, Action } from '@ngrx/store';
-import { AppState } from '../components/app';
 import { Actions } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
 import { Effect } from '@ngrx/effects';
-import { OnDestroy } from '@angular/core';
-import * as R from 'ramda';
+// import * as R from 'ramda';
 
 import { Angular2Apollo } from 'angular2-apollo';
-import { ApolloQueryObservable } from 'angular2-apollo';
-import { ApolloQueryResult } from 'apollo-client';
+// import { ApolloQueryObservable } from 'angular2-apollo';
+// import { ApolloQueryResult } from 'apollo-client';
 
 // We need this to parse graphql string
 import gql from 'graphql-tag';
@@ -50,34 +48,30 @@ const articleQuery = () => {
 };
 
 @Injectable()
-export class ArticleEffects implements OnDestroy {
+export class ArticleEffects {
 
-  @Effect() loadArticle$: Observable<Action> = this.actions$
+  @Effect() public loadArticle$: Observable<Action> = this.actions$
     .ofType(ArticleActions.LOAD)
     .switchMap(action =>
       Observable.fromPromise(this.apollo.query({
-        query: articleQuery()
+        query: articleQuery(),
       }))
         .map(res => res['data'].articleType) // should be sorted later
         .map(res => {
           return {
             type: ArticleActions.LOAD_SUCCESS,
-            payload: res
+            payload: res,
           };
         })
         .catch(err => Observable.of({
           type: 'LOAD_FAILURE',
-          paylod: err
+          paylod: err,
         })));
 
   constructor(
     private actions$: Actions,
-    private apollo: Angular2Apollo
+    private apollo: Angular2Apollo,
   ) {
-
-  }
-
-  ngOnDestroy() {
 
   }
 

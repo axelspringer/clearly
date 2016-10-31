@@ -20,9 +20,7 @@ export abstract class Event {
 @Injectable()
 export class EventEmitProvider {
 
-  private static emitters$: { [id: string]: EventEmitter<any>; } = {};
-
-  static connect(event: Object, isAsync?: boolean): EventEmitter<any> {
+  public static connect(event: Object, isAsync?: boolean): EventEmitter<any> {
     const id = typeof event === 'string' ? event : event.constructor.name;
     if (!this.emitters$[id]) {
       this.emitters$[id] = new EventEmitter(); // EventEmitter -> Observable
@@ -30,10 +28,12 @@ export class EventEmitProvider {
     this.log(id); return this.emitters$[id];
   }
 
-  static log(id: string): void {
+  public static log(id: string): void {
     console.group(`Event: ${id}`);
     console.log(this.emitters$[id]);
     console.groupEnd();
   }
+
+  private static emitters$: { [id: string]: EventEmitter<any>; } = {};
 
 };

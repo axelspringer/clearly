@@ -1,6 +1,5 @@
 // Importables
 import { Component } from '@angular/core';
-import { OnInit } from '@angular/core';
 import { Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
@@ -24,24 +23,18 @@ export class DFormMetaText extends DFormElement<string> {
 };
 
 @Component({
-  selector: 'dform-meta-text',
+  selector: 'my-dform-meta-text',
   templateUrl: './dform.metaText.html',
   styleUrls: [
-    './dform.metaText.scss'
-  ]
+    './dform.metaText.scss',
+  ],
 })
-export class DFormMetaTextComponent implements OnInit {
+export class DFormMetaTextComponent {
 
-  @Input() element: DFormElement<string>;
-  @Input() form: FormGroup;
+  @Input() public element: DFormElement<string>;
+  @Input() public form: FormGroup;
 
-  constructor() {
-  }
-
-  ngOnInit() {
-  }
-
-  toggle(event: any, key) {
+  public toggle(event: any, key) {
     this.form.controls[key].setValue('');
     this.element['disabled'] = !this.element['disabled'];
   }

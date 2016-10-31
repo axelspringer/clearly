@@ -1,17 +1,15 @@
 // Impotables
 import { Observable } from 'rxjs';
-import { Input } from '@angular/core';
 import { OnInit } from '@angular/core';
-import { Inject } from '@angular/core';
 import { Component } from '@angular/core';
 import { EventEmitter } from '@angular/core';
 import { Subject } from 'rxjs';
 import { Store } from '@ngrx/store';
 
 // Components
-import { App } from '../app';
-import { AppConfig } from '../../config';
-import { AppState } from '../app';
+// import { AppComponent } from '../app';
+// import { AppConfig } from '../../config';
+import { IAppState } from '../app';
 import { DatabaseProvider } from '../../core';
 import { EventEmitProvider } from '../../core';
 import { isDocsLoading } from '../app';
@@ -19,14 +17,14 @@ import { NotifyProvider } from '../../core';
 import { isChannelsLoading } from '../app';
 
 @Component({
-  selector: 'avatar',  // <avatar></avatar>
+  selector: 'my-avatar',  // <avatar></avatar>
   providers: [],
   styleUrls: [
-    './avatar.component.scss'
+    './avatar.component.scss',
   ],
-  templateUrl: './avatar.component.html'
+  templateUrl: './avatar.component.html',
 })
-export class Avatar implements OnInit {
+export class AvatarComponent implements OnInit {
 
   public loading$: Observable<any>;
 
@@ -39,7 +37,7 @@ export class Avatar implements OnInit {
 
   constructor(
     private notify: NotifyProvider,
-    private store: Store<AppState>
+    private store: Store<IAppState>,
   ) {
     this.isDocsLoading$ = this.store.let(isDocsLoading());
     this.isChannelsLoading$ = this.store.let(isChannelsLoading());
@@ -47,7 +45,7 @@ export class Avatar implements OnInit {
     this.isLoading$ = Observable
       .zip(
         this.isDocsLoading$,
-        this.isChannelsLoading$
+        this.isChannelsLoading$,
       )
       .map(state => state.reduce((cur, prev) => cur + prev));
 
@@ -57,11 +55,11 @@ export class Avatar implements OnInit {
     return this.notify.events;
   }
 
-  clear() {
+  public clear() {
     this.notify.reset();
   }
 
-  ngOnInit() {
+  public ngOnInit() {
     this.emitter$ = EventEmitProvider.connect(DatabaseProvider.name); // could be better
     this.emitter$.subscribe(this.subject$);
     this.loading$ = this.subject$.asObservable()

@@ -52,7 +52,7 @@ const MATERIAL_MODULES = [
   MdToolbarModule,
   MdTooltipModule,
   MdCoreModule,
-  MdDialogModule
+  MdDialogModule,
   // OverlayModule,
   // PortalModule,
   // RtlModule,
@@ -86,7 +86,7 @@ const MATERIAL_MODULES = [
     MdRadioModule.forRoot(),
     MdTooltipModule.forRoot(),
     MdCoreModule.forRoot(),
-    MdDialogModule.forRoot()
+    MdDialogModule.forRoot(),
     // OverlayModule.forRoot(),
   ],
 
@@ -102,9 +102,9 @@ export class MdRootModule { }
 })
 export class MdModule {
 
-  static forRoot(): ModuleWithProviders {
+  public static forRoot(): ModuleWithProviders {
     return {
-      ngModule: MdRootModule
+      ngModule: MdRootModule,
     };
   }
 

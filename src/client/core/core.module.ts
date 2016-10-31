@@ -1,9 +1,7 @@
 // Importables
 import { HTTP_PROVIDERS } from './http';
-import { ModuleWithProviders } from '@angular/core';
 import { NgModule } from '@angular/core';
 import { TranslateLoader } from 'ng2-translate/ng2-translate';
-import { TranslateModule } from 'ng2-translate/ng2-translate';
 import { TranslatePipe } from 'ng2-translate/ng2-translate';
 import { TranslateService } from 'ng2-translate/ng2-translate';
 
@@ -16,7 +14,7 @@ import { LogService } from './log';
 import { NOTIFY_PROVIDERS } from './notify/notify.provider';
 import { NotifyProvider } from './notify';
 import { TranslateCustomLoader } from './i18n';
-import { AtLeastValidator } from './forms';
+import { AtLeastValidatorDirective } from './forms';
 import { IteratableObjectPipe } from './pipes';
 
 @NgModule({
@@ -24,8 +22,8 @@ import { IteratableObjectPipe } from './pipes';
   ],
   exports: [
     TranslatePipe, // should be used
-    AtLeastValidator,
-    IteratableObjectPipe
+    AtLeastValidatorDirective,
+    IteratableObjectPipe,
   ],
   declarations: [
     // Pipes
@@ -33,7 +31,7 @@ import { IteratableObjectPipe } from './pipes';
     IteratableObjectPipe,
 
     // Validators
-    AtLeastValidator
+    AtLeastValidatorDirective,
   ],
   providers: [
     // Events
@@ -55,20 +53,20 @@ import { IteratableObjectPipe } from './pipes';
     TranslateService,
 
     // Angular
-    ...HTTP_PROVIDERS
-  ]
+    ...HTTP_PROVIDERS,
+  ],
 })
 export class CoreModule {
 
-  static forRoot(languages: Object) {
+  public static forRoot(languages: Object) {
     return {
       ngModule: CoreModule,
       providers: [{ // custom translation provider
         provide: TranslateLoader,
         useFactory: () => {
           return new TranslateCustomLoader(languages);
-        }
-      }]
+        },
+      }],
     };
   }
 

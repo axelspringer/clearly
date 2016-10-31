@@ -4,7 +4,6 @@ import { Observable } from 'rxjs/Observable';
 
 // Component
 import { CreatorActions } from './creator.actions';
-import { DFormElement } from '../../dform';
 
 const init = [];
 

@@ -1,28 +1,15 @@
 // Impotables
 import { Component } from '@angular/core';
-import { OnDestroy } from '@angular/core';
 import { Input } from '@angular/core';
 import { Observable } from 'rxjs';
-import { OnInit } from '@angular/core';
-import { Output } from '@angular/core';
 
 @Component({
-  selector: 'loading',  // <loading></loading>
+  selector: 'my-loading',  // <my-loading></my-loading>
   styleUrls: ['./loading.style.scss'],
-  templateUrl: './loading.component.html'
+  templateUrl: './loading.component.html',
 })
-export class Loading implements OnInit, OnDestroy {
+export class LoadingComponent {
 
-  @Input() shouldBeLoading: Observable<boolean>;
-
-  constructor() {
-  }
-
-  ngOnInit() {
-  }
-
-  ngOnDestroy() {
-  }
-
+  @Input() public shouldBeLoading: Observable<boolean>;
 
 };

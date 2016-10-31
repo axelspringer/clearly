@@ -1,20 +1,15 @@
 // Importables
-import {
-  Component,
-  OnInit,
-  Input
-} from '@angular/core';
-import {
-  FormGroup
-} from '@angular/forms';
+import { Component } from '@angular/core';
+import { Input } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 
 // Components
 import { DFormElement } from '../dform.element';
 
 export class DFormTextArea extends DFormElement<string> {
 
-  controlType = 'textArea';
-  type: string;
+  public controlType = 'textArea';
+  public type: string;
 
   constructor(options: {} = {}) {
     super(options);
@@ -24,21 +19,15 @@ export class DFormTextArea extends DFormElement<string> {
 };
 
 @Component({
-  selector: 'dform-textarea',
+  selector: 'my-dform-textarea',
   templateUrl: './dform.textarea.html',
   styleUrls: [
-    './dform.textarea.scss'
-  ]
+    './dform.textarea.scss',
+  ],
 })
-export class DFormTextAreaComponent implements OnInit {
+export class DFormTextAreaComponent {
 
-  @Input() element: DFormElement<string>;
-  @Input() form: FormGroup;
-
-  constructor() {
-  }
-
-  ngOnInit() {
-  }
+  @Input() public element: DFormElement<string>;
+  @Input() public form: FormGroup;
 
 };

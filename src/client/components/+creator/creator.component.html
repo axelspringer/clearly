@@ -7,10 +7,10 @@
 				<md-sidenav-layout class="creator-full-height">
 
 					<md-sidenav #start mode="side" opened="true" [ngClass]="'custom-quick-access'">
-						<quick-access></quick-access>
+						<my-quick-access></my-quick-access>
 					</md-sidenav>
 
-          <article [content]="channel.content" [meta]="channel.metaData"></article>
+          <my-article [content]="channel.content" [meta]="channel.metaData"></my-article>
 
 				</md-sidenav-layout>
 			</template>

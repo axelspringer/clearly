@@ -1,35 +1,27 @@
 // Impotables
-import {
-  Component,
-  Inject,
-  forwardRef,
-  AfterViewInit,
-  OnInit
-} from '@angular/core';
-import { AppConfig } from '../../config';
-import {
-  Router,
-  NavigationEnd
-} from '@angular/router';
-import { EventEmitProvider } from '../../core';
-
-import { App } from '../app';
+import { Component } from '@angular/core';
+import { Inject } from '@angular/core';
+import { forwardRef } from '@angular/core';
+import { AfterViewInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { NavigationEnd } from '@angular/router';
+import { AppComponent } from '../app';
 
 @Component({
-  selector: 'menu',  // <menu></menu>
+  selector: 'my-menu',  // <my-menu></my-menu>
   providers: [],
   styleUrls: ['./menu.style.scss'],
-  templateUrl: './menu.component.html'
+  templateUrl: './menu.component.html',
 })
-export class Menu implements AfterViewInit {
+export class MenuComponent implements AfterViewInit {
 
-  $routes: any = [];
+  public $routes: any = [];
 
-  private _appRef: App;
+  private _appRef: AppComponent;
 
   constructor(
-    @Inject(forwardRef(() => App)) app: App,
-    private router: Router
+    @Inject(forwardRef(() => AppComponent)) public app: AppComponent,
+    private router: Router,
   ) {
 
     this._appRef = app;
@@ -39,13 +31,13 @@ export class Menu implements AfterViewInit {
 
   }
 
-  trigger(value) {
+  public trigger(value) {
 
     this.router.navigate([value]);
 
   }
 
-  ngAfterViewInit() {
+  public ngAfterViewInit() {
 
     this.router.events.subscribe(event => {
       console.log(this.router);

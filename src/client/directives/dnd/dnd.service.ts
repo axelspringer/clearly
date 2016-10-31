@@ -1,15 +1,11 @@
-import {
-  ElementRef,
-  EventEmitter,
-  Injectable
-} from '@angular/core';
-
-import { DragDropEvent } from './dnd.module';
+import { EventEmitter } from '@angular/core';
+import { Injectable } from '@angular/core';
+import { IDragDropEvent } from './dnd.module';
 
 @Injectable()
 export class DragDropService {
-  allowedDropZones: Array<string> = [];
-  onDragSuccessCallback: EventEmitter<DragDropEvent>;
-  dragData: any;
-  isDragged: boolean;
+  public allowedDropZones: Array<string> = [];
+  public onDragSuccessCallback: EventEmitter<IDragDropEvent>;
+  public dragData: any;
+  public isDragged: boolean;
 }

@@ -1,6 +1,5 @@
 // Importables
 import { Component } from '@angular/core';
-import { OnInit } from '@angular/core';
 import { Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
@@ -9,8 +8,8 @@ import { DFormElement } from '../dform.element';
 
 export class DFormText extends DFormElement<string> {
 
-  controlType = 'text';
-  type: string;
+  public controlType = 'text';
+  public type: string;
 
   constructor(options: {} = {}) {
     super(options);
@@ -20,21 +19,15 @@ export class DFormText extends DFormElement<string> {
 };
 
 @Component({
-  selector: 'dform-text',
+  selector: 'my-dform-text',
   templateUrl: './dform.text.html',
   styleUrls: [
-    './dform.text.scss'
-  ]
+    './dform.text.scss',
+  ],
 })
-export class DFormTextComponent implements OnInit {
+export class DFormTextComponent {
 
-  @Input() element: DFormElement<string>;
-  @Input() form: FormGroup;
-
-  constructor() {
-  }
-
-  ngOnInit() {
-  }
+  @Input() public element: DFormElement<string>;
+  @Input() public form: FormGroup;
 
 };

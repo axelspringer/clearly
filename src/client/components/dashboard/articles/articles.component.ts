@@ -1,28 +1,15 @@
 // Impotables
 import { Component } from '@angular/core';
 import { Input } from '@angular/core';
-import { OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 
-// Components
-import { DatabaseProvider } from '../../../core';
-
 @Component({
-  selector: 'articles-list',  // <articles-list></articles-list>
+  selector: 'my-articles-list',  // <my-articles-list></my-articles-list>
   styleUrls: ['./articles.component.scss'],
-  templateUrl: './articles.component.html'
+  templateUrl: './articles.component.html',
 })
-export class ArticlesList implements OnInit {
+export class ArticlesListComponent {
 
-  @Input() docs: Observable<any>;
-
-  constructor(
-  ) {
-
-  }
-
-  ngOnInit() {
-
-  }
+  @Input() public docs: Observable<any>;
 
 };

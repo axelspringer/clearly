@@ -1,7 +1,7 @@
 <form (ngSubmit)="onSubmit()" [formGroup]="form">
 
   <div *ngFor="let element of elements" class="form-row">
-    <dform-element [element]="element" [form]="form"></dform-element>
+    <my-dform-element [element]="element" [form]="form"></my-dform-element>
   </div>
 
 </form>

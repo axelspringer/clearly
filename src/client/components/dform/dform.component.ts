@@ -4,42 +4,39 @@ import { Component } from '@angular/core';
 import { EventEmitter } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Input } from '@angular/core';
-import { IterableDiffers } from '@angular/core';
-import { Observable } from 'rxjs';
 import { OnDestroy } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { Output } from '@angular/core';
-import { Subscription } from 'rxjs';
 
 // Components
 import { DFormService } from './dform.service';
 import { DFormElement } from './dform.element';
 
 @Component({
-  selector: 'dform',
+  selector: 'my-dform',
   templateUrl: './dform.component.html',
   providers: [
-    DFormService
+    DFormService,
   ],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DFormComponent implements OnInit, OnDestroy {
 
-  @Input() elements: Array<DFormElement<any>>;
-  @Output() update: EventEmitter<FormGroup> = new EventEmitter<FormGroup>();
+  @Input() public elements: Array<DFormElement<any>>;
+  @Output() public update: EventEmitter<FormGroup> = new EventEmitter<FormGroup>();
 
   public form: FormGroup;
 
   constructor(
-    private dFormService: DFormService
+    private dFormService: DFormService,
   ) {
   }
 
-  ngOnInit() {
+  public ngOnInit() {
     this.form = this.dFormService.toDForm(new FormGroup({}), this.elements);
   }
 
-  ngOnDestroy() {
+  public ngOnDestroy() {
     // this.sup.unsubscribe();
   }
 

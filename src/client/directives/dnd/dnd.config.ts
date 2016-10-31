@@ -1,4 +1,4 @@
-import { DataTransferEffect } from './dnd.module';
+// import { DataTransferEffect } from './dnd.module';
 
 export class DragImage {
   constructor(
@@ -9,7 +9,7 @@ export class DragImage {
       // Create real image from string source
       let imgScr: string = <string>this.imageElement;
       this.imageElement = new HTMLImageElement();
-      (<HTMLImageElement>this.imageElement).src = imgScr;
+      (<HTMLImageElement> this.imageElement).src = imgScr;
     }
   }
 }

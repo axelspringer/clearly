@@ -6,20 +6,20 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 // Components
-import { Article } from './article';
 import { ArticleActions } from './article';
-import { ArticleContent } from './article';
-import { ArticleMeta } from './article';
+import { ArticleComponent } from './article';
+import { ArticleContentComponent } from './article';
+import { ArticleMetaComponent } from './article';
 import { CanActivateArticle } from './creator.guard';
-import { ChannelsDialog } from './dialogs';
+import { ChannelsDialogComponent } from './dialogs';
 import { CoreModule } from '../../core';
-import { Creator } from './creator.component';
 import { CREATOR_RESOLVER_PROVIDERS } from './creator.resolver';
 import { CreatorActions } from './creator.actions';
+import { CreatorComponent } from './creator.component';
 import { CreatorService } from './creator.service';
 import { DFormModule } from '../dform';
 import { MdModule } from '../app/app.material';
-import { QuickAccess } from './quickAccess';
+import { QuickAccessComponent } from './quickAccess';
 import { ROUTES } from './creator.routes';
 
 // providers
@@ -40,31 +40,31 @@ const CREATOR_PROVIDERS = [
     FormsModule,
     MdModule,
     ReactiveFormsModule,
-    RouterModule.forChild(ROUTES)
+    RouterModule.forChild(ROUTES),
   ],
   declarations: [
-    Article,
-    ArticleContent,
-    ArticleMeta,
-    ChannelsDialog,
-    Creator,
-    QuickAccess,
+    ArticleComponent,
+    ArticleContentComponent,
+    ArticleMetaComponent,
+    ChannelsDialogComponent,
+    CreatorComponent,
+    QuickAccessComponent,
   ],
   entryComponents: [
-    ChannelsDialog
+    ChannelsDialogComponent,
   ],
   exports: [
-    Article,
-    ArticleContent,
-    ArticleMeta,
+    ArticleComponent,
+    ArticleContentComponent,
+    ArticleMetaComponent,
     CommonModule,
     CoreModule,
-    Creator,
-    QuickAccess,
-    ReactiveFormsModule
+    CreatorComponent,
+    QuickAccessComponent,
+    ReactiveFormsModule,
   ],
   providers: [
     ...CREATOR_PROVIDERS,
-  ]
+  ],
 })
 export class CreatorModule { };

@@ -5,32 +5,32 @@ import { Observable } from 'rxjs/Observable';
 // Actions
 import { DocsActions } from '../actions';
 
-export interface DocsState {
+export interface IDocsState {
   loaded: boolean;
   loading: number;
   docs: Array<any>;
 }
 
-const init: DocsState = {
+const init: IDocsState = {
   loaded: false,
   loading: 0,
-  docs: []
+  docs: [],
 };
 
-export default function (state = init, action: Action): DocsState  {
+export default function (state = init, action: Action): IDocsState  {
 
   switch (action.type) {
 
     case DocsActions.LOAD: {
       return Object.assign({}, state, {
-        loading: ++state.loading
+        loading: ++state.loading,
       });
     }
 
     case DocsActions.LOAD_SUCCESS: {
       return Object.assign({}, state, {
         docs: action.payload,
-        loading: --state.loading
+        loading: --state.loading,
       });
     }
 
@@ -42,16 +42,16 @@ export default function (state = init, action: Action): DocsState  {
 }
 
 export function getDocs() {
-  return (state$: Observable<DocsState>) => state$
+  return (state$: Observable<IDocsState>) => state$
     .map(s => s.docs);
 }
 
 export function getDocsLoading() {
-  return (state$: Observable<DocsState>) => state$
+  return (state$: Observable<IDocsState>) => state$
     .map(s => s.loading);
 }
 
 export function getDocsLoaded() {
-  return (state$: Observable<DocsState>) => state$
+  return (state$: Observable<IDocsState>) => state$
     .map(s => s.loaded);
 }

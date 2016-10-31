@@ -8,36 +8,28 @@ import { Action } from '@ngrx/store';
 @Injectable()
 export class CreatorActions {
 
-  static ADD_ITEM       = '[CREATOR:ADD_ITEM]';
-  static UPDATE_ITEMS   = '[CREATOR:UPDATE_ITEMS]';
-  static RESET          = '[CREATOR:RESET]';
+  public static ADD_ITEM       = '[CREATOR:ADD_ITEM]';
+  public static UPDATE_ITEMS   = '[CREATOR:UPDATE_ITEMS]';
+  public static RESET          = '[CREATOR:RESET]';
 
-  addItem(newItem: any): Action {
-
+  public addItem(newItem: any): Action {
     return {
       type: CreatorActions.ADD_ITEM,
-      payload: newItem
+      payload: newItem,
     };
-
   }
 
-  update(newState: Object): Action {
-
+  public update(newState: Object): Action {
     return {
       type: CreatorActions.UPDATE_ITEMS,
-      payload: newState
+      payload: newState,
     };
-
   }
 
-  reset(): Action {
-
+  public reset(): Action {
     return {
-      type: CreatorActions.RESET
+      type: CreatorActions.RESET,
     };
-
   }
 
 }
-
-
