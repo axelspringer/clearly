@@ -182,7 +182,7 @@
     "url": "https://as-jira.axelspringer.de"
   },
   "engines": {
-    "node": ">= 4.5.0",
+    "node": ">= 4.6.1",
     "npm": ">= 3"
   }
 }
