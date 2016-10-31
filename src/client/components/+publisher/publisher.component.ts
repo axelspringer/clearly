@@ -15,7 +15,7 @@ export class Publisher implements OnInit {
 
   constructor() {}
 
-  ngOnInit() {
+  public ngOnInit() {
 
     EventEmitProvider.connect(ToolbarTitleUpdate.prototype.constructor.name)
       .emit('Artikel publizieren ...');

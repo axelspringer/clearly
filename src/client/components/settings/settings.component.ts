@@ -8,7 +8,7 @@ import { EventEmitProvider } from '../../core';
 import { ToolbarComponent } from '../toolbar';
 
 @Component({
-  selector: 'my-settings',  // <my-settings></my-settings>
+  selector: 'sg-settings',  // <sg-settings></sg-settings>
   styleUrls: ['./settings.style.css'],
   templateUrl: './settings.component.html',
 })

@@ -4,6 +4,8 @@ import { NgModule } from '@angular/core';
 import { TranslateLoader } from 'ng2-translate/ng2-translate';
 import { TranslatePipe } from 'ng2-translate/ng2-translate';
 import { TranslateService } from 'ng2-translate/ng2-translate';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 // Components
 import { DATABASE_PROVIDERS } from './db';
@@ -16,14 +18,18 @@ import { NotifyProvider } from './notify';
 import { TranslateCustomLoader } from './i18n';
 import { AtLeastValidatorDirective } from './forms';
 import { IteratableObjectPipe } from './pipes';
+import { LoadingComponent } from './loading';
 
 @NgModule({
   imports: [
+    FormsModule,
+    CommonModule,
   ],
   exports: [
     TranslatePipe, // should be used
     AtLeastValidatorDirective,
     IteratableObjectPipe,
+    LoadingComponent,
   ],
   declarations: [
     // Pipes
@@ -32,6 +38,9 @@ import { IteratableObjectPipe } from './pipes';
 
     // Validators
     AtLeastValidatorDirective,
+
+    // Components
+    LoadingComponent,
   ],
   providers: [
     // Events

@@ -37,7 +37,7 @@ export class DFormElement<T> {
 };
 
 @Component({
-  selector: 'my-dform-element',
+  selector: 'sg-dform-element',
   templateUrl: './dform.element.html',
 })
 export class DFormDynamicElementComponent {

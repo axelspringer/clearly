@@ -13,7 +13,7 @@ import { DFormService } from './dform.service';
 import { DFormElement } from './dform.element';
 
 @Component({
-  selector: 'my-dform',
+  selector: 'sg-dform',
   templateUrl: './dform.component.html',
   providers: [
     DFormService,

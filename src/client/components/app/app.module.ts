@@ -48,8 +48,6 @@ import { MenuComponent } from '../menu';
 import { NoContentComponent } from '../404';
 import { SettingsComponent } from '../settings';
 import { ToolbarComponent } from '../toolbar';
-import { LoadingComponent } from '../loading';
-// import { Creator } from '../+creator';
 
 // Store
 import AppStore from './app.store';
@@ -86,7 +84,6 @@ const APP_PROVIDERS = [
   declarations: [
     AppComponent,
     AvatarComponent,
-    LoadingComponent,
     MenuComponent,
     NoContentComponent,
     SettingsComponent,

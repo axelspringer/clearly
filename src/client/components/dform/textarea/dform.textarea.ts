@@ -19,7 +19,7 @@ export class DFormTextArea extends DFormElement<string> {
 };
 
 @Component({
-  selector: 'my-dform-textarea',
+  selector: 'sg-dform-textarea',
   templateUrl: './dform.textarea.html',
   styleUrls: [
     './dform.textarea.scss',

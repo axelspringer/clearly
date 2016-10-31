@@ -17,7 +17,7 @@ import { NotifyProvider } from '../../core';
 import { isChannelsLoading } from '../app';
 
 @Component({
-  selector: 'my-avatar',  // <avatar></avatar>
+  selector: 'sg-avatar',  // <avatar></avatar>
   providers: [],
   styleUrls: [
     './avatar.component.scss',

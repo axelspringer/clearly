@@ -9,7 +9,7 @@ npm install @types/lodash
  * If you can't find the type definition in the registry we can make an ambient/global definition in
  * this file for now. For example
 
-declare module 'my-module' {
+declare module 'sg-module' {
  export function doesSomething(value: string): string;
 }
 

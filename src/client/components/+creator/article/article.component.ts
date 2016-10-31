@@ -8,7 +8,7 @@ import { Input } from '@angular/core';
 import { DFormElement } from './../../dform';
 
 @Component({
-  selector: 'my-article',  // <my-article></my-article>
+  selector: 'sg-article',  // <sg-article></sg-article>
   styleUrls: [
     './article.component.scss',
   ],

@@ -9,11 +9,11 @@
     // Angular 2
     "component-class-suffix": true,
     "component-selector-name": [true, "kebab-case"],
-    "component-selector-prefix": [true, "my"],
+    "component-selector-prefix": [true, "sg"],
     "component-selector-type": [true, "element"],
     "directive-class-suffix": true,
     "directive-selector-name": [true, "camelCase"],
-    "directive-selector-prefix": [true, "my"],
+    "directive-selector-prefix": [true, "sg"],
     "directive-selector-type": [true, "attribute"],
     "import-destructuring-spacing": true,
     "invoke-injectable": true,

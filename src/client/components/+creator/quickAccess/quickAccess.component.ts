@@ -13,7 +13,7 @@ import { IAppState } from '../../app';
 
 @Component({
   encapsulation: ViewEncapsulation.None,
-  selector: 'my-quick-access',
+  selector: 'sg-quick-access',
   styleUrls: [
     './quickAccess.component.scss',
   ],

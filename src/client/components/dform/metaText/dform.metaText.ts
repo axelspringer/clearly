@@ -23,7 +23,7 @@ export class DFormMetaText extends DFormElement<string> {
 };
 
 @Component({
-  selector: 'my-dform-meta-text',
+  selector: 'sg-dform-meta-text',
   templateUrl: './dform.metaText.html',
   styleUrls: [
     './dform.metaText.scss',

@@ -17,7 +17,7 @@ import { ToolbarTitleUpdate } from '../toolbar';
 import { ChannelsDialogComponent } from './dialogs';
 
 @Component({
-  selector: 'my-creator',  // <creator></creator>
+  selector: 'sg-creator',  // <creator></creator>
   styleUrls: [
     './creator.component.scss',
   ],

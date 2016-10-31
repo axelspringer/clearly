@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
 // Components
 
 @Component({
-  selector: 'my-article-content',  // <my-article-content></my-article-content>
+  selector: 'sg-article-content',  // <sg-article-content></sg-article-content>
   providers: [
   ],
   styleUrls: [

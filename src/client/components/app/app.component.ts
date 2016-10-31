@@ -18,7 +18,7 @@ import { DatabaseProvider } from './../../core';
 
 @Component({
   encapsulation: ViewEncapsulation.None,
-  selector: 'my-app',
+  selector: 'sg-app',
   styleUrls: [
     './app.style.scss',
   ],

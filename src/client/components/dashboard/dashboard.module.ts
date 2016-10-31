@@ -1,7 +1,5 @@
 // Importables
-import {
-   NgModule,
-} from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -27,8 +25,8 @@ import { Routing } from './dashboard.routes';
     ArticlesListComponent,
   ],
   declarations: [
-    DashboardComponent,
     ArticlesListComponent,
+    DashboardComponent,
   ],
 })
 export class DashboardModule {}

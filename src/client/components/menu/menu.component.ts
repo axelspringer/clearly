@@ -8,7 +8,7 @@ import { NavigationEnd } from '@angular/router';
 import { AppComponent } from '../app';
 
 @Component({
-  selector: 'my-menu',  // <my-menu></my-menu>
+  selector: 'sg-menu',  // <sg-menu></sg-menu>
   providers: [],
   styleUrls: ['./menu.style.scss'],
   templateUrl: './menu.component.html',

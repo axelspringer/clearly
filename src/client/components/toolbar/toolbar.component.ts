@@ -23,7 +23,7 @@ export class ToolbarTitleUpdate extends Event {
 }
 
 @Component({
-  selector: 'my-toolbar',  // <my-toolbar></my-toolbar>
+  selector: 'sg-toolbar',  // <sg-toolbar></sg-toolbar>
   providers: [],
   styleUrls: ['./toolbar.style.scss'],
   templateUrl: './toolbar.component.html',

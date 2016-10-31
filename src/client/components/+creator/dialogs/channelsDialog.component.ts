@@ -11,7 +11,7 @@ import { FormGroup } from '@angular/forms';
 import { CreatorService } from '../creator.service';
 
 @Component({
-  selector: 'my-channels-dialog',
+  selector: 'sg-channels-dialog',
   styleUrls: [
     './channelsDialog.component.scss',
   ],

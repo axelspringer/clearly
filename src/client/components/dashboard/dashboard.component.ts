@@ -20,7 +20,7 @@ import { IAppState } from '../app';
 import { getDocs } from '../app';
 
 @Component({
-  selector: 'my-dashboard',  // <my-dashboard></my-dashboard>
+  selector: 'sg-dashboard',  // <sg-dashboard></sg-dashboard>
   styleUrls: ['./dashboard.style.css'],
   templateUrl: './dashboard.component.html',
 })

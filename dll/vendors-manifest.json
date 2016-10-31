@@ -6853,32 +6853,20 @@
         "combineReducers"
       ]
     },
-    "./node_modules/apollo-client/ObservableQuery.js": {
-      "id": "./node_modules/apollo-client/ObservableQuery.js",
-      "meta": {}
-    },
-    "./node_modules/apollo-client/QueryManager.js": {
-      "id": "./node_modules/apollo-client/QueryManager.js",
+    "./node_modules/apollo-client/ApolloClient.js": {
+      "id": "./node_modules/apollo-client/ApolloClient.js",
       "meta": {}
     },
     "./node_modules/apollo-client/actions.js": {
       "id": "./node_modules/apollo-client/actions.js",
       "meta": {}
     },
-    "./node_modules/apollo-client/batchedNetworkInterface.js": {
-      "id": "./node_modules/apollo-client/batchedNetworkInterface.js",
+    "./node_modules/apollo-client/core/ObservableQuery.js": {
+      "id": "./node_modules/apollo-client/core/ObservableQuery.js",
       "meta": {}
     },
-    "./node_modules/apollo-client/batching.js": {
-      "id": "./node_modules/apollo-client/batching.js",
-      "meta": {}
-    },
-    "./node_modules/apollo-client/batching/queryMerging.js": {
-      "id": "./node_modules/apollo-client/batching/queryMerging.js",
-      "meta": {}
-    },
-    "./node_modules/apollo-client/data/diffAgainstStore.js": {
-      "id": "./node_modules/apollo-client/data/diffAgainstStore.js",
+    "./node_modules/apollo-client/core/QueryManager.js": {
+      "id": "./node_modules/apollo-client/core/QueryManager.js",
       "meta": {}
     },
     "./node_modules/apollo-client/data/mutationResults.js": {
@@ -6891,6 +6879,10 @@
     },
     "./node_modules/apollo-client/data/replaceQueryResults.js": {
       "id": "./node_modules/apollo-client/data/replaceQueryResults.js",
+      "meta": {}
+    },
+    "./node_modules/apollo-client/data/resultReducers.js": {
+      "id": "./node_modules/apollo-client/data/resultReducers.js",
       "meta": {}
     },
     "./node_modules/apollo-client/data/scopeQuery.js": {
@@ -6909,8 +6901,12 @@
       "id": "./node_modules/apollo-client/data/writeToStore.js",
       "meta": {}
     },
-    "./node_modules/apollo-client/errors.js": {
-      "id": "./node_modules/apollo-client/errors.js",
+    "./node_modules/apollo-client/errors/ApolloError.js": {
+      "id": "./node_modules/apollo-client/errors/ApolloError.js",
+      "meta": {}
+    },
+    "./node_modules/apollo-client/fragments.js": {
+      "id": "./node_modules/apollo-client/fragments.js",
       "meta": {}
     },
     "./node_modules/apollo-client/index.js": {
@@ -6919,10 +6915,6 @@
     },
     "./node_modules/apollo-client/mutations/store.js": {
       "id": "./node_modules/apollo-client/mutations/store.js",
-      "meta": {}
-    },
-    "./node_modules/apollo-client/networkInterface.js": {
-      "id": "./node_modules/apollo-client/networkInterface.js",
       "meta": {}
     },
     "./node_modules/apollo-client/optimistic-data/store.js": {
@@ -6945,16 +6937,24 @@
       "id": "./node_modules/apollo-client/queries/store.js",
       "meta": {}
     },
-    "./node_modules/apollo-client/queryPrinting.js": {
-      "id": "./node_modules/apollo-client/queryPrinting.js",
-      "meta": {}
-    },
-    "./node_modules/apollo-client/scheduler.js": {
-      "id": "./node_modules/apollo-client/scheduler.js",
+    "./node_modules/apollo-client/scheduler/scheduler.js": {
+      "id": "./node_modules/apollo-client/scheduler/scheduler.js",
       "meta": {}
     },
     "./node_modules/apollo-client/store.js": {
       "id": "./node_modules/apollo-client/store.js",
+      "meta": {}
+    },
+    "./node_modules/apollo-client/transport/batchedNetworkInterface.js": {
+      "id": "./node_modules/apollo-client/transport/batchedNetworkInterface.js",
+      "meta": {}
+    },
+    "./node_modules/apollo-client/transport/batching.js": {
+      "id": "./node_modules/apollo-client/transport/batching.js",
+      "meta": {}
+    },
+    "./node_modules/apollo-client/transport/networkInterface.js": {
+      "id": "./node_modules/apollo-client/transport/networkInterface.js",
       "meta": {}
     },
     "./node_modules/apollo-client/util/Observable.js": {
@@ -6985,6 +6985,22 @@
       "id": "./node_modules/events/events.js",
       "meta": {}
     },
+    "./node_modules/graphql-anywhere/lib/src/directives.js": {
+      "id": "./node_modules/graphql-anywhere/lib/src/directives.js",
+      "meta": {}
+    },
+    "./node_modules/graphql-anywhere/lib/src/getFromAST.js": {
+      "id": "./node_modules/graphql-anywhere/lib/src/getFromAST.js",
+      "meta": {}
+    },
+    "./node_modules/graphql-anywhere/lib/src/index.js": {
+      "id": "./node_modules/graphql-anywhere/lib/src/index.js",
+      "meta": {}
+    },
+    "./node_modules/graphql-anywhere/lib/src/storeUtils.js": {
+      "id": "./node_modules/graphql-anywhere/lib/src/storeUtils.js",
+      "meta": {}
+    },
     "./node_modules/graphql-tag/printer.js": {
       "id": "./node_modules/graphql-tag/printer.js",
       "meta": {}
@@ -7005,6 +7021,33 @@
       "id": "./node_modules/lie/lib/browser.js",
       "meta": {}
     },
+    "./node_modules/lodash-es/_Symbol.js": {
+      "id": "./node_modules/lodash-es/_Symbol.js",
+      "meta": {
+        "harmonyModule": true
+      },
+      "exports": [
+        "default"
+      ]
+    },
+    "./node_modules/lodash-es/_baseGetTag.js": {
+      "id": "./node_modules/lodash-es/_baseGetTag.js",
+      "meta": {
+        "harmonyModule": true
+      },
+      "exports": [
+        "default"
+      ]
+    },
+    "./node_modules/lodash-es/_freeGlobal.js": {
+      "id": "./node_modules/lodash-es/_freeGlobal.js",
+      "meta": {
+        "harmonyModule": true
+      },
+      "exports": [
+        "default"
+      ]
+    },
     "./node_modules/lodash-es/_getPrototype.js": {
       "id": "./node_modules/lodash-es/_getPrototype.js",
       "meta": {
@@ -7014,8 +7057,35 @@
         "default"
       ]
     },
+    "./node_modules/lodash-es/_getRawTag.js": {
+      "id": "./node_modules/lodash-es/_getRawTag.js",
+      "meta": {
+        "harmonyModule": true
+      },
+      "exports": [
+        "default"
+      ]
+    },
+    "./node_modules/lodash-es/_objectToString.js": {
+      "id": "./node_modules/lodash-es/_objectToString.js",
+      "meta": {
+        "harmonyModule": true
+      },
+      "exports": [
+        "default"
+      ]
+    },
     "./node_modules/lodash-es/_overArg.js": {
       "id": "./node_modules/lodash-es/_overArg.js",
+      "meta": {
+        "harmonyModule": true
+      },
+      "exports": [
+        "default"
+      ]
+    },
+    "./node_modules/lodash-es/_root.js": {
+      "id": "./node_modules/lodash-es/_root.js",
       "meta": {
         "harmonyModule": true
       },
@@ -7061,16 +7131,12 @@
       "id": "./node_modules/lodash.forown/index.js",
       "meta": {}
     },
-    "./node_modules/lodash.has/index.js": {
-      "id": "./node_modules/lodash.has/index.js",
-      "meta": {}
-    },
     "./node_modules/lodash.identity/index.js": {
       "id": "./node_modules/lodash.identity/index.js",
       "meta": {}
     },
-    "./node_modules/lodash.isarray/index.js": {
-      "id": "./node_modules/lodash.isarray/index.js",
+    "./node_modules/lodash.includes/index.js": {
+      "id": "./node_modules/lodash.includes/index.js",
       "meta": {}
     },
     "./node_modules/lodash.isequal/index.js": {
