@@ -7,8 +7,6 @@ import { Subject } from 'rxjs';
 import { Store } from '@ngrx/store';
 
 // Components
-// import { AppComponent } from '../app';
-// import { AppConfig } from '../../config';
 import { IAppState } from '../app';
 import { DatabaseProvider } from '../../core';
 import { EventEmitProvider } from '../../core';
@@ -17,11 +15,8 @@ import { NotifyProvider } from '../../core';
 import { isChannelsLoading } from '../app';
 
 @Component({
-  selector: 'sg-avatar',  // <avatar></avatar>
-  providers: [],
-  styleUrls: [
-    './avatar.component.scss',
-  ],
+  selector: 'sg-avatar',  // <sg-avatar></sg-avatar>
+  styleUrls: ['./avatar.component.scss'],
   templateUrl: './avatar.component.html',
 })
 export class AvatarComponent implements OnInit {

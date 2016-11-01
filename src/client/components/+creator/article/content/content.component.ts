@@ -1,24 +1,20 @@
 // Importables
 import { OnDestroy } from '@angular/core';
 import { Component } from '@angular/core';
+import { Input } from '@angular/core';
 
 // Components
+import { DFormElement } from '../../../dform';
 
 @Component({
   selector: 'sg-article-content',  // <sg-article-content></sg-article-content>
-  providers: [
-  ],
   styleUrls: [
     './content.component.scss',
   ],
   templateUrl: './content.component.html',
 })
-export class ArticleContentComponent implements OnDestroy {
+export class ArticleContentComponent {
 
-  public data: any;
-
-  public ngOnDestroy() {
-    // should be unsubscribed
-  }
+   @Input() public content: Array<DFormElement<any>>;
 
 };

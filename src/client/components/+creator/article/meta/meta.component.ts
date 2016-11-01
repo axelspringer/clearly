@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
 import { DFormElement } from '../../../dform';
 
 @Component({
-  selector: 'sg-article-meta',  // <article-meta></article-meta>
+  selector: 'sg-article-meta',  // <sg-article-meta></sg-article-meta>
   styleUrls: [
     './meta.component.scss',
   ],
@@ -14,6 +14,6 @@ import { DFormElement } from '../../../dform';
 })
 export class ArticleMetaComponent {
 
-  @Input('data') public metaData: Array<DFormElement<any>>;
+  @Input() public metaData: Array<DFormElement<any>>;
 
 };
