@@ -5,8 +5,8 @@ import * as R from 'ramda';
 import * as _ from 'lodash';
 
 // DForm
-import { DFormElement } from '../dform';
-import { DFormService } from '../dform';
+import { DFormElement } from '../../core';
+import { DFormService } from '../../core';
 
 @Injectable()
 export class CreatorService {

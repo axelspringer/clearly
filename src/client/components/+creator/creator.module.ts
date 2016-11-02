@@ -17,7 +17,6 @@ import { CREATOR_RESOLVER_PROVIDERS } from './creator.resolver';
 import { CreatorActions } from './creator.actions';
 import { CreatorComponent } from './creator.component';
 import { CreatorService } from './creator.service';
-import { DFormModule } from '../dform';
 import { MdModule } from '../app/app.material';
 import { QuickAccessComponent } from './quickAccess';
 import { ROUTES } from './creator.routes';
@@ -36,7 +35,6 @@ const CREATOR_PROVIDERS = [
   imports: [
     CommonModule,
     CoreModule,
-    DFormModule,
     FormsModule,
     MdModule,
     ReactiveFormsModule,

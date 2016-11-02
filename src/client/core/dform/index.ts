@@ -1,6 +1,7 @@
 // Exportables
-export * from './dform.module';
+export * from './dform.component';
 export * from './dform.element';
+export * from './dform.service';
+export * from './metaText';
 export * from './text';
 export * from './textarea';
-export * from './dform.service';

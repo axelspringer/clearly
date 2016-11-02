@@ -29,7 +29,6 @@ import { client } from './app.apollo.ts';
 // Modules
 import { CoreModule } from '../../core';
 import { DashboardModule } from '../dashboard';
-import { DFormModule } from '../dform';
 import { CreatorModule } from '../+creator';
 
 // Environment
@@ -123,7 +122,6 @@ const APP_PROVIDERS = [
 
     // Custom Modules
     DashboardModule,
-    DFormModule,
     CreatorModule,
     CoreModule.forRoot(AppLocale.languages),
   ],

@@ -6,6 +6,7 @@ import { TranslatePipe } from 'ng2-translate/ng2-translate';
 import { TranslateService } from 'ng2-translate/ng2-translate';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 
 // Components
 import { DATABASE_PROVIDERS } from './db';
@@ -19,17 +20,32 @@ import { TranslateCustomLoader } from './i18n';
 import { AtLeastValidatorDirective } from './forms';
 import { IteratableObjectPipe } from './pipes';
 import { LoadingComponent } from './loading';
+import { DFormService } from './dform';
+import { DFormComponent } from './dform';
+import { DFormDynamicElementComponent } from './dform';
+import { DFormTextComponent } from './dform';
+import { DFormTextAreaComponent } from './dform';
+import { DFormMetaTextComponent } from './dform';
+import { MdModule } from '../components/app/app.material';
 
 @NgModule({
   imports: [
-    FormsModule,
     CommonModule,
+    FormsModule,
+    MdModule,
+    ReactiveFormsModule,
   ],
   exports: [
     TranslatePipe, // should be used
     AtLeastValidatorDirective,
     IteratableObjectPipe,
     LoadingComponent,
+    // Dynamic Forms
+    DFormComponent,
+    DFormDynamicElementComponent,
+    DFormTextComponent,
+    DFormTextAreaComponent,
+    DFormMetaTextComponent,
   ],
   declarations: [
     // Pipes
@@ -41,6 +57,13 @@ import { LoadingComponent } from './loading';
 
     // Components
     LoadingComponent,
+
+    // Dynamic Forms
+    DFormComponent,
+    DFormDynamicElementComponent,
+    DFormTextComponent,
+    DFormTextAreaComponent,
+    DFormMetaTextComponent,
   ],
   providers: [
     // Events
@@ -60,6 +83,9 @@ import { LoadingComponent } from './loading';
 
     // Translation
     TranslateService,
+
+    // Dynamic Forms
+    DFormService,
 
     // Angular
     ...HTTP_PROVIDERS,
