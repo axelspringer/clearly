@@ -21,7 +21,7 @@ import { getDocs } from '../app';
 
 @Component({
   selector: 'sg-dashboard',  // <sg-dashboard></sg-dashboard>
-  styleUrls: ['./dashboard.style.css'],
+  styleUrls: ['./dashboard.components.scss'],
   templateUrl: './dashboard.component.html',
 })
 export class DashboardComponent implements OnInit {
@@ -56,9 +56,6 @@ export class DashboardComponent implements OnInit {
 
     this.articles$ = this.store.let(getDocs());
     this.store.dispatch(this.docsActions.load());
-    setTimeout(() => {
-      this.store.dispatch(this.docsActions.load());
-    }, 2500);
 
   }
 

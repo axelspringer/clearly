@@ -29,16 +29,14 @@ export class MenuComponent implements AfterViewInit {
   }
 
   public trigger(value) {
-
     this.router.navigate([value]);
-
   }
 
   public ngAfterViewInit() {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd &&
-        this._appRef['sg-menu'].opened) {
-        this._appRef['sg-menu'].toggle();
+        this._appRef['menu'].opened) {
+        this._appRef['menu'].toggle();
       }
     });
   }
