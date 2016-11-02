@@ -96,6 +96,7 @@ const commonConfig = function webpackConfig(): WebpackConfig {
         enforce: 'pre',
         test: /\.ts$/,
         loader: 'tslint',
+        exclude: /(node_modules)/,
       },
       {
         test: /\.js$/,
@@ -109,7 +110,10 @@ const commonConfig = function webpackConfig(): WebpackConfig {
           'awesome-typescript-loader',
           'angular2-template-loader',
         ],
-        exclude: [/\.(spec|e2e)\.ts$/],
+        exclude: [
+          /\.(spec|e2e)\.ts$/,
+          /(node_modules)/,
+        ],
       },
       {
         test: /\.json$/,

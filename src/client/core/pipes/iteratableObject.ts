@@ -3,11 +3,11 @@ import { Pipe } from '@angular/core';
 import { PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'iteratableObject'
+  name: 'sgIteratableObject',
 })
 export class IteratableObjectPipe implements PipeTransform {
 
-  transform(value: any, args?: any[]): Array<any> {
+  public transform(value: any, args?: any[]): Array<any> {
     return Object.keys(value).map(key => {
       return Object.assign({}, { key }, {value: value[key]});
     });

@@ -23,12 +23,9 @@ export class MenuComponent implements AfterViewInit {
     @Inject(forwardRef(() => AppComponent)) public app: AppComponent,
     private router: Router,
   ) {
-
     this._appRef = app;
-
     this.$routes = router.config.filter(route => route.data && route.data['isMenu']);
     this.$routes = this.$routes.sort((a, b) => a.data['order'] > b.data['order']);
-
   }
 
   public trigger(value) {
@@ -38,15 +35,12 @@ export class MenuComponent implements AfterViewInit {
   }
 
   public ngAfterViewInit() {
-
     this.router.events.subscribe(event => {
-      console.log(this.router);
       if (event instanceof NavigationEnd &&
-        this._appRef.menu.opened) {
-        this._appRef.menu.toggle();
+        this._appRef['sg-menu'].opened) {
+        this._appRef['sg-menu'].toggle();
       }
     });
-
   }
 
 };

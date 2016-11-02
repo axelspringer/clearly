@@ -4,7 +4,6 @@ import { Observable } from 'rxjs';
 import { Actions } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
 import { Effect } from '@ngrx/effects';
-import { OnDestroy } from '@angular/core';
 
 // Components
 import { DocsActions } from '../actions';
@@ -30,8 +29,6 @@ export class DocsEffects {
   constructor(
     private actions$: Actions,
     private db: DatabaseProvider,
-  ) {
-
-  }
+  ) {}
 
 }

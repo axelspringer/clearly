@@ -17,7 +17,7 @@ import '!!style!css!postcss!sass!./boot.scss';
 
 if ('production' === ENV) {
   // offline via ServiceWorker
-  require('offline-plugin/runtime').install();
+  // require('offline-plugin/runtime').install();
 
   // Production
   disableDebugTools();

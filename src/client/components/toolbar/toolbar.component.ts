@@ -2,9 +2,7 @@
 import { Component } from '@angular/core';
 import { forwardRef } from '@angular/core';
 import { Inject } from '@angular/core';
-// import { Injectable } from '@angular/core';
 import { OnInit } from '@angular/core';
-// import { Observable } from 'rxjs';
 
 // Components
 import { AppComponent } from '../app';
@@ -42,7 +40,7 @@ export class ToolbarComponent implements OnInit {
   }
 
   public toggleMenu() {
-    this._appRef.menu.toggle();
+    this._appRef['menu'].toggle();
   }
 
   public ngOnInit() {

@@ -1,17 +1,10 @@
 // Custom Http
 import { Injectable } from '@angular/core';
-import {
-  ConnectionBackend,
-  Http,
-  Request,
-  RequestOptions,
-  RequestOptionsArgs,
-  Response
-} from '@angular/http';
+import { ConnectionBackend } from '@angular/http';
+import { Http } from '@angular/http';
+import { RequestOptions } from '@angular/http';
+import { RequestOptionsArgs } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import { Observer } from 'rxjs/Observer';
-import { AppConfig } from '../../config';
-
 
 // service
 @Injectable()
@@ -26,7 +19,7 @@ export class CustomHttp extends Http {
   }
 
   // wrap to functions
-  post( url: string, body: any, options?: RequestOptionsArgs): Observable<any> {
+  public post( url: string, body: any, options?: RequestOptionsArgs): Observable<any> {
     return this.factory('post', url, body, options);
   }
 

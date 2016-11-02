@@ -34,7 +34,6 @@ export class NotifyEvent extends Event {
 export const NOTIFY_PROVIDER_OPTIONS: INotifyProviderOptions = {
 };
 
-
 @Injectable()
 export class NotifyProvider {
 
@@ -67,7 +66,6 @@ export class NotifyProvider {
   }
 
 };
-
 
 export const NOTIFY_PROVIDERS = [
   {
