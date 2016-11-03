@@ -28,6 +28,8 @@ export class AppConfig {
 
   public static DEBUG: boolean = 'production' !== ENV;
 
-  public static API_BASE: string = 'https://localhost:8080';
+  public static API_BASE: string = 'production' === ENV
+    ? 'http://editor.test.tortuga.cloud:5012/'
+    : 'https://localhost:8080';
 
 };
