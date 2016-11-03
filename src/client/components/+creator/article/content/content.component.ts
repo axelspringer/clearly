@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { Input } from '@angular/core';
 
 // Components
-import { DFormElement } from '../../../dform';
+import { DFormElement } from '../../../../core';
 
 @Component({
   selector: 'sg-article-content',  // <sg-article-content></sg-article-content>

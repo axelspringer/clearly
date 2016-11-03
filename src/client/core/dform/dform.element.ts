@@ -45,8 +45,8 @@ export class DFormDynamicElementComponent {
   @Input() public element: DFormElement<any>;
   @Input() public form: FormGroup;
 
-  get isValid() {
-    return this.form.controls[this.element.key].valid;
-  }
+  // get isValid() {
+  //   return this.form.controls[this.element.key].valid;
+  // }
 
 };

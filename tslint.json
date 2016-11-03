@@ -52,8 +52,8 @@
       true,
       "allow-leading-underscore",
       "allow-pascal-case",
-      "ban-keywords",
-      "check-format"
+      "ban-keywords"
+      // "check-format"
     ]
   }
 }

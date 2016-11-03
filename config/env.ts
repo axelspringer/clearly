@@ -36,7 +36,7 @@ export const CUSTOM_PLUGINS_PROD = [
 export const CUSTOM_RULES_COMMON = [
   {
     test: /\.scss$/,
-    use: [
+    loaders: [
       {
         loader: 'to-string-loader',
       }, {
@@ -44,7 +44,7 @@ export const CUSTOM_RULES_COMMON = [
       }, {
         loader: 'postcss-loader',
         options: {
-          plugins: function() {
+          plugins: () => {
             return [
               autoprefixer()({ /* ...options */ }),
               cssnano({ /* ...options */ }),

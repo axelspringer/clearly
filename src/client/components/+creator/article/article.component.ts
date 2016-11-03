@@ -5,13 +5,11 @@ import { Component } from '@angular/core';
 import { Input } from '@angular/core';
 
 // Components
-import { DFormElement } from './../../dform';
+import { DFormElement } from '../../../core';
 
 @Component({
   selector: 'sg-article',  // <sg-article></sg-article>
-  styleUrls: [
-    './article.component.scss',
-  ],
+  styleUrls: ['./article.component.scss'],
   templateUrl: './article.component.html',
 })
 export class ArticleComponent implements OnInit, OnDestroy {

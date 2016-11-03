@@ -6,6 +6,10 @@ html, body{
   font-family: Arial, Helvetica, sans-serif;
 }
 
+body {
+  overflow: hidden;
+}
+
 button.active{
   background: #fff;
   color: #009688;

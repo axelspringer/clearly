@@ -20,7 +20,7 @@ import { TranslateCustomLoader } from './i18n';
 import { AtLeastValidatorDirective } from './forms';
 import { IteratableObjectPipe } from './pipes';
 import { LoadingComponent } from './loading';
-import { DFormService } from './dform';
+import { DForm } from './dform';
 import { DFormComponent } from './dform';
 import { DFormDynamicElementComponent } from './dform';
 import { DFormTextComponent } from './dform';
@@ -85,7 +85,7 @@ import { MdModule } from '../components/app/app.material';
     TranslateService,
 
     // Dynamic Forms
-    DFormService,
+    DForm,
 
     // Angular
     ...HTTP_PROVIDERS,

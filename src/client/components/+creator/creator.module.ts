@@ -19,16 +19,20 @@ import { CreatorComponent } from './creator.component';
 import { CreatorService } from './creator.service';
 import { MdModule } from '../app/app.material';
 import { QuickAccessComponent } from './quickAccess';
+import { QuickWriteComponent } from './quickWrite';
 import { ROUTES } from './creator.routes';
+import { QuickWrite } from './quickWrite';
 
 // providers
 const CREATOR_PROVIDERS = [
-  ...CREATOR_RESOLVER_PROVIDERS,
   ArticleActions,
   CreatorActions,
   CreatorService,
   CanActivateArticle,
   CreatorActions,
+  QuickWrite,
+
+  ...CREATOR_RESOLVER_PROVIDERS,
 ];
 
 @NgModule({
@@ -47,6 +51,7 @@ const CREATOR_PROVIDERS = [
     ChannelsDialogComponent,
     CreatorComponent,
     QuickAccessComponent,
+    QuickWriteComponent,
   ],
   entryComponents: [
     ChannelsDialogComponent,
@@ -59,6 +64,7 @@ const CREATOR_PROVIDERS = [
     CoreModule,
     CreatorComponent,
     QuickAccessComponent,
+    QuickWriteComponent,
     ReactiveFormsModule,
   ],
   providers: [

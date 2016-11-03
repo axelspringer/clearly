@@ -1,6 +1,6 @@
 <form (ngSubmit)="onSubmit()" [formGroup]="form">
 
-  <div *ngFor="let element of elements" class="form-row">
+  <div *ngFor="let element of test" class="form-row">
     <sg-dform-element [element]="element" [form]="form"></sg-dform-element>
   </div>
 

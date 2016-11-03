@@ -6,7 +6,7 @@ import * as _ from 'lodash';
 
 // DForm
 import { DFormElement } from '../../core';
-import { DFormService } from '../../core';
+import { DForm } from '../../core';
 
 @Injectable()
 export class CreatorService {
@@ -15,7 +15,7 @@ export class CreatorService {
   private _channels = [];
 
   constructor(
-    private dFormService: DFormService,
+    private dFormService: DForm,
   ) {
   }
 

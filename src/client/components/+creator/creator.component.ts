@@ -49,13 +49,14 @@ export class CreatorComponent implements OnInit, OnDestroy {
       .map(data => data['channels'])
       .switchMap(channels => {
         this.creatorService.channels = channels;
+        console.log(channels);
         return this.creatorService.form;
       });
 
     this.translate.get(this.i18nTitle).subscribe(t =>
       EventEmitProvider.connect(ToolbarTitleUpdate.prototype.constructor.name).emit(t));
 
-    this.toggleChannels();
+    // this.toggleChannels();
   }
 
   public toggleChannels() {
@@ -65,7 +66,7 @@ export class CreatorComponent implements OnInit, OnDestroy {
     this.dialogRef = this.dialog.open(ChannelsDialogComponent, config);
 
     this.dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
+      // console.log(result);
       this.lastCloseResult = result;
       this.dialogRef = null;
     });
