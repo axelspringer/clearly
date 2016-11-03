@@ -49,6 +49,21 @@ export class DForm { // central service of a dynamic form
     return this.__form.asObservable();
   }
 
+  public remove(oldFormEntity: DFormElement<any>) {
+    this.__formEntities
+      .splice(this.__formEntities.findIndex(formEntity => formEntity.key === oldFormEntity.key), 1);
+    this.__next(this.__formEntities); // could also be done completly reactive
+  }
+
+  public toFormElement(el) {
+    // this is a bit spooky; will have small class
+    return {
+      'metaText': (options => new DFormMetaText(options)),
+      'text': (options => new DFormText(options)),
+      'textArea': (options => new DFormTextArea(options)),
+    }[el];
+  }
+
   // private
 
   private __DFormElementToFormGroup(formEntities: Array<DFormElement<any>>) {
@@ -70,30 +85,6 @@ export class DForm { // central service of a dynamic form
     return DFormEntity.required
       ? new FormControl(DFormEntity.value || '', Validators.required)
       : new FormControl(DFormEntity.value || '');
-  }
-
-  public remove() {
-    // const test = this._form.getValue();
-    // test.removeControl('main');
-    // console.log(test);
-    this.__formEntities.splice(0, 1);
-    // this._form.next(test);
-  }
-
-  // public toDForm(form: FormGroup, elements: Array<DFormElement<any>>) {
-  //   elements.forEach(element => {
-  //     form.addControl(element.key, this.toFormControl(element));
-  //   });
-  //   return form;
-  // }
-
-  public toFormElement(el) {
-    // this is a bit spooky; will have small class
-    return {
-      'metaText': (options => new DFormMetaText(options)),
-      'text': (options => new DFormText(options)),
-      'textArea': (options => new DFormTextArea(options)),
-    }[el];
   }
 
 }

@@ -18,7 +18,7 @@ import { DFormTextArea } from './textarea/dform.textarea';
   selector: 'sg-dform',
   templateUrl: './dform.component.html',
   providers: [DForm],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  // changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DFormComponent implements OnInit {
 

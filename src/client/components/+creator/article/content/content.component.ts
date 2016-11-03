@@ -1,6 +1,7 @@
 // Importables
 import { Component } from '@angular/core';
 import { Input } from '@angular/core';
+import { OnInit } from '@angular/core';
 
 // Components
 import { DFormElement } from '../../../../core';
@@ -10,6 +11,11 @@ import { DFormElement } from '../../../../core';
   styleUrls: ['./content.component.scss'],
   templateUrl: './content.component.html',
 })
-export class ArticleContentComponent {
+export class ArticleContentComponent implements OnInit {
    @Input() public content: Array<DFormElement<any>>;
+
+   public ngOnInit() {
+      console.log(this.content);
+   }
+
 };

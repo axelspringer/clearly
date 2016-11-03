@@ -11,7 +11,7 @@ import { ViewChildren } from '@angular/core';
 // Components
 import { DFormElement } from '../dform.element';
 import { DForm } from '../dform.service';
-import { ConsoleLogEmitter } from '../../log/log.service';
+// import { ConsoleLogEmitter } from '../../log/log.service';
 
 enum Keys {
   Backspace = 8,
@@ -42,24 +42,19 @@ export class DFormTextAreaComponent {
 
   @ViewChildren('input') public inputs: any; // query list for children in view
 
-  public isQuickEditMode  = true;
-
   constructor(
-    private viewContainerRef: ViewContainerRef,
-    @Inject(forwardRef(() => DForm)) public dformService: DForm,
+    private __viewContainerRef: ViewContainerRef,
+    @Inject(forwardRef(() => DForm)) private __DForm: DForm,
   ) {
   }
 
   @HostListener('keydown', ['$event'])
   public onPress(event: KeyboardEvent) {
-    if (!this.isQuickEditMode) {
-      return;
-    }
     if (event.keyCode === Keys.Backspace
       && this.inputs.length === 1 // be secure at this state
       && this.inputs.first.nativeElement.value === '') {
         // send to dform service
-        this.dformService.remove();
+        this.__DForm.remove(this.element);
     }
   };
 
