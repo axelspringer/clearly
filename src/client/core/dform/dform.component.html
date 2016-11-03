@@ -1,7 +1,7 @@
-<form (ngSubmit)="onSubmit()" [formGroup]="form">
+<form (ngSubmit)="onSubmit()" [formGroup]="dform.form">
 
-  <div *ngFor="let element of test" class="form-row">
-    <sg-dform-element [element]="element" [form]="form"></sg-dform-element>
+  <div *ngFor="let entity of dform.data" class="form-row">
+    <sg-dform-element [element]="entity" [form]="dform.form"></sg-dform-element>
   </div>
 
 </form>

@@ -11,13 +11,26 @@ import { DFormMetaText } from './metaText';
 import { DFormText } from './text';
 import { DFormTextArea } from './textarea';
 
+interface IDFormSubject {
+  data: Array<DFormElement<any>>;
+  form: FormGroup;
+}
+
+export class DFormObservable implements IDFormSubject {
+  constructor(
+    public data: Array<DFormElement<any>> = [],
+    public form: FormGroup = new FormGroup({}),
+  ) {
+  }
+}
+
 @Injectable()
 export class DForm { // central service of a dynamic form
 
   // what it does
   //
   // generates a form based on behaviors subject
-  private __form: BehaviorSubject<FormGroup> = new BehaviorSubject(new FormGroup({}));
+  private __form: BehaviorSubject<DFormObservable> = new BehaviorSubject(new DFormObservable());
   private __formEntities: Array<DFormElement<any>>; // it is cached
 
   constructor() {
@@ -48,7 +61,9 @@ export class DForm { // central service of a dynamic form
   }
 
   private __next(formEntities: Array<DFormElement<any>>) {
-    this.__form.next(this.__DFormElementToFormGroup(formEntities));
+    this.__form.next(
+      new DFormObservable(formEntities, this.__DFormElementToFormGroup(formEntities)),
+    );
   }
 
   private __DFormElementToFormControl(DFormEntity: DFormElement<any>) {
