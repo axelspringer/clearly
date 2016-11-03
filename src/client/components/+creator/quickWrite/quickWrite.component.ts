@@ -25,5 +25,4 @@ export class QuickWriteComponent {
   ) {
     console.log(this.viewContainerRef);
   }
-
 };

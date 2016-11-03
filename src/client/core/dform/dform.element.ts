@@ -1,5 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { Input } from '@angular/core';
 
 export class DFormElement<T> {
 

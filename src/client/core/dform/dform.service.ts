@@ -49,13 +49,23 @@ export class DForm { // central service of a dynamic form
     return this.__form.asObservable();
   }
 
-  public remove(oldFormEntity: DFormElement<any>) {
-    this.__formEntities
-      .splice(this.__formEntities.findIndex(formEntity => formEntity.key === oldFormEntity.key), 1);
-    this.__next(this.__formEntities); // could also be done completly reactive
+  public addFormElement() {
+    this.__formEntities.push(new DFormTextArea());
+    this.__next(this.__preserveFormState(this.__formEntities));
   }
 
-  public toFormElement(el) {
+  public removeFormElement(oldFormEntity: DFormElement<any>) {
+    this.__preserveFormState(this.__formEntities); // preserve state
+    if (this.__formEntities.length > 1) { // prevent an empty entity
+      this.__formEntities
+        .splice(
+          this.__formEntities.findIndex(formEntity => formEntity.key === oldFormEntity.key,
+        ), 1);
+      this.__next(this.__preserveFormState(this.__formEntities));
+    }
+  }
+
+  public toFormElement(el) { // legacy, needs more work
     // this is a bit spooky; will have small class
     return {
       'metaText': (options => new DFormMetaText(options)),
@@ -75,16 +85,22 @@ export class DForm { // central service of a dynamic form
     }, new FormGroup({}));
   }
 
-  private __next(formEntities: Array<DFormElement<any>>) {
-    this.__form.next(
-      new DFormObservable(formEntities, this.__DFormElementToFormGroup(formEntities)),
-    );
-  }
-
   private __DFormElementToFormControl(DFormEntity: DFormElement<any>) {
     return DFormEntity.required
       ? new FormControl(DFormEntity.value || '', Validators.required)
       : new FormControl(DFormEntity.value || '');
+  }
+
+  private __preserveFormState(formEntities: Array<DFormElement<any>>) {
+    return formEntities.map(entity => {
+      return Object.assign(entity, {value: this.__form.getValue().form.value[entity.key]});
+    });
+  }
+
+  private __next(formEntities: Array<DFormElement<any>>) {
+    this.__form.next(
+      new DFormObservable(formEntities, this.__DFormElementToFormGroup(formEntities)),
+    );
   }
 
 }

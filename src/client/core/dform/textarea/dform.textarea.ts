@@ -48,13 +48,25 @@ export class DFormTextAreaComponent {
   ) {
   }
 
-  @HostListener('keydown', ['$event'])
-  public onPress(event: KeyboardEvent) {
+  @HostListener('keyup', ['$event'])
+  public onKeyUp(event: KeyboardEvent) {
     if (event.keyCode === Keys.Backspace
       && this.inputs.length === 1 // be secure at this state
       && this.inputs.first.nativeElement.value === '') {
+        // cancel event
+        event.preventDefault();
         // send to dform service
-        this.__DForm.remove(this.element);
+        this.__DForm.removeFormElement(this.element);
+    }
+  };
+
+  @HostListener('keypress', ['$event'])
+  public onKeyPress(event: KeyboardEvent) {
+    if (event.keyCode === Keys.Enter) {
+        // cancel event
+        event.preventDefault();
+        // send to dform service
+        this.__DForm.addFormElement();
     }
   };
 

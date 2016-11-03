@@ -48,6 +48,7 @@ const NamedModulesPlugin      = require('webpack/lib/NamedModulesPlugin');
 
 const CommonsChunkPlugin      = require('webpack/lib/optimize/CommonsChunkPlugin');
 const MinChunkSizePlugin      = require('webpack/lib/optimize/MinChunkSizePlugin');
+const UglifyJsPlugin     = require('webpack/lib/optimize/UglifyJsPlugin');
 
 const { ForkCheckerPlugin }   = require('awesome-typescript-loader');
 const CompressionPlugin       = require('compression-webpack-plugin');
@@ -316,6 +317,25 @@ const prodConfig = function () {
     }),
     new MinChunkSizePlugin({
       minChunkSize: 10000,
+    }),
+    new UglifyJsPlugin({
+      beautify: false,
+      mangle: {
+        screw_ie8: true,
+        keep_fnames: true,
+      },
+      compress: {
+        screw_ie8: true,
+        sequences: true,
+        dead_code: true,
+        conditionals: true,
+        booleans: true,
+        unused: true,
+        if_return: true,
+        join_vars: true,
+        drop_console: true,
+      },
+      comments: false,
     }),
     new CopyWebpackPlugin(COPY_FOLDERS),
     new HtmlWebpackPlugin({
