@@ -60,9 +60,9 @@ export class DFormComponent implements OnInit {
   //   this.test.changes.subscribe(() => console.log(this.test));
   // }
 
-  // public ngOnInit() {
-  //   this.__DForm.toForm$(this.elements) // map to input
-  //     .subscribe(form => this.dform = form);
-  // }
+  public ngOnInit() {
+    this.__DForm.toForm$(this.elements) // map to input
+      .subscribe(form => this.dform = form);
+  }
 
 };
