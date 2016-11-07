@@ -48,7 +48,7 @@ export class DFormTextAreaComponent {
   ) {
   }
 
-  @HostListener('keyup', ['$event'])
+  @HostListener('keydown', ['$event'])
   public onKeyUp(event: KeyboardEvent) {
     if (event.keyCode === Keys.Backspace
       && this.inputs.length === 1 // be secure at this state
@@ -66,7 +66,7 @@ export class DFormTextAreaComponent {
         // cancel event
         event.preventDefault();
         // send to dform service
-        this.__DForm.addFormElement();
+        this.__DForm.addFormElement(this.element);
     }
   };
 

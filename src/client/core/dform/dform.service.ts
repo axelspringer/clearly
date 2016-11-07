@@ -11,6 +11,7 @@ import { DFormMetaText } from './metaText';
 import { DFormText } from './text';
 import { DFormTextArea } from './textarea';
 
+
 interface IDFormSubject {
   data: Array<DFormElement<any>>;
   form: FormGroup;
@@ -19,7 +20,7 @@ interface IDFormSubject {
 export class DFormObservable implements IDFormSubject {
   constructor(
     public data: Array<DFormElement<any>> = [],
-    public form: FormGroup = new FormGroup({}),
+  public form: FormGroup = new FormGroup({}),
   ) {
   }
 }
@@ -46,9 +47,10 @@ export class DForm { // central service of a dynamic form
     return this.__form.asObservable();
   }
 
-  public addFormElement() {
-    this.__formEntities.push(new DFormTextArea());
-    this.__next(this.__preserveFormState(this.__formEntities));
+  public addFormElement(afterFormEntity: DFormElement<any>) {
+    this.__formEntities = this.__preserveFormState(this.__formEntities);
+    this.__formEntities.splice(this.__formEntities.findIndex(formEntity => formEntity.key === afterFormEntity.key) + 1, 0, new DFormTextArea());
+    this.__next(this.__formEntities);
   }
 
   public removeFormElement(oldFormEntity: DFormElement<any>) {

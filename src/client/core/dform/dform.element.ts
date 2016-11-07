@@ -4,6 +4,10 @@ import { Input } from '@angular/core';
 
 export class DFormElement<T> {
 
+  private static __generateKey () {
+    return Math.random().toString(36).substr(2, 10);
+  };
+
   public value: T;
   public key: string;
   public label: string;
@@ -25,7 +29,7 @@ export class DFormElement<T> {
       isMaster?: boolean,
     } = {}) {
     this.value = options.value;
-    this.key = options.key || Math.random().toString(36).substr(2, 10);;
+    this.key = options.key || DFormElement.__generateKey();
     this.label = options.label || '';
     this.required = !!options.required;
     this.order = options.order === undefined ? 1 : options.order;
