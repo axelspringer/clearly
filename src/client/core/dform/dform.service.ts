@@ -41,11 +41,8 @@ export class DForm { // central service of a dynamic form
 
   // form entities
   public toForm$(DFormEntities: Array<DFormElement<any>> = []) {
-    // set form entities to entities
     this.__formEntities = DFormEntities;
-    // inject new form to BehaviorSubject
     this.__next(this.__formEntities);
-    // return observable of subject
     return this.__form.asObservable();
   }
 

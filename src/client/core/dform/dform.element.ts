@@ -25,7 +25,7 @@ export class DFormElement<T> {
       isMaster?: boolean,
     } = {}) {
     this.value = options.value;
-    this.key = options.key || '';
+    this.key = options.key || Math.random().toString(36).substr(2, 10);;
     this.label = options.label || '';
     this.required = !!options.required;
     this.order = options.order === undefined ? 1 : options.order;
