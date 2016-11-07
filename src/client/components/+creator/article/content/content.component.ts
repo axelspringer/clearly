@@ -15,7 +15,6 @@ export class ArticleContentComponent implements OnInit {
    @Input() public content: Array<DFormElement<any>>;
 
    public ngOnInit() {
-      console.log(this.content);
    }
 
 };

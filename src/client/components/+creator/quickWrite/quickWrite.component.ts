@@ -23,6 +23,5 @@ export class QuickWriteComponent {
   constructor(
     private viewContainerRef: ViewContainerRef,
   ) {
-    console.log(this.viewContainerRef);
   }
 };

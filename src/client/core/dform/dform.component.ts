@@ -18,6 +18,15 @@ import { ElementRef } from '@angular/core';
 import { DForm } from './dform.service';
 import { DFormElement } from './dform.element';
 import { DFormObservable } from './dform.service';
+import { Event } from '../events';
+import { EventEmitProvider } from '../events';
+
+// Interface
+export class DFormComponentFocus extends Event {
+  constructor(payload: any = {}) {
+    super(payload);
+  }
+}
 
 @Component({
   selector: 'sg-dform',
@@ -29,8 +38,6 @@ export class DFormComponent implements OnInit {
 
   @Input() public elements: Array<DFormElement<any>>;
   @Output() public update: EventEmitter<FormGroup> = new EventEmitter<FormGroup>();
-  @ContentChildren(DFormElement, true) public test;
-  @ViewChildren(DFormElement) public test2;
 
   public dform: DFormObservable;
   private __differ: IterableDiffer;
@@ -38,31 +45,28 @@ export class DFormComponent implements OnInit {
   constructor(
     private __DForm: DForm,
     private __differs: IterableDiffers,
-    private elRef:ElementRef,
+    private __elRef: ElementRef,
   ) {
     // re-use existing changeDetector
     this.__differ = __differs.find([]).create(null);
   }
 
-  // // public ngDoCheck(): void {
-  // //   console.log(this.test, this.test2);
-  // //   console.log(this.test.changes);
-  // //   const changes = this.__differ.diff(this.elements);
-  // //   if (changes) {
-  // //     changes.forEachItem(item => {
-  // //       console.log(item);
-  // //     });
-  // //   }
-  // // }
-
-  // public ngAfterViewInit() {
-  //   this.test2.changes.subscribe(() => console.log(this.test2));
-  //   this.test.changes.subscribe(() => console.log(this.test));
-  // }
-
   public ngOnInit() {
     this.__DForm.toForm$(this.elements) // map to input
-      .subscribe(form => this.dform = form);
+      .subscribe(form => {
+        this.dform = form;
+        const changes = this.__differ.diff(this.dform.data);
+        if (changes) {
+          changes.forEachAddedItem(diff => {
+            window.setTimeout(() => {
+              EventEmitProvider
+                .connect(DFormComponentFocus.prototype.constructor.name)
+                .emit(diff.item.key)
+            });
+          });
+        }
+      });
+    // this.test2.changes.subscribe(changes => console.log(changes));
   }
 
 };

@@ -1,6 +1,9 @@
 // Importables
 import { Component } from '@angular/core';
+import { ElementRef } from '@angular/core';
 import { Input } from '@angular/core';
+import { OnInit } from '@angular/core';
+import { OnDestroy } from '@angular/core';
 import { Inject } from '@angular/core';
 import { forwardRef } from '@angular/core';
 import { FormGroup } from '@angular/forms';
@@ -11,7 +14,8 @@ import { ViewChildren } from '@angular/core';
 // Components
 import { DFormElement } from '../dform.element';
 import { DForm } from '../dform.service';
-// import { ConsoleLogEmitter } from '../../log/log.service';
+import { EventEmitProvider } from '../../events';
+import { DFormComponentFocus } from '../dform.component';
 
 enum Keys {
   Backspace = 8,
@@ -35,15 +39,18 @@ export class DFormTextArea extends DFormElement<string> {
   templateUrl: './dform.textarea.html',
   styleUrls: ['./dform.textarea.scss'],
 })
-export class DFormTextAreaComponent {
+export class DFormTextAreaComponent implements OnInit, OnDestroy {
 
   @Input() public element: DFormElement<string>;
   @Input() public form: FormGroup;
 
   @ViewChildren('input') public inputs: any; // query list for children in view
 
+  private __emitRef;
+
   constructor(
     private __viewContainerRef: ViewContainerRef,
+    private __elRef: ElementRef,
     @Inject(forwardRef(() => DForm)) private __DForm: DForm,
   ) {
   }
@@ -70,5 +77,22 @@ export class DFormTextAreaComponent {
     }
   };
 
+  public ngOnInit(): void {
+    this.__emitRef = EventEmitProvider.connect(DFormComponentFocus.prototype.constructor.name).subscribe(value => {
+      if (value === this.element.key) {
+        this.inputs.first.nativeElement.focus();
+        // this.inputs.first.focus()
+        // this.inputs.first().nativeElement.focus();
+        // console.log(this.__elRef.nativeElement);
+        // this.__elRef.nativeElement.focus();
+      }
+    });
+  }
+
+  public ngOnDestroy(): void {
+    if (this.__emitRef) {
+      this.__emitRef.unsubscribe();
+    }
+  }
 
 };

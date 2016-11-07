@@ -49,7 +49,6 @@ export class CreatorComponent implements OnInit, OnDestroy {
       .map(data => data['channels'])
       .switchMap(channels => {
         this.creatorService.channels = channels;
-        console.log(channels);
         return this.creatorService.form;
       });
 
@@ -62,11 +61,8 @@ export class CreatorComponent implements OnInit, OnDestroy {
   public toggleChannels() {
     let config = new MdDialogConfig();
     config.viewContainerRef = this.viewContainerRef;
-
     this.dialogRef = this.dialog.open(ChannelsDialogComponent, config);
-
     this.dialogRef.afterClosed().subscribe(result => {
-      // console.log(result);
       this.lastCloseResult = result;
       this.dialogRef = null;
     });

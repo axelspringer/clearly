@@ -13,16 +13,13 @@ import { NotifyProvider } from './../../core';
 
 // Interface
 export class ToolbarTitleUpdate extends Event {
-
   constructor(payload: any = {}) {
     super(payload);
   }
-
 }
 
 @Component({
   selector: 'sg-toolbar',  // <sg-toolbar></sg-toolbar>
-  providers: [],
   styleUrls: ['./toolbar.style.scss'],
   templateUrl: './toolbar.component.html',
 })
@@ -30,17 +27,13 @@ export class ToolbarComponent implements OnInit {
 
   private title$: string = AppConfig.HTML5_TITLE; // TODO@sdoell: should be moved to service
 
-  private _appRef: AppComponent;
-
   constructor(
-    @Inject(forwardRef(() => AppComponent)) public app: AppComponent,
-    notify: NotifyProvider,
+    @Inject(forwardRef(() => AppComponent)) private __app: AppComponent,
   ) {
-    this._appRef = app;
   }
 
   public toggleMenu() {
-    this._appRef['menu'].toggle();
+    this.__app['menu'].toggle();
   }
 
   public ngOnInit() {

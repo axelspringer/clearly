@@ -5,14 +5,12 @@ import { Injectable } from '@angular/core';
 // Abstracts, classes, interfaces ...
 export abstract class Event {
 
-  private _payload: any;
-
-  constructor(payload: any = {}) {
-    this._payload = payload;
-  }
+  constructor(
+    private __payload: any = {}
+  ) {}
 
   get payload() {
-    return this._payload;
+    return this.__payload;
   }
 
 }; // could inherit later from Evenr to capture in the browser
