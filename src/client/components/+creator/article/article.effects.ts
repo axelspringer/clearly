@@ -52,7 +52,7 @@ export class ArticleEffects {
 
   @Effect() public loadArticle$: Observable<Action> = this.actions$
     .ofType(ArticleActions.LOAD)
-    .switchMap(action =>
+    .switchMap(() =>
       Observable.fromPromise(this.apollo.query({
         query: articleQuery(),
       }))

@@ -1,12 +1,10 @@
 // Importables
-import { Actions } from '@ngrx/effects';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 
 // Components
 import { getCreatorItems } from '../app';
-import { DatabaseProvider } from '../../core';
 import { IAppState } from '../app';
 
 @Injectable()
@@ -40,15 +38,13 @@ export class CreatorEffects {
   private store$: Observable<any>;
 
   constructor(
-    private actions$: Actions,
     private store: Store<IAppState>,
-    private databaseProvider: DatabaseProvider,
   ) {
 
     // this.store$ = store.let(getCreatorState());
     // this.subscription = mergeEffects(this).subscribe(this.store$);
 
-    this.store$ = store.let(getCreatorItems());
+    this.store$ = this.store.let(getCreatorItems());
 
   }
 

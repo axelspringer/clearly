@@ -7,7 +7,7 @@ import { PipeTransform } from '@angular/core';
 })
 export class IteratableObjectPipe implements PipeTransform {
 
-  public transform(value: any, args?: any[]): Array<any> {
+  public transform(value: any): Array<any> {
     return Object.keys(value).map(key => {
       return Object.assign({}, { key }, {value: value[key]});
     });

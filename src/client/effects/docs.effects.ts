@@ -14,7 +14,7 @@ export class DocsEffects {
 
   @Effect() public loadDocs$: Observable<Action> = this.actions$
     .ofType(DocsActions.LOAD)
-    .switchMap(action =>
+    .switchMap(() =>
       this.db.allDocs()
         .map(res => ({
           type: DocsActions.LOAD_SUCCESS,

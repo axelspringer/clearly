@@ -18,7 +18,7 @@ export abstract class Event {
 @Injectable()
 export class EventEmitProvider {
 
-  public static connect(event: Object, isAsync?: boolean): EventEmitter<any> {
+  public static connect(event: Object): EventEmitter<any> {
     const id = typeof event === 'string' ? event : event.constructor.name;
     if (!this.emitters$[id]) {
       this.emitters$[id] = new EventEmitter(); // EventEmitter -> Observable

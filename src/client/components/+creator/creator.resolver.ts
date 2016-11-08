@@ -1,19 +1,18 @@
 // Importables
-import { ActivatedRouteSnapshot } from '@angular/router';
+// import { ActivatedRouteSnapshot } from '@angular/router';
 import { Inject } from '@angular/core';
 import { Injectable } from '@angular/core';
 import { forwardRef } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Resolve } from '@angular/router';
-import { Router } from '@angular/router';
-import { RouterStateSnapshot } from '@angular/router';
+// import { Router } from '@angular/router';
+// import { RouterStateSnapshot } from '@angular/router';
 import { Store } from '@ngrx/store';
 
 // Components
 import { IAppState } from '../app';
 import { ArticleActions } from './article';
 import { CreatorService } from './creator.service';
-import { CreatorActions } from './creator.actions';
 import { getChannels } from '../app';
 
 export interface ICreatorResolverOptions {
@@ -32,8 +31,6 @@ export class CreatorResolver implements Resolve<any> {
   private creatorService: any;
 
   constructor(
-    private router: Router,
-    private creatorActions: CreatorActions,
     private store: Store<IAppState>,
     private articleActions: ArticleActions,
     @Inject(forwardRef(() => CreatorService)) creatorService: CreatorService,
@@ -43,8 +40,10 @@ export class CreatorResolver implements Resolve<any> {
     this.creatorService = creatorService;
   }
 
-  public resolve(route: ActivatedRouteSnapshot,
-state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
+  public resolve(
+    // route: ActivatedRouteSnapshot,
+    // state: RouterStateSnapshot
+  ): Observable<boolean> | Promise<boolean> | boolean {
 
     this.store.dispatch(this.articleActions.load());
 
