@@ -9,10 +9,10 @@ import 'core-js/es7/reflect';
 import {
   CUSTOM_COPY_FOLDERS,
   CUSTOM_DEV_SERVER_OPTIONS,
-  HTML5_BASE_URL,
+  // HTML5_BASE_URL,
   CUSTOM_RULES_COMMON,
-  CUSTOM_RULES_PROD,
-  CUSTOM_RULES_DEV,
+  // CUSTOM_RULES_PROD,
+  // CUSTOM_RULES_DEV,
   CUSTOM_PLUGINS_COMMON,
   CUSTOM_PLUGINS_DEV,
   CUSTOM_PLUGINS_PROD,
@@ -22,7 +22,7 @@ import {
 import {
   root,
   isWebpackDevServer,
-  hasProcessFlag,
+  // hasProcessFlag,
   tryDll,
   tryAot,
 } from './config/helpers';
@@ -40,7 +40,7 @@ const { ContextReplacementPlugin }  = require('webpack');
 const { DefinePlugin }        = require('webpack');
 const { DllPlugin }           = require('webpack');
 const { DllReferencePlugin }  = require('webpack');
-const { NoErrorsPlugin }      = require('webpack');
+// const { NoErrorsPlugin }      = require('webpack');
 const { ProgressPlugin }      = require('webpack');
 
 const LoaderOptionsPlugin     = require('webpack/lib/LoaderOptionsPlugin');

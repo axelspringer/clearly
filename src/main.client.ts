@@ -1,11 +1,13 @@
 /*
  * Angular bootstraping
  */
-import { decorateModuleRef } from './client/environment';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
 // for later, with Web Worker
 // import { platformWorkerAppDynamic } from '@angular/platform-webworker-dynamic';
+
+// require critical Css
+import './boot.scss';
 
 /*
  * App Module

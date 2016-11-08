@@ -8,6 +8,8 @@
     "noEmitHelpers": true,
     "strictNullChecks": false,
     "skipDefaultLibCheck": true,
+    "noUnusedParameters": true,
+    "noUnusedLocals": true,
     "pretty": true,
     "baseUrl": "./src",
     "typeRoots": [

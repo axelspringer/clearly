@@ -5,9 +5,10 @@ import {
     root,
 } from './helpers.ts';
 
-const LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin');
-const autoprefixer = require('autoprefixer');
-const cssnano = require('cssnano');
+import * as LoaderOptionsPlugin from 'webpack/lib/LoaderOptionsPlugin';
+import * as ExtractTextPlugin from 'extract-text-webpack-plugin';
+import * as Autoprefixer from 'autoprefixer';
+import * as CssNano from 'cssnano';
 
 export const EXCLUDE_SOURCEMAPS = [
     // these packages have problems with their sourcemaps
@@ -23,6 +24,7 @@ export const CUSTOM_PLUGINS_COMMON = [
     new LoaderOptionsPlugin({
         debug: true,
     }),
+    new ExtractTextPlugin('boot.css'),
 ];
 
 export const CUSTOM_PLUGINS_DEV = [
@@ -35,6 +37,12 @@ export const CUSTOM_PLUGINS_PROD = [
 
 export const CUSTOM_RULES_COMMON = [
   {
+    test: /boot.scss/,
+    use: [
+      ExtractTextPlugin.extract(['style', 'css', 'postcss', 'sass']),
+    ],
+  },
+  {
     test: /\.scss$/,
     loaders: [
       {
@@ -46,8 +54,8 @@ export const CUSTOM_RULES_COMMON = [
         options: {
           plugins: () => {
             return [
-              autoprefixer()({ /* ...options */ }),
-              cssnano({ /* ...options */ }),
+              Autoprefixer(),
+              CssNano(),
             ];
           },
         },

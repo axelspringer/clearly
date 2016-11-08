@@ -1,8 +1,6 @@
 // Importables
 import { ChangeDetectionStrategy } from '@angular/core';
-import { AfterViewInit } from '@angular/core';
 import { Component } from '@angular/core';
-import { DoCheck } from '@angular/core';
 import { EventEmitter } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Input } from '@angular/core';
@@ -10,9 +8,6 @@ import { IterableDiffer } from '@angular/core';
 import { IterableDiffers } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { Output } from '@angular/core';
-import { ContentChildren } from '@angular/core';
-import { ViewChildren } from '@angular/core';
-import { ElementRef } from '@angular/core';
 
 // Components
 import { DForm } from './dform.service';
@@ -45,15 +40,14 @@ export class DFormComponent implements OnInit {
   constructor(
     private __DForm: DForm,
     private __differs: IterableDiffers,
-    private __elRef: ElementRef,
   ) {
     // re-use existing changeDetector
-    this.__DFormDiffer = __differs.find([]).create(null);
+    this.__DFormDiffer = this.__differs.find([]).create(null);
   }
 
   // public
 
-  protected ngOnInit() {
+  public ngOnInit(): void {
     this.__DForm.toForm$(this.elements) // map to input
       .subscribe(form => {
         this.dform = form;
@@ -73,7 +67,7 @@ export class DFormComponent implements OnInit {
   // private
 
   private __trackDFormChanges(dform: DFormObservable) {
-    return this.__DFormDiffer.diff(this.dform.data);
+    return this.__DFormDiffer.diff(dform.data);
   }
 
 };

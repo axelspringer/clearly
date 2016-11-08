@@ -12,9 +12,6 @@ let PROVIDERS = [
 // https://github.com/angular/angular/blob/86405345b781a9dc2438c0fbe3e9409245647019/TOOLS_JS.md
 let _decorateModuleRef = function identity(value) { return value; };
 
-// require critical Css
-import '!!style!css!postcss!sass!./boot.scss';
-
 if ('production' === ENV) {
   // offline via ServiceWorker
   // require('offline-plugin/runtime').install();
