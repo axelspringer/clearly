@@ -35,4 +35,3 @@ export const HTTP_PROVIDERS: any[] = [
     useClass: HttpResponseOptions,
   },
 ];
-

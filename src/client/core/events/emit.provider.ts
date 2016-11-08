@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 export abstract class Event {
 
   constructor(
-    private __payload: any = {}
+    private __payload: any = {},
   ) {}
 
   get payload() {

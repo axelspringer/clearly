@@ -29,12 +29,15 @@ export class ChannelsDialogComponent implements OnInit, OnDestroy {
 
   public ngOnInit() {
     this.creatorService
-      .form.subscribe(form => {
+      .form.subscribe(() => {
         this.channels = this.creatorService.channels;
         this.form = this.form = new FormGroup(this.channels.reduce((prev, curr) => {
           prev[curr.name] =
-            new FormControl({ value: 'n/a', disabled: curr.isMaster },
-              [Validators.nullValidator]); return prev;
+            new FormControl(
+              { value: 'n/a', disabled: curr.isMaster },
+              [Validators.nullValidator],
+            );
+          return prev;
         }, {}));
       });
   }

@@ -1,13 +1,8 @@
 // Importables
 import { Injectable } from '@angular/core';
-import { Injector } from '@angular/core';
 
 @Injectable()
-export class QuickWrite {
-  constructor(
-    private _injector: Injector,
-  ) {}
-};
+export class QuickWrite {};
 
 // Exportables
 export * from './quickWrite.component';

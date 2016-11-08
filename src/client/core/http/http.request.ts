@@ -1,8 +1,8 @@
-// Request
-import {
-  BaseRequestOptions,
-  Headers
-} from '@angular/http';
+// Importables
+import { BaseRequestOptions } from '@angular/http';
+import { Headers } from '@angular/http';
+
+// Components
 import { AppConfig } from '../../config';
 
 // Extension

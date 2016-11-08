@@ -12,7 +12,7 @@ export class CustomHttp extends Http {
 
   constructor(
     private backend: ConnectionBackend,
-    private defaultOptions: RequestOptions
+    private defaultOptions: RequestOptions,
     /* Error should go here */
   ) {
     super(backend, defaultOptions); // call to Http^
@@ -28,7 +28,7 @@ export class CustomHttp extends Http {
     // default methods
     return [
       'post',
-      'put'
+      'put',
     ].includes(method) ? super[method](...args)
     // retry & timeout etc.
     // .retryWhen(err => err.delay(AppConfig.HTTP.DELAY))

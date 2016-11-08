@@ -57,9 +57,13 @@ export class DFormComponent implements OnInit {
             window.setTimeout(() => {
               EventEmitProvider
                 .connect(DFormComponentFocus.prototype.constructor.name)
-                .emit(!diff.previousIndex ? diff.item.key : changes.collection[diff.previousIndex - 1].key);
+                .emit(
+                  !diff.previousIndex
+                    ? diff.item.key
+                    : changes.collection[diff.previousIndex - 1].key
+                );
             });
-          })
+          });
         }
       });
   }

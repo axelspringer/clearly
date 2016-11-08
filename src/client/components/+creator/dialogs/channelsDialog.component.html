@@ -1,4 +1,4 @@
-<form (ngSubmit)="onSubmit(toggleChannels)" validateAtLeast [formGroup]="form">
+<form (ngSubmit)="onSubmit(toggleChannels)" sgValidateAtLeast [formGroup]="form">
 	<h3>{{ 'CREATOR.DIALOG.CHANNELS.TITEL' | translate }}</h3>
   <md-list>
     <md-list-item *ngFor="let channel of channels">

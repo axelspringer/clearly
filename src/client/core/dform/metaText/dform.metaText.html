@@ -4,7 +4,7 @@
 		</md-input>
     <ul *ngIf="element.fromMaster">
       <li [hidden]="element.disabled">Master</li>
-      <li (click)="toggle($event, element.key)">{{ (element.disabled ? 'DFORM.META_TEXT.LABEL.EDIT.OFF' : 'DFORM.META_TEXT.LABEL.EDIT.ON') | translate }}</li>
+      <li (click)="toggle(element.key, $event)">{{ (element.disabled ? 'DFORM.META_TEXT.LABEL.EDIT.OFF' : 'DFORM.META_TEXT.LABEL.EDIT.ON') | translate }}</li>
     </ul>
 	</div>
 </div>

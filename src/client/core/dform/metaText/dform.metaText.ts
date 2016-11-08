@@ -25,16 +25,14 @@ export class DFormMetaText extends DFormElement<string> {
 @Component({
   selector: 'sg-dform-meta-text',
   templateUrl: './dform.metaText.html',
-  styleUrls: [
-    './dform.metaText.scss',
-  ],
+  styleUrls: ['./dform.metaText.scss'],
 })
 export class DFormMetaTextComponent {
 
   @Input() public element: DFormElement<string>;
   @Input() public form: FormGroup;
 
-  public toggle(event: any, key) {
+  public toggle(key) {
     this.form.controls[key].setValue('');
     this.element['disabled'] = !this.element['disabled'];
   }

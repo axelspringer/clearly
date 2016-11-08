@@ -22,19 +22,19 @@ export class AppComponent implements OnInit {
   @ViewChild('menu') public menu;
 
   constructor(
-    private translate: TranslateService,
-    private title: Title,
+    private __translate: TranslateService,
+    private __title: Title,
   ) {
-    translate.setDefaultLang(AppConfig.DEFAULT_LANGUAGE);
-    translate.use(AppConfig.DEFAULT_LANGUAGE);
+    this.__translate.setDefaultLang(AppConfig.DEFAULT_LANGUAGE);
+    this.__translate.use(AppConfig.DEFAULT_LANGUAGE);
 
     EventEmitProvider
       .connect(DatabaseProvider.name)
       .subscribe(val => console.log(val));
   }
 
-  public ngOnInit() {
-    this.title.setTitle(AppConfig.HTML5_TITLE);
+  public ngOnInit(): void {
+    this.__title.setTitle(AppConfig.HTML5_TITLE);
   }
 
 }

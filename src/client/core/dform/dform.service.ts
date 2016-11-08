@@ -46,7 +46,8 @@ export class DForm { // central service of a dynamic form
 
   public addFormElement(afterFormEntity: DFormElement<any>) {
     this.__formEntities = this.__preserveFormState(this.__formEntities);
-    this.__formEntities.splice(this.__formEntities.findIndex(formEntity => formEntity.key === afterFormEntity.key) + 1, 0, new DFormTextArea());
+    this.__formEntities
+      .splice(this.__formEntities.findIndex(formEntity => formEntity.key === afterFormEntity.key) + 1, 0, new DFormTextArea());
     this.__next(this.__formEntities);
   }
 
@@ -54,7 +55,8 @@ export class DForm { // central service of a dynamic form
     this.__formEntities = this.__preserveFormState(this.__formEntities); // preserve state
     if (this.__formEntities.length > 1) { // prevent an empty entity
       this.__formEntities
-        .splice(this.__formEntities.findIndex(formEntity => formEntity.key === oldFormEntity.key), 1);
+        .splice(
+          this.__formEntities.findIndex(formEntity => formEntity.key === oldFormEntity.key), 1);
       this.__next(this.__formEntities);
     }
   }

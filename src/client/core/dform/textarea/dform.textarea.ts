@@ -1,6 +1,5 @@
 // Importables
 import { Component } from '@angular/core';
-import { ElementRef } from '@angular/core';
 import { Input } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { OnDestroy } from '@angular/core';
@@ -8,7 +7,6 @@ import { Inject } from '@angular/core';
 import { forwardRef } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { HostListener } from '@angular/core';
-import { ViewContainerRef } from '@angular/core';
 import { ViewChildren } from '@angular/core';
 
 // Components
@@ -49,11 +47,10 @@ export class DFormTextAreaComponent implements OnInit, OnDestroy {
   private __emitRef;
 
   constructor(
-    private __viewContainerRef: ViewContainerRef,
-    private __elRef: ElementRef,
+    // private __viewContainerRef: ViewContainerRef,
+    // private __elRef: ElementRef,
     @Inject(forwardRef(() => DForm)) private __DForm: DForm,
-  ) {
-  }
+  ) {}
 
   @HostListener('keydown', ['$event'])
   public onKeyUp(event: KeyboardEvent) {

@@ -1,12 +1,12 @@
 // Importables
 import { Component } from '@angular/core';
-import { ViewEncapsulation } from '@angular/core';
-import { ViewContainerRef } from '@angular/core';
 import { Input } from '@angular/core';
-import { QueryList } from '@angular/core';
+import { ViewEncapsulation } from '@angular/core';
 // import { MdDialog } from '@angular/material';
 // import { MdDialogConfig } from '@angular/material';
 // import { MdDialogRef } from '@angular/material';
+
+// Components
 import { DFormElement } from '../../../core';
 
 @Component({
@@ -20,8 +20,4 @@ export class QuickWriteComponent {
   @Input() public content: Array<DFormElement<any>>;
   @Input() public isEditable: Boolean = true;
 
-  constructor(
-    private viewContainerRef: ViewContainerRef,
-  ) {
-  }
 };

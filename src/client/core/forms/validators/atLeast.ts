@@ -6,7 +6,7 @@ import { FormGroup } from '@angular/forms';
 
 function validateFormGroup() {
   return (c: FormGroup) => {
-    return Object.keys(c.controls).reduce((prev, curr, i) => {
+    return Object.keys(c.controls).reduce((prev, curr) => {
       return !!c.controls[curr].value ? prev : ++prev;
     }, 0) > 2 ? { // this should be a adopted to a parameter
       valid: false,
@@ -15,7 +15,7 @@ function validateFormGroup() {
 }
 
 @Directive({
-  selector: '[validateAtLeast][formGroup]',
+  selector: '[sgValidateAtLeast][formGroup]',
   providers: [{
     provide: NG_VALIDATORS,
     useExisting: forwardRef(() => AtLeastValidatorDirective),

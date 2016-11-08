@@ -9,7 +9,6 @@ import { AppComponent } from '../app';
 import { AppConfig } from '../../config';
 import { Event } from '../../core';
 import { EventEmitProvider } from '../../core';
-import { NotifyProvider } from './../../core';
 
 // Interface
 export class ToolbarTitleUpdate extends Event {
@@ -25,19 +24,20 @@ export class ToolbarTitleUpdate extends Event {
 })
 export class ToolbarComponent implements OnInit {
 
-  private title$: string = AppConfig.HTML5_TITLE; // TODO@sdoell: should be moved to service
+  public title: string = AppConfig.HTML5_TITLE; // TODO@sdoell: should be moved to service
 
   constructor(
     @Inject(forwardRef(() => AppComponent)) private __app: AppComponent,
-  ) {
-  }
+  ) { }
 
   public toggleMenu() {
     this.__app['menu'].toggle();
   }
 
   public ngOnInit() {
-    EventEmitProvider.connect(new ToolbarTitleUpdate()).subscribe(value => this.title$ = value);
+    EventEmitProvider
+      .connect(new ToolbarTitleUpdate())
+      .subscribe(value => this.title = value);
   }
 
 };

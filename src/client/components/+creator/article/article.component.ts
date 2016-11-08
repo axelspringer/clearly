@@ -15,7 +15,7 @@ import { DFormElement } from '../../../core';
 export class ArticleComponent implements OnInit, OnDestroy {
 
   @Input() public content: Array<DFormElement<any>>;
-  @Input() public meta: Array<DFormElement<any>>;
+  @Input() public metaData: Array<DFormElement<any>>;
 
   public ngOnInit() {
     console.log(`'${this.constructor.name}' is initialized ...`);

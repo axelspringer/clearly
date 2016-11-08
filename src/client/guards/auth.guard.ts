@@ -9,26 +9,18 @@ import { CanActivate } from '@angular/router';
 @Injectable()
 export class AuthGuard implements CanActivate {
 
-  constructor(
-    // private router: Router
-  ) {}
-
   public canActivate(
     // next: ActivatedRouteSnapshot,
     // state: RouterStateSnapshot,
   ) {
-
     console.log(`Authenticating route ...`);
 
     return true || false; // this is foo -> bar
-
   }
 
   public CanDeactivate() {
     console.log('can be deactived');
-
     // this should be done when nothing more to be done
-
   }
 
   /**
