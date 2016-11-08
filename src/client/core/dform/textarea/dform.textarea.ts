@@ -64,7 +64,8 @@ export class DFormTextAreaComponent implements OnInit, OnDestroy {
 
   @HostListener('keypress', ['$event'])
   public onKeyPress(event: KeyboardEvent) {
-    if (event.keyCode === Keys.Enter) {
+    if (event.keyCode === Keys.Enter
+      && !event.shiftKey) {
       event.preventDefault();
       this.__DForm.addFormElement(this.element);
     }

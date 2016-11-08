@@ -123,13 +123,25 @@ export abstract class DndAbstractDirective {
     this.changeRef.markForCheck();
   }
 
-  _onDragEnterCallback(event: Event) {}
-  _onDragOverCallback(event: Event) {}
-  _onDragLeaveCallback(event: Event) {}
-  _onDropCallback(event: Event) {}
+  _onDragEnterCallback(event: Event) {
+    console.log(event);
+  }
+  _onDragOverCallback(event: Event) {
+    console.log(event);
+  }
+  _onDragLeaveCallback(event: Event) {
+    console.log(event);
+  }
+  _onDropCallback(event: Event) {
+    console.log(event);
+  }
 
-  _onDragStartCallback(event: Event) {}
-  _onDragEndCallback(event: Event) {}
+  _onDragStartCallback(event: Event) {
+    console.log(event);
+  }
+  _onDragEndCallback(event: Event) {
+    console.log(event);
+  }
 
   private _onDragEnter(event: Event): void {
     if (this._isDropAllowed) {

@@ -57,7 +57,7 @@ export class NotifyProvider {
     return this._events;
   }
 
-  public reset(events: Array<any> = []) {
+  public reset() {
     return this._events = [];
   }
 
