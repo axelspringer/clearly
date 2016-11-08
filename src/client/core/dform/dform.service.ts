@@ -20,7 +20,7 @@ interface IDFormSubject {
 export class DFormObservable implements IDFormSubject {
   constructor(
     public data: Array<DFormElement<any>> = [],
-  public form: FormGroup = new FormGroup({}),
+    public form: FormGroup = new FormGroup({}),
   ) {
   }
 }
@@ -28,9 +28,6 @@ export class DFormObservable implements IDFormSubject {
 @Injectable()
 export class DForm { // central service of a dynamic form
 
-  // what it does
-  //
-  // generates a form based on behaviors subject
   private __form: BehaviorSubject<DFormObservable> = new BehaviorSubject(new DFormObservable());
   private __formEntities: Array<DFormElement<any>>; // it is cached
 
@@ -54,13 +51,11 @@ export class DForm { // central service of a dynamic form
   }
 
   public removeFormElement(oldFormEntity: DFormElement<any>) {
-    this.__preserveFormState(this.__formEntities); // preserve state
+    this.__formEntities = this.__preserveFormState(this.__formEntities); // preserve state
     if (this.__formEntities.length > 1) { // prevent an empty entity
       this.__formEntities
-        .splice(
-          this.__formEntities.findIndex(formEntity => formEntity.key === oldFormEntity.key,
-        ), 1);
-      this.__next(this.__preserveFormState(this.__formEntities));
+        .splice(this.__formEntities.findIndex(formEntity => formEntity.key === oldFormEntity.key), 1);
+      this.__next(this.__formEntities);
     }
   }
 
@@ -77,9 +72,7 @@ export class DForm { // central service of a dynamic form
 
   private __DFormElementToFormGroup(formEntities: Array<DFormElement<any>>) {
     return formEntities.reduce((previousDFormEntity, currentDFormEntity) => {
-      previousDFormEntity.addControl(
-        currentDFormEntity.key,
-        this.__DFormElementToFormControl(currentDFormEntity));
+      previousDFormEntity.addControl(currentDFormEntity.key, this.__DFormElementToFormControl(currentDFormEntity));
       return previousDFormEntity;
     }, new FormGroup({}));
   }

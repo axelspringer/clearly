@@ -60,9 +60,7 @@ export class DFormTextAreaComponent implements OnInit, OnDestroy {
     if (event.keyCode === Keys.Backspace
       && this.inputs.length === 1 // be secure at this state
       && this.inputs.first.nativeElement.value === '') {
-        // cancel event
         event.preventDefault();
-        // send to dform service
         this.__DForm.removeFormElement(this.element);
     }
   };
@@ -70,22 +68,18 @@ export class DFormTextAreaComponent implements OnInit, OnDestroy {
   @HostListener('keypress', ['$event'])
   public onKeyPress(event: KeyboardEvent) {
     if (event.keyCode === Keys.Enter) {
-        // cancel event
-        event.preventDefault();
-        // send to dform service
-        this.__DForm.addFormElement(this.element);
+      event.preventDefault();
+      this.__DForm.addFormElement(this.element);
     }
   };
 
   public ngOnInit(): void {
-    this.__emitRef = EventEmitProvider.connect(DFormComponentFocus.prototype.constructor.name).subscribe(value => {
-      if (value === this.element.key) {
-        this.inputs.first.nativeElement.focus();
-        // this.inputs.first.focus()
-        // this.inputs.first().nativeElement.focus();
-        // console.log(this.__elRef.nativeElement);
-        // this.__elRef.nativeElement.focus();
-      }
+    this.__emitRef = EventEmitProvider
+      .connect(DFormComponentFocus.prototype.constructor.name)
+      .subscribe(value => {
+        if (value === this.element.key) {
+          this.inputs.first.nativeElement.focus();
+        }
     });
   }
 

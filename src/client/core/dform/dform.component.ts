@@ -57,16 +57,15 @@ export class DFormComponent implements OnInit {
         this.dform = form;
         const changes = this.__differ.diff(this.dform.data);
         if (changes) {
-          changes.forEachAddedItem(diff => {
+          changes.forEachOperation(diff => {
             window.setTimeout(() => {
               EventEmitProvider
                 .connect(DFormComponentFocus.prototype.constructor.name)
-                .emit(diff.item.key)
+                .emit(!diff.previousIndex ? diff.item.key : changes.collection[diff.previousIndex - 1].key);
             });
-          });
+          })
         }
       });
-    // this.test2.changes.subscribe(changes => console.log(changes));
   }
 
 };
