@@ -42,14 +42,6 @@ export class DFormQuickBarComponent implements OnInit, OnDestroy, AfterViewInit 
     this.shouldShowQuickBar = !this.shouldShowQuickBar;
   }
 
-  public hideQuickBar(): void {
-    this.shouldShowQuickBar = false;
-  }
-
-  public showQuickBar(): void {
-    this.shouldShowQuickBar = true;
-  }
-
   public changeFormType(newFormType: string): void {
     if (this.element.controlType !== newFormType) {
       this.__parentComponent.__DForm.changeFormElement(this.element, newFormType);
@@ -57,7 +49,7 @@ export class DFormQuickBarComponent implements OnInit, OnDestroy, AfterViewInit 
   }
 
   public ngOnInit(): void {
-    console.log(`Initializing 'Changing Form'`);
+    console.log(`Initializing ${this.constructor.name}`);
   }
 
   // angular

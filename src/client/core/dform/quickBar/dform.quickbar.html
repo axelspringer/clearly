@@ -5,6 +5,6 @@
   </div>
   <div class="quickbar-actions" *ngIf="shouldShowQuickBar">
     <md-icon (click)="changeFormType('text')">short_text</md-icon>
-    <md-icon>wrap_text</md-icon>
+    <md-icon (click)="changeFormType('textArea')">wrap_text</md-icon>
   </div>
 </div>
