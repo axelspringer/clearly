@@ -24,6 +24,22 @@ import { EventEmitProvider } from '../../events';
 })
 export class DFormQuickBarComponent implements OnInit, OnDestroy, AfterViewInit {
 
+  // should be refactored to some else
+
+  public actions = [
+    {
+      formType: 'text',
+      icon: 'short_text'
+    },
+    {
+      formType: 'textArea',
+      icon: 'wrap_text'
+    },
+  ]
+
+  // <md-icon (click)="changeFormType('text')">short_text</md-icon>
+  //   <md-icon (click)="changeFormType('textArea')">wrap_text</md-icon>
+
   @Input() public element: DFormElement<any>;
 
   public hasFocus: boolean = false;

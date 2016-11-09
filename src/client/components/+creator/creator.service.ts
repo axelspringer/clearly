@@ -11,8 +11,8 @@ import { DForm } from '../../core';
 @Injectable()
 export class CreatorService {
 
-  private _dForm = new BehaviorSubject([]);
-  private _channels = [];
+  private __dForm = new BehaviorSubject([]);
+  private __channels = [];
 
   constructor(
     private dFormService: DForm,
@@ -20,24 +20,24 @@ export class CreatorService {
   }
 
   get channels() {
-    return this._channels;
+    return this.__channels;
   }
 
   set channels(channels) {
-    this._channels = channels;
+    this.__channels = channels;
     this.next(channels);
   }
 
   get form() {
-    return this._dForm.asObservable();
+    return this.__dForm.asObservable();
   }
 
   public filter(channels) {
-    this.next(this._channels.filter(channel => channel.isMaster || channels[channel.name]));
+    this.next(this.__channels.filter(channel => channel.isMaster || channels[channel.name]));
   }
 
   public next(channels) {
-    this._dForm.next(this.toDForm(this.differChannel(R.clone(channels))));
+    this.__dForm.next(this.toDForm(this.differChannel(R.clone(channels))));
   }
 
   // transform to form element
