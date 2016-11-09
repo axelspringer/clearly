@@ -447,11 +447,10 @@ apollo-client-rxjs@~0.2.2:
     lodash.isfunction "^3.0.8"
     lodash.omit "^4.5.0"
 
-apollo-client@^0.5.0:
-  version "0.5.0"
-  resolved "https://registry.yarnpkg.com/apollo-client/-/apollo-client-0.5.0.tgz#b9ec43a8e621461ff24c9fddba21446d8e1d5aa3"
+apollo-client@^0.5.1:
+  version "0.5.1"
+  resolved "https://registry.yarnpkg.com/apollo-client/-/apollo-client-0.5.1.tgz#d22e6da2886e12dc3f9d76a517c171a9a4ee930a"
   dependencies:
-    es6-promise "^4.0.3"
     graphql-anywhere "^0.2.4"
     graphql-tag "^0.1.13"
     lodash.assign "^4.0.8"
@@ -1817,10 +1816,6 @@ es6-promise-pool@2.4.4:
 es6-promise@^3.0.2:
   version "3.3.1"
   resolved "https://registry.yarnpkg.com/es6-promise/-/es6-promise-3.3.1.tgz#a08cdde84ccdbf34d027a1451bc91d4bcd28a613"
-
-es6-promise@^4.0.3:
-  version "4.0.5"
-  resolved "https://registry.yarnpkg.com/es6-promise/-/es6-promise-4.0.5.tgz#7882f30adde5b240ccfa7f7d78c548330951ae42"
 
 es6-symbol@^3.0.2, es6-symbol@~3.1, es6-symbol@3:
   version "3.1.0"
@@ -3194,9 +3189,9 @@ lodash-es@^4.2.1:
   version "4.16.6"
   resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.16.6.tgz#c8552faedaa4d1d591de8da9b3980ef1c52efa08"
 
-lodash-webpack-plugin@^0.10.2:
-  version "0.10.4"
-  resolved "https://registry.yarnpkg.com/lodash-webpack-plugin/-/lodash-webpack-plugin-0.10.4.tgz#572002945aaea310f7b07e332bac82cc06925631"
+lodash-webpack-plugin@^0.10.5:
+  version "0.10.5"
+  resolved "https://registry.yarnpkg.com/lodash-webpack-plugin/-/lodash-webpack-plugin-0.10.5.tgz#d1f0070791c74e46dc74be4913f96645de79f9e5"
   dependencies:
     lodash "^4.16.6"
 
@@ -5689,9 +5684,9 @@ typedoc@^0.5.1:
     typedoc-default-themes "^0.4.0"
     typescript "2.0.6"
 
-typescript@^2.0.8:
-  version "2.0.8"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-2.0.8.tgz#c249f530890e0f992e71733b2e0554d792cb8970"
+typescript@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-2.1.1.tgz#41c2b64472f529331b2055c0424862b44ce58d42"
 
 typescript@2.0.6:
   version "2.0.6"

@@ -57,7 +57,7 @@ export class DFormQuickBar implements OnInit {
     this.shouldShowQuickBar = true;
   }
 
-  public changeFormType(newFormType: string, event: Event): void {
+  public changeFormType(newFormType: string): void {
     if (this.element.controlType !== newFormType) {
       this.__parentComponent.__DForm.changeFormElement(this.element, newFormType);
     }

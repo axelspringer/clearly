@@ -11,11 +11,11 @@ import { Observable } from 'rxjs/Observable';
 export class CustomHttp extends Http {
 
   constructor(
-    private __backend: ConnectionBackend,
-    private __defaultOptions: RequestOptions,
+    public backend: ConnectionBackend,
+    public defaultOptions: RequestOptions,
     /* Error should go here */
   ) {
-    super(__backend, __defaultOptions); // call to ^Http
+    super(backend,defaultOptions); // call to ^Http
   }
 
   // wrap to functions
