@@ -26,7 +26,7 @@ import { DFormDynamicElementComponent } from './dform';
 import { DFormTextComponent } from './dform';
 import { DFormTextAreaComponent } from './dform';
 import { DFormMetaTextComponent } from './dform';
-import { DFormQuickBar } from './dform';
+import { DFormQuickBarComponent } from './dform';
 import { MdModule } from '../components/app/app.material';
 
 @NgModule({
@@ -47,7 +47,7 @@ import { MdModule } from '../components/app/app.material';
     DFormTextComponent,
     DFormTextAreaComponent,
     DFormMetaTextComponent,
-    DFormQuickBar,
+    DFormQuickBarComponent,
   ],
   declarations: [
     // Pipes
@@ -66,7 +66,7 @@ import { MdModule } from '../components/app/app.material';
     DFormTextComponent,
     DFormTextAreaComponent,
     DFormMetaTextComponent,
-    DFormQuickBar,
+    DFormQuickBarComponent,
   ],
   providers: [
     // Events

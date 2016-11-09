@@ -5,27 +5,24 @@ import { Http } from '@angular/http';
 import { RequestOptions } from '@angular/http';
 import { RequestOptionsArgs } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+import HTTP_STATUS_CODES from './http.status';
 
-// service
+// inject
 @Injectable()
 export class CustomHttp extends Http {
 
   constructor(
     public backend: ConnectionBackend,
     public defaultOptions: RequestOptions,
-    /* Error should go here */
   ) {
     super(backend,defaultOptions); // call to ^Http
   }
 
-  // wrap to functions
   public post( url: string, body: any, options?: RequestOptionsArgs): Observable<any> {
     return this.factory('post', url, body, options);
   }
 
-  // factory
   private factory(method: string = 'get', ...args) {
-    // default methods
     return [
       'post',
       'put',
@@ -35,7 +32,8 @@ export class CustomHttp extends Http {
     // .timeout(AppConfig.HTTP.TIMEOUT, 'Timeout has occured')
     .map(res => res.json())
     .catch(err => {
-      if (err.status === 400 || err.status === 422) {
+      if (err.status === HTTP_STATUS_CODES.BAD_REQUEST
+        || err.status === HTTP_STATUS_CODES.UNPROCESSABLE_ENTITY ) {
         return Observable.throw(err);
       } else {
         // push to error service ;-)
@@ -44,7 +42,7 @@ export class CustomHttp extends Http {
     })
     .finally(() => {
       console.log('After the request ... cleanup ...');
-    }) : Observable.throw(''); //
+    }) : Observable.throw('');
   }
 
 }

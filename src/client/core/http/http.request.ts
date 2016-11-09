@@ -8,6 +8,6 @@ import { AppConfig } from '../../config';
 // Extension
 export class HttpRequestOptions extends BaseRequestOptions {
 
-  headers: Headers = new Headers(AppConfig.HTTP.REQUEST || {});
+  public headers: Headers = new Headers(AppConfig.HTTP.REQUEST || {});
 
 }

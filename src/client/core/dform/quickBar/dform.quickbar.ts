@@ -17,7 +17,7 @@ import { DFormElement } from '../dform.element';
   styleUrls: ['./dform.quickbar.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DFormQuickBar implements OnInit {
+export class DFormQuickBarComponent implements OnInit {
 
   @Input() public element: DFormElement<any>;
 
@@ -25,10 +25,11 @@ export class DFormQuickBar implements OnInit {
   public shouldShowQuickBar: boolean = false;
 
   constructor(
-    private ref: ChangeDetectorRef,
+    private __ref: ChangeDetectorRef,
     @Inject(forwardRef(() => DFormComponent)) private __parentComponent,
-  ) {
-  }
+  ) {}
+
+  // public
 
   public ngOnInit(): void {
     console.log(`Initializing 'Changing Form'`);
@@ -36,13 +37,13 @@ export class DFormQuickBar implements OnInit {
 
   public show(): void {
     this.hasFocus = true;
-    this.ref.markForCheck();
+    this.__ref.markForCheck();
   }
 
   public hide(): void {
     this.hasFocus = false;
     this.hideQuickBar();
-    this.ref.markForCheck();
+    this.__ref.markForCheck();
   }
 
   public toggleQuickBar(): void {

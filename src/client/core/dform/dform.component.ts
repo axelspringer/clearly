@@ -60,7 +60,7 @@ export class DFormComponent implements OnInit {
                 .emit(
                   !diff.previousIndex
                     ? diff.item.key
-                    : changes.collection[diff.previousIndex - 1].key
+                    : changes.collection[diff.previousIndex - 1].key,
                 );
             });
           });
