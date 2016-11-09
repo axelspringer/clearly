@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { Input } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { OnDestroy } from '@angular/core';
+import { AfterViewInit } from '@angular/core';
 import { Inject } from '@angular/core';
 import { forwardRef } from '@angular/core';
 import { FormGroup } from '@angular/forms';
@@ -37,28 +38,27 @@ export class DFormTextArea extends DFormElement<string> {
   templateUrl: './dform.textarea.html',
   styleUrls: ['./dform.textarea.scss'],
 })
-export class DFormTextAreaComponent implements OnInit, OnDestroy {
+export class DFormTextAreaComponent implements OnInit, OnDestroy, AfterViewInit {
 
   @Input() public element: DFormElement<string>;
   @Input() public form: FormGroup;
 
   @ViewChildren('input') public inputs: any; // query list for children in view
+  @ViewChildren('quickBar') public quickBar: any;
 
   private __emitRef;
 
   constructor(
-    // private __viewContainerRef: ViewContainerRef,
-    // private __elRef: ElementRef,
     @Inject(forwardRef(() => DForm)) private __DForm: DForm,
-  ) {}
+  ) { }
 
   @HostListener('keydown', ['$event'])
   public onKeyUp(event: KeyboardEvent) {
     if (event.keyCode === Keys.Backspace
       && this.inputs.length === 1 // be secure at this state
       && this.inputs.first.nativeElement.value === '') {
-        event.preventDefault();
-        this.__DForm.removeFormElement(this.element);
+      event.preventDefault();
+      this.__DForm.removeFormElement(this.element);
     }
   };
 
@@ -71,14 +71,28 @@ export class DFormTextAreaComponent implements OnInit, OnDestroy {
     }
   };
 
+  public ngAfterViewInit() {
+    this.inputs.first.nativeElement.addEventListener('focus', () => {
+      EventEmitProvider
+        .connect(DFormComponentFocus.prototype.constructor.name)
+        .emit(this.element.key);
+    });
+    // this.inputs.first.nativeElement.addEventListener('blur', () => {
+    //   window.setTimeout(() => { this.__toggleQuickBar(); }, 1000);
+    // });
+  }
+
   public ngOnInit(): void {
     this.__emitRef = EventEmitProvider
       .connect(DFormComponentFocus.prototype.constructor.name)
       .subscribe(value => {
         if (value === this.element.key) {
           this.inputs.first.nativeElement.focus();
+          this.quickBar.first.show();
+        } else {
+          this.quickBar.first.hide();
         }
-    });
+      });
   }
 
   public ngOnDestroy(): void {
@@ -86,5 +100,7 @@ export class DFormTextAreaComponent implements OnInit, OnDestroy {
       this.__emitRef.unsubscribe();
     }
   }
+
+  // private
 
 };

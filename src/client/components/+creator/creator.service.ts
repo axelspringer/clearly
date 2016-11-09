@@ -43,7 +43,7 @@ export class CreatorService {
   // transform to form element
   public toDFormElement(el: string, options = {}) {
     // this is the native approach
-    return this.dFormService.toFormElement(el)(options);
+    return this.dFormService.newFormType(el)(options);
   }
 
   // to deform

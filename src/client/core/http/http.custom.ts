@@ -10,13 +10,12 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class CustomHttp extends Http {
 
-  /* tslint:disable: no-unused-variable */
   constructor(
-    private backend: ConnectionBackend,
-    private defaultOptions: RequestOptions,
+    private __backend: ConnectionBackend,
+    private __defaultOptions: RequestOptions,
     /* Error should go here */
   ) {
-    super(backend, defaultOptions); // call to ^Http
+    super(__backend, __defaultOptions); // call to ^Http
   }
 
   // wrap to functions

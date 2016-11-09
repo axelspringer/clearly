@@ -1,3 +1,5 @@
-<div [formGroup]="form">
-  <textarea #input [formControlName]="element.key" [id]="element.key" placeholder="{{ 'DFORM.TEXTAREA.PLACEHOLDER' | translate}}"></textarea>
-</div>
+<sg-dform-quickbar [element]="element" #quickBar>
+  <div [formGroup]="form">
+    <textarea #input [formControlName]="element.key" [id]="element.key" placeholder="{{ 'DFORM.TEXTAREA.PLACEHOLDER' | translate}}"></textarea>
+  </div>
+</sg-dform-quickbar>
