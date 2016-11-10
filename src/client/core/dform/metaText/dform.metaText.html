@@ -1,7 +1,10 @@
 <div class="metaTextForm">
 	<div [formGroup]="form">
-		<md-input [disabled]="element.fromMaster && !element.disabled" [formControlName]="element.key" [id]="element.key" [placeholder]="element.placeholder">
-		</md-input>
+		<md-input
+      [disabled]="element.fromMaster && !element.disabled"
+      [formControlName]="element.key"
+      [id]="element.key"
+      [placeholder]="element.placeholder"></md-input>
     <sg-dform-metabar [formElement]="element"></sg-dform-metabar>
 	</div>
 </div>

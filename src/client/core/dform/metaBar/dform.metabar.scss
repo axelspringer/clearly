@@ -1,10 +1,12 @@
 $_dform-metabar-tag-background-color: lightgrey;
 $_dform-metabar-tag-color: darken($_dform-metabar-tag-background-color, 50%);
+$_dform-metabar-id-color: $_dform-metabar-tag-background-color;
 
 .sg-dform-metabar {
 
   display: flex;
   flex-direction: row-reverse;
+  padding: .5rem 0;
 
   ul {
     padding: 0;
@@ -31,6 +33,11 @@ $_dform-metabar-tag-color: darken($_dform-metabar-tag-background-color, 50%);
 
   &-action {
     cursor: pointer;
+  }
+
+  &-id {
+    flex-grow: 1;
+    color: $_dform-metabar-id-color;
   }
 
 }
