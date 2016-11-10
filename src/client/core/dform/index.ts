@@ -10,5 +10,6 @@ export * from './dform.element.events';
 export * from './dform.service';
 export * from './metaText';
 export * from './quickBar';
+export * from './metaBar';
 export * from './text';
 export * from './textarea';

@@ -38,6 +38,15 @@
           "OFF": "Sperren"
         }
       }
+    },
+    "META_BAR": {
+      "LABEL": {
+        "FROM_MASTER": "Master",
+        "EDIT": {
+          "ON": "Bearbeiten",
+          "OFF": "Sperren"
+        }
+      }
     }
   },
 

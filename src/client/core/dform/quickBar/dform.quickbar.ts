@@ -35,10 +35,7 @@ export class DFormQuickBarComponent implements OnInit, OnDestroy, AfterViewInit 
       formType: 'textArea',
       icon: 'wrap_text'
     },
-  ]
-
-  // <md-icon (click)="changeFormType('text')">short_text</md-icon>
-  //   <md-icon (click)="changeFormType('textArea')">wrap_text</md-icon>
+  ];
 
   @Input() public element: DFormElement<any>;
 
@@ -64,11 +61,11 @@ export class DFormQuickBarComponent implements OnInit, OnDestroy, AfterViewInit 
     }
   }
 
+  // angular
+
   public ngOnInit(): void {
     console.log(`Initializing ${this.constructor.name}`);
   }
-
-  // angular
 
   public ngAfterViewInit(): void {
     this.__emitRef = EventEmitProvider
