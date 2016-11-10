@@ -5,7 +5,6 @@ import { Observable } from 'rxjs';
 import { Actions } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
 import { Effect } from '@ngrx/effects';
-// import * as R from 'ramda';
 
 import { Angular2Apollo } from 'angular2-apollo';
 // import { ApolloQueryObservable } from 'angular2-apollo';

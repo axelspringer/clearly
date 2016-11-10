@@ -3,7 +3,7 @@ import { Inject, EventEmitter } from '@angular/core';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import * as PouchDB from 'pouchdb';
-import * as R from 'ramda';
+import * as _ from 'lodash';
 
 // Components
 import { EventEmitProvider } from '../events';
@@ -62,7 +62,7 @@ export class DatabaseProvider {
       PouchDB['debug'].enable(this._options.debugFilter);
       const db = new PouchDB(this._options.name);
 
-      if (!!R.is(Function, db))
+      if (!!_.isFunction(db))
         throw new Error(`${PouchDB.constructor.name} - Promise missing`);
 
       this._logging.log(new LogEventLog(db));

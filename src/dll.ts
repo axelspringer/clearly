@@ -54,7 +54,7 @@ export function vendors() {
     '@angular/material',
     'pouchdb',
     'apollo-client',
-    'ramda',
+    'lodash',
     'hammerjs',
 
     // '@angularclass/form-validators',

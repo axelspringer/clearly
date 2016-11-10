@@ -1,7 +1,6 @@
 // Importables
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import * as R from 'ramda';
 import * as _ from 'lodash';
 
 // DForm
@@ -11,72 +10,69 @@ import { DForm } from '../../core';
 @Injectable()
 export class CreatorService {
 
-  private __dForm = new BehaviorSubject([]);
-  private __channels = [];
+  private __dFormSubject: BehaviorSubject<Array<DFormElement<any>>> = new BehaviorSubject([]);
+  private __channels: Array<any> = [];
 
   constructor(
-    private dFormService: DForm,
+    private __dForm: DForm,
   ) {
   }
+
+  // compile to
 
   get channels() {
     return this.__channels;
   }
 
   set channels(channels) {
-    this.__channels = channels;
-    this.next(channels);
+    this.__channels = channels
+    this.__next(channels);
   }
 
   get form() {
-    return this.__dForm.asObservable();
+    return this.__dFormSubject.asObservable();
   }
 
   public filter(channels) {
-    this.next(this.__channels.filter(channel => channel.isMaster || channels[channel.name]));
+    this.__next(this.__channels.filter(channel => channel.isMaster || channels[channel.name]));
   }
 
-  public next(channels) {
-    this.__dForm.next(this.toDForm(this.differChannel(R.clone(channels))));
+  // private
+
+  private __next(channels: Array<any>) {
+    this.__dFormSubject.next(this.__transformToDForm(this.__diffChannelsWithMaster(_.clone(channels))));
   }
 
-  // transform to form element
-  public toDFormElement(el: string, options = {}) {
+  private __transformToDFormElement(el: string, options = {}) {
     // this is the native approach
-    return this.dFormService.newFormType(el)(options);
+    return this.__dForm.newFormType(el)(options);
   }
 
   // to deform
-  public toDForm(channels: any) {
-    return channels.map(channel => {
-      ['content', 'metaData'].forEach(type => {
-        channel[type] = channel[type].map(el => this.toDFormElement(el.formType, {
-          key: el['name'],
-          placeholder: el['displayName'],
-          fromMaster: el['fromMaster'],
+  private __transformToDForm(channels: any) {
+    return _.map(channels, channel => {
+      _.each(['content', 'metaData'], type => {
+        channel[type] = _.map(channel[type], el =>
+          this.__transformToDFormElement(el['formType'], {
+            key: el['name'],
+            placeholder: el['displayName'],
+            fromMaster: el['fromMaster'],
+          }));
+      });
+      return channel;
+    }) as Array<DFormElement<any>>;
+  }
+
+  private __diffChannelsWithMaster(channels: any, key = 'name') {
+    const master = _.head(channels.splice(channels.findIndex(el => el.isMaster), 1));
+    _.map(channels, channel => {
+      _.each(['content', 'metaData'], type => {
+        channel[type] = _.concat(channel[type], _.map(_.filter(master[type], el => !_.find(channel[type], el[key])), el => {
+          return _.assign({}, el, { fromMaster: true });
         }));
       });
       return channel;
     });
+    return _.concat([], master, channels);
   }
-
-  // transform a form to dform
-  public differChannel(channels: any, key = 'name') {
-    const master = _.first(channels.splice(channels.findIndex(el => el.isMaster), 1));
-    channels.map(channel => {
-      ['content', 'metaData'].forEach(type => {
-        channel[type] = channel[type].concat(
-          R.differenceWith((x, y) => x[key] === y[key], master[type], channel[type])
-            .map((el: DFormElement<any>) => {
-              el = _.clone(el);
-              el.fromMaster = true;
-              return el;
-            }),
-        );
-      });
-      return channels;
-    });
-    return [].concat(master, channels);
-  }
-
 }
