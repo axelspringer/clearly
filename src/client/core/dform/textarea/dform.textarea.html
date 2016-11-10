@@ -2,6 +2,7 @@
   <div [formGroup]="form">
     <!-- should be replaced with md-textarea -->
     <textarea
+      #input
       [dFormElementEvents]="element"
       [disabled]="element.fromMaster && !element.disabled"
       [formControlName]="element.key"

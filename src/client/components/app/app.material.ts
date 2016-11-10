@@ -1,41 +1,42 @@
 // Angular 2 Material
 // https://github.com/angular/material2
 
-import { NgModule, ModuleWithProviders } from '@angular/core';
-
-import { MdButtonToggleModule } from '@angular/material';
+import { A11yModule } from '@angular/material';
 import { MdButtonModule } from '@angular/material';
-import { MdCheckboxModule } from '@angular/material';
-import { MdRadioModule } from '@angular/material';
-import { MdSlideToggleModule } from '@angular/material';
-import { MdSliderModule } from '@angular/material';
-import { MdSidenavModule } from '@angular/material';
-import { MdListModule } from '@angular/material';
-import { MdGridListModule } from '@angular/material';
+import { MdButtonToggleModule } from '@angular/material';
 import { MdCardModule } from '@angular/material';
+import { MdCheckboxModule } from '@angular/material';
+import { MdCoreModule } from '@angular/material';
+import { MdDialogModule } from '@angular/material';
+import { MdGridListModule } from '@angular/material';
 import { MdIconModule } from '@angular/material';
-import { MdProgressCircleModule } from '@angular/material';
-import { MdProgressBarModule } from '@angular/material';
 import { MdInputModule } from '@angular/material';
+import { MdListModule } from '@angular/material';
+import { MdMenuModule } from '@angular/material';
+import { MdProgressBarModule } from '@angular/material';
+import { MdProgressCircleModule } from '@angular/material';
+import { MdRadioModule } from '@angular/material';
+import { MdRippleModule } from '@angular/material';
+import { MdSidenavModule } from '@angular/material';
+import { MdSliderModule } from '@angular/material';
+import { MdSlideToggleModule } from '@angular/material';
+import { MdSnackBarModule } from '@angular/material';
 import { MdTabsModule } from '@angular/material';
 import { MdToolbarModule } from '@angular/material';
 import { MdTooltipModule } from '@angular/material';
-import { MdRippleModule } from '@angular/material';
-import { MdDialogModule } from '@angular/material';
-// import { PortalModule } from '@angular2-material/core/portal/portal-directives';
-// import { OverlayModule } from '@angular2-material/core/overlay/overlay-directives';
-import { MdMenuModule } from '@angular/material';
-// import { MdDialogModule } from '@angular2-material/dialog';
-// import { RtlModule } from '@angular2-material/core/rtl/dir';
-// import { MdLiveAnnouncer } from '@angular2-material/core/a11y/live-announcer';
-import { MdCoreModule } from '@angular/material';
+import { ModuleWithProviders } from '@angular/core';
+import { NgModule } from '@angular/core';
+import { OverlayModule } from '@angular/material';
+import { PortalModule } from '@angular/material';
+import { RtlModule } from '@angular/material';
+import { StyleCompatibilityModule } from '@angular/material';
 
 const MATERIAL_MODULES = [
   MdButtonModule,
   MdButtonToggleModule,
   MdCardModule,
   MdCheckboxModule,
-  // MdDialogModule,
+  MdDialogModule,
   MdGridListModule,
   MdIconModule,
   MdInputModule,
@@ -48,46 +49,45 @@ const MATERIAL_MODULES = [
   MdSidenavModule,
   MdSliderModule,
   MdSlideToggleModule,
+  MdSnackBarModule,
   MdTabsModule,
   MdToolbarModule,
   MdTooltipModule,
-  MdCoreModule,
-  MdDialogModule,
-  // OverlayModule,
-  // PortalModule,
-  // RtlModule,
+  OverlayModule,
+  PortalModule,
+  RtlModule,
+  A11yModule,
+  StyleCompatibilityModule,
 ];
 
 @NgModule({
-
   imports: [
     MdButtonModule.forRoot(),
+    MdButtonToggleModule.forRoot(),
     MdCardModule.forRoot(),
     MdCheckboxModule.forRoot(),
+    MdDialogModule.forRoot(),
     MdGridListModule.forRoot(),
+    MdIconModule.forRoot(),
     MdInputModule.forRoot(),
     MdListModule.forRoot(),
+    MdMenuModule.forRoot(),
     MdProgressBarModule.forRoot(),
     MdProgressCircleModule.forRoot(),
+    MdRadioModule.forRoot(),
     MdRippleModule.forRoot(),
     MdSidenavModule.forRoot(),
     MdSliderModule.forRoot(),
     MdSlideToggleModule.forRoot(),
+    MdSnackBarModule.forRoot(),
     MdTabsModule.forRoot(),
     MdToolbarModule.forRoot(),
-    // PortalModule,
-    // RtlModule,
-
-    // These modules include providers.
-    MdButtonToggleModule.forRoot(),
-
-    MdIconModule.forRoot(),
-    MdMenuModule.forRoot(),
-    MdRadioModule.forRoot(),
     MdTooltipModule.forRoot(),
-    MdCoreModule.forRoot(),
-    MdDialogModule.forRoot(),
-    // OverlayModule.forRoot(),
+    OverlayModule.forRoot(),
+    PortalModule.forRoot(),
+    RtlModule.forRoot(),
+    A11yModule.forRoot(),
+    StyleCompatibilityModule.forRoot(),
   ],
 
   exports: MATERIAL_MODULES,

@@ -46,6 +46,12 @@
           "ON": "Bearbeiten",
           "OFF": "Sperren"
         }
+      },
+      "SNACKS": {
+        "UNSAVED": {
+          "MESSAGE": "Das Feld enthält bereits Text",
+          "ACTION": "Weiter"
+        }
       }
     }
   },
