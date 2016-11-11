@@ -357,7 +357,7 @@ const defaultConfig = function () {
   const config: WebpackConfig = {} as WebpackConfig;
 
   config.resolve = {
-    extensions: ['.ts', '.js', '.json'],
+    extensions: ['.ts', '.js', '.json', '.graphql'],
   };
 
   return config;

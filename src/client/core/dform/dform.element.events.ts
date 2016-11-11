@@ -27,7 +27,7 @@ export class DFormElementEventsDirective implements AfterViewInit, OnDestroy {
 
   constructor(
     private __elRef: ElementRef,
-    @Inject(forwardRef(() => DForm)) private __DForm: DForm,
+    @Inject(forwardRef(() => DForm)) private __dForm: DForm,
   ) { }
 
   // events
@@ -37,7 +37,7 @@ export class DFormElementEventsDirective implements AfterViewInit, OnDestroy {
     if (event.keyCode === KEY_CODES.BACKSPACE
       && this.__elRef.nativeElement.value === '') { // this is doll
       event.preventDefault();
-      this.__DForm.removeFormElement(this.element);
+      this.__dForm.removeFormElement(this.element);
     }
   };
 
@@ -46,7 +46,7 @@ export class DFormElementEventsDirective implements AfterViewInit, OnDestroy {
     if (event.keyCode === KEY_CODES.ENTER
       && !event.shiftKey) {
       event.preventDefault();
-      this.__DForm.addFormElement(this.element);
+      this.__dForm.addFormElement(this.element);
     }
   };
 

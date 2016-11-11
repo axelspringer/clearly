@@ -45,7 +45,7 @@ export const CUSTOM_RULES_COMMON = [
   {
     test: /\.(graphql|gql)$/,
     exclude: /node_modules/,
-    use: 'graphql-tag/loader'
+    use: ['graphql-tag/loader']
   },
   {
     test: /boot.scss/,

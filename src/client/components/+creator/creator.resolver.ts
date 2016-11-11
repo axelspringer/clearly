@@ -40,8 +40,7 @@ export class CreatorResolver implements Resolve<any> {
     this.creatorService = creatorService;
   }
 
-  public resolve(
-  ): Observable<boolean> | Promise<boolean> | boolean {
+  public resolve(): Observable<boolean> | Promise<boolean> | boolean {
 
     this.store.dispatch(this.articleActions.load());
 

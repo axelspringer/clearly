@@ -35,20 +35,20 @@ export class DFormComponent implements OnInit {
   @Output() public update: EventEmitter<FormGroup> = new EventEmitter<FormGroup>();
 
   public dform: DFormObservable;
-  private __DFormDiffer: IterableDiffer;
+  private __dFormDiffer: IterableDiffer;
 
   constructor(
-    private __DForm: DForm,
+    private __dForm: DForm,
     private __differs: IterableDiffers,
   ) {
     // re-use existing changeDetector
-    this.__DFormDiffer = this.__differs.find([]).create(null);
+    this.__dFormDiffer = this.__differs.find([]).create(null);
   }
 
   // public
 
   public ngOnInit(): void {
-    this.__DForm.toForm$(this.elements) // map to input
+    this.__dForm.toForm$(this.elements) // map to input
       .subscribe(form => {
         this.dform = form;
         const changes = this.__trackDFormChanges(this.dform);
@@ -64,10 +64,15 @@ export class DFormComponent implements OnInit {
       });
   }
 
+  public trackBy(index, item) {
+    index = 0; // remove later
+    return item.key;
+  }
+
   // private
 
   private __trackDFormChanges(dform: DFormObservable) {
-    return this.__DFormDiffer.diff(dform.data);
+    return this.__dFormDiffer.diff(dform.data);
   }
 
 };

@@ -91,7 +91,7 @@ export class DFormQuickBarComponent implements OnInit, OnDestroy, AfterViewInit 
       );
     }
     if (this.element.controlType !== newFormType) {
-      this.__parentComponent.__DForm.changeFormElement(this.element, newFormType);
+      this.__parentComponent.__dForm.changeFormElement(this.element, newFormType);
     }
   }
 

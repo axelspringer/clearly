@@ -79,14 +79,14 @@ export class DForm { // central service of a dynamic form
 
   // private
 
-  private __DFormElementToFormGroup(formEntities: Array<DFormElement<any>>) {
+  private __dFormElementToFormGroup(formEntities: Array<DFormElement<any>>) {
     return formEntities.reduce((previousDFormEntity, currentDFormEntity) => {
-      previousDFormEntity.addControl(currentDFormEntity.key, this.__DFormElementToFormControl(currentDFormEntity));
+      previousDFormEntity.addControl(currentDFormEntity.key, this.__dFormElementToFormControl(currentDFormEntity));
       return previousDFormEntity;
     }, new FormGroup({}));
   }
 
-  private __DFormElementToFormControl(DFormEntity: DFormElement<any>) {
+  private __dFormElementToFormControl(DFormEntity: DFormElement<any>) {
     return DFormEntity.required
       ? new FormControl(DFormEntity.value || '', Validators.required)
       : new FormControl(DFormEntity.value || '');
@@ -99,7 +99,7 @@ export class DForm { // central service of a dynamic form
   }
 
   private __next(formEntities: Array<DFormElement<any>>) {
-    this.__form.next(new DFormObservable(formEntities, this.__DFormElementToFormGroup(formEntities)));
+    this.__form.next(new DFormObservable(formEntities, this.__dFormElementToFormGroup(formEntities)));
   }
 
 }

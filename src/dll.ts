@@ -50,7 +50,6 @@ export function vendors() {
     '@ngrx/store-log-monitor',
     '@ngrx/store',
     '@ngrx/effects',
-    '@angularclass/hmr',
     '@angular/material',
     'pouchdb',
     'apollo-client',
@@ -58,7 +57,6 @@ export function vendors() {
     'hammerjs',
 
     // '@angularclass/form-validators',
-    // '@angularclass/hmr',
   ];
 }
 
