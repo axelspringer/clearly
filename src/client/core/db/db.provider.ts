@@ -46,11 +46,11 @@ export class DatabaseProvider {
   private __emitter$: EventEmitter<any>;
 
   constructor(
-    private _logging: LogService,
+    private __logging: LogService,
     @Inject(DATABASE_PROVIDER_OPTIONS) options: DatabaseProviderOptions,
   ) {
 
-    this._logging.log(new LogEventLog(`Initializing Database`));
+    this.__logging.log(new LogEventLog(`Initializing Database`));
     this.__options = Object.assign(DATABASE_PROVIDER_OPTIONS, options); // could be moved to class
 
     // connect to emitter
@@ -65,10 +65,10 @@ export class DatabaseProvider {
         throw new Error(`${PouchDB.constructor.name} - Promise missing`);
       }
 
-      this._logging.log(new LogEventLog(db));
+      this.__logging.log(new LogEventLog(db));
       this.__db = db; // sync
     } catch (err) {
-      this._logging.log(new LogEventError(err));
+      this.__logging.log(new LogEventError(err));
     }
 
   }
@@ -118,7 +118,7 @@ export class DatabaseProvider {
     return Observable
       .fromPromise(promise)
       .catch(err => {
-        this._logging.log(new LogEventError(err));
+        this.__logging.log(new LogEventError(err));
         return Observable.of({}); // cached version
       });
   }

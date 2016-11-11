@@ -5,10 +5,36 @@ import { Angular2Apollo } from 'angular2-apollo';
 import { Effect } from '@ngrx/effects';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import gql from 'graphql-tag';
 
 // Components
 import { ArticleActions } from './article.actions';
-import query from './article.graphql';
+
+const query = gql`
+  query RootQuery {
+  articleType {
+    name
+    displayName,
+    channels {
+      name
+      displayName
+      metaData {
+        name
+        displayName
+        formType,
+        isRequired
+      }
+      content {
+        name
+        displayName
+        formType,
+        isRequired
+      }
+      isEnabled,
+      isMaster
+    }
+  }
+}`;
 
 @Injectable()
 export class ArticleEffects {

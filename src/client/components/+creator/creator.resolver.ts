@@ -41,8 +41,6 @@ export class CreatorResolver implements Resolve<any> {
   }
 
   public resolve(
-    // route: ActivatedRouteSnapshot,
-    // state: RouterStateSnapshot
   ): Observable<boolean> | Promise<boolean> | boolean {
 
     this.store.dispatch(this.articleActions.load());

@@ -1,7 +1,4 @@
 // Importables
-// import { CanActivate } from '@angular/router';
-// import { CanActivateArticle } from './creator.guard';
-// import { Observable } from 'rxjs';
 import { CreatorComponent } from './creator.component';
 import { CreatorResolver } from './creator.resolver';
 import { Routes } from '@angular/router';
