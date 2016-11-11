@@ -99,7 +99,7 @@ export class DForm { // central service of a dynamic form
   }
 
   private __next(formEntities: Array<DFormElement<any>>) {
-    this.__form.next(new DFormObservable(formEntities, this.__DFormElementToFormGroup(formEntities)),);
+    this.__form.next(new DFormObservable(formEntities, this.__DFormElementToFormGroup(formEntities)));
   }
 
 }

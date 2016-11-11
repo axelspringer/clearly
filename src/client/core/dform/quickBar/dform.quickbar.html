@@ -1,9 +1,10 @@
 <ng-content></ng-content>
 <div class="quickbar" *ngIf="hasFocus">
   <div class="quickbar-trigger" (click)="toggleQuickBar()">
-    <md-icon>add</md-icon>
+    <md-icon *ngIf="!shouldShowQuickBar">add</md-icon>
+    <md-icon *ngIf="shouldShowQuickBar">close</md-icon>
   </div>
-  <div class="quickbar-actions" *ngIf="shouldShowQuickBar">
+  <div class="quickbar-actions" [@shouldShowQuickBar]="shouldShowQuickBar">
     <md-icon (click)="changeFormType(action.formType)" *ngFor="let action of actions">{{ action.icon }}</md-icon>
   </div>
 </div>

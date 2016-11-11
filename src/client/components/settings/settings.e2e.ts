@@ -7,7 +7,6 @@ describe('App', () => {
     browser.get('/#/dashboard');
   });
 
-
   it('should have a title', () => {
     let subject = browser.getTitle();
     let result  = AppConfig.HTML5_TITLE;
@@ -19,6 +18,5 @@ describe('App', () => {
     let result  = 'Your Content Here';
     expect(subject).toEqual(result);
   });
-
 
 });

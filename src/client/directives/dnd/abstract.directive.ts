@@ -1,4 +1,5 @@
-// import { createImage } from './dnd.utils';
+/* tslint:disable:max-line-length */
+// Importables
 import { ChangeDetectorRef } from '@angular/core';
 import { DragDropDefaults } from './dnd.module';
 import { DragDropService } from './dnd.service';
@@ -123,23 +124,23 @@ export abstract class DndAbstractDirective {
     this.changeRef.markForCheck();
   }
 
-  _onDragEnterCallback(event: Event) {
+  public _onDragEnterCallback(event: Event) {
     console.log(event);
   }
-  _onDragOverCallback(event: Event) {
+  public _onDragOverCallback(event: Event) {
     console.log(event);
   }
-  _onDragLeaveCallback(event: Event) {
+  public _onDragLeaveCallback(event: Event) {
     console.log(event);
   }
-  _onDropCallback(event: Event) {
+  public _onDropCallback(event: Event) {
     console.log(event);
   }
 
-  _onDragStartCallback(event: Event) {
+  public _onDragStartCallback(event: Event) {
     console.log(event);
   }
-  _onDragEndCallback(event: Event) {
+  public _onDragEndCallback(event: Event) {
     console.log(event);
   }
 

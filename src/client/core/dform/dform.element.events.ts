@@ -21,7 +21,7 @@ import { KEY_CODES } from './index';
 })
 export class DFormElementEventsDirective implements AfterViewInit, OnDestroy {
 
-  @Input('dFormElementEvents') element: DFormElement<any>;
+  @Input('dFormElementEvents') public element: DFormElement<any>;
 
   private __emitRef: EventEmitter<any>;
 
@@ -74,6 +74,5 @@ export class DFormElementEventsDirective implements AfterViewInit, OnDestroy {
       this.__emitRef.unsubscribe();
     }
   }
-
 
 }

@@ -1,0 +1,24 @@
+query RootQuery {
+  articleType {
+    name
+    displayName,
+    channels {
+      name
+      displayName
+      metaData {
+        name
+        displayName
+        formType,
+        isRequired
+      }
+      content {
+        name
+        displayName
+        formType,
+        isRequired
+      }
+      isEnabled,
+      isMaster
+    }
+  }
+}

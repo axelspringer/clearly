@@ -1,3 +1,4 @@
+/* tslint:disable:max-line-length */
 // Importables
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
@@ -25,7 +26,7 @@ export class CreatorService {
   }
 
   set channels(channels) {
-    this.__channels = channels
+    this.__channels = channels;
     this.__next(channels);
   }
 

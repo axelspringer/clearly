@@ -43,6 +43,11 @@ export const CUSTOM_PLUGINS_PROD = [
 
 export const CUSTOM_RULES_COMMON = [
   {
+    test: /\.(graphql|gql)$/,
+    exclude: /node_modules/,
+    use: 'graphql-tag/loader'
+  },
+  {
     test: /boot.scss/,
     use: [
       ExtractTextPlugin.extract([

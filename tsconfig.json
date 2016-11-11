@@ -31,7 +31,6 @@
       "pouchdb-core",
       "pouchdb",
       "protractor",
-      "ramda",
       "selenium-webdriver",
       "isomorphic-fetch",
       "source-map",

@@ -1,24 +1,22 @@
-import {
-  async,
-  inject,
-  TestBed
-} from '@angular/core/testing';
+import { async } from '@angular/core/testing';
+import { inject } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 
 // Load the implementations that should be tested
-import { App } from './app.component';
-import { TranslateModule, TranslateLoader } from 'ng2-translate/ng2-translate';
-import { TranslateCustomLoader } from '../../core';
+import { AppComponent } from './app';
 import { AppConfig } from '../../config';
 import { Title } from '@angular/platform-browser';
-import { DBService } from '../../services';
-
+import { TranslateCustomLoader } from '../../core';
+import { TranslateLoader } from 'ng2-translate/ng2-translate';
+import { TranslateModule } from 'ng2-translate/ng2-translate';
 
 // bootstrap testing
 describe('Sanity Test', () => {
 
   it('Should test matchers', () => {
 
-    let _undefined, _defined = true;
+    let _undefined = true;
+    let _defined = true;
 
     expect('a' + 'b').toBe('ab');
 
@@ -47,9 +45,8 @@ describe('App', () => {
   // provide our implementations or mocks to the dependency injector
   beforeEach(() => TestBed.configureTestingModule({
     providers: [
-      App,
+      AppComponent,
       Title,
-      DBService
     ],
     imports: [
       TranslateModule.forRoot({
@@ -57,20 +54,20 @@ describe('App', () => {
         useFactory: () => {
           return new TranslateCustomLoader({
             'de': {
-              'HELLOWORLD': 'Hello World'
-            }
+              'HELLOWORLD': 'Hello World',
+            },
           });
-        }
-      })
-    ]
+        },
+      }),
+    ],
   }));
 
-  it('should be constructable', inject([App], (app) => {
+  it('should be constructable', inject([AppComponent], (app) => {
     expect(app).not.toBeUndefined;
   }));
 
   it('should have configured initial title', async(() => {
-    inject([App, Title], (app, title) => {
+    inject([AppComponent, Title], (app, title) => {
       expect(app.title$).not.toBeUndefined;
       expect(title.getTitle()).toBe(AppConfig.HTML5_TITLE);
     });

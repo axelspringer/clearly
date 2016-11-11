@@ -11,17 +11,17 @@ import { LogEventError } from '../log';
 import { LogEventLog } from '../log';
 import { LogService } from '../log';
 
-export interface DatabaseProviderOptions {
+export interface IDatabaseProviderOptions {
   name: string;
   retry: number;
   debugFilter: string;
 };
 
 // put here to avoid side-effects
-export const DATABASE_PROVIDER_OPTIONS: DatabaseProviderOptions = {
+export const DATABASE_PROVIDER_OPTIONS: IDatabaseProviderOptions = {
   name: 'blackbeard',
   retry: 5,
-  debugFilter: 'pouchdb:api'
+  debugFilter: 'pouchdb:api',
 };
 
 export class DatabaseProviderOptions {
@@ -30,7 +30,7 @@ export class DatabaseProviderOptions {
     const defaults = {
       name: 'blackbeard',
       retry: 5,
-      debugFilter: 'pouchdb:api'
+      debugFilter: 'pouchdb:api',
     };
     return Object.assign(defaults, options);
   }
@@ -40,69 +40,81 @@ export class DatabaseProviderOptions {
 @Injectable()
 export class DatabaseProvider {
 
-  private _db: any; // should be PouchDB
-  private _options: any;
+  private __db: any; // should be PouchDB
+  private __options: any;
 
-  private _emitter$: EventEmitter<any>;
-  // private _requests: number = 0;
+  private __emitter$: EventEmitter<any>;
 
   constructor(
     private _logging: LogService,
-    @Inject(DATABASE_PROVIDER_OPTIONS) options: DatabaseProviderOptions
+    @Inject(DATABASE_PROVIDER_OPTIONS) options: DatabaseProviderOptions,
   ) {
 
     this._logging.log(new LogEventLog(`Initializing Database`));
-    this._options = Object.assign(DATABASE_PROVIDER_OPTIONS, options); // could be moved to class
+    this.__options = Object.assign(DATABASE_PROVIDER_OPTIONS, options); // could be moved to class
 
     // connect to emitter
-    this._emitter$ = EventEmitProvider.connect(DatabaseProvider.name);
+    this.__emitter$ = EventEmitProvider.connect(DatabaseProvider.name);
 
     try {
       // sync for now...
-      PouchDB['debug'].enable(this._options.debugFilter);
-      const db = new PouchDB(this._options.name);
+      PouchDB['debug'].enable(this.__options.debugFilter);
+      const db = new PouchDB(this.__options.name);
 
-      if (!!_.isFunction(db))
+      if (!!_.isFunction(db)) {
         throw new Error(`${PouchDB.constructor.name} - Promise missing`);
+      }
 
       this._logging.log(new LogEventLog(db));
-      this._db = db; // sync
+      this.__db = db; // sync
     } catch (err) {
       this._logging.log(new LogEventError(err));
     }
 
   }
 
-  get db(): any {
-    return this._db;
+  // public
+
+  public get db(): any {
+    return this.__db;
   }
 
-  get(id: string): Observable<any> {
-    return this._fromPromise(this.db.get(id));
+  public get(id: string): Observable<any> {
+    return this.__fromPromise(this.db.get(id));
   }
 
-  post(doc: any = {}): Observable<any> {
-    return this._fromPromise(this.db.post(doc));
+  public post(doc: any = {}): Observable<any> {
+    return this.__fromPromise(this.db.post(doc));
   }
 
-  put(doc: any = {}): Observable<any> {
-    return this._fromPromise(this.db.put(doc));
+  public put(doc: any = {}): Observable<any> {
+    return this.__fromPromise(this.db.put(doc));
   }
 
-  allDocs(options: any = { include_docs: true }): Observable<any> {
-    return this._fromPromise(this.db.allDocs(options));
+  public allDocs(options: any = { include_docs: true }): Observable<any> {
+    return this.__fromPromise(this.db.allDocs(options));
   }
 
-  create(doc: any = {}): Observable<any> {
+  public create(doc: any = {}): Observable<any> {
     return this.post(doc);
   }
 
-  update(id: string, doc): Observable<any> {
+  public update(id: string, doc): Observable<any> {
     return this.get(id)
       .switchMap(_doc => this.put(doc));
   }
 
-  _fromPromise(promise): Observable<any> {
+  // yep, wtf
+  public wtf(): any {
+    // should be disposed
+    if (!!this.__db) {
+      return this.__db.destroy();
+    }
+  }
+
+  // private
+
+  private __fromPromise(promise): Observable<any> {
     return Observable
       .fromPromise(promise)
       .catch(err => {
@@ -111,25 +123,15 @@ export class DatabaseProvider {
       });
   }
 
-  // yep, wtf
-  wtf(): any {
-
-    // should be disposed
-    if (!!this._db)
-      return this._db.destroy();
-
-  }
-
 };
-
 
 export const DATABASE_PROVIDERS = [
   {
     provide: DATABASE_PROVIDER_OPTIONS,
-    useValue: DATABASE_PROVIDER_OPTIONS
+    useValue: DATABASE_PROVIDER_OPTIONS,
   },
   {
     provide: DatabaseProvider,
-    useClass: DatabaseProvider
-  }
+    useClass: DatabaseProvider,
+  },
 ];

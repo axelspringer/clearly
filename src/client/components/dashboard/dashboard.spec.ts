@@ -1,22 +1,16 @@
-import {
-  inject,
-  async,
-  TestBed,
-} from '@angular/core/testing';
-import { Component } from '@angular/core';
+import { inject } from '@angular/core/testing';
+import { async } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { Title } from '@angular/platform-browser';
-import {
-  BaseRequestOptions,
-  ConnectionBackend,
-  Http
-} from '@angular/http';
+import { BaseRequestOptions } from '@angular/http';
+import { ConnectionBackend } from '@angular/http';
+import { Http } from '@angular/http';
 import { MockBackend } from '@angular/http/testing';
 import { StoreModule } from '@ngrx/store';
 
 // Load the implementations that should be tested
-import { Dashboard } from './dashboard.component';
+import { DashboardComponent } from './dashboard.component';
 import reducer from '../../reducers';
-import { UserActions } from '../../actions';
 
 describe('Dashboard', () => {
   // provide our implementations or mocks to the dependency injector
@@ -29,31 +23,30 @@ describe('Dashboard', () => {
         useFactory: function(backend: ConnectionBackend, defaultOptions: BaseRequestOptions) {
           return new Http(backend, defaultOptions);
         },
-        deps: [MockBackend, BaseRequestOptions]
+        deps: [MockBackend, BaseRequestOptions],
       },
-      Dashboard,
+      DashboardComponent,
       Title,
-      UserActions
     ],
     imports: [
-      StoreModule.provideStore(reducer)
-    ]
+      StoreModule.provideStore(reducer),
+    ],
   }));
 
   it('should have default data', async(() => {
-    inject([ Dashboard ], (dashboard) => {
+    inject([ DashboardComponent ], (dashboard) => {
       expect(dashboard.user$).toEqual({userId: ''});
     });
   }));
 
   it('should have a title', async(() => {
-    inject([ Dashboard, Title ], (dashboard, title) => {
+    inject([ DashboardComponent, Title ], (dashboard, title) => {
       expect(!!dashboard.title$).toEqual(true);
       expect(title.getTitle()).toEqual(dashboard.title$);
     });
   }));
 
-  it('should log ngOnInit', inject([ Dashboard ], (dashboard) => {
+  it('should log ngOnInit', inject([ DashboardComponent ], (dashboard) => {
     spyOn(console, 'log');
     expect(console.log).not.toHaveBeenCalled();
 

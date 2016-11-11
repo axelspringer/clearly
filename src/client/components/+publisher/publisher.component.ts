@@ -1,25 +1,18 @@
-import {
-  Component,
-  OnInit
-} from '@angular/core';
+import { Component } from '@angular/core';
 import { EventEmitProvider } from '../../../core';
+import { OnInit } from '@angular/core';
 import { ToolbarTitleUpdate } from '../../toolbar';
 
 @Component({
   selector: 'publisher',  // <publisher></publisher>
-  providers: [],
-  templateUrl: './publisher.component.html'
+  templateUrl: './publisher.component.html',
 })
-export class Publisher implements OnInit {
-
-  constructor() {}
+export class PublisherComponent implements OnInit {
 
   public ngOnInit() {
-
     EventEmitProvider
       .connect(ToolbarTitleUpdate.prototype.constructor.name)
       .emit('Artikel publizieren ...');
-
   }
 
 };

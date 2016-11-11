@@ -15,13 +15,7 @@ import { DFormElement } from '../dform.element';
 })
 export class DFormMetaBarComponent implements OnInit {
 
-  // should be refactored to some else
-
   @Input() public formElement: DFormElement<any>;
-
-  constructor(
-    // @Inject(forwardRef(() => DFormComponent)) private __parentComponent,
-  ) { }
 
   // public
 

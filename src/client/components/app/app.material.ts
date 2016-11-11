@@ -1,12 +1,9 @@
 // Angular 2 Material
 // https://github.com/angular/material2
-
-import { A11yModule } from '@angular/material';
 import { MdButtonModule } from '@angular/material';
 import { MdButtonToggleModule } from '@angular/material';
 import { MdCardModule } from '@angular/material';
 import { MdCheckboxModule } from '@angular/material';
-import { MdCoreModule } from '@angular/material';
 import { MdDialogModule } from '@angular/material';
 import { MdGridListModule } from '@angular/material';
 import { MdIconModule } from '@angular/material';
@@ -29,7 +26,6 @@ import { NgModule } from '@angular/core';
 import { OverlayModule } from '@angular/material';
 import { PortalModule } from '@angular/material';
 import { RtlModule } from '@angular/material';
-import { StyleCompatibilityModule } from '@angular/material';
 
 const MATERIAL_MODULES = [
   MdButtonModule,
@@ -56,8 +52,6 @@ const MATERIAL_MODULES = [
   OverlayModule,
   PortalModule,
   RtlModule,
-  A11yModule,
-  StyleCompatibilityModule,
 ];
 
 @NgModule({
@@ -86,8 +80,6 @@ const MATERIAL_MODULES = [
     OverlayModule.forRoot(),
     PortalModule.forRoot(),
     RtlModule.forRoot(),
-    A11yModule.forRoot(),
-    StyleCompatibilityModule.forRoot(),
   ],
 
   exports: MATERIAL_MODULES,

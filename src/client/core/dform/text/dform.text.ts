@@ -21,7 +21,7 @@ export class DFormText extends DFormElement<string> {
 @Component({
   selector: 'sg-dform-text',
   templateUrl: './dform.text.html',
-  styleUrls: ['./dform.text.scss',],
+  styleUrls: ['./dform.text.scss'],
 })
 export class DFormTextComponent {
 
