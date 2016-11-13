@@ -1,0 +1,5 @@
+<div [formGroup]="form">
+  <md-checkbox [formControlName]="element.key" [id]="element.key" name="ngModel" [(ngModel)]="element.isChecked">
+      {{element.checkboxLabel}}
+  </md-checkbox>
+</div>

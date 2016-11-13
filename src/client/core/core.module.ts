@@ -26,6 +26,7 @@ import { DFormDynamicElementComponent } from './dform';
 import { DFormTextComponent } from './dform';
 import { DFormTextAreaComponent } from './dform';
 import { DFormMetaTextComponent } from './dform';
+import { DFormCheckBoxComponent } from './dform';
 import { DFormQuickBarComponent } from './dform';
 import { MdModule } from '../components/app/app.material';
 
@@ -47,6 +48,7 @@ import { MdModule } from '../components/app/app.material';
     DFormTextComponent,
     DFormTextAreaComponent,
     DFormMetaTextComponent,
+    DFormCheckBoxComponent,
     DFormQuickBarComponent,
   ],
   declarations: [
@@ -66,6 +68,7 @@ import { MdModule } from '../components/app/app.material';
     DFormTextComponent,
     DFormTextAreaComponent,
     DFormMetaTextComponent,
+    DFormCheckBoxComponent,
     DFormQuickBarComponent,
   ],
   providers: [

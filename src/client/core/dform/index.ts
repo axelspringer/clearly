@@ -5,5 +5,6 @@ export * from './dform.service';
 export * from './metaText';
 export * from './quickBar';
 export * from './text';
+export * from './checkBox';
 export * from './textarea';
 export * from './key.codes';

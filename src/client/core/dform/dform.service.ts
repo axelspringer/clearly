@@ -9,6 +9,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { DFormElement } from './dform.element';
 import { DFormMetaText } from './metaText';
 import { DFormText } from './text';
+import { DFormCheckBox } from './checkBox';
 import { DFormTextArea } from './textarea';
 
 interface IDFormSubject {
@@ -30,6 +31,7 @@ export class DForm { // central service of a dynamic form
   static formTypes = {
     'metaText': (options => new DFormMetaText(options)),
     'text': (options => new DFormText(options)),
+    'checkBox': (options => new DFormCheckBox(options)),
     'textArea': (options => new DFormTextArea(options)),
   }
 
