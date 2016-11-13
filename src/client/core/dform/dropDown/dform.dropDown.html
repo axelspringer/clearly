@@ -1,0 +1,9 @@
+<!-- TODO: should be replaced later with material design select element, as soon as it was designed -->
+<div [formGroup]="form">
+    <label for="element.key">{{element.dLabel}}</label>
+    <select [formControlName]="element.key" [id]="element.key" name="ngModel" [(ngModel)]="element.selectedValue">
+        <option *ngFor="let option of element.dOptions" [ngValue]="option.value">  
+            {{option.display}}
+        </option>
+    </select>
+</div>

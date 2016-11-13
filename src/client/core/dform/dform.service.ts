@@ -10,6 +10,7 @@ import { DFormElement } from './dform.element';
 import { DFormMetaText } from './metaText';
 import { DFormText } from './text';
 import { DFormCheckBox } from './checkBox';
+import { DFormDropDown } from './dropDown';
 import { DFormTextArea } from './textarea';
 
 interface IDFormSubject {
@@ -32,6 +33,7 @@ export class DForm { // central service of a dynamic form
     'metaText': (options => new DFormMetaText(options)),
     'text': (options => new DFormText(options)),
     'checkBox': (options => new DFormCheckBox(options)),
+    'dropDown': (options => new DFormDropDown(options)),
     'textArea': (options => new DFormTextArea(options)),
   }
 

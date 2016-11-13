@@ -6,5 +6,6 @@ export * from './metaText';
 export * from './quickBar';
 export * from './text';
 export * from './checkBox';
+export * from './dropDown';
 export * from './textarea';
 export * from './key.codes';

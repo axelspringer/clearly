@@ -3,6 +3,7 @@
   <div [ngSwitch]="element.controlType">
     <sg-dform-text [element]="element" [form]="form" *ngSwitchCase="'text'"></sg-dform-text>
     <sg-dform-checkbox [element]="element" [form]="form" *ngSwitchCase="'checkBox'"></sg-dform-checkbox>
+    <sg-dform-dropdown [element]="element" [form]="form" *ngSwitchCase="'dropDown'"></sg-dform-dropdown>
     <sg-dform-meta-text [element]="element" [form]="form" *ngSwitchCase="'metaText'"></sg-dform-meta-text>
     <sg-dform-textarea [element]="element" [form]="form" *ngSwitchCase="'textArea'"></sg-dform-textarea>
   </div>

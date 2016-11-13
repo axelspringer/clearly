@@ -27,6 +27,7 @@ import { DFormTextComponent } from './dform';
 import { DFormTextAreaComponent } from './dform';
 import { DFormMetaTextComponent } from './dform';
 import { DFormCheckBoxComponent } from './dform';
+import { DFormDropDownComponent } from './dform';
 import { DFormQuickBarComponent } from './dform';
 import { MdModule } from '../components/app/app.material';
 
@@ -49,6 +50,7 @@ import { MdModule } from '../components/app/app.material';
     DFormTextAreaComponent,
     DFormMetaTextComponent,
     DFormCheckBoxComponent,
+    DFormDropDownComponent,
     DFormQuickBarComponent,
   ],
   declarations: [
@@ -69,6 +71,7 @@ import { MdModule } from '../components/app/app.material';
     DFormTextAreaComponent,
     DFormMetaTextComponent,
     DFormCheckBoxComponent,
+    DFormDropDownComponent,
     DFormQuickBarComponent,
   ],
   providers: [
