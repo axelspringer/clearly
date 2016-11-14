@@ -23,6 +23,7 @@ export class DFormTextArea extends DFormElement<string> {
   templateUrl: './dform.textarea.html',
   styleUrls: ['./dform.textarea.scss'],
 })
+
 export class DFormTextAreaComponent {
 
   @Input() public element: DFormElement<string>;

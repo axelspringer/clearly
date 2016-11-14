@@ -71,7 +71,6 @@ export class DForm { // central service of a dynamic form
   }
 
   public changeFormElement(changeFormEntity: DFormElement<any>, formType: string) {
-    console.log(changeFormEntity, formType);
     this.__formEntities[this.__formEntities.findIndex(formEntity => formEntity.key === changeFormEntity.key)] = this.newFormType(formType)();
     this.__next(this.__preserveFormState(this.__formEntities));
   }

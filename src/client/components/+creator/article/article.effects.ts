@@ -9,8 +9,6 @@ import gql from 'graphql-tag';
 
 // Components
 import { ArticleActions } from './article.actions';
-import query2 from './article.graphql';
-console.log(query2);
 
 const query = gql`
   query RootQuery {
