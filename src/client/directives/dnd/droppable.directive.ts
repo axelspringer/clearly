@@ -15,7 +15,7 @@ import { DragDropService } from './dnd.service';
 import { IDragDropEvent } from './dnd.module';
 
 @Directive({
-  selector: '[dnd-droppable]',
+  selector: '[sgDndDroppable]',
 })
 export class DroppableDirective extends DndAbstractDirective {
 

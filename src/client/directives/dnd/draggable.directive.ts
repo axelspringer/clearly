@@ -12,7 +12,7 @@ import { DragDropDefaults } from './dnd.module';
 import { IDragDropEvent } from './dnd.module';
 
 @Directive({
-  selector: '[dnd-draggable]',
+  selector: '[sgDndDraggable]',
 })
 export class DraggableDirective extends DndAbstractDirective {
 
@@ -22,7 +22,7 @@ export class DraggableDirective extends DndAbstractDirective {
   }
 
   // input draggable data
-  @Input('dnd-drag-data') public dragData: any;
+  @Input('dndDragData') public dragData: any;
 
   @Input('dnd-drop-zones') set dropzones(value: Array<string>) {
     this.dropZones = value;
