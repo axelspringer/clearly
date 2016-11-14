@@ -60,6 +60,10 @@ export class DFormQuickBarComponent implements OnInit, OnDestroy, AfterViewInit 
       formType: 'textArea',
       icon: 'wrap_text',
     },
+    {
+      formType: 'socialVideo',
+      icon: 'ondemand_video',
+    }
   ];
   public hasFocus: boolean = false;
   public shouldShowQuickBar: boolean = false;

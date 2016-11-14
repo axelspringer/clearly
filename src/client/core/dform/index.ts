@@ -13,3 +13,4 @@ export * from './quickBar';
 export * from './metaBar';
 export * from './text';
 export * from './textarea';
+export * from './socialVideo';

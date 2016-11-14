@@ -9,8 +9,9 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 // Components
 import { DFormElement } from './dform.element';
 import { DFormMetaText } from './metaText';
+import { DFormSocialVideo } from './socialVideo';
 import { DFormText } from './text';
-import { DFormTextArea } from './textarea';
+import { DFormTextArea } from './textArea';
 
 interface IDFormSubject {
   data: Array<DFormElement<any>>;
@@ -32,6 +33,7 @@ export class DForm { // central service of a dynamic form
     'metaText': (options => new DFormMetaText(options)),
     'text': (options => new DFormText(options)),
     'textArea': (options => new DFormTextArea(options)),
+    'socialVideo': (options => new DFormSocialVideo(options)),
   };
 
   private __form: BehaviorSubject<DFormObservable> = new BehaviorSubject(new DFormObservable());
@@ -69,6 +71,7 @@ export class DForm { // central service of a dynamic form
   }
 
   public changeFormElement(changeFormEntity: DFormElement<any>, formType: string) {
+    console.log(changeFormEntity, formType);
     this.__formEntities[this.__formEntities.findIndex(formEntity => formEntity.key === changeFormEntity.key)] = this.newFormType(formType)();
     this.__next(this.__preserveFormState(this.__formEntities));
   }

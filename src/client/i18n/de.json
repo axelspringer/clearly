@@ -53,6 +53,9 @@
           "ACTION": "Weiter"
         }
       }
+    },
+    "SOCIALVIDEO": {
+      "PLACEHOLDER": "YouTube, Vimeo, Facebook ..."
     }
   },
 

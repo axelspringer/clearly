@@ -29,6 +29,7 @@ import { DFormMetaTextComponent } from './dform';
 import { DFormQuickBarComponent } from './dform';
 import { DFormElementEventsDirective } from './dform';
 import { DFormMetaBarComponent } from './dform';
+import { DFormSocialVideoComponent } from './dform';
 import { MdModule } from '../components/app/app.material';
 
 @NgModule({
@@ -52,6 +53,7 @@ import { MdModule } from '../components/app/app.material';
     DFormQuickBarComponent,
     DFormElementEventsDirective,
     DFormMetaBarComponent,
+    DFormSocialVideoComponent,
   ],
   declarations: [
     // Pipes
@@ -73,6 +75,7 @@ import { MdModule } from '../components/app/app.material';
     DFormQuickBarComponent,
     DFormElementEventsDirective,
     DFormMetaBarComponent,
+    DFormSocialVideoComponent,
   ],
   providers: [
     // Events
