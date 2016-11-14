@@ -37,10 +37,12 @@ export class DraggableDirective extends DndAbstractDirective {
   }
 
   @Input() public dragImage: string | DragImage | Function;
-  @Input() public cloneItem: boolean;ts
+  @Input() public cloneItem: boolean;
 
-  @Output() public onDragStart: EventEmitter<IDragDropEvent> = new EventEmitter<IDragDropEvent>();
-  @Output() public onDragEnd: EventEmitter<IDragDropEvent> = new EventEmitter<IDragDropEvent>();
+  @Output() public onDragStart: EventEmitter<IDragDropEvent>
+    = new EventEmitter<IDragDropEvent>();
+  @Output() public onDragEnd: EventEmitter<IDragDropEvent>
+    = new EventEmitter<IDragDropEvent>();
 
   @Output('onDragSuccess') public onDragSuccessCallback: EventEmitter<any>
     = new EventEmitter<any>();

@@ -15,7 +15,7 @@ import { OnInit } from '@angular/core';
 import { state } from '@angular/core';
 import { style } from '@angular/core';
 import { transition } from '@angular/core';
-import { TranslateService } from 'ng2-translate';
+// import { TranslateService } from 'ng2-translate';
 import { trigger } from '@angular/core';
 import { MdSnackBarConfig } from '@angular/material';
 
@@ -36,6 +36,7 @@ import { EventEmitProvider } from '../../events';
       })),
       state('false', style({
         opacity: 0,
+        display: 'none',
       })),
       transition('0 => 1', [animate(250)]),
       transition('1 => 0', [animate(250)]),
@@ -70,15 +71,17 @@ export class DFormQuickBarComponent implements OnInit, OnDestroy, AfterViewInit 
     }
   ];
   public hasFocus: boolean = false;
-  public shouldShowQuickBar: boolean = false;
+  public shouldShowQuickBarAdd: boolean = false;
+  public shouldShowQuickBarEdit: boolean = false;
+
 
   private __emitRef: EventEmitter<any>;
   private __snackBarConfig: MdSnackBarConfig;
 
   constructor(
     private __ref: ChangeDetectorRef,
-    private __snackBar: MdSnackBar,
-    private __translate: TranslateService,
+    // private __snackBar: MdSnackBar,
+    // private __translate: TranslateService,
     @Inject(forwardRef(() => DFormComponent)) private __parentComponent,
   ) {
     this.__snackBarConfig = new MdSnackBarConfig();
@@ -86,21 +89,40 @@ export class DFormQuickBarComponent implements OnInit, OnDestroy, AfterViewInit 
 
   // public
 
-  public toggleQuickBar(): void {
-    this.shouldShowQuickBar = !this.shouldShowQuickBar;
+  public toggleQuickBarAdd(): void {
+    this.shouldShowQuickBarAdd = !this.shouldShowQuickBarAdd;
+  }
+
+  public toggleQuickBarEdit(): void {
+    this.shouldShowQuickBarEdit = !this.shouldShowQuickBarEdit;
+  }
+
+  public addFormType(newFormType: string): void {
+    // if (this.input.nativeElement.value !== '') {
+    //   this.__snackBar.open(
+    //     this.__translate.instant('DFORM.META_BAR.SNACKS.UNSAVED.MESSAGE'),
+    //     this.__translate.instant('DFORM.META_BAR.SNACKS.UNSAVED.ACTION'),
+    //     this.__snackBarConfig,
+    //   );
+    // }
+    // if (this.element.controlType !== newFormType) {
+    //   this.__parentComponent.__dForm.changeFormElement(this.element, newFormType);
+    // }
+    this.__parentComponent.__dForm.addFormElement(this.element, newFormType)
   }
 
   public changeFormType(newFormType: string): void {
-    if (this.input.nativeElement.value !== '') {
-      this.__snackBar.open(
-        this.__translate.instant('DFORM.META_BAR.SNACKS.UNSAVED.MESSAGE'),
-        this.__translate.instant('DFORM.META_BAR.SNACKS.UNSAVED.ACTION'),
-        this.__snackBarConfig,
-      );
-    }
+    // if (this.input.nativeElement.value !== '') {
+    //   this.__snackBar.open(
+    //     this.__translate.instant('DFORM.META_BAR.SNACKS.UNSAVED.MESSAGE'),
+    //     this.__translate.instant('DFORM.META_BAR.SNACKS.UNSAVED.ACTION'),
+    //     this.__snackBarConfig,
+    //   );
+    // }
     if (this.element.controlType !== newFormType) {
       this.__parentComponent.__dForm.changeFormElement(this.element, newFormType);
     }
+    this.__parentComponent.__dForm.addFormElement(this.element, newFormType)
   }
 
   // angular
@@ -109,11 +131,16 @@ export class DFormQuickBarComponent implements OnInit, OnDestroy, AfterViewInit 
     console.log(`Initializing ${this.constructor.name}`);
   }
 
+  public removeFormType(): void {
+    this.__parentComponent.__dForm.removeFormElement(this.element);
+  }
+
   public ngAfterViewInit(): void {
     this.__emitRef = EventEmitProvider
       .connect(DFormComponentFocus.prototype.constructor.name)
       .subscribe(cmp => {
         this.hasFocus = this.element.key === cmp;
+        this.shouldShowQuickBarAdd = this.shouldShowQuickBarEdit = false;
         this.__ref.markForCheck();
       });
   }

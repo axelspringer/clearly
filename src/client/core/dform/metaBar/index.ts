@@ -1,2 +1,2 @@
 // Exportables
-export * from './dform.metabar';
+export * from './dform.metaBar';

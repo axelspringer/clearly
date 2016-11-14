@@ -32,14 +32,14 @@ export class DFormElementEventsDirective implements AfterViewInit, OnDestroy {
 
   // events
 
-  @HostListener('keydown', ['$event'])
-  public onKeyUp(event: KeyboardEvent) {
-    if (event.keyCode === KEY_CODES.BACKSPACE
-      && this.__elRef.nativeElement.value === '') { // this is doll
-      event.preventDefault();
-      this.__dForm.removeFormElement(this.element);
-    }
-  };
+  // @HostListener('keydown', ['$event'])
+  // public onKeyUp(event: KeyboardEvent) {
+  //   if (event.keyCode === KEY_CODES.BACKSPACE
+  //     && this.__elRef.nativeElement.value === '') { // this is doll
+  //     event.preventDefault();
+  //     this.__dForm.removeFormElement(this.element);
+  //   }
+  // };
 
   @HostListener('keypress', ['$event'])
   public onKeyPress(event: KeyboardEvent) {

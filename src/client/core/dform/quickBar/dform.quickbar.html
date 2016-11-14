@@ -1,10 +1,18 @@
 <ng-content></ng-content>
 <div class="quickbar" *ngIf="hasFocus">
-  <div class="quickbar-trigger" (click)="toggleQuickBar()">
-    <md-icon *ngIf="!shouldShowQuickBar">add</md-icon>
-    <md-icon *ngIf="shouldShowQuickBar">close</md-icon>
+  <div class="quickbar-trigger" (click)="toggleQuickBarAdd()">
+    <md-icon>{{ !shouldShowQuickBarAdd ? 'add' : 'close' }}</md-icon>
   </div>
-  <div class="quickbar-actions" [@shouldShowQuickBar]="shouldShowQuickBar">
+  <div class="quickbar-actions" [@shouldShowQuickBar]="shouldShowQuickBarAdd">
+    <md-icon (click)="addFormType(action.formType)" *ngFor="let action of actions">{{ action.icon }}</md-icon>
+  </div>
+   <div class="quickbar-trigger">
+    <md-icon (click)="removeFormType()">remove</md-icon>
+  </div>
+  <div class="quickbar-trigger" (click)="toggleQuickBarEdit()">
+    <md-icon>{{ !shouldShowQuickBarEdit ? 'edit' : 'close' }}</md-icon>
+  </div>
+  <div class="quickbar-actions" [@shouldShowQuickBar]="shouldShowQuickBarEdit">
     <md-icon (click)="changeFormType(action.formType)" *ngFor="let action of actions">{{ action.icon }}</md-icon>
   </div>
 </div>

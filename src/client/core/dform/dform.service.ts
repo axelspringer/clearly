@@ -58,9 +58,9 @@ export class DForm { // central service of a dynamic form
     return this.__form.asObservable();
   }
 
-  public addFormElement(afterFormEntity: DFormElement<any>) {
+  public addFormElement(afterFormEntity: DFormElement<any>, newFormType?: string) {
     this.__formEntities = this.__preserveFormState(this.__formEntities);
-    this.__formEntities.splice(this.__formEntities.findIndex(formEntity => formEntity.key === afterFormEntity.key) + 1, 0, new DFormTextArea());
+    this.__formEntities.splice(this.__formEntities.findIndex(formEntity => formEntity.key === afterFormEntity.key) + 1, 0, this.newFormType(newFormType)());
     this.__next(this.__formEntities);
   }
 
@@ -77,7 +77,7 @@ export class DForm { // central service of a dynamic form
     this.__next(this.__preserveFormState(this.__formEntities));
   }
 
-  public newFormType(formType: string) {
+  public newFormType(formType?: string) {
     return DForm.formTypes[formType] || DForm.formTypes['text'];
   }
 
