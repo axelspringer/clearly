@@ -5,6 +5,7 @@
     <sg-dform-meta-text [element]="element" [form]="form" *ngSwitchCase="'metaText'"></sg-dform-meta-text>
     <sg-dform-textarea [element]="element" [form]="form" *ngSwitchCase="'textArea'"></sg-dform-textarea>
     <sg-dform-socialvideo [element]="element" [form]="form" *ngSwitchCase="'socialVideo'"></sg-dform-socialvideo>
+    <sg-dform-dropdown [element]="element" [form]="form" *ngSwitchCase="'dropDown'"></sg-dform-dropdown>
   </div>
   <div class="errorMessage" *ngIf="!isValid">{{ element.label }} is required</div>
 </div>

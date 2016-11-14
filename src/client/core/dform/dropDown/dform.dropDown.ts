@@ -30,9 +30,7 @@ export class DFormDropDown extends DFormElement<string> {
 @Component({
   selector: 'sg-dform-dropdown',
   templateUrl: './dform.dropDown.html',
-  styleUrls: [
-    './dform.dropDown.scss',
-  ],
+  styleUrls: ['./dform.dropDown.scss',],
 })
 export class DFormDropDownComponent {
 

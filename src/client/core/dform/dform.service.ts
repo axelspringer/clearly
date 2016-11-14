@@ -12,6 +12,7 @@ import { DFormMetaText } from './metaText';
 import { DFormSocialVideo } from './socialVideo';
 import { DFormText } from './text';
 import { DFormTextArea } from './textArea';
+import { DFormDropDown } from './dropDown';
 
 interface IDFormSubject {
   data: Array<DFormElement<any>>;
@@ -34,6 +35,7 @@ export class DForm { // central service of a dynamic form
     'text': (options => new DFormText(options)),
     'textArea': (options => new DFormTextArea(options)),
     'socialVideo': (options => new DFormSocialVideo(options)),
+    'dropDown': (options => new DFormDropDown(options)),
   };
 
   private __form: BehaviorSubject<DFormObservable> = new BehaviorSubject(new DFormObservable());

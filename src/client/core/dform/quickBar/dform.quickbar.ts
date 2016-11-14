@@ -63,6 +63,10 @@ export class DFormQuickBarComponent implements OnInit, OnDestroy, AfterViewInit 
     {
       formType: 'socialVideo',
       icon: 'ondemand_video',
+    },
+    {
+      formType: 'dropDown',
+      icon: 'playlist_add',
     }
   ];
   public hasFocus: boolean = false;
