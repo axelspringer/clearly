@@ -77,8 +77,8 @@ export class DForm { // central service of a dynamic form
 
   // private
 
-  public newFormType(formType?: string) {
-    return DForm.formTypes[formType] || DForm.formTypes['mainText'];
+  public newFormType(newFormType?: string) {
+    return DForm.formTypes[newFormType] || DForm.formTypes['mainText'];
   }
 
   public get formTypes() {

@@ -87,7 +87,7 @@ export class DFormQuickBarComponent implements OnInit, OnDestroy, AfterViewInit 
   }
 
   public addFormElement(newFormType: string) {
-    this.__parentComponent.addFormElement(newFormType);
+    this.__parentComponent.addFormElement(this.element, newFormType);
   }
 
   // angular
