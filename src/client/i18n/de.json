@@ -61,6 +61,8 @@
       }
     },
     "QUICKBAR": {
+    },
+    "QUICKEDIT": {
       "LABEL": {
         "EDIT": "Typ ändern"
       }

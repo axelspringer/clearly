@@ -1,59 +1,20 @@
 .quickbar {
   display: flex;
-  align-items: center;
-  height: 24px;
+
+  margin: 24px;
 
   md-icon {
-      padding: 4px 8px;
-      cursor: pointer;
-
-      &:hover {
-        color: red;
-      }
-    }
-
-  &-trigger {
-    display: flex;
-    align-items: center;
+    padding: .5rem;
     cursor: pointer;
-
-    /*border-top-color: black;
-    border-top-width: 1px;
-    border-top-style: solid;
-    border-right-color: black;
-    border-right-width: 1px;
-    border-right-style: solid;
-    border-bottom-color: black;
-    border-bottom-width: 1px;
-    border-bottom-style: solid;
-    border-left-color: black;
-    border-left-width: 1px;
-    border-left-style: solid;*/
-
-    border-top-left-radius: 50%;
-    border-top-right-radius: 50%;
-    border-bottom-left-radius: 50%;
-    border-bottom-right-radius: 50%;
-
-    margin-right: 8px;
-
-    md-icon {
-      padding: 4px;
-    }
   }
 
-  &-actions {
-    display:flex;
-    flex-grow: 1;
-    align-items: center;
-
-    &-list {
-      padding: 0;
-      margin: 0;
-      list-style: none;
-
-      li {
-        display: inline-block;
+  &__trigger {
+    md-icon {
+      border: 1px solid #eee;
+      color: #999;
+      &:hover {
+        color: #000;
+        border-color: #666;
       }
     }
   }

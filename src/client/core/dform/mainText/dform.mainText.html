@@ -1,9 +1,10 @@
-<md-card [formGroup]="form">
-  <md-card-content>
-    <textarea #input [dFormElementEvents]="element" [disabled]="element.fromMaster && !element.disabled" [formControlName]="element.key"
-      [id]="element.key" placeholder="{{ 'DFORM.MAINTEXT.PLACEHOLDER' | translate}}"></textarea>
-    <sg-dform-metabar [formElement]="element"></sg-dform-metabar>
-  </md-card-content>
-  <sg-dform-quickedit [element]="element"></sg-dform-quickedit>
-</md-card>
-
+<sg-dform-quickbar [element]="element">
+  <md-card [formGroup]="form">
+    <md-card-content>
+      <textarea #input [dFormElementEvents]="element" [disabled]="element.fromMaster && !element.disabled" [formControlName]="element.key"
+        [id]="element.key" placeholder="{{ 'DFORM.MAINTEXT.PLACEHOLDER' | translate}}"></textarea>
+      <sg-dform-metabar [formElement]="element"></sg-dform-metabar>
+    </md-card-content>
+    <sg-dform-quickedit [element]="element"></sg-dform-quickedit>
+  </md-card>
+</sg-dform-quickbar>

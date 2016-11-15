@@ -71,7 +71,7 @@ export class DFormQuickEditComponent implements OnInit, OnDestroy, AfterViewInit
     }
   ];
   public hasFocus: boolean = false;
-  public shouldShowQuickBarEdit: boolean = false;
+  public shouldShowQuickEdit: boolean = false;
 
   private __emitRef: EventEmitter<any>;
   private __snackBarConfig: MdSnackBarConfig;
@@ -87,8 +87,8 @@ export class DFormQuickEditComponent implements OnInit, OnDestroy, AfterViewInit
 
   // public
 
-  public toggleQuickBarEdit(): void {
-    this.shouldShowQuickBarEdit = !this.shouldShowQuickBarEdit;
+  public toggleQuickBar(): void {
+    this.shouldShowQuickEdit = !this.shouldShowQuickEdit;
   }
 
   public removeFormElement(element: DFormElement<any>) {
@@ -110,7 +110,7 @@ export class DFormQuickEditComponent implements OnInit, OnDestroy, AfterViewInit
       .connect(DFormComponentFocus.prototype.constructor.name)
       .subscribe(cmp => {
         this.hasFocus = this.element.key === cmp;
-        this.shouldShowQuickBarEdit = false;
+        this.shouldShowQuickEdit = false;
         this.__ref.markForCheck();
       });
   }

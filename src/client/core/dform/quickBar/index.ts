@@ -1,2 +1,2 @@
 // Exportables
-export * from './dform.quickbar';
+export * from './dform.quickBar';

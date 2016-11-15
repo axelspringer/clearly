@@ -24,6 +24,7 @@ import { DFormMetaTextComponent } from './dform';
 import { DFormQuickEditComponent } from './dform';
 import { DFormSocialVideoComponent } from './dform';
 import { DFormTextAreaComponent } from './dform';
+import { DFormQuickBarComponent } from './dform';
 import { DFormTextComponent } from './dform';
 import { EventEmitProvider } from './events';
 import { IteratableObjectPipe } from './pipes';
@@ -56,6 +57,7 @@ import { TranslateCustomLoader } from './i18n';
     DFormMainTextComponent,
     DFormMetaBarComponent,
     DFormMetaTextComponent,
+    DFormQuickBarComponent,
     DFormQuickEditComponent,
     DFormSocialVideoComponent,
     DFormTextAreaComponent,
@@ -81,6 +83,7 @@ import { TranslateCustomLoader } from './i18n';
     DFormMainTextComponent,
     DFormMetaBarComponent,
     DFormMetaTextComponent,
+    DFormQuickBarComponent,
     DFormQuickEditComponent,
     DFormSocialVideoComponent,
     DFormTextAreaComponent,

@@ -1,11 +1,10 @@
+<ng-content></ng-content>
 <div class="quickbar" *ngIf="hasFocus">
-   <div class="quickbar-trigger">
-    <md-icon (click)="removeFormElement(element)">remove</md-icon>
+  <div class="quickbar__trigger">
+    <md-icon (click)="toggleQuickBar()">add</md-icon>
   </div>
-  <div class="quickbar-trigger" (click)="toggleQuickBarEdit()">
-    <md-icon alt="{{ 'DFORM.QUICKBAR.LABEL.EDIT' | translate }}">{{ !shouldShowQuickBarEdit ? 'flip' : 'close' }}</md-icon>
-  </div>
-  <div class="quickbar-actions" [@shouldShowQuickBar]="shouldShowQuickBarEdit">
-    <md-icon (click)="changeFormElementType(element, action.formType)" *ngFor="let action of actions">{{ action.icon }}</md-icon>
+  <div class="quickbar__actions" [@shouldShowQuickBar]="shouldShowQuickBar">
+    <md-icon (click)="addFormElement(action.formType)" *ngFor="let action of actions">{{ action.icon }}</md-icon>
   </div>
 </div>
+
