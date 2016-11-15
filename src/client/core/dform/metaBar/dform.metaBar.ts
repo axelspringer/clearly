@@ -9,8 +9,8 @@ import { DFormElement } from '../dform.element';
 
 @Component({
   selector: 'sg-dform-metabar',
-  templateUrl: './dform.metabar.html',
-  styleUrls: ['./dform.metabar.scss'],
+  templateUrl: './dform.metaBar.html',
+  styleUrls: ['./dform.metaBar.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DFormMetaBarComponent implements OnInit {

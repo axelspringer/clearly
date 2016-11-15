@@ -30,7 +30,6 @@
       "pouchdb-browser",
       "pouchdb-core",
       "pouchdb",
-      "protractor",
       "selenium-webdriver",
       "isomorphic-fetch",
       "source-map",
