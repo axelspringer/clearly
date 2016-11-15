@@ -39,6 +39,12 @@
         }
       }
     },
+    "MAINTEXT": {
+      "PLACEHOLDER": "Haupttext schreiben ..."
+    },
+    "ABSTRACT": {
+      "PLACEHOLDER": "Abstrakt schreiben ..."
+    },
     "META_BAR": {
       "LABEL": {
         "FROM_MASTER": "Master",
@@ -52,6 +58,11 @@
           "MESSAGE": "Das Feld enthält bereits Text",
           "ACTION": "Weiter"
         }
+      }
+    },
+    "QUICKBAR": {
+      "LABEL": {
+        "EDIT": "Typ ändern"
       }
     },
     "SOCIALVIDEO": {

@@ -3,7 +3,8 @@ $_spin-border-color: rgb(99, 99, 99);
 $_spin-border-width: 24px;
 $_spin-off-border-color: rgba($_spin-border-color, 0.2);
 
-@import '~normalize.scss/normalize.scss';
+@import '~normalize.scss/normalize';
+@import '~flexboxgrid/css/flexboxgrid';
 
 .critical {
 

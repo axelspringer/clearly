@@ -6,9 +6,9 @@ import { Input } from '@angular/core';
 // Components
 import { DFormElement } from '../dform.element';
 
-export class DFormTextArea extends DFormElement<string> {
+export class DFormMainText extends DFormElement<string> {
 
-  public controlType = 'textArea';
+  public controlType = 'mainText';
   public type: string;
 
   constructor(options: {} = {}) {
@@ -19,12 +19,12 @@ export class DFormTextArea extends DFormElement<string> {
 };
 
 @Component({
-  selector: 'sg-dform-textarea',
-  templateUrl: './dform.textArea.html',
-  styleUrls: ['./dform.textArea.scss'],
+  selector: 'sg-dform-maintext',
+  templateUrl: './dform.mainText.html',
+  styleUrls: ['./dform.mainText.scss'],
 })
 
-export class DFormTextAreaComponent {
+export class DFormMainTextComponent {
 
   @Input() public element: DFormElement<string>;
   @Input() public form: FormGroup;

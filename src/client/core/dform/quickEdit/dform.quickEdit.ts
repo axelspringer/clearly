@@ -26,9 +26,9 @@ import { DFormComponentFocus } from '../dform.component';
 import { EventEmitProvider } from '../../events';
 
 @Component({
-  selector: 'sg-dform-quickbar',
-  templateUrl: './dform.quickbar.html',
-  styleUrls: ['./dform.quickbar.scss'],
+  selector: 'sg-dform-quickedit',
+  templateUrl: './dform.quickEdit.html',
+  styleUrls: ['./dform.quickEdit.scss'],
   animations: [
     trigger('shouldShowQuickBar', [
       state('true', style({
@@ -45,7 +45,7 @@ import { EventEmitProvider } from '../../events';
   providers: [MdSnackBar],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DFormQuickBarComponent implements OnInit, OnDestroy, AfterViewInit {
+export class DFormQuickEditComponent implements OnInit, OnDestroy, AfterViewInit {
 
   // should be refactored to some else
 

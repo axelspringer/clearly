@@ -1,1 +1,1 @@
-export * from './dform.textarea';
+export * from './dform.textArea';

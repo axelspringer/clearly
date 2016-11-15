@@ -1,6 +1,5 @@
-<sg-dform-quickbar [element]="element">
+
   <div [formGroup]="form">
     <input [dFormElementEvents]="element" [formControlName]="element.key" [id]="element.key" [type]="element.type" placeholder="{{ 'DFORM.TEXT.PLACEHOLDER' | translate}}">
     <sg-dform-metabar [formElement]="element"></sg-dform-metabar>
   </div>
-</sg-dform-quickbar>

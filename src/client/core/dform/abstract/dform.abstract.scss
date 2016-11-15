@@ -1,0 +1,36 @@
+:host {
+  md-card {
+    margin: 24px;
+  }
+}
+
+:host textarea {
+
+  background-color: transparent;
+  border-bottom-color: lightgrey;
+  border-bottom-style: dotted;
+  border-bottom-width: 1px;
+  border: none;
+
+  width: 100%;
+  min-height: 10vh;
+  max-height: 30vh;
+
+  font-size: 1.15rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+
+  -webkit-appearance: none;
+
+  resize: vertical;
+
+  &:disabled {
+    border: 1px solid red;
+  }
+
+  &:focus {
+    border: none;
+    outline: none;
+  }
+
+}

@@ -11,9 +11,9 @@ import { EventEmitter } from '@angular/core';
 
 // Components
 import { DFormComponentFocus } from './dform.component';
+import { DFormComponent } from './dform.component';
 import { DFormElement } from './dform.element';
 import { EventEmitProvider } from '../events';
-import { DForm } from './dform.service';
 import { KEY_CODES } from './index';
 
 @Directive({
@@ -27,7 +27,7 @@ export class DFormElementEventsDirective implements AfterViewInit, OnDestroy {
 
   constructor(
     private __elRef: ElementRef,
-    @Inject(forwardRef(() => DForm)) private __dForm: DForm,
+    @Inject(forwardRef(() => DFormComponent)) private __parentComponent,
   ) { }
 
   // events
@@ -46,7 +46,7 @@ export class DFormElementEventsDirective implements AfterViewInit, OnDestroy {
     if (event.keyCode === KEY_CODES.ENTER
       && !event.shiftKey) {
       event.preventDefault();
-      this.__dForm.addFormElement(this.element);
+      this.__parentComponent.addFormElement(this.element);
     }
   };
 

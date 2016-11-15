@@ -1,0 +1,15 @@
+<md-card [formGroup]="form">
+  <md-card-content>
+    <textarea
+      #input
+      [dFormElementEvents]="element"
+      [disabled]="element.fromMaster && !element.disabled"
+      [formControlName]="element.key"
+      [id]="element.key"
+      placeholder="{{ 'DFORM.ABSTRACT.PLACEHOLDER' | translate}}"></textarea>
+    <sg-dform-metabar [formElement]="element"></sg-dform-metabar>
+  </md-card-content>
+  <sg-dform-quickedit [element]="element"></sg-dform-quickedit>
+</md-card>
+
+

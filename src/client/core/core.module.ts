@@ -9,29 +9,31 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 
 // Components
+import { AtLeastValidatorDirective } from './forms';
 import { DATABASE_PROVIDERS } from './db';
 import { DatabaseProvider } from './db';
+import { DForm } from './dform';
+import { DFormAbstractComponent } from './dform';
+import { DFormComponent } from './dform';
+import { DFormDropDownComponent } from './dform';
+import { DFormDynamicElementComponent } from './dform';
+import { DFormElementEventsDirective } from './dform';
+import { DFormMainTextComponent } from './dform';
+import { DFormMetaBarComponent } from './dform';
+import { DFormMetaTextComponent } from './dform';
+import { DFormQuickEditComponent } from './dform';
+import { DFormSocialVideoComponent } from './dform';
+import { DFormTextAreaComponent } from './dform';
+import { DFormTextComponent } from './dform';
 import { EventEmitProvider } from './events';
+import { IteratableObjectPipe } from './pipes';
+import { LoadingComponent } from './loading';
 import { LOGGING_ERROR_HANDLER_PROVIDERS } from './log';
 import { LogService } from './log';
+import { MdModule } from '../components/app/app.material';
 import { NOTIFY_PROVIDERS } from './notify/notify.provider';
 import { NotifyProvider } from './notify';
 import { TranslateCustomLoader } from './i18n';
-import { AtLeastValidatorDirective } from './forms';
-import { IteratableObjectPipe } from './pipes';
-import { LoadingComponent } from './loading';
-import { DForm } from './dform';
-import { DFormComponent } from './dform';
-import { DFormDynamicElementComponent } from './dform';
-import { DFormTextComponent } from './dform';
-import { DFormTextAreaComponent } from './dform';
-import { DFormMetaTextComponent } from './dform';
-import { DFormQuickBarComponent } from './dform';
-import { DFormElementEventsDirective } from './dform';
-import { DFormMetaBarComponent } from './dform';
-import { DFormDropDownComponent } from './dform';
-import { DFormSocialVideoComponent } from './dform';
-import { MdModule } from '../components/app/app.material';
 
 @NgModule({
   imports: [
@@ -46,16 +48,18 @@ import { MdModule } from '../components/app/app.material';
     IteratableObjectPipe,
     LoadingComponent,
     // Dynamic Forms
+    DFormAbstractComponent,
     DFormComponent,
-    DFormDynamicElementComponent,
-    DFormTextComponent,
-    DFormTextAreaComponent,
-    DFormMetaTextComponent,
-    DFormQuickBarComponent,
-    DFormElementEventsDirective,
-    DFormMetaBarComponent,
-    DFormSocialVideoComponent,
     DFormDropDownComponent,
+    DFormDynamicElementComponent,
+    DFormElementEventsDirective,
+    DFormMainTextComponent,
+    DFormMetaBarComponent,
+    DFormMetaTextComponent,
+    DFormQuickEditComponent,
+    DFormSocialVideoComponent,
+    DFormTextAreaComponent,
+    DFormTextComponent,
   ],
   declarations: [
     // Pipes
@@ -69,16 +73,18 @@ import { MdModule } from '../components/app/app.material';
     LoadingComponent,
 
     // Dynamic Forms
+    DFormAbstractComponent,
     DFormComponent,
-    DFormDynamicElementComponent,
-    DFormTextComponent,
-    DFormTextAreaComponent,
-    DFormMetaTextComponent,
-    DFormQuickBarComponent,
-    DFormElementEventsDirective,
-    DFormMetaBarComponent,
-    DFormSocialVideoComponent,
     DFormDropDownComponent,
+    DFormDynamicElementComponent,
+    DFormElementEventsDirective,
+    DFormMainTextComponent,
+    DFormMetaBarComponent,
+    DFormMetaTextComponent,
+    DFormQuickEditComponent,
+    DFormSocialVideoComponent,
+    DFormTextAreaComponent,
+    DFormTextComponent,
   ],
   providers: [
     // Events

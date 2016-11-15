@@ -34,7 +34,7 @@ export class DFormComponent implements OnInit {
   @Input() public elements: Array<DFormElement<any>>;
   @Output() public update: EventEmitter<FormGroup> = new EventEmitter<FormGroup>();
 
-  public dform: DFormObservable;
+  public dForm: DFormObservable;
   private __dFormDiffer: IterableDiffer;
 
   constructor(
@@ -45,13 +45,13 @@ export class DFormComponent implements OnInit {
     this.__dFormDiffer = this.__differs.find([]).create(null);
   }
 
-  // public
+  // angular
 
   public ngOnInit(): void {
     this.__dForm.toForm$(this.elements) // map to input
       .subscribe(form => {
-        this.dform = form;
-        const changes = this.__trackDFormChanges(this.dform);
+        this.dForm = form;
+        const changes = this.__trackDFormChanges(this.dForm);
         if (changes) {
           setTimeout(() => { // this is monkey patched
             EventEmitProvider
@@ -64,7 +64,31 @@ export class DFormComponent implements OnInit {
       });
   }
 
-  public trackBy(index, item) {
+  // public
+
+  public addFormElement(afterFormEntity: DFormElement<any>, newFormType?: string) {
+    const el = this.dForm.data.findIndex(formEntity => formEntity.key === afterFormEntity.key) + 1;
+    if (el !== -1) {
+      this.dForm.data.splice(el, 0, this.__dForm.newFormType(newFormType)());
+      this.dForm.form.addControl(this.dForm.data[el].key, this.__dForm.dFormElementToFormControl(this.dForm.data[el]));
+    }
+  }
+
+  public removeFormElement(oldFormEntity: DFormElement<any>) {
+    if (this.dForm.data.length > 1) {
+      this.dForm.data.splice(this.dForm.data.findIndex(formEntity => formEntity.key === oldFormEntity.key), 1);
+    }
+  }
+
+  public changeFormElementType(changeFormEntity: DFormElement<any>, newFormType: string) {
+    const el = this.dForm.data.findIndex(formEntity => formEntity.key === changeFormEntity.key);
+    if (el !== -1) {
+      this.dForm.data[el] = this.__dForm.newFormType(newFormType)();
+      this.dForm.form.setControl(this.dForm.data[el].key, this.__dForm.dFormElementToFormControl(this.dForm.data[el]));
+    }
+  }
+
+  public trackFormTypesByKey(index, item) {
     index = 0; // remove later
     return item.key;
   }

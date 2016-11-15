@@ -1,14 +1,14 @@
 // Importables
 import { Component } from '@angular/core';
-import { FormGroup } from '@angular/forms';
 import { Input } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 
 // Components
 import { DFormElement } from '../dform.element';
 
-export class DFormTextArea extends DFormElement<string> {
+export class DFormAbstractText extends DFormElement<string> {
 
-  public controlType = 'textArea';
+  public controlType = 'abstract';
   public type: string;
 
   constructor(options: {} = {}) {
@@ -19,12 +19,11 @@ export class DFormTextArea extends DFormElement<string> {
 };
 
 @Component({
-  selector: 'sg-dform-textarea',
-  templateUrl: './dform.textArea.html',
-  styleUrls: ['./dform.textArea.scss'],
+  selector: 'sg-dform-abstract',
+  templateUrl: './dform.abstract.html',
+  styleUrls: ['./dform.abstract.scss'],
 })
-
-export class DFormTextAreaComponent {
+export class DFormAbstractComponent {
 
   @Input() public element: DFormElement<string>;
   @Input() public form: FormGroup;
