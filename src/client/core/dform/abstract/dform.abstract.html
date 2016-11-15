@@ -2,7 +2,7 @@
   <md-card-content>
     <textarea
       #input
-      [dFormElementEvents]="element"
+      [sgDFormElementEvents]="element"
       [disabled]="element.fromMaster && !element.disabled"
       [formControlName]="element.key"
       [id]="element.key"

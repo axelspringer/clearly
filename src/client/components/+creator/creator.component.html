@@ -1,13 +1,14 @@
 <md-tab-group>
   <template ngFor let-channel [ngForOf]="(form$ | async)" let-i="index">
-    <md-tab *ngIf="channel.isEnabled" label="{{ channel.displayName }}">
-      <md-sidenav-layout class="creator-full-height">
+    <md-tab *ngIf="channel.isEnabled" label="{{ channel.isMaster ? 'Master' : channel.displayName }}">
+      <sg-article [metaData]="channel.metaData"></sg-article>
+      <sg-quick-write [content]="channel.content"></sg-quick-write>
+      <!--<md-sidenav-layout class="creator-full-height">
         <md-sidenav #start mode="side" opened="true" [ngClass]="'custom-quick-access'">
           <sg-quick-access></sg-quick-access>
         </md-sidenav>
-        <sg-article [metaData]="channel.metaData"></sg-article>
-        <sg-quick-write [content]="channel.content"></sg-quick-write>
-      </md-sidenav-layout>
+
+      </md-sidenav-layout>-->
     </md-tab>
   </template>
 </md-tab-group>

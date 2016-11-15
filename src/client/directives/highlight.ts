@@ -4,7 +4,7 @@ import { Input } from '@angular/core';
 import { Renderer } from '@angular/core';
 
 @Directive({
-  selector: '[myHighlight]',
+  selector: '[sgMyHighlight]',
 })
 export class HighlightDirective {
 

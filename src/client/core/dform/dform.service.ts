@@ -32,9 +32,6 @@ export class DFormObservable implements IDFormSubject {
 @Injectable()
 export class DForm { // central service of a dynamic form
 
-  private __form: BehaviorSubject<DFormObservable> = new BehaviorSubject(new DFormObservable());
-  private __formEntities: Array<DFormElement<any>>; // it is cache
-
   public static formTypes = {
     'metaText': (options => new DFormMetaText(options)),
     'text': (options => new DFormText(options)),
@@ -44,6 +41,9 @@ export class DForm { // central service of a dynamic form
     'mainText': (options => new DFormMainText(options)),
     'abstract': (options => new DFormAbstractText(options)),
   };
+
+  private __form: BehaviorSubject<DFormObservable> = new BehaviorSubject(new DFormObservable());
+  private __formEntities: Array<DFormElement<any>>; // it is cache
 
   constructor() {
     console.log(`Initializing ${this.constructor.name} ...`);

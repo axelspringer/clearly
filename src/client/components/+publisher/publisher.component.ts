@@ -4,7 +4,7 @@ import { OnInit } from '@angular/core';
 import { ToolbarTitleUpdate } from '../../toolbar';
 
 @Component({
-  selector: 'publisher',  // <publisher></publisher>
+  selector: 'sg-publisher',  // <publisher></publisher>
   templateUrl: './publisher.component.html',
 })
 export class PublisherComponent implements OnInit {

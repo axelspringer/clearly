@@ -3,7 +3,6 @@ import { AfterViewInit } from '@angular/core';
 import { ChangeDetectionStrategy } from '@angular/core';
 import { ChangeDetectorRef } from '@angular/core';
 import { Component } from '@angular/core';
-import { ContentChild } from '@angular/core';
 import { EventEmitter } from '@angular/core';
 import { forwardRef } from '@angular/core';
 import { Inject } from '@angular/core';
@@ -25,8 +24,8 @@ import { EventEmitProvider } from '../../events';
 
 @Component({
   selector: 'sg-dform-quickbar',
-  templateUrl: './dform.quickbar.html',
-  styleUrls: ['./dform.quickbar.scss'],
+  templateUrl: './dform.quickBar.html',
+  styleUrls: ['./dform.quickBar.scss'],
   animations: [
     trigger('shouldShowQuickBar', [
       state('true', style({
@@ -63,7 +62,7 @@ export class DFormQuickBarComponent implements OnInit, OnDestroy, AfterViewInit 
     {
       formType: 'dropDown',
       icon: 'playlist_add',
-    }
+    },
   ];
   public hasFocus: boolean = false;
   public shouldShowQuickBar: boolean = false;

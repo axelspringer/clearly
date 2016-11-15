@@ -1,3 +1,4 @@
+/* tslint:disable:max-line-length */
 // Importables
 import { ChangeDetectionStrategy } from '@angular/core';
 import { Component } from '@angular/core';

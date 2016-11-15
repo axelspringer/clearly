@@ -68,7 +68,7 @@ export class DFormQuickEditComponent implements OnInit, OnDestroy, AfterViewInit
     {
       formType: 'dropDown',
       icon: 'playlist_add',
-    }
+    },
   ];
   public hasFocus: boolean = false;
   public shouldShowQuickEdit: boolean = false;

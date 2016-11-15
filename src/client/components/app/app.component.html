@@ -1,4 +1,6 @@
-<ngrx-store-log-monitor toggleCommand="ctrl-h" positionCommand="ctrl-m"></ngrx-store-log-monitor>
+<template *ngIf="'production' !== ENV">{{ ENV }}
+  <ngrx-store-log-monitor toggleCommand="ctrl-h" positionCommand="ctrl-m"></ngrx-store-log-monitor>
+</template>
 <md-sidenav-layout class="sg-app-sidenav-layout">
   <md-sidenav #menu mode="over" class="sg-app-sidenav" align="start">
     <sg-menu></sg-menu>

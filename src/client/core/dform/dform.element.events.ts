@@ -17,11 +17,11 @@ import { EventEmitProvider } from '../events';
 import { KEY_CODES } from './index';
 
 @Directive({
-  selector: '[dFormElementEvents]',
+  selector: '[sgDFormElementEvents]',
 })
 export class DFormElementEventsDirective implements AfterViewInit, OnDestroy {
 
-  @Input('dFormElementEvents') public element: DFormElement<any>;
+  @Input('sgDFormElementEvents') public element: DFormElement<any>;
 
   private __emitRef: EventEmitter<any>;
 

@@ -15,10 +15,10 @@ export class DFormDropDown extends DFormElement<string> {
   public dOptions = [
     { value: 'opt1', display: 'Option 1' },
     { value: 'opt2', display: 'Option 2' },
-    { value: 'opt3', display: 'Option 3' }
+    { value: 'opt3', display: 'Option 3' },
   ];
 
-  public selectedValue = this.dOptions[1].value; //default
+  public selectedValue = this.dOptions[1].value; // default
 
   constructor(options: {} = {}) {
     super(options);
@@ -30,7 +30,7 @@ export class DFormDropDown extends DFormElement<string> {
 @Component({
   selector: 'sg-dform-dropdown',
   templateUrl: './dform.dropDown.html',
-  styleUrls: ['./dform.dropDown.scss',],
+  styleUrls: ['./dform.dropDown.scss'],
 })
 export class DFormDropDownComponent {
 

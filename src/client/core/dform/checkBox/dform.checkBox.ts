@@ -13,7 +13,6 @@ export class DFormCheckBox extends DFormElement<string> {
   public isChecked: boolean;
   public checkboxLabel = 'Label of this checkbox';
 
-
   constructor(options: {} = {}) {
     super(options);
     this.type = options['type'] || '';

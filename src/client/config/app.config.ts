@@ -26,7 +26,7 @@ export class AppConfig {
     },
   };
 
-  public static DEBUG: boolean = 'production' !== ENV;
+  public static DEBUG: boolean = 'development' === ENV;
 
   public static API_BASE: string = 'production' === ENV
     ? 'http://editor.test.tortuga.cloud:5012/'

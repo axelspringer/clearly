@@ -1,6 +1,6 @@
 <div [formGroup]="form">
   <!-- should be replaced with md-textarea -->
-  <textarea #input [dFormElementEvents]="element" [disabled]="element.fromMaster && !element.disabled" [formControlName]="element.key"
+  <textarea #input [sgDFormElementEvents]="element" [disabled]="element.fromMaster && !element.disabled" [formControlName]="element.key"
     [id]="element.key" placeholder="{{ 'DFORM.TEXTAREA.PLACEHOLDER' | translate}}"></textarea>
   <sg-dform-metabar [formElement]="element"></sg-dform-metabar>
 </div>
