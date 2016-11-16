@@ -275,6 +275,7 @@ const prodConfig = function () {
   config.entry = {
     main: !isAot ? `./src/main.client` : `./src/main.client.aot`,
     polyfills: polyfills(),
+    sw: './src/sw',
     rxjs: rxjs(),
     vendors: vendors(),
   };
@@ -300,7 +301,7 @@ const prodConfig = function () {
       debug: false,
     }),
     new CommonsChunkPlugin({
-      name: ['polyfills', 'vendors', 'rxjs'].reverse(),
+      name: ['sw', 'polyfills', , 'vendors', 'rxjs'].reverse(),
     }),
     new MinChunkSizePlugin({
       minChunkSize: 10000,

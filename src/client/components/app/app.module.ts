@@ -38,7 +38,7 @@ import { AppConfig } from '../../config';
 import { AppLocale } from '../../config';
 import { DATABASE_PROVIDER_OPTIONS } from '../../core';
 import { DBConfig } from './../../config/db.config';
-import { ENV_PROVIDERS } from '../../environment';
+// import { ENV_PROVIDERS } from '../../environment';
 import { ROUTES } from './app.routes';
 
 // Components
@@ -126,7 +126,7 @@ const APP_PROVIDERS = [
     CoreModule.forRoot(AppLocale.languages),
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
-    ...ENV_PROVIDERS,
+    // ...ENV_PROVIDERS,
     ...APP_PROVIDERS,
   ],
 })
@@ -144,42 +144,5 @@ export class AppModule {
     this._store$ = store$;
 
   }
-
-  // hmrOnInit(store: any) {
-
-  //   if (!store || !store.rootState) return;
-
-  //   // restore state by dispatch a SET_ROOT_STATE action
-  //   if (store.rootState) {
-  //     this._store$.dispatch({
-  //       type: 'RESET_STATE',
-  //       payload: store.rootState,
-  //     });
-  //   }
-
-  //   if ('restoreInputValues' in store) {
-  //     store.restoreInputValues();
-  //   }
-  //   this._appRef.tick();
-  //   Object.keys(store).forEach(prop => delete store[prop]);
-
-  // }
-
-  // hmrOnDestroy(store: any) {
-
-  //   const cmpLocation = this._appRef.components.map(cmp => cmp.location.nativeElement);
-  //   this._store$.take(1).subscribe(s => store.rootState = s);
-  //   store.disposeOldHosts = createNewHosts(cmpLocation);
-  //   store.restoreInputValues = createInputTransfer();
-  //   removeNgStyles();
-
-  // }
-
-  // hmrAfterDestroy(store: any) {
-
-  //   store.disposeOldHosts();
-  //   delete store.disposeOldHosts;
-
-  // }
 
 }

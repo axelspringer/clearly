@@ -3,6 +3,12 @@
   height: 100vh;
 }
 
+:host md-tab-group {
+  min-height: 100%;
+
+  padding-bottom: 48px * 2; // not so nice fix
+}
+
 :host md-sidenav-layout {
   height: 100%;
 }
