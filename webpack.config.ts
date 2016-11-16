@@ -94,12 +94,6 @@ const commonConfig = function webpackConfig(): WebpackConfig {
   config.module = {
     rules: [
       {
-        enforce: 'pre',
-        test: /\.ts$/,
-        loader: 'tslint',
-        exclude: [/(node_modules)/,],
-      },
-      {
         test: /\.js$/,
         loader: 'source-map-loader',
         exclude: [EXCLUDE_SOURCEMAPS],
@@ -131,7 +125,7 @@ const commonConfig = function webpackConfig(): WebpackConfig {
       },
       {
         test: /\.(jpg|png|gif)$/,
-        loader: 'file',
+        loader: 'file-loader',
       },
 
       ...CUSTOM_RULES_COMMON,
@@ -202,13 +196,6 @@ const devConfig = function () {
   config.plugins = [
     new LoaderOptionsPlugin({
       debug: true,
-      options: {
-        tslint: {
-          emitErrors: false,
-          failOnHint: false,
-          resourcePath: `src`,
-        },
-      },
     }),
     new DllReferencePlugin({
       context: '.',

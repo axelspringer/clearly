@@ -11,6 +11,8 @@ import * as CssNano from 'cssnano';
 export const EXCLUDE_SOURCEMAPS = [
   // these packages have problems with their sourcemaps
   root('node_modules/@angular'),
+  root('node_modules/angular2-apollo'),
+  root('node_modules/apollo-client-rxjs'),
   root('node_modules/rxjs'),
 ];
 
@@ -62,9 +64,9 @@ export const CUSTOM_RULES_COMMON = [
     test: /\.scss$/,
     use: [
       'to-string-loader',
-      'css',
-      'postcss',
-      'sass',
+      'css-loader',
+      'postcss-loader',
+      'sass-loader',
     ],
   },
 ];
