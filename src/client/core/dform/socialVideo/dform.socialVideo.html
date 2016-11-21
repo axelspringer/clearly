@@ -1,36 +1,18 @@
-
-  <div [formGroup]="form">
-
-    <!--<div (click)="element.isValidVideo = !element.isValidVideo">{{element.isValidVideo}}</div>-->
-    <!--<p> Current videoLink: {{element?.videoLink}}</p>-->
-
-
-    <!-- should be replaced with md-textarea -->
-    <input *ngIf="!element.isValidVideo"
-      #input
-      (change)="element.checkVal(element.key, input.value)"
-      [formControlName]="element.key"
-      [id]="element.key" [type]="element.type"
-      placeholder="{{ 'DFORM.SOCIALVIDEO.PLACEHOLDER' | translate}}"
-      [dFormElementEvents]="element">
-
-    <div class="errorMessage" *ngIf="form.controls[element.key].touched && form.controls[element.key]?.errors">
-      <div class="errorMessage" *ngIf="form.controls[element.key]?.errors?.required"> Ist leer</div>
-      <div class="errorMessage" *ngIf="form.controls[element.key]?.errors?.pattern"> Falscher Videolink</div>
-    </div>
-    <p> Validation Errors: {{form.controls[element.key].errors | json}}</p>
-
-    <iframe *ngIf="element.isValidVideo"
-      src="https://player.vimeo.com/video/191375373"
-      width="640" height="360" frameborder="0"
-      webkitallowfullscreen mozallowfullscreen allowfullscreen>
-    </iframe>
-
-    <!--<iframe
-      width="560" height="315"
-      src="https://player.vimeo.com/video/191375373"
-      src="https://www.youtube.com/embed/7nz6CP2CiQY"
-      frameborder="0" allowfullscreen>
-    </iframe>-->
-    <sg-dform-metabar [formElement]="element"></sg-dform-metabar>
-  </div>
+<sg-dform-quickbar [element]="element">
+  <md-card [formGroup]="form">
+    <md-card-content>
+      <input *ngIf="!element.isValidVideo" #input (change)="element.checkVal(element.key, input.value)" [formControlName]="element.key"
+        [id]="element.key" [type]="element.type" placeholder="{{ 'DFORM.SOCIALVIDEO.PLACEHOLDER' | translate}}">
+      <div class="errorMessage" *ngIf="form.controls[element.key].touched && form.controls[element.key]?.errors">
+        <div class="errorMessage" *ngIf="form.controls[element.key]?.errors?.required"> Ist leer</div>
+        <div class="errorMessage" *ngIf="form.controls[element.key]?.errors?.pattern"> Falscher Videolink</div>
+      </div>
+      <p> Validation Errors: {{form.controls[element.key].errors | json}}</p>
+      <iframe *ngIf="element.isValidVideo" src="https://player.vimeo.com/video/191375373" width="640" height="360" frameborder="0"
+        webkitallowfullscreen mozallowfullscreen allowfullscreen>
+      </iframe>
+      <sg-dform-metabar [formElement]="element"></sg-dform-metabar>
+    </md-card-content>
+    <sg-dform-quickedit [element]="element"></sg-dform-quickedit>
+  </md-card>
+</sg-dform-quickbar>

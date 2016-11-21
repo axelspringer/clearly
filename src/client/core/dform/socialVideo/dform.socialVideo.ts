@@ -1,10 +1,13 @@
 // Importables
 import { Component } from '@angular/core';
-import { FormGroup, Validators } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { Input } from '@angular/core';
+import { OnInit } from '@angular/core';
+import { Validators } from '@angular/forms';
 
 // Components
 import { DFormElement } from '../dform.element';
+import { CustomValidators } from '../../validators';
 
 export class DFormSocialVideo extends DFormElement<string> {
 
@@ -14,7 +17,9 @@ export class DFormSocialVideo extends DFormElement<string> {
   public videoLink = "";
 
   constructor(options: {} = {}) {
-    super(options);
+    super(Object.assign(options, {
+      validators: [Validators.required, CustomValidators.socialVideoValidator]
+    }));
     this.type = options['type'] || '';
   }
 
@@ -29,23 +34,27 @@ export class DFormSocialVideo extends DFormElement<string> {
   templateUrl: './dform.socialVideo.html',
   styleUrls: ['./dform.socialVideo.scss'],
 })
-export class DFormSocialVideoComponent {
+export class DFormSocialVideoComponent implements OnInit {
 
   @Input() public element: DFormElement<string>;
   @Input() public form: FormGroup;
+
+  public ngOnInit() {
+    console.log('FORMZ', this.form);
+  }
 
 
   public validateVideoLink(key: string, value: string):void {
 
       console.log("TADAAAAA! validateVideoLink");
 
-      const VIDEO_REGEX = `(https:|)\/\/(player.|www.)?(vimeo\.com|youtube\.com)\/(video\/|embed\/)?([A-Za-z0-9.]*)?`;
+      // const VIDEO_REGEX = `(https:|)\/\/(player.|www.)?(vimeo\.com|youtube\.com)\/(video\/|embed\/)?([A-Za-z0-9.]*)?`;
 
       // validiere videoLink
       // set isValidVideo = true
       //this.element["videoLink"] = value;
       //this.element["isValidVideo"] = true;
-      this.form.controls[key].setValidators([Validators.required, Validators.pattern(VIDEO_REGEX)]);
+      // this.form.controls[key].setValidators([Validators.required, Validators.pattern(VIDEO_REGEX)]);
 
       console.log(value);
       console.log(this.form.controls[key]);

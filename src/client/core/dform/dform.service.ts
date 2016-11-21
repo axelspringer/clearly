@@ -3,7 +3,6 @@
 import { Injectable } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
-import { Validators } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 // Components
@@ -70,9 +69,7 @@ export class DForm { // central service of a dynamic form
   }
 
   public dFormElementToFormControl(DFormEntity: DFormElement<any>) {
-    return DFormEntity.required
-      ? new FormControl(DFormEntity.value || '', Validators.required)
-      : new FormControl(DFormEntity.value || '');
+    return new FormControl(DFormEntity.value || '', DFormEntity.validators);
   }
 
   // private

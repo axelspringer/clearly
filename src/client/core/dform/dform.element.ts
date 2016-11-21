@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Input } from '@angular/core';
+import { ValidatorFn } from '@angular/forms';
 
 export class DFormElement<T> {
 
@@ -16,6 +17,7 @@ export class DFormElement<T> {
   public controlType: string;
   public disabled: boolean;
   public fromMaster: boolean;
+  public validators: Array<ValidatorFn>;
 
   constructor(options: {
       value?: T,
@@ -25,7 +27,8 @@ export class DFormElement<T> {
       order?: number,
       controlType?: string,
       disabled?: boolean,
-      fromMaster?: boolean
+      fromMaster?: boolean,
+      validators?: Array<ValidatorFn>,
       isMaster?: boolean,
     } = {}) {
     this.value = options.value;
@@ -36,6 +39,7 @@ export class DFormElement<T> {
     this.controlType = options.controlType || '';
     this.disabled = options.disabled || false;
     this.fromMaster = options.fromMaster || false;
+    this.validators = options.validators || [];
     // by default do not disable, could be enabled later
   }
 
