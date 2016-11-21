@@ -43,7 +43,6 @@ import { NoContentComponent } from '../404';
 import { SettingsComponent } from '../settings';
 import { ToolbarComponent } from '../toolbar';
 import { AuthGuard } from '../../guards';
-import { BootGuard } from '../../guards';
 import { BootComponent } from '../boot';
 import { Boot } from '../boot';
 
@@ -53,7 +52,6 @@ import { DocsEffects } from '../../effects';
 import { ArticleEffects } from '../+creator/article';
 import { AppEffects } from './app.effects';
 import { DocsActions } from '../../actions';
-import { MainComponent } from '../main/main.component';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -65,7 +63,6 @@ const APP_PROVIDERS = [
     },
   },
   AuthGuard,
-  BootGuard,
   Title,
   DocsActions,
   Boot,
@@ -90,12 +87,9 @@ const APP_PROVIDERS = [
     SettingsComponent,
     ToolbarComponent,
     BootComponent,
-    MainComponent,
   ],
   entryComponents: [
     AppComponent,
-    BootComponent,
-    MainComponent,
   ],
   imports: [
     // Angular

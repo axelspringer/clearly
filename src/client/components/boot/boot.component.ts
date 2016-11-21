@@ -12,7 +12,6 @@ import { Observable } from 'rxjs';
 
 // Components
 import { Boot } from './boot.service';
-import { MainComponent } from '../main/main.component';
 
 @Component({
   selector: 'sg-boot',  // <sg-dashboard></sg-dashboard>
