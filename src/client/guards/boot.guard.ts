@@ -23,7 +23,7 @@ export class BootGuard implements CanActivate {
   ) {
     console.log(`Guarding boot ...`);
 
-    return this.boot.init$;
+    return this.boot.init$.toPromise();
   }
 
   public CanDeactivate() {
