@@ -25,7 +25,6 @@ export class Boot { // central service of a dynamic form
   get init$() {
     setTimeout(() => {
       this.message.next('Ready');
-      this.bootSubject.next(true);
       this.bootSubject.complete();
     }, 5000);
     return this.bootSubject.asObservable();

@@ -4,6 +4,7 @@ import { Routes } from '@angular/router';
 // Components
 import { AuthGuard } from '../../guards';
 import { BootGuard } from '../../guards';
+import { BootComponent } from '../boot';
 import { DashboardComponent } from '../dashboard';
 import { NoContentComponent } from '../404';
 import { SettingsComponent } from '../settings';
@@ -16,6 +17,10 @@ export const ROUTES: Routes = [
     ],
     path: '',
     component: DashboardComponent, // TODO@sdoell: move to module
+  },
+  {
+    path: 'boot',
+    component: BootComponent
   },
   {
     path: 'settings',

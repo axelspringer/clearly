@@ -51,8 +51,9 @@ import { Boot } from '../boot';
 import AppStore from './app.store';
 import { DocsEffects } from '../../effects';
 import { ArticleEffects } from '../+creator/article';
-// import { AppEffects } from './app.effects';
+import { AppEffects } from './app.effects';
 import { DocsActions } from '../../actions';
+import { MainComponent } from '../main/main.component';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -79,7 +80,7 @@ const APP_PROVIDERS = [
  */
 @NgModule({
   bootstrap: [
-    BootComponent,
+    AppComponent,
   ],
   declarations: [
     AppComponent,
@@ -89,10 +90,12 @@ const APP_PROVIDERS = [
     SettingsComponent,
     ToolbarComponent,
     BootComponent,
+    MainComponent,
   ],
   entryComponents: [
     AppComponent,
     BootComponent,
+    MainComponent,
   ],
   imports: [
     // Angular
@@ -112,7 +115,7 @@ const APP_PROVIDERS = [
     // @ngrx
     EffectsModule.runAfterBootstrap(DocsEffects),
     EffectsModule.runAfterBootstrap(ArticleEffects),
-    // EffectsModule.run(AppEffects),
+    EffectsModule.run(AppEffects),
     StoreModule.provideStore(AppStore),
     StoreDevtoolsModule.instrumentStore({ // store dev tools for debug
       maxAge: 5,

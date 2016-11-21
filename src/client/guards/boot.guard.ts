@@ -3,18 +3,18 @@ import { Injectable } from '@angular/core';
 import { CanActivate } from '@angular/router';
 import { forwardRef } from '@angular/core';
 import { Inject } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Router } from '@angular/router';
 
-import { Boot } from '../components';
-// import { CanDeactivate } from '@angular/router';
-// import { Router } from '@angular/router';
-// import { ActivatedRouteSnapshot } from '@angular/router';
-// import { RouterStateSnapshot } from '@angular/router';
+import { isBooting } from '../components/app/app.store';
+import { IAppState } from '../components';
 
 @Injectable()
 export class BootGuard implements CanActivate {
 
   constructor(
-    @Inject(forwardRef(() => Boot)) public boot: Boot,
+    private router: Router,
+    @Inject(forwardRef(() => Store)) private store: Store<IAppState>,
   ) {}
 
   public canActivate(
@@ -23,7 +23,16 @@ export class BootGuard implements CanActivate {
   ) {
     console.log(`Guarding boot ...`);
 
-    return this.boot.init$.toPromise();
+    return true;
+
+    // return this.store.let(isBooting())
+    //   .do(isBooting => {
+    //     if (isBooting) {
+    //       this.router.navigate(['boot']);
+    //     }
+    //   })
+    //   .map(isBooting => !isBooting);
+
   }
 
   public CanDeactivate() {

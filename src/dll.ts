@@ -70,6 +70,6 @@ export function rxjs() {
     'rxjs/add/operator/map',
     'rxjs/add/operator/mergeMap',
     'rxjs/add/operator/distinctUntilChanged',
-    'rxjs/add/operator/toPromise',
+    'rxjs/add/operator/toPromise'
   ];
 }

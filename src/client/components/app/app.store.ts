@@ -6,15 +6,18 @@ import { Observable } from 'rxjs/Observable';
 import { storeLogger } from 'ngrx-store-logger';
 
 // Reducers
+import { articleReducer } from '../+creator/article';
+import appReducer from './app.reducer';
+import * as fromAppReducer from './app.reducer';
 import { creatorReducer } from '../+creator';
-import { fromCreatorReducer } from '../+creator';
 import { docsReducer } from '../../reducers';
 import { fromArticleReducer } from '../+creator/article';
-import { articleReducer } from '../+creator/article';
+import { fromCreatorReducer } from '../+creator';
 import { fromDocsReducer } from '../../reducers';
 
 // app state
 export interface IAppState {
+  app: any;
   creator: any;
   docs: any;
   article: any;
@@ -26,6 +29,7 @@ export {
 
 // metareducers
 export default compose(hmrState, storeLogger(), combineReducers)({
+  app: appReducer,
   creator: creatorReducer,
   docs: docsReducer,
   article: articleReducer,
@@ -43,6 +47,11 @@ export function hmrState(reducer: ActionReducer<any>): ActionReducer<any> {
 }
 
 // slices
+export function getAppState() {
+  return (state$: Observable<IAppState>) => state$
+    .map(s => s.app);
+}
+
 export function getCreatorState() {
   return (state$: Observable<IAppState>) => state$
     .map(s => s.creator);
@@ -65,6 +74,10 @@ export function getCreatorItems() {
 
 export function getDocs() {
   return compose(fromDocsReducer.getDocs(), getDocsState());
+}
+
+export function isBooting() {
+  return compose(fromAppReducer.getAppBooting(), getAppState());
 }
 
 export function isDocsLoading() {
