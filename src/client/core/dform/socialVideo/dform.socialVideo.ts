@@ -39,8 +39,7 @@ export class DFormSocialVideoComponent {
 
       console.log("TADAAAAA! validateVideoLink");
 
-      // const VIDEO_REGEX = "/http:\/\/(?:www.)?(?:(vimeo).com\/(.*)|(youtube).com\/watch\?v=(.*?)&)/";
-      const VIDEO_REGEX = "[0-9]";
+      const VIDEO_REGEX = `(https:|)\/\/(player.|www.)?(vimeo\.com|youtube\.com)\/(video\/|embed\/)?([A-Za-z0-9.]*)?`;
 
       // validiere videoLink
       // set isValidVideo = true
