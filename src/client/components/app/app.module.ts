@@ -1,16 +1,11 @@
 // Importables
 import { ApplicationRef } from '@angular/core';
-import { AuthGuard } from '../../guards';
 import { BrowserModule, Title } from '@angular/platform-browser';
-// import { createInputTransfer } from '@angularclass/hmr';
-// import { createNewHosts } from '@angularclass/hmr';
 import { EffectsModule } from '@ngrx/effects';
-// import { ErrorHandler } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { MdModule } from './app.material';
 import { NgModule } from '@angular/core';
-// import { removeNgStyles } from '@angularclass/hmr';
 import { RouterModule } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
@@ -47,6 +42,10 @@ import { MenuComponent } from '../menu';
 import { NoContentComponent } from '../404';
 import { SettingsComponent } from '../settings';
 import { ToolbarComponent } from '../toolbar';
+import { AuthGuard } from '../../guards';
+import { BootGuard } from '../../guards';
+import { BootComponent } from '../boot';
+import { Boot } from '../boot';
 
 // Store
 import AppStore from './app.store';
@@ -65,8 +64,10 @@ const APP_PROVIDERS = [
     },
   },
   AuthGuard,
+  BootGuard,
   Title,
   DocsActions,
+  Boot,
 ];
 
 // class NullLoggingErrorHandler implements ErrorHandler {
@@ -78,7 +79,7 @@ const APP_PROVIDERS = [
  */
 @NgModule({
   bootstrap: [
-    AppComponent,
+    BootComponent,
   ],
   declarations: [
     AppComponent,
@@ -87,6 +88,11 @@ const APP_PROVIDERS = [
     NoContentComponent,
     SettingsComponent,
     ToolbarComponent,
+    BootComponent,
+  ],
+  entryComponents: [
+    AppComponent,
+    BootComponent,
   ],
   imports: [
     // Angular

@@ -6,26 +6,48 @@ $_spin-off-border-color: rgba($_spin-border-color, 0.2);
 @import '~normalize.scss/normalize';
 @import '~flexboxgrid/css/flexboxgrid';
 
+html, body {
+  height: 100%;
+}
+
 .critical {
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+  display: block;
+  height: 100%;
+  min-height: 100%;
 
   .loading {
-    animation-duration: $_spin-animation-duration;
-    animation-name: spin;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
+    position: relative;
+    top: 50%;
+    margin-top: -12px;
 
-    border-color: $_spin-off-border-color;
-    border-radius: 50%;
-    border-style: solid;
-    border-top-color: $_spin-border-color;
-    border-width: .25rem;
-    height: $_spin-border-width;
-    width: $_spin-border-width;
+    .spinner {
+      animation-duration: $_spin-animation-duration;
+      animation-name: spin;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+
+      border-color: $_spin-off-border-color;
+      border-radius: 50%;
+      border-style: solid;
+      border-top-color: $_spin-border-color;
+      border-width: .25rem;
+
+      height: $_spin-border-width;
+      width: $_spin-border-width;
+    }
+
+    .spinner,
+    .message {
+      margin: 0 auto;
+    }
+
+    .message {
+      width: 50%;
+      text-align: center;
+      padding: 1rem;
+    }
+
   }
 
 }

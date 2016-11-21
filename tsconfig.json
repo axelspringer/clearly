@@ -40,7 +40,8 @@
   "exclude": [
     "node_modules",
     "dist",
-    "aot"
+    "src/**/*.spec.ts",
+    "src/**/*.e2e.ts"
   ],
   "awesomeTypescriptLoaderOptions": {
     "forkChecker": true,

@@ -17,7 +17,6 @@ import { style } from '@angular/core';
 import { transition } from '@angular/core';
 // import { TranslateService } from 'ng2-translate';
 import { trigger } from '@angular/core';
-import { MdSnackBarConfig } from '@angular/material';
 
 // Components
 import { DFormComponent } from '../dform.component';
@@ -74,7 +73,6 @@ export class DFormQuickEditComponent implements OnInit, OnDestroy, AfterViewInit
   public shouldShowQuickEdit: boolean = false;
 
   private __emitRef: EventEmitter<any>;
-  private __snackBarConfig: MdSnackBarConfig;
 
   constructor(
     private __ref: ChangeDetectorRef,
@@ -82,7 +80,6 @@ export class DFormQuickEditComponent implements OnInit, OnDestroy, AfterViewInit
     // private __translate: TranslateService,
     @Inject(forwardRef(() => DFormComponent)) private __parentComponent,
   ) {
-    this.__snackBarConfig = new MdSnackBarConfig();
   }
 
   // public

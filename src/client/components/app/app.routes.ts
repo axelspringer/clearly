@@ -1,13 +1,17 @@
 // Importables
 import { Routes } from '@angular/router';
+
+// Components
+import { AuthGuard } from '../../guards';
+import { BootGuard } from '../../guards';
 import { DashboardComponent } from '../dashboard';
 import { NoContentComponent } from '../404';
 import { SettingsComponent } from '../settings';
-import { AuthGuard } from '../../guards';
 
 export const ROUTES: Routes = [
   {
     canActivate: [
+      BootGuard,
       AuthGuard,
     ],
     path: '',

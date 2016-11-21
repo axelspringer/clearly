@@ -21,7 +21,7 @@ import { getDocs } from '../app';
 
 @Component({
   selector: 'sg-dashboard',  // <sg-dashboard></sg-dashboard>
-  styleUrls: ['./dashboard.components.scss'],
+  styleUrls: ['./dashboard.component.scss'],
   templateUrl: './dashboard.component.html',
 })
 export class DashboardComponent implements OnInit {

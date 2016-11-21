@@ -14,7 +14,6 @@ import { state } from '@angular/core';
 import { style } from '@angular/core';
 import { transition } from '@angular/core';
 import { animate } from '@angular/core';
-import { MdSnackBarConfig } from '@angular/material';
 
 // Components
 import { DFormComponent } from '../dform.component';
@@ -68,7 +67,6 @@ export class DFormQuickBarComponent implements OnInit, OnDestroy, AfterViewInit 
   public shouldShowQuickBar: boolean = false;
 
   private __emitRef: EventEmitter<any>;
-  private __snackBarConfig: MdSnackBarConfig;
 
   constructor(
     private __ref: ChangeDetectorRef,
@@ -76,7 +74,6 @@ export class DFormQuickBarComponent implements OnInit, OnDestroy, AfterViewInit 
     // private __translate: TranslateService,
     @Inject(forwardRef(() => DFormComponent)) private __parentComponent,
   ) {
-    this.__snackBarConfig = new MdSnackBarConfig();
   }
 
   // public
