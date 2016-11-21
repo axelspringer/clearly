@@ -14,6 +14,7 @@ export const EXCLUDE_SOURCEMAPS = [
   root('node_modules/@angular'),
   root('node_modules/angular2-apollo'),
   root('node_modules/apollo-client-rxjs'),
+  root('node_modules/apollo-client'),
   root('node_modules/rxjs'),
 ];
 
