@@ -37,20 +37,20 @@ export class SgFileDroppableDirective implements AfterContentInit {
   };
 
   @HostListener('dragenter')
-  public onDragEnter() { // click on pseudo element
+  public onDragEnter() {
     event.preventDefault();
   };
 
   @HostListener('dragover')
   public onDragOver() {
     event.preventDefault();
-    this._renderer.setElementClass(this.elRef.nativeElement, this._options.classNames['onDragDrop'], true);
+    this.setOnDragClass(true);
     this.onFileDragOver.emit(true);
   }
 
   @HostListener('dragleave')
   public onDragLeave() {
-    this._renderer.setElementClass(this.elRef.nativeElement, this._defaults.classNames['onDragDrop'], false);
+
     this.onFileDragOver.emit(false);
   }
 
@@ -58,8 +58,7 @@ export class SgFileDroppableDirective implements AfterContentInit {
   public onDrop(event: Event) {
     event.stopPropagation();
     event.preventDefault();
-
-    this._renderer.setElementClass(this.elRef.nativeElement, this._defaults.classNames['onDragDrop'], false);
+    this.setOnDragClass(false);
     this.uploadFiles(event['dataTransfer'].files);
 
   }
@@ -92,7 +91,6 @@ export class SgFileDroppableDirective implements AfterContentInit {
 
     this._renderer.listen(this.input, 'change', event => {
       event.preventDefault();
-      console.log(event);
       this.uploadFiles(event.target.files);
     });
 
@@ -115,6 +113,10 @@ export class SgFileDroppableDirective implements AfterContentInit {
         this.onFileUpload.emit(false);
       }, 5000);
     }
+  }
+
+  private setOnDragClass(isAdd: boolean) {
+    this._renderer.setElementClass(this.elRef.nativeElement, this._defaults.classNames['onDragDrop'], isAdd);
   }
 
 }

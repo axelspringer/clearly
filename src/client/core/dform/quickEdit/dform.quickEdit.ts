@@ -93,7 +93,6 @@ export class DFormQuickEditComponent implements OnInit, OnDestroy, AfterViewInit
     // private __translate: TranslateService,
     @Inject(forwardRef(() => DFormComponent)) private __parentComponent,
   ) {
-    console.log(this.showEditButton);
   }
 
   // public
