@@ -1,0 +1,37 @@
+$_file-droppable-color: rgba(125,125,125,.5);
+$_file-droppable-border-color: rgba(125,125,125,.2);
+
+:host {
+  md-card {
+    margin: 24px;
+  }
+}
+
+.droppable {
+  color: $_file-droppable-color;
+  align-items: center;
+  border-style: dashed;
+  border-color: $_file-droppable-border-color;
+  border-width: 1px;
+  display: flex;
+  height: 100px;
+  justify-content: center;
+  width: 100%;
+
+  md-icon {
+    height: 48px;
+    width: 48px;
+  }
+
+  .material-icons {
+    font-size: 48px;
+  }
+
+}
+
+.sg-file-droppable {
+  &-drag-drop {
+    color: darken($_file-droppable-color, 25%);
+    border-color: darken($_file-droppable-border-color, 25%);
+  }
+}

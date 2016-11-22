@@ -7,4 +7,3 @@ export * from './i18n';
 export * from './log';
 export * from './notify';
 export * from './dform';
-export * from './validators';

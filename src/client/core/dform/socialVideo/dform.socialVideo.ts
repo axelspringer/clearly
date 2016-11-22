@@ -7,7 +7,7 @@ import { Validators } from '@angular/forms';
 
 // Components
 import { DFormElement } from '../dform.element';
-import { CustomValidators } from '../../validators';
+import { CustomValidators } from '../../forms';
 
 export class DFormSocialVideo extends DFormElement<string> {
 

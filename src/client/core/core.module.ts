@@ -35,6 +35,8 @@ import { MdModule } from '../components/app/app.material';
 import { NOTIFY_PROVIDERS } from './notify/notify.provider';
 import { NotifyProvider } from './notify';
 import { TranslateCustomLoader } from './i18n';
+import { DFormPictureComponent } from './dform';
+import { SgFileDroppableDirective } from './forms';
 
 @NgModule({
   imports: [
@@ -48,6 +50,8 @@ import { TranslateCustomLoader } from './i18n';
     AtLeastValidatorDirective,
     IteratableObjectPipe,
     LoadingComponent,
+    SgFileDroppableDirective,
+
     // Dynamic Forms
     DFormAbstractComponent,
     DFormComponent,
@@ -57,6 +61,7 @@ import { TranslateCustomLoader } from './i18n';
     DFormMainTextComponent,
     DFormMetaBarComponent,
     DFormMetaTextComponent,
+    DFormPictureComponent,
     DFormQuickBarComponent,
     DFormQuickEditComponent,
     DFormSocialVideoComponent,
@@ -67,6 +72,7 @@ import { TranslateCustomLoader } from './i18n';
     // Pipes
     TranslatePipe,
     IteratableObjectPipe,
+    SgFileDroppableDirective,
 
     // Validators
     AtLeastValidatorDirective,
@@ -83,6 +89,7 @@ import { TranslateCustomLoader } from './i18n';
     DFormMainTextComponent,
     DFormMetaBarComponent,
     DFormMetaTextComponent,
+    DFormPictureComponent,
     DFormQuickBarComponent,
     DFormQuickEditComponent,
     DFormSocialVideoComponent,

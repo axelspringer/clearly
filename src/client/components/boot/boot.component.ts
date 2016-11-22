@@ -5,7 +5,6 @@ import { OnInit } from '@angular/core';
 import { ViewContainerRef } from '@angular/core';
 import { ComponentFactoryResolver } from '@angular/core';
 import { ElementRef } from '@angular/core';
-import { Router } from '@angular/router';
 import { forwardRef } from '@angular/core';
 import { Inject } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -32,7 +31,7 @@ export class BootComponent implements OnInit {
   ) {
     this.message$ = this.boot.message$;
     this.boot.init$.subscribe(() => {}, () => {}, () => {
-      const cmp = this.cmpFactoryResolver.resolveComponentFactory(MainComponent);
+      const cmp = this.cmpFactoryResolver.resolveComponentFactory();
       this.viewContainerRef.createComponent(cmp);
       this.elRef.nativeElement.remove();
     });

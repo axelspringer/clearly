@@ -1,8 +1,8 @@
 <div class="quickedit" *ngIf="hasFocus">
-   <div class="quickedit-trigger">
+   <div class="quickedit-trigger" *ngIf="showDeleteButton">
     <md-icon (click)="removeFormElement(element)">delete</md-icon>
   </div>
-  <div class="quickedit-trigger" (click)="toggleQuickBar()">
+  <div class="quickedit-trigger" (click)="toggleQuickBar()" *ngIf="showEditButton">
     <md-icon [alt]="'DFORM.QUICKEDIT.LABEL.EDIT' | translate">{{ !shouldShowQuickEdit ? 'flip' : 'close' }}</md-icon>
   </div>
   <div class="quickedit-actions" [@shouldShowQuickBar]="shouldShowQuickEdit">

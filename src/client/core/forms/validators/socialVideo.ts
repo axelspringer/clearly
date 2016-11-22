@@ -1,3 +1,4 @@
+// Importables
 import { AbstractControl } from '@angular/forms';
 
 export default function socialVideoValidator(control: AbstractControl): { [key: string]: any } {

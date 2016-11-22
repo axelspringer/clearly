@@ -43,7 +43,7 @@ import { NoContentComponent } from '../404';
 import { SettingsComponent } from '../settings';
 import { ToolbarComponent } from '../toolbar';
 import { AuthGuard } from '../../guards';
-import { BootComponent } from '../boot';
+// import { BootComponent } from '../boot';
 import { Boot } from '../boot';
 
 // Store
@@ -86,7 +86,6 @@ const APP_PROVIDERS = [
     NoContentComponent,
     SettingsComponent,
     ToolbarComponent,
-    BootComponent,
   ],
   entryComponents: [
     AppComponent,

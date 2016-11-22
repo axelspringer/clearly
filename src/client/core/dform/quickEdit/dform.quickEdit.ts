@@ -46,10 +46,22 @@ import { EventEmitProvider } from '../../events';
 })
 export class DFormQuickEditComponent implements OnInit, OnDestroy, AfterViewInit {
 
-  // should be refactored to some else
-
   @ContentChild('input') public input;
-  @Input() public element: DFormElement<any>;
+
+  @Input('delete')
+  public set delete(toggle: string | boolean) {
+    this.showDeleteButton = (toggle == 'true');
+  }
+
+  @Input('edit')
+  public set edit(toggle: string | boolean) {
+    this.showEditButton = (toggle == 'true');
+  }
+
+  @Input('formElement') public element: DFormElement<any>;
+
+  public showEditButton: boolean = true;
+  public showDeleteButton: boolean = true;
 
   public actions = [
     {
@@ -80,6 +92,7 @@ export class DFormQuickEditComponent implements OnInit, OnDestroy, AfterViewInit
     // private __translate: TranslateService,
     @Inject(forwardRef(() => DFormComponent)) private __parentComponent,
   ) {
+    console.log(this.showEditButton);
   }
 
   // public
