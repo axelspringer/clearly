@@ -43,8 +43,6 @@ import { NoContentComponent } from '../404';
 import { SettingsComponent } from '../settings';
 import { ToolbarComponent } from '../toolbar';
 import { AuthGuard } from '../../guards';
-// import { BootComponent } from '../boot';
-import { Boot } from '../boot';
 
 // Store
 import AppStore from './app.store';
@@ -65,7 +63,6 @@ const APP_PROVIDERS = [
   AuthGuard,
   Title,
   DocsActions,
-  Boot,
 ];
 
 // class NullLoggingErrorHandler implements ErrorHandler {

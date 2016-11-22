@@ -8,4 +8,5 @@
   <div class="quickedit-actions" [@shouldShowQuickBar]="shouldShowQuickEdit">
     <md-icon (click)="changeFormElementType(element, action.formType)" *ngFor="let action of actions">{{ action.icon }}</md-icon>
   </div>
+  <md-progress-circle mode="determinate" [value]="progress" *ngIf="progress"></md-progress-circle>
 </div>

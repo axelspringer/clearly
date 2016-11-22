@@ -92,8 +92,9 @@ export class SgFileDroppableDirective implements AfterContentInit {
 
     this._renderer.listen(this.input, 'change', event => {
       event.preventDefault();
-      this.uploadFiles(event['dataTransfer'].files);
-    })
+      console.log(event);
+      this.uploadFiles(event.target.files);
+    });
 
   }
 
@@ -104,8 +105,11 @@ export class SgFileDroppableDirective implements AfterContentInit {
   private uploadFiles(files: any[]) {
     files = Array.from(files);
 
-    if (files.length === 1) {
+    if (this._options.filter) {
       files = this.filterDroppedFilesByExtension(files);
+    }
+
+    if (files.length === 1) {
       this.onFileUpload.emit(true);
       setTimeout(() => {
         this.onFileUpload.emit(false);

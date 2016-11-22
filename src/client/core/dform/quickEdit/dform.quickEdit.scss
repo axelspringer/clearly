@@ -1,16 +1,23 @@
+$_quickedit-progess-circle-size: 28px;
+
 .quickedit {
   display: flex;
   align-items: center;
   height: 24px;
 
   md-icon {
-      padding: 4px 8px;
-      cursor: pointer;
+    padding: 4px 8px;
+    cursor: pointer;
 
-      &:hover {
-        color: red;
-      }
+    &:hover {
+      color: red;
     }
+  }
+
+  md-progress-circle {
+    width: $_quickedit-progess-circle-size;
+    height: $_quickedit-progess-circle-size;
+  }
 
   &-trigger {
     display: flex;

@@ -59,6 +59,10 @@ export class DFormQuickBarComponent implements OnInit, OnDestroy, AfterViewInit 
       icon: 'ondemand_video',
     },
     {
+      formType: 'picture',
+      icon: 'image',
+    },
+    {
       formType: 'dropDown',
       icon: 'playlist_add',
     },

@@ -48,6 +48,9 @@ export class DFormQuickEditComponent implements OnInit, OnDestroy, AfterViewInit
 
   @ContentChild('input') public input;
 
+  @Input('formElement') public element: DFormElement<any>;
+  @Input('progress') public progress: number;
+
   @Input('delete')
   public set delete(toggle: string | boolean) {
     this.showDeleteButton = (toggle == 'true');
@@ -57,8 +60,6 @@ export class DFormQuickEditComponent implements OnInit, OnDestroy, AfterViewInit
   public set edit(toggle: string | boolean) {
     this.showEditButton = (toggle == 'true');
   }
-
-  @Input('formElement') public element: DFormElement<any>;
 
   public showEditButton: boolean = true;
   public showDeleteButton: boolean = true;
