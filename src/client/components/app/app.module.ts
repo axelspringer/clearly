@@ -108,7 +108,7 @@ const APP_PROVIDERS = [
     // @ngrx
     EffectsModule.runAfterBootstrap(DocsEffects),
     EffectsModule.runAfterBootstrap(CreatorEffects),
-    // EffectsModule.runAfterBootstrap(ArticleEffects),
+    EffectsModule.runAfterBootstrap(ArticleEffects),
     EffectsModule.run(AppEffects),
     StoreModule.provideStore(AppStore),
     StoreDevtoolsModule.instrumentStore({ // store dev tools for debug

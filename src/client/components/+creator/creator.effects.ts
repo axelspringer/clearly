@@ -16,11 +16,13 @@ const query = gql`
       name,
       displayName,
       channels {
+        id,
         name,
         displayName,
         isEnabled
       },
       contexts {
+        id,
         name,
         displayName,
         formType {

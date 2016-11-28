@@ -13,7 +13,6 @@ import { Store } from '@ngrx/store';
 import * as _ from 'lodash';
 
 // Components
-import { CreatorService } from './creator.service';
 import { EventEmitProvider } from '../../core';
 import { ToolbarTitleUpdate } from '../toolbar';
 import { ChannelsDialogComponent } from './dialogs';
@@ -39,7 +38,6 @@ export class CreatorComponent implements OnInit, OnDestroy {
     public dialog: MdDialog,
 
     private _store: Store<IAppState>,
-    private _creatorService: CreatorService,
     private _articleActions: ArticleActions,
     private _route: ActivatedRoute,
     private _translate: TranslateService,
@@ -50,15 +48,10 @@ export class CreatorComponent implements OnInit, OnDestroy {
   public ngOnInit() {
     console.log(`Initializing 'Creator' ...`);
 
-    this._store.dispatch(this._articleActions.updateArticle());
-
     this._route.data // we use first
       .map(data => data['types']) // switch to a new observable
-      .switchMap(types => {
-        const articleType = _.first(types);
-        this._creatorService.channels = articleType['channels']; // shoule be type
-        this._creatorService.contexts = articleType['contexts']
-        return this._creatorService.form;
+      .subscribe(types => {
+        this._store.dispatch(this._articleActions.updateArticle(_.first(types)));
       });
 
     this._translate.get(this.i18nTitle).subscribe(t =>

@@ -10,11 +10,13 @@ export class ArticleActions {
   public static RESET           = '[ARTICLE:RESET]';
 
   public static UPDATE          = '[ARTICLE:UPDATE]';
-  public static UPDATE_ARTICLE  = '[ARTICLE:UPDATE_ARTICLE]'
+  public static UPDATE_ARTICLE  = '[ARTICLE:UPDATE_ARTICLE]';
 
-  public updateArticle(): Action {
+  public updateArticle(newArticleType: any): Action {
+    console.info(newArticleType);
     return {
       type: ArticleActions.UPDATE_ARTICLE,
+      payload: newArticleType
     }
   }
 

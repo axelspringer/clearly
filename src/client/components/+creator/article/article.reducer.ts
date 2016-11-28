@@ -9,16 +9,14 @@ export interface IArticleState {
   loaded: boolean;
   loading: number;
   channels: any[];
-  data: any[];
-  form: any[];
+  master: any[];
 }
 
 const init: IArticleState = {
   loaded: false,
   loading: 0,
   channels: [],
-  data: [],
-  form: [],
+  master: [],
 };
 
 export default function (state = init, action: Action): IArticleState  {
@@ -50,9 +48,9 @@ export function getChannel(channel: number) {
     .map(s => s.channels[channel]);
 }
 
-export function getData() {
+export function getMaster() {
   return (state$: Observable<IArticleState>) => state$
-    .map(s => s.data);
+    .map(s => s.master);
 }
 
 export function getArticleLoading() {

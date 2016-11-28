@@ -4,60 +4,34 @@ import { Injectable } from '@angular/core';
 import * as _ from 'lodash';
 
 // DForm
-// import { DFormElement } from '../../../core';
-// import { DForm } from '../../../core';
+import { DForm } from '../../../core';
 
 @Injectable()
 export class ArticleService {
 
   constructor(
-    // private dForm: DForm,
+    private _dformService: DForm,
   ) {
   }
 
-  public transform(channels: any[], contexts: any[]) {
-    return channels.map(channel => {
-
-    });
-    // return []
-
-    // [[]].concat(channels).map(channel => { // performance
-
-    // });
+  public transformToMaster(contexts: any[]) {
+    return _.map(_.filter(contexts, context => context['channels'].length === 0),
+      context => this._transformToFormElement(context)); // should also filter for not channel
   }
 
-  // legacy
+  public transformToChannels(contexts: any[], channels: any[]) {
+    return _.map(channels, channel => {
+      return _.map(_.filter(contexts, context =>
+        context['channels'].length === 0 || _.includes(context.channels, channel.id)),
+          context => this._transformToFormElement(context));
+          // should map the object, metadata in dform object
+    });
+  }
 
-  // private _transformToDFormElement(el: string, options = {}) {
-  //   // this is the native approach
-  //   return this.dForm.newFormType(el)(options);
-  // }
+  // private
+  private _transformToFormElement(context: any) {
+    console.log(context);
+    return this._dformService.newFormType(context.formType.name)(context.formType.options);
+  }
 
-  // to deform
-  // private _transformToDForm(channels: any) {
-  //   return _.map(channels, channel => {
-  //     _.each(['content', 'metaData'], type => {
-  //       channel[type] = _.map(channel[type], el =>
-  //         this._transformToDFormElement(el['formType'], {
-  //           key: el['name'],
-  //           placeholder: el['displayName'],
-  //           fromMaster: el['fromMaster'],
-  //         }));
-  //     });
-  //     return channel;
-  //   }) as Array<DFormElement<any>>;
-  // }
-
-  // private _diffChannelsWithMaster(channels: any, key = 'name') {
-  //   const master = _.head(channels.splice(channels.findIndex(el => el.isMaster), 1));
-  //   _.map(channels, channel => {
-  //     _.each(['content', 'metaData'], type => {
-  //       channel[type] = _.concat(channel[type], _.map(_.filter(master[type], el => !_.find(channel[type], el[key])), el => {
-  //         return _.assign({}, el, { fromMaster: true });
-  //       }));
-  //     });
-  //     return channel;
-  //   });
-  //   return _.concat([], master, channels);
-  // }
 }
