@@ -5,30 +5,24 @@ import { Action } from '@ngrx/store';
 @Injectable()
 export class ArticleActions {
 
-  public static LOAD             = '[ARTICLE:LOAD]';
-  public static LOAD_SUCCESS     = '[ARTICLE:LOAD_SUCCESS]';
-  public static RESET            = '[ARTICLE:RESET]';
-  public static UPDATE           = '[ARTICLE:UPDATE]';
-  public static CHANNELS_UPDATE  = '[ARTICLE:CHANNELS_UPDATE]';
+  public static LOAD            = '[ARTICLE:LOAD]';
+  public static LOAD_SUCCESS    = '[ARTICLE:LOAD_SUCCESS]';
+  public static RESET           = '[ARTICLE:RESET]';
 
-  public load(): Action { // do not do any query now
+  public static UPDATE          = '[ARTICLE:UPDATE]';
+  public static UPDATE_ARTICLE  = '[ARTICLE:UPDATE_ARTICLE]'
+
+  public updateArticle(): Action {
     return {
-      type: ArticleActions.LOAD,
-    };
-  };
+      type: ArticleActions.UPDATE_ARTICLE,
+    }
+  }
 
   public update(newState: any): Action {
     return {
       type: ArticleActions.UPDATE,
-      payload: newState,
-    };
-  };
-
-  public updateChannels(channelsUpdate: any): Action {
-    return {
-      type: ArticleActions.CHANNELS_UPDATE,
-      payload: channelsUpdate,
-    };
+      payload: newState
+    }
   }
 
   public reset(): Action {

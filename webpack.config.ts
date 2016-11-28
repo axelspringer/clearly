@@ -50,7 +50,6 @@ const CommonsChunkPlugin      = require('webpack/lib/optimize/CommonsChunkPlugin
 const MinChunkSizePlugin      = require('webpack/lib/optimize/MinChunkSizePlugin');
 const UglifyJsPlugin     = require('webpack/lib/optimize/UglifyJsPlugin');
 
-const { ForkCheckerPlugin }   = require('awesome-typescript-loader');
 const CompressionPlugin       = require('compression-webpack-plugin');
 const CopyWebpackPlugin       = require('copy-webpack-plugin');
 const HtmlElementsPlugin      = require('./config/html-elements-plugin');
@@ -140,7 +139,6 @@ const commonConfig = function webpackConfig(): WebpackConfig {
       root(`src`),
     ),
     new ProgressPlugin(),
-    new ForkCheckerPlugin(),
     new NamedModulesPlugin(),
     new HtmlElementsPlugin({
       headTags: head,
@@ -345,7 +343,7 @@ const defaultConfig = function () {
   const config: WebpackConfig = {} as WebpackConfig;
 
   config.resolve = {
-    extensions: ['.ts', '.js', '.json', '.graphql'],
+    extensions: ['.ts', '.js', '.json'],
   };
 
   return config;

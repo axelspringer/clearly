@@ -1,0 +1,26 @@
+query rootQuery {
+    articleTypes {
+      name,
+      displayName,
+      channels {
+        name,
+        displayName,
+        isEnabled
+      },
+      contexts {
+        name,
+        displayName,
+        formType {
+          name,
+          options {
+            required
+          }
+        },
+        type {
+          name,
+          displayName
+        }
+        channels
+      }
+    }
+  }

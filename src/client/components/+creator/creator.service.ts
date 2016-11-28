@@ -2,6 +2,7 @@
 // Importables
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { Observable } from 'rxjs';
 import * as _ from 'lodash';
 
 // DForm
@@ -11,50 +12,88 @@ import { DForm } from '../../core';
 @Injectable()
 export class CreatorService {
 
-  private __dFormSubject: BehaviorSubject<Array<DFormElement<any>>> = new BehaviorSubject([]);
-  private __channels: Array<any> = [];
+  private _contexts: any[] = []; // should be an object
+  private _channels: any = {};
+  private _form: any = {};
+
+  private _subject: BehaviorSubject<any>
+    = new BehaviorSubject({}); // its like caching
 
   constructor(
-    private __dForm: DForm,
+    private dForm: DForm,
   ) {
   }
 
-  // compile to
+  // set article types
 
-  get channels() {
-    return this.__channels;
+  public set channels(newChannels: any) { // its the types in the service
+    this._channels = Object.assign({ master: []}, newChannels);
   }
 
-  set channels(channels) {
-    this.__channels = channels;
-    this.__next(channels);
+  public set contexts(newContexts: any) {
+    this._contexts = newContexts;
   }
 
-  get form() {
-    return this.__dFormSubject.asObservable();
+  // public
+
+  public get form(): Observable<any> {
+    this._subject.next(this.asDForm());
+    return this._subject.asObservable();
   }
 
-  public filter(channels) {
-    this.__next(this.__channels.filter(channel => channel.isMaster || channels[channel.name]));
-  }
+  // public transformToData(channels: any[], contexts: any[]) {
+  //   return [[]].concat(channels).map(channel => {
+
+  //   });
+  // }
 
   // private
 
-  private __next(channels: Array<any>) {
-    this.__dFormSubject.next(this.__transformToDForm(this.__diffChannelsWithMaster(_.clone(channels))));
+  private asDForm(): any {
+    // we be a bit more expressive here
+
+
+    // const acc = { master: [] };
+    // const clone = _.cloneDeep(this._articleTypes[articleTypeId]);
+    // const form = _.reduce(clone.contexts || [], (acc, context) => {
+    //   // being a bit more expressive here
+    //   !_.isEmpty(context.channels)
+    //     ? _.each(context.channels, channel => {
+    //       acc[channel.name] = [].concat(acc[channel.name] || [], channel);
+    //     })
+    //     : acc.master.push(context);
+    //   return acc;
+    // }, acc ); // sample a master
+
+    // return _.toPairs(form);
   }
 
-  private __transformToDFormElement(el: string, options = {}) {
+
+  // legacy
+
+  // get form() {
+  //   return this._subject.asObservable();
+  // }
+
+  public filter(channels) {
+    this._next(this._channels.filter(channel => channel.isMaster || channels[channel.name]));
+  }
+
+  private _next(channels: Array<any>) {
+    this._subject.next(this._transformToDForm(this._diffChannelsWithMaster(_.clone(channels))));
+  }
+
+  private _transformToDFormElement(el: string, options = {}) {
     // this is the native approach
-    return this.__dForm.newFormType(el)(options);
+    return this.dForm.newFormType(el)(options);
   }
 
   // to deform
-  private __transformToDForm(channels: any) {
+  private _transformToDForm(channels: any) {
     return _.map(channels, channel => {
       _.each(['content', 'metaData'], type => {
         channel[type] = _.map(channel[type], el =>
-          this.__transformToDFormElement(el['formType'], {
+          this._transformToDFormElement(el['formType'], {
             key: el['name'],
             placeholder: el['displayName'],
             fromMaster: el['fromMaster'],
@@ -64,7 +103,7 @@ export class CreatorService {
     }) as Array<DFormElement<any>>;
   }
 
-  private __diffChannelsWithMaster(channels: any, key = 'name') {
+  private _diffChannelsWithMaster(channels: any, key = 'name') {
     const master = _.head(channels.splice(channels.findIndex(el => el.isMaster), 1));
     _.map(channels, channel => {
       _.each(['content', 'metaData'], type => {

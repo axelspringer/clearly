@@ -1,22 +1,39 @@
 // Importables
 import { Action } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
+import * as _ from 'lodash';
 
-// Component
+// Actions
 import { CreatorActions } from './creator.actions';
 
-const init = [];
+export interface ICreatorState {
+  loaded: boolean;
+  loading: number;
+  types: any[];
+}
 
-export default function (state = init, action: Action)  {
+const init: ICreatorState = {
+  loaded: false, // means to load data
+  loading: 0,
+  types: [],
+};
+
+export default function (state = init, action: Action): ICreatorState  {
 
   switch (action.type) {
 
-    case CreatorActions.ADD_ITEM: {
-      return state.concat(action.payload);
+    case CreatorActions.LOAD: {
+      return Object.assign({}, state, {
+        loading: ++state.loading,
+      });
     }
 
-    case CreatorActions.RESET: {
-      return init;
+    case CreatorActions.LOAD_SUCCESS: {
+      return Object.assign({}, state, {types: action.payload}, {loading: --state.loading});
+    }
+
+    case CreatorActions.UPDATE: {
+      return Object.assign({}, state, action.payload);
     }
 
     default:
@@ -26,6 +43,23 @@ export default function (state = init, action: Action)  {
 
 }
 
-export function getItems() {
-  return (state$: Observable<any>) => state$;
+// selectors
+export function getTypes() {
+  return (state$: Observable<ICreatorState>) => state$
+    .map(s => s.types);
+}
+
+export function getType(id: number) {
+  return (state$: Observable<ICreatorState>) => state$
+    .map(s => s.types[id] || []);
+}
+
+export function getArticleLoading() {
+  return (state$: Observable<ICreatorState>) => state$
+    .map(s => s.loading);
+}
+
+export function getArticleLoaded() {
+  return (state$: Observable<ICreatorState>) => state$
+    .map(s => s.loaded);
 }

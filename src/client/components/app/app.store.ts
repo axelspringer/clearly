@@ -1,5 +1,4 @@
 // Importables
-import { ActionReducer } from '@ngrx/store';
 import { combineReducers } from '@ngrx/store';
 import { compose } from '@ngrx/core/compose';
 import { Observable } from 'rxjs/Observable';
@@ -28,23 +27,12 @@ export {
 }
 
 // metareducers
-export default compose(hmrState, storeLogger(), combineReducers)({
+export default compose(storeLogger(), combineReducers)({
   app: appReducer,
   creator: creatorReducer,
   docs: docsReducer,
   article: articleReducer,
 });
-
-// hmr
-export function hmrState(reducer: ActionReducer<any>): ActionReducer<any> {
-  const ACTION = 'RESET_STATE';
-  return function (state, action) {
-    if (action.type === ACTION) {
-      return action.payload;
-    }
-    return reducer(state, action);
-  };
-}
 
 // slices
 export function getAppState() {
@@ -68,8 +56,20 @@ export function getArticleState() {
 }
 
 // selectors
-export function getCreatorItems() {
-  return compose(fromCreatorReducer.getItems(), getCreatorState());
+export function getArticleTypes() {
+  return compose(fromCreatorReducer.getTypes(), getCreatorState());
+}
+
+export function getArticleType(id: number) {
+  return compose(fromCreatorReducer.getType(id), getCreatorState());
+}
+
+export function getArticleChannels() {
+  return compose(fromArticleReducer.getChannels(), getArticleState());
+}
+
+export function getArticleChannel(channel: number) {
+  return compose(fromArticleReducer.getChannel(channel), getArticleState());
 }
 
 export function getDocs() {
@@ -86,10 +86,6 @@ export function isDocsLoading() {
 
 export function isDocsLoaded() {
   return compose(fromDocsReducer.getDocsLoaded(), getDocsState());
-}
-
-export function getChannels() {
-  return compose(fromArticleReducer.getChannels(), getArticleState());
 }
 
 export function isChannelsLoaded() {

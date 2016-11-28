@@ -21,7 +21,7 @@ export const ROUTES: Routes = [
         path: '', // later move to a url
         component: CreatorComponent,
         resolve: {
-          channels: CreatorResolver,
+          types: CreatorResolver,
         },
         // canActivate: [CreatorGuard],
         // canDeactivate: [CreatorGuard]

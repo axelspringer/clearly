@@ -1,51 +1,67 @@
 // Importables
+import { Action } from '@ngrx/store';
+import { Actions } from '@ngrx/effects';
+import { Angular2Apollo } from 'angular2-apollo';
+import { Effect } from '@ngrx/effects';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Store } from '@ngrx/store';
+import gql from 'graphql-tag';
 
 // Components
-import { getCreatorItems } from '../app';
-import { IAppState } from '../app';
+import { CreatorActions } from './creator.actions';
+
+const query = gql`
+  query rootQuery {
+    articleTypes {
+      name,
+      displayName,
+      channels {
+        name,
+        displayName,
+        isEnabled
+      },
+      contexts {
+        name,
+        displayName,
+        formType {
+          name,
+          options {
+            required
+          }
+        },
+        type {
+          name,
+          displayName
+        }
+        channels
+      }
+    }
+  }
+`;
 
 @Injectable()
 export class CreatorEffects {
 
-  // @Effect() addItem = this.actions$
-  //   .ofType(CreatorActions.ADD_ITEM)
-  //   .map(action => this.action = action)
-  //   .switchMap(action => {
-  //     return this.store$;
-  //   })
-  //   .switchMap(state => this.db.save(this.action.payload['doc']['id'], state))
-  //   .map(db => {
-  //     console.log(db);
-  //     return db;
-  //   })
-  // .distinctUntilChanged()
-  // // .ofType(CreatorActions.ADD)
-  // .switchMap(state => // get this from orchestraState; this describes the obj id
-  //   this.db.save('013F785C-54CD-C5DB-B4E2-9B3030D8DC17',
-  // '5-da8be31fb166aa5ee38a729082cd86aa', state)
-  //     .catch(err => { console.log(err); return err; })
-  //     .retry(5) // TODO@sdoell: should be reasonable
-  // )
-  // .onErrorResumeNext() // ignore errors from the db, and do not pass along
-  // .filter(payload => {
-  //   console.log('UPDATES', payload);
-  //   return false;
-  // });
-
-  private store$: Observable<any>;
+  @Effect() public loadArticleTypes$: Observable<Action> = this._actions
+    .ofType(CreatorActions.LOAD)
+    .switchMap(() =>
+       this._apollo.query({
+        query: query,
+      })
+      .map(res => res.data) // slice
+      .map(res => ({
+        type: CreatorActions.LOAD_SUCCESS,
+        payload: res.articleTypes,
+      }))
+      .catch(error => Observable.of({
+        type: CreatorActions.LOAD_FAILURE,
+        paylod: error,
+      })));
 
   constructor(
-    private store: Store<IAppState>,
+    private _actions: Actions,
+    private _apollo: Angular2Apollo,
   ) {
-
-    // this.store$ = store.let(getCreatorState());
-    // this.subscription = mergeEffects(this).subscribe(this.store$);
-
-    this.store$ = this.store.let(getCreatorItems());
-
   }
 
 }

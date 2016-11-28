@@ -7,4 +7,5 @@ export * from './content';
 export * from './meta';
 export * from './article.actions';
 export * from './article.effects';
+export * from './article.service';
 export { articleReducer, fromArticleReducer };

@@ -10,6 +10,7 @@ import { ArticleActions } from './article';
 import { ArticleComponent } from './article';
 import { ArticleContentComponent } from './article';
 import { ArticleMetaComponent } from './article';
+import { ArticleService } from './article';
 import { CanActivateArticle } from './creator.guard';
 import { ChannelsDialogComponent } from './dialogs';
 import { CoreModule } from '../../core';
@@ -19,17 +20,18 @@ import { CreatorComponent } from './creator.component';
 import { CreatorService } from './creator.service';
 import { MdModule } from '../app/app.material';
 import { QuickAccessComponent } from './quickAccess';
+import { QuickWrite } from './quickWrite';
 import { QuickWriteComponent } from './quickWrite';
 import { ROUTES } from './creator.routes';
-import { QuickWrite } from './quickWrite';
 
 // providers
 const CREATOR_PROVIDERS = [
   ArticleActions,
-  CreatorActions,
-  CreatorService,
+  ArticleService,
   CanActivateArticle,
   CreatorActions,
+  CreatorActions,
+  CreatorService,
   QuickWrite,
 
   ...CREATOR_RESOLVER_PROVIDERS,
