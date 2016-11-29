@@ -6,7 +6,7 @@
     <!-- Channels -->
     <template ngFor let-channel [ngForOf]="(selectedType | async)?.channels" let-i="index">
       <md-tab label="{{ channel.displayName }}">
-        {{ (articleChannel(i) | async) | json }}
+        <sg-dform [data]="(articleChannel(i) | async)"></sg-dform>
       </md-tab>
     </template>
     <!--<md-tab *ngIf="channel.isEnabled" label="{{ channel.isMaster ? 'Master' : channel.displayName }}">

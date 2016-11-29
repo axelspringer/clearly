@@ -23,8 +23,8 @@ export class ArticleEffects {
         type: ArticleActions.UPDATE,
         payload: {
           channels,
-          master
-        }
+          master,
+        },
       };
     });
 

@@ -58,15 +58,17 @@ export class CreatorComponent implements OnInit, OnDestroy {
   }
 
   public articleChannel(id: number): Observable<any> {
-    return Observable.combineLatest(
-      this._store.let(getArticleChannel(id)),
-    );
+    return this._store
+      .let(getArticleChannel(id))
+      .distinctUntilChanged()
+      .filter(channel => !_.isUndefined(channel));
   }
 
   public get articleMaster(): Observable<any> {
-    return Observable.combineLatest(
-      this._store.let(getArticleMaster()),
-    );
+    return this._store
+      .let(getArticleMaster())
+      .distinctUntilChanged()
+      .filter(master => !_.isUndefined(master));
   }
 
   // angular

@@ -1,5 +1,7 @@
-<form (ngSubmit)="onSubmit()" [formGroup]="dForm.form">
-  <div *ngFor="let entity of dForm.data; let i = index; trackBy: trackFormTypesByKey" class="form-row">
-    <sg-dform-element [element]="entity" [form]="dForm.form"></sg-dform-element>
+<form (ngSubmit)="onSubmit()" [formGroup]="form">
+  <div *ngFor="let entity of data; let i = index; trackBy: trackFormTypesByKey" class="form-row">
+    {{ entity | json }}
+
+    <sg-dform-element [element]="entity" [form]="form"></sg-dform-element>
   </div>
 </form>

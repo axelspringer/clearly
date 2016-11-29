@@ -1,16 +1,15 @@
 /* tslint:disable:max-line-length */
 // Importables
 import { Injectable } from '@angular/core';
+import { Inject } from '@angular/core';
+import { DFORM_TYPES_TOKEN } from '../../../core';
 import * as _ from 'lodash';
-
-// DForm
-import { DForm } from '../../../core';
 
 @Injectable()
 export class ArticleService {
 
   constructor(
-    private _dformService: DForm,
+    @Inject(DFORM_TYPES_TOKEN) private _formTypes,
   ) {
   }
 
@@ -30,7 +29,7 @@ export class ArticleService {
 
   // private
   private _transformToFormElement(context: any) {
-    return this._dformService.newFormType(context.formType.name)(context.formType.options);
+    return this._formTypes.toFormType(context.formType.name, context.formType.options);
   }
 
 }

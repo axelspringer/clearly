@@ -9,88 +9,83 @@ import { IterableDiffer } from '@angular/core';
 import { IterableDiffers } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { Output } from '@angular/core';
+import { OnChanges } from '@angular/core';
 
 // Components
-import { DForm } from './dform.service';
+import { DFormService } from './dform.service';
 import { DFormComponentFocus } from './dform.component.focus';
 import { DFormElement } from './dform.element';
-import { DFormObservable } from './dform.service';
 import { EventEmitProvider } from '../events';
 
 @Component({
   selector: 'sg-dform',
   templateUrl: './dform.component.html',
-  providers: [DForm],
+  providers: [DFormService],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DFormComponent implements OnInit {
+export class DFormComponent implements OnChanges {
 
-  @Input() public elements: Array<DFormElement<any>>;
+  @Input() public data: Array<DFormElement<any>>; // maps to a channel, or something else
   @Output() public update: EventEmitter<FormGroup> = new EventEmitter<FormGroup>();
 
-  public dForm: DFormObservable;
-  private __dFormDiffer: IterableDiffer;
+  public form = new FormGroup({});
+
+  private _dataDiffers: IterableDiffer;
 
   constructor(
-    private __dForm: DForm,
-    private __differs: IterableDiffers,
+    private _differs: IterableDiffers,
+    private _dformService: DFormService,
   ) {
     // re-use existing changeDetector
-    this.__dFormDiffer = this.__differs.find([]).create(null);
+    this._dataDiffers = this._differs.find([]).create(null);
   }
 
   // angular
 
-  public ngOnInit(): void {
-    this.__dForm.toForm$(this.elements) // map to input
-      .subscribe(form => {
-        this.dForm = form;
-        const changes = this.__trackDFormChanges(this.dForm);
-        if (changes) {
-          setTimeout(() => { // this is monkey patched
-            EventEmitProvider
-              .connect(DFormComponentFocus.prototype.constructor.name)
-              .emit(changes._additionsTail
-                ? changes._additionsTail.item.key
-                : changes.collection[changes._removalsHead.previousIndex - 1].key);
-          });
-        }
-      });
+  // public ngOnInit(): void {
+
+  // }
+
+  public ngOnChanges(changes: any) {
+    const differs = this._dataDiffers.diff(changes['data'].currentValue);
+    if (differs) {
+      this.form = this._dformService.dformElementsToFormGroup(changes['data'].currentValue);
+    }
   }
 
   // public
 
-  public addFormElement(afterFormEntity: DFormElement<any>, newFormType?: string) {
-    const el = this.dForm.data.findIndex(formEntity => formEntity.key === afterFormEntity.key) + 1;
-    if (el !== -1) {
-      this.dForm.data.splice(el, 0, this.__dForm.newFormType(newFormType)());
-      this.dForm.form.addControl(this.dForm.data[el].key, this.__dForm.dFormElementToFormControl(this.dForm.data[el]));
-    }
-  }
+  // public addFormElement(afterFormEntity: DFormElement<any>, newFormType?: string) {
+  //   const el = this.dForm.data.findIndex(formEntity => formEntity.key === afterFormEntity.key) + 1;
+  //   if (el !== -1) {
+  //     this.dForm.data.splice(el, 0, this.__dForm.newFormType(newFormType)());
+  //     this.dForm.form.addControl(this.dForm.data[el].key, this.__dForm.dFormElementToFormControl(this.dForm.data[el]));
+  //   }
+  // }
 
-  public removeFormElement(oldFormEntity: DFormElement<any>) {
-    if (this.dForm.data.length > 1) {
-      this.dForm.data.splice(this.dForm.data.findIndex(formEntity => formEntity.key === oldFormEntity.key), 1);
-    }
-  }
+  // public removeFormElement(oldFormEntity: DFormElement<any>) {
+  //   if (this.dForm.data.length > 1) {
+  //     this.dForm.data.splice(this.dForm.data.findIndex(formEntity => formEntity.key === oldFormEntity.key), 1);
+  //   }
+  // }
 
-  public changeFormElementType(changeFormEntity: DFormElement<any>, newFormType: string) {
-    const el = this.dForm.data.findIndex(formEntity => formEntity.key === changeFormEntity.key);
-    if (el !== -1) {
-      this.dForm.data[el] = this.__dForm.newFormType(newFormType)();
-      this.dForm.form.setControl(this.dForm.data[el].key, this.__dForm.dFormElementToFormControl(this.dForm.data[el]));
-    }
-  }
+  // public changeFormElementType(changeFormEntity: DFormElement<any>, newFormType: string) {
+  //   const el = this.dForm.data.findIndex(formEntity => formEntity.key === changeFormEntity.key);
+  //   if (el !== -1) {
+  //     this.dForm.data[el] = this.__dForm.newFormType(newFormType)();
+  //     this.dForm.form.setControl(this.dForm.data[el].key, this.__dForm.dFormElementToFormControl(this.dForm.data[el]));
+  //   }
+  // }
 
-  public trackFormTypesByKey(index, item) {
-    index = 0; // remove later
-    return item.key;
-  }
+  // public trackFormTypesByKey(index, item) {
+  //   index = 0; // remove later
+  //   return item.key;
+  // }
 
-  // private
+  // // private
 
-  private __trackDFormChanges(dform: DFormObservable) {
-    return this.__dFormDiffer.diff(dform.data);
-  }
+  // private __trackDFormChanges(dform: DFormObservable) {
+  //   return this.__dFormDiffer.diff(dform.data);
+  // }
 
 };

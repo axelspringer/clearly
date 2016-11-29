@@ -12,7 +12,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AtLeastValidatorDirective } from './forms';
 import { DATABASE_PROVIDERS } from './db';
 import { DatabaseProvider } from './db';
-import { DForm } from './dform';
 import { DFormAbstractComponent } from './dform';
 import { DFormComponent } from './dform';
 import { DFormDropDownComponent } from './dform';
@@ -37,6 +36,7 @@ import { NotifyProvider } from './notify';
 import { TranslateCustomLoader } from './i18n';
 import { DFormPictureComponent } from './dform';
 import { SgFileDroppableDirective } from './forms';
+import { DFORM_TYPES_PROVIDER } from './dform';
 
 @NgModule({
   imports: [
@@ -116,7 +116,7 @@ import { SgFileDroppableDirective } from './forms';
     TranslateService,
 
     // Dynamic Forms
-    DForm,
+    DFORM_TYPES_PROVIDER,
 
     // Angular
     ...HTTP_PROVIDERS,

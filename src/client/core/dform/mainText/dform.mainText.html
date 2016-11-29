@@ -1,4 +1,4 @@
-<sg-dform-quickbar [element]="element">
+<!--<sg-dform-quickbar [element]="element">
   <md-card [formGroup]="form">
     <md-card-content>
       <textarea #input [sgDFormElementEvents]="element" [disabled]="element.fromMaster && !element.disabled" [formControlName]="element.key"
@@ -7,4 +7,6 @@
     </md-card-content>
     <sg-dform-quickedit [formElement]="element"></sg-dform-quickedit>
   </md-card>
-</sg-dform-quickbar>
+</sg-dform-quickbar>-->
+
+{{ element | json }}
