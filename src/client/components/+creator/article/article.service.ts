@@ -30,7 +30,6 @@ export class ArticleService {
 
   // private
   private _transformToFormElement(context: any) {
-    console.log(context);
     return this._dformService.newFormType(context.formType.name)(context.formType.options);
   }
 

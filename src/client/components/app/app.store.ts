@@ -56,20 +56,24 @@ export function getArticleState() {
 }
 
 // selectors
-export function getSelectedType() {
+export function getCreatorSelectedType() {
   return compose(fromCreatorReducer.getSelectedType(), getCreatorState());
 }
 
-export function getArticleTypes() {
+export function getCreatorTypes() {
   return compose(fromCreatorReducer.getTypes(), getCreatorState());
 }
 
-export function getArticleType(id: number) {
+export function getCreatorType(id: number) {
   return compose(fromCreatorReducer.getType(id), getCreatorState());
 }
 
 export function getArticleChannels() {
   return compose(fromArticleReducer.getChannels(), getArticleState());
+}
+
+export function getArticleMaster() {
+  return compose(fromArticleReducer.getMaster(), getArticleState());
 }
 
 export function getArticleChannel(channel: number) {

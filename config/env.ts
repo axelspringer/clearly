@@ -26,13 +26,13 @@ export const CUSTOM_PLUGINS_COMMON = [
   new LoaderOptionsPlugin({
     debug: true,
     options: {
-      postcss: function () {
+      postcss: () => {
         return [
           Autoprefixer,
           CssNano,
         ];
       },
-    }
+    },
   }),
   new ExtractTextPlugin('boot.css'),
 ];
@@ -49,7 +49,7 @@ export const CUSTOM_RULES_COMMON = [
   {
     test: /\.(graphql|gql)$/,
     exclude: /node_modules/,
-    use: 'graphql-tag/loader'
+    use: 'graphql-tag/loader',
   },
   {
     test: /boot.scss/,
@@ -58,7 +58,7 @@ export const CUSTOM_RULES_COMMON = [
         'style',
         'css',
         'postcss',
-        'sass'
+        'sass',
       ]),
     ],
   },

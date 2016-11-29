@@ -1,3 +1,4 @@
+/* tslint:disable: variable-name max-line-length no-var-requires no-unused-variable */
 /**
  * Configuration for head elements added during the creation of index.html.
  *
@@ -38,7 +39,8 @@ export default {
     { rel: 'manifest', href: '/assets/manifest.json' },
 
     /** <link> tags for fonts **/
-    { rel: 'stylesheet', href: 'https://fonts.googleapis.com/icon?family=Material+Icons' }
+    { rel: 'stylesheet', href: 'https://fonts.googleapis.com/icon?family=Material+Icons' },
+    { rel: 'stylesheet', href: 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' },
 
   ],
   meta: [

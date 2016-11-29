@@ -5,7 +5,9 @@ export enum KEY_CODES {
 }
 
 export * from './abstract';
+export * from './dform.component.focus';
 export * from './dform.component';
+export * from './dform.element.component';
 export * from './dform.element.events';
 export * from './dform.element';
 export * from './dform.service';

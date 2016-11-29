@@ -7,9 +7,7 @@ import { DFormElement } from '../../../../core';
 
 @Component({
   selector: 'sg-article-meta',  // <sg-article-meta></sg-article-meta>
-  styleUrls: [
-    './meta.component.scss',
-  ],
+  styleUrls: [ './meta.component.scss' ],
   templateUrl: './meta.component.html',
 })
 export class ArticleMetaComponent {

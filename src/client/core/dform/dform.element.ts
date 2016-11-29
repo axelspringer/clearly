@@ -1,11 +1,20 @@
-import { Component } from '@angular/core';
-import { FormGroup } from '@angular/forms';
-import { Input } from '@angular/core';
-import { ValidatorFn } from '@angular/forms';
+/* tslint:disable: adjacent-overload-signatures */
+export interface IDFormElementOptions<T> {
+  channels: T[];
+  controlType?: string;
+  disabled?: boolean;
+  key?: string; // could be id
+  label?: string;
+  type?: string;
+  order?: number;
+  required?: boolean;
+  validators?: T[];
+  value?: T;
+}
 
-export class DFormElement<T> {
+export class DFormElement<T> implements IDFormElementOptions<T> {
 
-  private static __generateKey () {
+  private static __generateKey() {
     return Math.random().toString(36).substr(2, 10);
   };
 
@@ -16,46 +25,21 @@ export class DFormElement<T> {
   public order: number;
   public controlType: string;
   public disabled: boolean;
-  public fromMaster: boolean;
-  public validators: Array<ValidatorFn>;
+  public validators: T[];
+  public channels: T[];
+  public type: string;
 
-  constructor(options: {
-      value?: T,
-      key?: string,
-      label?: string,
-      required?: boolean,
-      order?: number,
-      controlType?: string,
-      disabled?: boolean,
-      fromMaster?: boolean,
-      validators?: Array<ValidatorFn>,
-      isMaster?: boolean,
-    } = {}) {
+  constructor(options: IDFormElementOptions<T> = {} as IDFormElementOptions<T>) {
     this.value = options.value;
     this.key = options.key || DFormElement.__generateKey();
     this.label = options.label || '';
     this.required = !!options.required;
     this.order = options.order === undefined ? 1 : options.order;
+    this.channels = options.channels || [];
     this.controlType = options.controlType || '';
     this.disabled = options.disabled || false;
-    this.fromMaster = options.fromMaster || false;
     this.validators = options.validators || [];
     // by default do not disable, could be enabled later
-  }
-
-};
-
-@Component({
-  selector: 'sg-dform-element',
-  templateUrl: './dform.element.html',
-})
-export class DFormDynamicElementComponent {
-
-  @Input() public element: DFormElement<any>;
-  @Input() public form: FormGroup;
-
-  get isValid() {
-    return this.form.controls[this.element.key].valid;
   }
 
 };

@@ -28,7 +28,7 @@ export default function (state = init, action: Action): ICreatorState  {
       return Object.assign({}, state, {
         selectedType: state.types[action.payload]
           ? action.payload
-          : _.first(state.types)
+          : _.first(state.types),
         });
     }
 

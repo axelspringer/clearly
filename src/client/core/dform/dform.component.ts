@@ -12,17 +12,10 @@ import { Output } from '@angular/core';
 
 // Components
 import { DForm } from './dform.service';
+import { DFormComponentFocus } from './dform.component.focus';
 import { DFormElement } from './dform.element';
 import { DFormObservable } from './dform.service';
-import { Event } from '../events';
 import { EventEmitProvider } from '../events';
-
-// Interface
-export class DFormComponentFocus extends Event {
-  constructor(payload: any = {}) {
-    super(payload);
-  }
-}
 
 @Component({
   selector: 'sg-dform',

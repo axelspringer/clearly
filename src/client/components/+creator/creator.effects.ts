@@ -28,13 +28,10 @@ const query = gql`
         formType {
           name,
           options {
-            required
+            required,
+            type
           }
         },
-        type {
-          name,
-          displayName
-        }
         channels
       }
     }
@@ -48,7 +45,7 @@ export class CreatorEffects {
     .ofType(CreatorActions.LOAD)
     .switchMap(() =>
        this._apollo.query({
-        query: query,
+        query,
       })
       .map(res => res.data) // slice
       .map(res => ({

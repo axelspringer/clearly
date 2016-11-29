@@ -94,6 +94,11 @@
   },
 
   "CREATOR": {
+    "TAB": {
+      "MASTER": {
+        "LABEL": "Unzugeordnet"
+      }
+    },
     "DIALOG": {
       "CHANNELS": {
         "TITEL": "Kanäle auswählen:",

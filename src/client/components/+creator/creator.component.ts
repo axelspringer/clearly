@@ -9,6 +9,7 @@ import { MdDialog } from '@angular/material';
 import { MdDialogConfig } from '@angular/material';
 import { MdDialogRef } from '@angular/material';
 import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 import * as _ from 'lodash';
 
 // Components
@@ -16,9 +17,11 @@ import { ArticleActions } from './article';
 import { ChannelsDialogComponent } from './dialogs';
 import { CreatorActions } from './creator.actions';
 import { EventEmitProvider } from '../../core';
-import { getSelectedType } from '../app';
+import { getCreatorSelectedType } from '../app';
 import { IAppState } from '../app';
 import { ToolbarTitleUpdate } from '../toolbar';
+import { getArticleChannel } from '../app';
+import { getArticleMaster } from '../app';
 
 @Component({
   selector: 'sg-creator',  // <creator></creator>
@@ -46,12 +49,32 @@ export class CreatorComponent implements OnInit, OnDestroy {
   ) {
   }
 
+  // public
+
+  public get selectedType(): Observable<any> {
+    return this._store.let(getCreatorSelectedType())
+      .distinctUntilChanged()
+      .filter(selectedType => !_.isUndefined(selectedType));
+  }
+
+  public articleChannel(id: number): Observable<any> {
+    return Observable.combineLatest(
+      this._store.let(getArticleChannel(id)),
+    );
+  }
+
+  public get articleMaster(): Observable<any> {
+    return Observable.combineLatest(
+      this._store.let(getArticleMaster()),
+    );
+  }
+
+  // angular
+
   public ngOnInit() {
     console.log(`Initializing 'Creator' ...`);
 
-    this._store.let(getSelectedType())
-      .distinctUntilChanged()
-      .filter(selectedType => !_.isUndefined(selectedType))
+    this.selectedType
       .subscribe(selectedType => {
         this._store.dispatch(this._articleActions.updateArticle(selectedType));
       });

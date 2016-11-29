@@ -25,7 +25,7 @@ export default function (state = init, action: Action)  {
     case AppActions.BOOT_SUCCESS: {
       return Object.assign({}, state, {
         isBooting: false,
-      })
+      });
     }
 
     default:
