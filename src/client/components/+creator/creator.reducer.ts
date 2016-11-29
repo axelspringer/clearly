@@ -10,17 +10,27 @@ export interface ICreatorState {
   loaded: boolean;
   loading: number;
   types: any[];
+  selectedType: number | undefined;
 }
 
 const init: ICreatorState = {
   loaded: false, // means to load data
   loading: 0,
   types: [],
+  selectedType: undefined,
 };
 
 export default function (state = init, action: Action): ICreatorState  {
 
   switch (action.type) {
+
+    case CreatorActions.SELECT_TYPE: {
+      return Object.assign({}, state, {
+        selectedType: state.types[action.payload]
+          ? action.payload
+          : _.first(state.types)
+        });
+    }
 
     case CreatorActions.LOAD: {
       return Object.assign({}, state, {
@@ -47,6 +57,11 @@ export default function (state = init, action: Action): ICreatorState  {
 export function getTypes() {
   return (state$: Observable<ICreatorState>) => state$
     .map(s => s.types);
+}
+
+export function getSelectedType() {
+  return (state$: Observable<ICreatorState>) => state$
+    .map(s => s.types[s.selectedType] || _.first(s.types));
 }
 
 export function getType(id: number) {

@@ -179,7 +179,7 @@ const devConfig = function () {
   };
 
   config.entry = {
-    main: [].concat(polyfills(), './src/main.client', rxjs()),
+    main: [].concat(polyfills(), rxjs(), vendors(), './src/main.client',),
   };
 
   config.output = {
@@ -202,10 +202,6 @@ const devConfig = function () {
     new DllReferencePlugin({
       context: '.',
       manifest: require(`./dll/vendors-manifest.json`),
-    }),
-    new DllReferencePlugin({
-      context: '.',
-      manifest: require(`./dll/rxjs-manifest.json`),
     }),
     new HtmlWebpackPlugin({
       template: 'src/index.html',

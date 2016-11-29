@@ -13,7 +13,6 @@ export class ArticleActions {
   public static UPDATE_ARTICLE  = '[ARTICLE:UPDATE_ARTICLE]';
 
   public updateArticle(newArticleType: any): Action {
-    console.info(newArticleType);
     return {
       type: ArticleActions.UPDATE_ARTICLE,
       payload: newArticleType

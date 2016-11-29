@@ -1,5 +1,4 @@
 // Importables
-import { ActivatedRoute } from '@angular/router';
 import { FormGroup } from '@angular/forms';
 import { OnDestroy } from '@angular/core';
 import { OnInit } from '@angular/core';
@@ -13,11 +12,13 @@ import { Store } from '@ngrx/store';
 import * as _ from 'lodash';
 
 // Components
-import { EventEmitProvider } from '../../core';
-import { ToolbarTitleUpdate } from '../toolbar';
-import { ChannelsDialogComponent } from './dialogs';
-import { IAppState } from '../app';
 import { ArticleActions } from './article';
+import { ChannelsDialogComponent } from './dialogs';
+import { CreatorActions } from './creator.actions';
+import { EventEmitProvider } from '../../core';
+import { getSelectedType } from '../app';
+import { IAppState } from '../app';
+import { ToolbarTitleUpdate } from '../toolbar';
 
 @Component({
   selector: 'sg-creator',  // <creator></creator>
@@ -39,7 +40,7 @@ export class CreatorComponent implements OnInit, OnDestroy {
 
     private _store: Store<IAppState>,
     private _articleActions: ArticleActions,
-    private _route: ActivatedRoute,
+    private _creatorActions: CreatorActions,
     private _translate: TranslateService,
     private _viewContainerRef: ViewContainerRef,
   ) {
@@ -48,11 +49,14 @@ export class CreatorComponent implements OnInit, OnDestroy {
   public ngOnInit() {
     console.log(`Initializing 'Creator' ...`);
 
-    this._route.data // we use first
-      .map(data => data['types']) // switch to a new observable
-      .subscribe(types => {
-        this._store.dispatch(this._articleActions.updateArticle(_.first(types)));
+    this._store.let(getSelectedType())
+      .distinctUntilChanged()
+      .filter(selectedType => !_.isUndefined(selectedType))
+      .subscribe(selectedType => {
+        this._store.dispatch(this._articleActions.updateArticle(selectedType));
       });
+
+    this._store.dispatch(this._creatorActions.selectType(0));
 
     this._translate.get(this.i18nTitle).subscribe(t =>
       EventEmitProvider.connect(ToolbarTitleUpdate.prototype.constructor.name).emit(t));

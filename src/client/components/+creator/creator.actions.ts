@@ -15,6 +15,15 @@ export class CreatorActions {
   public static RESET         = '[CREATOR:RESET]';
   public static UPDATE        = '[CREATOR:UPDATE]';
 
+  public static SELECT_TYPE   = '[CREATOR:SELECT_TYPE]';
+
+  public selectType(id: number): Action {
+    return {
+      type: CreatorActions.SELECT_TYPE,
+      payload: id
+    }
+  }
+
   public load(): Action { // do not do any query now
     return {
       type: CreatorActions.LOAD,
