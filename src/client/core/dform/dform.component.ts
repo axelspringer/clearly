@@ -7,15 +7,12 @@ import { FormGroup } from '@angular/forms';
 import { Input } from '@angular/core';
 import { IterableDiffer } from '@angular/core';
 import { IterableDiffers } from '@angular/core';
-import { OnInit } from '@angular/core';
 import { Output } from '@angular/core';
 import { OnChanges } from '@angular/core';
 
 // Components
 import { DFormService } from './dform.service';
-import { DFormComponentFocus } from './dform.component.focus';
 import { DFormElement } from './dform.element';
-import { EventEmitProvider } from '../events';
 
 @Component({
   selector: 'sg-dform',
@@ -30,30 +27,30 @@ export class DFormComponent implements OnChanges {
 
   public form = new FormGroup({});
 
-  private _dataDiffers: IterableDiffer;
+  private _dataDiffer: IterableDiffer;
 
   constructor(
     private _differs: IterableDiffers,
     private _dformService: DFormService,
   ) {
-    // re-use existing changeDetector
-    this._dataDiffers = this._differs.find([]).create(null);
+    this._dataDiffer = this._differs.find([]).create(null); // re-use existing changeDetector
   }
 
   // angular
 
-  // public ngOnInit(): void {
-
-  // }
-
   public ngOnChanges(changes: any) {
-    const differs = this._dataDiffers.diff(changes['data'].currentValue);
-    if (differs) {
+    const differs = this._dataDiffer.diff(changes['data'].currentValue);
+    if (differs) { // if 'data' differs
       this.form = this._dformService.dformElementsToFormGroup(changes['data'].currentValue);
     }
   }
 
   // public
+
+  public trackFormTypesByKey(index: number, element) {
+    index = 0; // remove later
+    return element.key;
+  }
 
   // public addFormElement(afterFormEntity: DFormElement<any>, newFormType?: string) {
   //   const el = this.dForm.data.findIndex(formEntity => formEntity.key === afterFormEntity.key) + 1;
@@ -75,11 +72,6 @@ export class DFormComponent implements OnChanges {
   //     this.dForm.data[el] = this.__dForm.newFormType(newFormType)();
   //     this.dForm.form.setControl(this.dForm.data[el].key, this.__dForm.dFormElementToFormControl(this.dForm.data[el]));
   //   }
-  // }
-
-  // public trackFormTypesByKey(index, item) {
-  //   index = 0; // remove later
-  //   return item.key;
   // }
 
   // // private

@@ -1,10 +1,11 @@
+/* tslint:disable: max-classes-per-file */
 // Importables
 import { Component } from '@angular/core';
-import { Input } from '@angular/core';
-import { FormGroup } from '@angular/forms';
 
 // Components
 import { DFormElement } from '../dform.element';
+import { IDFormElementOptions } from '../dform.element';
+import { DFormAbstractComponent } from '../dform.element.abstract';
 
 export class DFormMetaText extends DFormElement<string> {
 
@@ -14,7 +15,7 @@ export class DFormMetaText extends DFormElement<string> {
   public hint: string;
 
   constructor(options: {} = {}) {
-    super(options);
+    super(options as IDFormElementOptions<any>);
     this.type = options['type'] || '';
     this.placeholder = options['placeholder'] || '';
     this.hint = options['hint'] || '';
@@ -22,15 +23,18 @@ export class DFormMetaText extends DFormElement<string> {
 
 };
 
-@Component({
+const metaData = Object.assign({ // we patch metaData, have to wait for next release of Angular
   selector: 'sg-dform-meta-text',
   templateUrl: './dform.metaText.html',
   styleUrls: ['./dform.metaText.scss'],
-})
-export class DFormMetaTextComponent {
+}, DFormAbstractComponent.metaData );
 
-  @Input() public element: DFormElement<string>;
-  @Input() public form: FormGroup;
+@Component(metaData)
+export class DFormMetaTextComponent extends DFormAbstractComponent {
+
+  constructor() {
+    super();
+  }
 
   public toggle(key) {
     this.form.controls[key].setValue('');

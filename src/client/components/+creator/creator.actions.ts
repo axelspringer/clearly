@@ -20,22 +20,22 @@ export class CreatorActions {
   public selectType(id: number): Action {
     return {
       type: CreatorActions.SELECT_TYPE,
-      payload: id
-    }
+      payload: id,
+    };
   }
 
   public load(): Action { // do not do any query now
     return {
       type: CreatorActions.LOAD,
     };
-  };
+  }
 
   public update(newState: any): Action {
     return {
       type: CreatorActions.UPDATE,
       payload: newState,
     };
-  };
+  }
 
   public reset(): Action {
     return {

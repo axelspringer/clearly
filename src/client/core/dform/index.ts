@@ -67,13 +67,14 @@ export const DFORM_TYPES_PROVIDER = {
   },
 };
 
-export * from './abstract';
+// export * from './abstract';
 export * from './dform.component.focus';
 export * from './dform.component';
 export * from './dform.element.component';
 export * from './dform.element.events';
 export * from './dform.element';
 export * from './dform.service';
+export * from './dform.element.abstrat';
 export * from './dropDown';
 export * from './mainText';
 export * from './metaBar';

@@ -10,9 +10,6 @@ import { DFormElement } from './dform.element';
 @Injectable()
 export class DFormService { // central service of a dynamic form
 
-  // private __form: BehaviorSubject<DFormObservable> = new BehaviorSubject();
-  // private __formEntities: Array<DFormElement<any>>; // it is cache
-
   constructor() {
     console.log(`Initializing ${this.constructor.name} ...`);
   }

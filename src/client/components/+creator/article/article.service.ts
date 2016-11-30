@@ -14,22 +14,23 @@ export class ArticleService {
   }
 
   public transformToMaster(contexts: any[]) {
-    return _.map(_.filter(contexts, context => context['channels'].length === 0),
+    return _.map(_.filter(contexts, context => context.formType.options.channels.length === 0),
       context => this._transformToFormElement(context)); // should also filter for not channel
   }
 
   public transformToChannels(contexts: any[], channels: any[]) {
     return _.map(channels, channel => {
       return _.map(_.filter(contexts, context =>
-        context['channels'].length === 0 || _.includes(context.channels, channel.id)),
-          context => this._transformToFormElement(context));
+        context.formType.options.channels.length === 0 || _.includes(context.formType.options.channels, channel.id)),
+          context => this._transformToFormElement(context, channel.id));
           // should map the object, metadata in dform object
     });
   }
 
   // private
-  private _transformToFormElement(context: any) {
-    return this._formTypes.toFormType(context.formType.name, context.formType.options);
+  private _transformToFormElement(context: any, channel?: number) {
+    return this._formTypes.toFormType(context.formType.name,
+      _.assign(context.formType.options, {channel}));
   }
 
 }

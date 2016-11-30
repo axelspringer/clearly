@@ -29,10 +29,10 @@ const query = gql`
           name,
           options {
             required,
-            type
+            type,
+            channels
           }
-        },
-        channels
+        }
       }
     }
   }

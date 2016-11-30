@@ -1,5 +1,4 @@
 <div [formGroup]="form">
-  <label [attr.for]="element.key">{{element.label}}</label>
   <div [ngSwitch]="element.controlType">
     <sg-dform-abstract [element]="element" [form]="form" *ngSwitchCase="'abstract'"></sg-dform-abstract>
     <sg-dform-dropdown [element]="element" [form]="form" *ngSwitchCase="'dropDown'"></sg-dform-dropdown>
@@ -10,5 +9,4 @@
     <sg-dform-textarea [element]="element" [form]="form" *ngSwitchCase="'textArea'"></sg-dform-textarea>
     <sg-dform-picture [element]="element" [form]="form" *ngSwitchCase="'picture'"></sg-dform-picture>
   </div>
-  <div class="errorMessage" *ngIf="!isValid">{{ element.label }} is required</div>
 </div>

@@ -1,10 +1,9 @@
 <div class="metaTextForm">
 	<div [formGroup]="form">
-		<md-input [disabled]="element.fromMaster && !element.disabled" [formControlName]="element.key" [id]="element.key" [placeholder]="element.placeholder">
-		</md-input>
-    <ul *ngIf="element.fromMaster">
+		<md-input [formControlName]="element.key" [id]="element.key" [placeholder]="element.placeholder"></md-input>
+    <!--<ul *ngIf="element.fromMaster">
       <li [hidden]="element.disabled">Master</li>
       <li (click)="toggle(element.key, $event)">{{ (element.disabled ? 'DFORM.META_TEXT.LABEL.EDIT.OFF' : 'DFORM.META_TEXT.LABEL.EDIT.ON') | translate }}</li>
-    </ul>
+    </ul>-->
 	</div>
 </div>

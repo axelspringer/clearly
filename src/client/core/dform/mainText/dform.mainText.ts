@@ -1,3 +1,4 @@
+/* tslint:disable: max-classes-per-file */
 // Importables
 import { Component } from '@angular/core';
 import { FormGroup } from '@angular/forms';

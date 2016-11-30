@@ -15,22 +15,17 @@ export class ArticleEffects {
   @Effect() public updateArticle$: Observable<Action> = this._actions
     .ofType(ArticleActions.UPDATE_ARTICLE)
     .map(action => action.payload)
-    .map(type => {
-      const channels = this._articleService.transformToChannels(type.contexts, type.channels);
-      const master = this._articleService.transformToMaster(type.contexts);
-
-      return {
-        type: ArticleActions.UPDATE,
-        payload: {
-          channels,
-          master,
-        },
-      };
-    });
+    .map(type => ({
+      type: ArticleActions.UPDATE,
+      payload: {
+        channels: this._articleService.transformToChannels(type.contexts, type.channels),
+        master: this._articleService.transformToMaster(type.contexts),
+      },
+    }));
 
   constructor(
     private _actions: Actions,
-    private _articleService: ArticleService
+    private _articleService: ArticleService,
   ) {
   }
 

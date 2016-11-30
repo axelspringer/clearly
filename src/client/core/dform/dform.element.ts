@@ -1,6 +1,7 @@
 /* tslint:disable: adjacent-overload-signatures */
 export interface IDFormElementOptions<T> {
   channels: T[];
+  channel: number | undefined;
   controlType?: string;
   disabled?: boolean;
   key?: string; // could be id
@@ -14,31 +15,33 @@ export interface IDFormElementOptions<T> {
 
 export class DFormElement<T> implements IDFormElementOptions<T> {
 
-  private static __generateKey() {
+  public static id() {
     return Math.random().toString(36).substr(2, 10);
   };
 
-  public value: T;
-  public key: string;
-  public label: string;
-  public required: boolean;
-  public order: number;
+  public channel: number | undefined;
+  public channels: T[];
   public controlType: string;
   public disabled: boolean;
-  public validators: T[];
-  public channels: T[];
+  public key: string;
+  public label: string;
+  public order: number;
+  public required: boolean;
   public type: string;
+  public validators: T[];
+  public value: T;
 
   constructor(options: IDFormElementOptions<T> = {} as IDFormElementOptions<T>) {
-    this.value = options.value;
-    this.key = options.key || DFormElement.__generateKey();
-    this.label = options.label || '';
-    this.required = !!options.required;
-    this.order = options.order === undefined ? 1 : options.order;
+    this.channel = options.channel;
     this.channels = options.channels || [];
     this.controlType = options.controlType || '';
     this.disabled = options.disabled || false;
+    this.key = options.key || DFormElement.id();
+    this.label = options.label || '';
+    this.order = options.order === undefined ? 1 : options.order;
+    this.required = !!options.required;
     this.validators = options.validators || [];
+    this.value = options.value;
     // by default do not disable, could be enabled later
   }
 
