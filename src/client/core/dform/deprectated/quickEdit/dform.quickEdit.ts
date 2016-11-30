@@ -21,7 +21,7 @@ import { trigger } from '@angular/core';
 // Components
 import { DFormComponent } from '../dform.component';
 import { DFormElement } from '../dform.element';
-import { DFormComponentFocus } from '../dform.component';
+// import { DFormComponentFocus } from '../dform.component';
 import { EventEmitProvider } from '../../events';
 
 @Component({

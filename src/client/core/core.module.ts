@@ -12,7 +12,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AtLeastValidatorDirective } from './forms';
 import { DATABASE_PROVIDERS } from './db';
 import { DatabaseProvider } from './db';
-import { DFormAbstractComponent } from './dform';
 import { DFormComponent } from './dform';
 import { DFormDropDownComponent } from './dform';
 import { DFormDynamicElementComponent } from './dform';
@@ -20,10 +19,10 @@ import { DFormElementEventsDirective } from './dform';
 import { DFormMainTextComponent } from './dform';
 import { DFormMetaBarComponent } from './dform';
 import { DFormMetaTextComponent } from './dform';
-import { DFormQuickEditComponent } from './dform';
+import { DFormContextComponent } from './dform';
 import { DFormSocialVideoComponent } from './dform';
 import { DFormTextAreaComponent } from './dform';
-import { DFormQuickBarComponent } from './dform';
+// import { DFormQuickBarComponent } from './dform';
 import { DFormTextComponent } from './dform';
 import { EventEmitProvider } from './events';
 import { IteratableObjectPipe } from './pipes';
@@ -53,7 +52,7 @@ import { DFORM_TYPES_PROVIDER } from './dform';
     SgFileDroppableDirective,
 
     // Dynamic Forms
-    DFormAbstractComponent,
+    // DFormAbstractComponent,
     DFormComponent,
     DFormDropDownComponent,
     DFormDynamicElementComponent,
@@ -62,8 +61,8 @@ import { DFORM_TYPES_PROVIDER } from './dform';
     DFormMetaBarComponent,
     DFormMetaTextComponent,
     DFormPictureComponent,
-    DFormQuickBarComponent,
-    DFormQuickEditComponent,
+    // DFormQuickBarComponent,
+    DFormContextComponent,
     DFormSocialVideoComponent,
     DFormTextAreaComponent,
     DFormTextComponent,
@@ -81,7 +80,7 @@ import { DFORM_TYPES_PROVIDER } from './dform';
     LoadingComponent,
 
     // Dynamic Forms
-    DFormAbstractComponent,
+    // DFormAbstractComponent,
     DFormComponent,
     DFormDropDownComponent,
     DFormDynamicElementComponent,
@@ -90,8 +89,8 @@ import { DFORM_TYPES_PROVIDER } from './dform';
     DFormMetaBarComponent,
     DFormMetaTextComponent,
     DFormPictureComponent,
-    DFormQuickBarComponent,
-    DFormQuickEditComponent,
+    // DFormQuickBarComponent,
+    DFormContextComponent,
     DFormSocialVideoComponent,
     DFormTextAreaComponent,
     DFormTextComponent,

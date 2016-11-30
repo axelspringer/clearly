@@ -1,0 +1,9 @@
+$_dform-context-padding: 1rem;
+
+.c {
+  &-dform {
+    &-context {
+      padding: $_dform-context-padding
+    }
+  }
+}

@@ -1,6 +1,10 @@
 /* tslint:disable: max-classes-per-file */
 // Importables
 import { Component } from '@angular/core';
+import { ViewEncapsulation } from '@angular/core';
+import { Inject } from '@angular/core';
+import { forwardRef } from '@angular/core';
+import { ApplicationRef } from '@angular/core';
 
 // Components
 import { DFormElement } from '../dform.element';
@@ -24,21 +28,28 @@ export class DFormMetaText extends DFormElement<string> {
 };
 
 const metaData = Object.assign({ // we patch metaData, have to wait for next release of Angular
+  encapsulation: ViewEncapsulation.None,
   selector: 'sg-dform-meta-text',
-  templateUrl: './dform.metaText.html',
   styleUrls: ['./dform.metaText.scss'],
+  templateUrl: './dform.metaText.html',
 }, DFormAbstractComponent.metaData );
 
 @Component(metaData)
 export class DFormMetaTextComponent extends DFormAbstractComponent {
 
-  constructor() {
-    super();
+  constructor(
+    @Inject(forwardRef(() => ApplicationRef)) public _appRef: ApplicationRef,
+  ) {
+    super(_appRef);
   }
 
   public toggle(key) {
     this.form.controls[key].setValue('');
     this.element['disabled'] = !this.element['disabled'];
+  }
+
+  public test(event) {
+    console.log(`${event}`);
   }
 
 };
