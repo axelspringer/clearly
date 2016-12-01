@@ -27,14 +27,14 @@ export class DFormMetaText extends DFormElement<string> {
 
 };
 
-const metaData = Object.assign({ // we patch metaData, have to wait for next release of Angular
+// const metaData = Object.assign(, DFormAbstractComponent.metaData );
+
+@Component({ // we patch metaData, have to wait for next release of Angular
   encapsulation: ViewEncapsulation.None,
   selector: 'sg-dform-meta-text',
   styleUrls: ['./dform.metaText.scss'],
   templateUrl: './dform.metaText.html',
-}, DFormAbstractComponent.metaData );
-
-@Component(metaData)
+})
 export class DFormMetaTextComponent extends DFormAbstractComponent {
 
   constructor(

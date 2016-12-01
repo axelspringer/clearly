@@ -7,7 +7,7 @@ import * as Autoprefixer from 'autoprefixer';
 import * as CssNano from 'cssnano';
 import * as ExtractTextPlugin from 'extract-text-webpack-plugin';
 import * as LoaderOptionsPlugin from 'webpack/lib/LoaderOptionsPlugin';
-import * as OfflinePlugin from 'offline-plugin';
+// import * as OfflinePlugin from 'offline-plugin';
 
 export const EXCLUDE_SOURCEMAPS = [
   // these packages have problems with their sourcemaps
@@ -42,7 +42,7 @@ export const CUSTOM_PLUGINS_DEV = [
 ];
 
 export const CUSTOM_PLUGINS_PROD = [
-  new OfflinePlugin(),
+  // new OfflinePlugin(),
 ];
 
 export const CUSTOM_RULES_COMMON = [

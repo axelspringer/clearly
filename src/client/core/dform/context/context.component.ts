@@ -3,6 +3,7 @@ import { ChangeDetectionStrategy } from '@angular/core';
 import { Component } from '@angular/core';
 import { ViewEncapsulation } from '@angular/core';
 import { Output } from '@angular/core';
+import { Input } from '@angular/core';
 import { EventEmitter } from '@angular/core';
 
 @Component({
@@ -14,13 +15,14 @@ import { EventEmitter } from '@angular/core';
 })
 export class DFormContextComponent {
 
+  @Input() public subject = 'Untitled';
   @Output() public addVariant = new EventEmitter();
 
   // angular
 
   // public
 
-  public doTest(event: Event) {
+  public doAddVariant(event: Event) {
     event.preventDefault();
     this.addVariant.emit(true);
   }

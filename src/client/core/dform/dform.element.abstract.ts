@@ -14,13 +14,6 @@ import { DFormElement } from './dform.element';
 // Directive
 export class DFormAbstractComponent implements OnInit {
 
-  public static metaData = { // this should be refactored
-    inputs: [
-      'element',
-      'form',
-    ],
-  };
-
   public variants: FormArray;
 
   @Input() public element: DFormElement<string>;

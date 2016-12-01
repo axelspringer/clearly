@@ -1,9 +1,135 @@
-$_dform-context-padding: 1rem;
+// not so nice, but needed
+// @import '../../../../../lib/sass/mixins';
 
-.c {
-  &-dform {
-    &-context {
-      padding: $_dform-context-padding
+$_dform-context-padding: 1rem;
+$_dform-context-border-color: rgba(151, 151, 151, 1);
+$_dform-context-background-color: rgba(216, 216, 216, 1);
+$_dform-context-border-style: solid;
+$_dform-context-border-width: 1px;
+
+$_dform-prefix: 'dform';
+
+.c-#{$_dform-prefix} {
+
+  &-context {
+    padding: $_dform-context-padding;
+
+    &__subject {
+
+      display: flex;
+
+      & > * { // be cool
+
+        border-color: $_dform-context-border-color;
+        border-style: $_dform-context-border-style;
+        border-width: $_dform-context-border-width;
+        font-size: inherit;
+        font-weight: normal;
+        // reset
+        border-bottom: 0;
+        line-height: 1.75rem;
+        margin: 0;
+        padding: 0 1.25rem;
+
+      }
+
     }
+
+    &__variants {
+
+      border-color: $_dform-context-border-color;
+      border-style: $_dform-context-border-style;
+      border-width: $_dform-context-border-width;
+
+      padding: $_dform-context-padding;
+
+    }
+
+    &__edit {
+
+      display: flex;
+      justify-content: space-between;
+
+    }
+
   }
+
+}
+
+.o-#{$_dform-prefix} {
+
+  &-context {
+
+    &-actions {
+
+      display: flex;
+
+      button {
+
+        padding: 5px 10px;
+        background-color: $_dform-context-background-color;
+
+        border-color: $_dform-context-border-color;
+        border-style: $_dform-context-border-style;
+        border-width: $_dform-context-border-width;
+        // reset
+        border-top: 0;
+
+        outline: none;
+
+        -webkit-appearance: none;
+
+        &:hover {
+
+          background-color: darken($_dform-context-background-color, 5%);
+
+        }
+
+      }
+
+      button + button {
+
+        border-left: 0;
+
+      }
+
+    }
+
+    &-meta {
+
+      & > ul {
+
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+        display: flex;
+        flex-direction: row-reverse;
+
+        align-items: center;
+
+        li {
+
+          border-color: $_dform-context-border-color;
+          border-style: $_dform-context-border-style;
+          border-width: $_dform-context-border-width;
+          // reset
+          border-top: 0;
+
+          padding: 5px 10px;
+
+        }
+
+        li + li {
+
+          border-right: 0;
+
+        }
+
+      }
+
+    }
+
+  }
+
 }
