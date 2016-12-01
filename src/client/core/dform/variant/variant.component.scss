@@ -1,0 +1,56 @@
+// not so nice, but needed
+// @import '../../../../../lib/sass/mixins';
+
+@import '../variables';
+
+
+.c-#{$_dform-prefix} {
+
+  &-variant {
+
+    ul.o-#{$_dform-prefix} {
+
+      li {
+
+        border-right: 0;
+
+      }
+
+    li + li {
+
+        border-top: 0;
+
+      }
+
+    }
+
+    display: flex;
+
+    margin: $_dform-padding 0;
+
+    &__actions {
+
+      display: flex;
+      flex-direction: column;
+
+    }
+
+    &__element {
+
+      flex-grow: 1;
+
+      border-color: $_dform-border-color;
+      border-style: $_dform-border-style;
+      border-width: $_dform-border-width;
+
+      padding: $_dform-padding;
+
+    }
+
+  }
+
+}
+
+.o-#{$_dform-prefix} {
+
+}

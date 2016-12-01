@@ -48,8 +48,4 @@ export class DFormMetaTextComponent extends DFormAbstractComponent {
     this.element['disabled'] = !this.element['disabled'];
   }
 
-  public test(event) {
-    console.log(`${event}`);
-  }
-
 };

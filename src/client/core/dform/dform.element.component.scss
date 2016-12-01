@@ -1,0 +1,26 @@
+@import 'variables';
+
+// objects
+ul.o-#{$_dform-prefix} {
+
+  &.test {
+    background-color: red;
+  }
+
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+
+      border-color: $_dform-border-color;
+      border-style: $_dform-border-style;
+      border-width: $_dform-border-width;
+
+      padding: 5px 10px;
+
+      text-align: center;
+
+    }
+
+}

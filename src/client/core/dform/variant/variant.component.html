@@ -1,0 +1,15 @@
+<div class="c-dform-variant">
+  <div class="c-dform-variant__actions">
+    <ul class="o-dform">
+      <li>{{ index }}</li>
+      <li (click)="fav(index)">
+        <i [ngClass]="classz" class="fa" aria-hidden="true"></i>
+      </li>
+    </ul>
+  </div>
+  <div class="c-dform-variant__element">
+    {{ form.value | json }}
+    <ng-content></ng-content>
+  </div>
+</div>
+

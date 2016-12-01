@@ -22,6 +22,7 @@ import { DFormMetaTextComponent } from './dform';
 import { DFormContextComponent } from './dform';
 import { DFormSocialVideoComponent } from './dform';
 import { DFormTextAreaComponent } from './dform';
+import { DFormVariantComponent } from './dform';
 // import { DFormQuickBarComponent } from './dform';
 import { DFormTextComponent } from './dform';
 import { EventEmitProvider } from './events';
@@ -66,6 +67,7 @@ import { DFORM_TYPES_PROVIDER } from './dform';
     DFormSocialVideoComponent,
     DFormTextAreaComponent,
     DFormTextComponent,
+    DFormVariantComponent,
   ],
   declarations: [
     // Pipes
@@ -94,6 +96,7 @@ import { DFORM_TYPES_PROVIDER } from './dform';
     DFormSocialVideoComponent,
     DFormTextAreaComponent,
     DFormTextComponent,
+    DFormVariantComponent,
   ],
   providers: [
     // Events

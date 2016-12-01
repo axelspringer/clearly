@@ -5,7 +5,6 @@ import { OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ApplicationRef } from '@angular/core';
 import { FormArray } from '@angular/forms';
-
 import * as _ from 'lodash';
 
 // Components
@@ -39,6 +38,17 @@ export class DFormAbstractComponent implements OnInit {
 
   public addVariant() {
     this.variants.push(this._newFormControl());
+  }
+
+  public isFaved(event) {
+    event -= 1;
+    _.forEach(this.variants.controls, (variant, index) => {
+      console.log(event === index);
+      variant.setValue({
+        isFav: event === index ? !variant.value.isFav : false,
+        value: '',
+      });
+    });
   }
 
   // private
