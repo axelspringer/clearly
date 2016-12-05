@@ -40,7 +40,7 @@ export class DFormComponent implements OnChanges {
 
   public ngOnChanges(changes: any) {
     const differs = this._dataDiffer.diff(changes['data'].currentValue);
-    if (differs) { // if 'data' differs
+    if (differs) { // if 'data' differs, render to FormGroup
       this.form = this._dformService.dformElementsToFormGroup(changes['data'].currentValue);
     }
   }

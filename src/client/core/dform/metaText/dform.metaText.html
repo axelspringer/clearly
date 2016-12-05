@@ -1,6 +1,5 @@
-<sg-dform-context (addVariant)="addVariant($event)" [subject]="element.subject">
-  {{ element | json }}
-  <div class="metaTextForm">
+<sg-dform-context (addVariant)="addVariant($event)" [subject]="element.subject" [variants]="variants.controls.length">
+  <div class="metaTextForm" *ngIf="variants.controls.length !== 0">
     <div [formGroup]="variants">
       <div *ngFor="let variant of variants.controls; let i=index">
         <sg-dform-variant [index]="i" [form]="variant" (isFaved)="isFaved($event)">

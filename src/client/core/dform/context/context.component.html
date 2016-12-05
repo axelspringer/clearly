@@ -1,11 +1,12 @@
 <div class="c-dform-context">
-  <div class="c-dform-context__subject">
-   <h4>{{ subject }}</h4>
+  <!-- initialized -->
+  <div class="c-dform-context__subject" *ngIf="variants > 0">
+    <h4>{{ subject }}</h4>
   </div>
-  <div class="c-dform-context__variants">
+  <div class="c-dform-context__variants" *ngIf="variants > 0">
     <ng-content></ng-content>
   </div>
-  <div class="c-dform-context__edit">
+  <div class="c-dform-context__edit" *ngIf="variants > 0">
     <div class="o-dform-context-actions">
       <button (click)="doAddVariant($event)"><i class="fa fa-plus" aria-hidden="true"></i></button>
       <button (click)="doSetVariant($event)"><i class="fa fa-cog" aria-hidden="true"></i></button>
@@ -16,5 +17,10 @@
       </ul>
     </div>
   </div>
+  <!-- uninitialized -->
+  <div class="c-dform-context__init" *ngIf="variants === 0">
+    <h4>{{ subject }}</h4>
+    <button (click)="doCopyContext($event)"><i class="fa fa-clone" aria-hidden="true"></i></button>
+    <button (click)="doAddVariant($event)"><i class="fa fa-code-fork" aria-hidden="true"></i></button>
+  </div>
 </div>
-

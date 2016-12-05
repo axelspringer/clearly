@@ -52,6 +52,46 @@ $_dform-prefix: 'dform';
 
     }
 
+    &__init {
+
+      border-color: $_dform-context-border-color;
+      border-style: $_dform-context-border-style;
+      border-width: $_dform-context-border-width;
+
+      display: flex;
+
+      justify-content: flex-end;
+
+      & > *:first-child {
+
+        flex-grow: 1;
+
+      }
+
+      & > * {
+
+        font-size: inherit;
+        font-weight: normal;
+        // reset
+        padding: 0;
+        margin: 0;
+        // set
+        padding: 1rem;
+
+      }
+
+      button {
+
+        background: none;
+        border: 0;
+        outline: none;
+
+        -webkit-appearance: none;
+
+      }
+
+    }
+
   }
 
 }

@@ -16,6 +16,7 @@ import { EventEmitter } from '@angular/core';
 export class DFormContextComponent {
 
   @Input() public subject = 'Untitled';
+  @Input() public variants = 0;
   @Output() public addVariant = new EventEmitter();
 
   // angular
@@ -25,6 +26,10 @@ export class DFormContextComponent {
   public doAddVariant(event: Event) {
     event.preventDefault();
     this.addVariant.emit(true);
+  }
+
+  public doCopyContext(event: Event) {
+    event.preventDefault();
   }
 
   public doSetVariant(event: Event) {
