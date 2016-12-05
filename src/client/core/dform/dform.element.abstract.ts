@@ -47,6 +47,13 @@ export class DFormAbstractComponent implements OnInit {
     });
   }
 
+  public removeVariant(index) {
+    if (this.variants.controls.length > 1) {
+      index -= 1;
+      this.variants.removeAt(index);
+    }
+  }
+
   // private
 
   private _newFormControl() {

@@ -5,6 +5,9 @@
       <li (click)="fav(index)">
         <i [ngClass]="classz | async" class="fa" aria-hidden="true"></i>
       </li>
+      <li *ngIf="form.parent.controls.length > 1" (click)="remove(index)">
+        <i class="fa fa-trash" aria-hidden="true"></i>
+      </li>
     </ul>
   </div>
   <div class="c-dform-variant__element">
@@ -12,4 +15,3 @@
     <ng-content></ng-content>
   </div>
 </div>
-

@@ -19,7 +19,7 @@ import { Observable } from 'rxjs';
   templateUrl: './variant.component.html',
 })
 export class DFormVariantComponent implements OnInit {
-
+  
   @Input() public form: FormControl;
   @Input()
   public set index(newIndex: number) {
@@ -31,6 +31,7 @@ export class DFormVariantComponent implements OnInit {
   };
 
   @Output() public isFaved = new EventEmitter();
+  @Output() public removeVariant = new EventEmitter();
 
   private _classz = {
     'fa-star': false,
@@ -59,6 +60,11 @@ export class DFormVariantComponent implements OnInit {
 
   public fav() {
     this.isFaved.emit(this._index);
+  }
+
+  public remove() {
+    this.removeVariant.emit(this._index);
+    console.log(this.form.parent.controls.length);
   }
 
   public setClassz(isFav: boolean) {
