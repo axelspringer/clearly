@@ -1,7 +1,7 @@
 <md-tab-group>
     <!-- Master -->
     <md-tab label="{{ 'CREATOR.TAB.MASTER.LABEL' | translate }}">
-      {{ (articleMaster | async) | json }}
+      <sg-dform [data]="(articleMaster | async)"></sg-dform>
     </md-tab>
     <!-- Channels -->
     <template ngFor let-channel [ngForOf]="(selectedType | async)?.channels" let-i="index">
@@ -9,14 +9,4 @@
         <sg-dform [data]="(articleChannel(i) | async)"></sg-dform>
       </md-tab>
     </template>
-    <!--<md-tab *ngIf="channel.isEnabled" label="{{ channel.isMaster ? 'Master' : channel.displayName }}">
-      <sg-article [metaData]="channel.metaData"></sg-article>
-      <sg-quick-write [content]="channel.content"></sg-quick-write>-->
-      <!--<md-sidenav-layout class="creator-full-height">
-        <md-sidenav #start mode="side" opened="true" [ngClass]="'custom-quick-access'">
-          <sg-quick-access></sg-quick-access>
-        </md-sidenav>
-
-      </md-sidenav-layout>-->
-    <!--</md-tab>-->
 </md-tab-group>

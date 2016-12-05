@@ -11,6 +11,7 @@ export interface IDFormElementOptions<T> {
   required?: boolean;
   validators?: T[];
   value?: T;
+  subject?: string;
 }
 
 export class DFormElement<T> implements IDFormElementOptions<T> {
@@ -30,6 +31,7 @@ export class DFormElement<T> implements IDFormElementOptions<T> {
   public type: string;
   public validators: T[];
   public value: T;
+  public subject: string;
 
   constructor(options: IDFormElementOptions<T> = {} as IDFormElementOptions<T>) {
     this.channel = options.channel;
@@ -43,6 +45,7 @@ export class DFormElement<T> implements IDFormElementOptions<T> {
     this.validators = options.validators || [];
     this.value = options.value;
     // by default do not disable, could be enabled later
+    this.subject = options.subject || 'Untitled';
   }
 
 };

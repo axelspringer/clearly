@@ -2,9 +2,6 @@
 // Importables
 import { Component } from '@angular/core';
 import { ViewEncapsulation } from '@angular/core';
-import { Inject } from '@angular/core';
-import { forwardRef } from '@angular/core';
-import { ApplicationRef } from '@angular/core';
 
 // Components
 import { DFormElement } from '../dform.element';
@@ -27,8 +24,6 @@ export class DFormMetaText extends DFormElement<string> {
 
 };
 
-// const metaData = Object.assign(, DFormAbstractComponent.metaData );
-
 @Component({ // we patch metaData, have to wait for next release of Angular
   encapsulation: ViewEncapsulation.None,
   selector: 'sg-dform-meta-text',
@@ -37,10 +32,8 @@ export class DFormMetaText extends DFormElement<string> {
 })
 export class DFormMetaTextComponent extends DFormAbstractComponent {
 
-  constructor(
-    @Inject(forwardRef(() => ApplicationRef)) public _appRef: ApplicationRef,
-  ) {
-    super(_appRef);
+  constructor() {
+    super();
   }
 
   public toggle(key) {

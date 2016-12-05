@@ -1,4 +1,5 @@
-<sg-dform-context (addVariant)="addVariant($event)">
+<sg-dform-context (addVariant)="addVariant($event)" [subject]="element.subject">
+  {{ element | json }}
   <div class="metaTextForm">
     <div [formGroup]="variants">
       <div *ngFor="let variant of variants.controls; let i=index">
