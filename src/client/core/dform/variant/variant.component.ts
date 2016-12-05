@@ -8,6 +8,8 @@ import { FormControl } from '@angular/forms';
 // import { OnInit } from '@angular/core';
 import { EventEmitter } from '@angular/core';
 import { OnInit } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
+import { Observable } from 'rxjs';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -30,12 +32,12 @@ export class DFormVariantComponent implements OnInit {
 
   @Output() public isFaved = new EventEmitter();
 
-  public classz = {
+  private _classz = {
     'fa-star': false,
-    'fa-star-o': false,
+    'fa-star-o': true,
   };
-
   private _index = 1;
+  private _subject = new BehaviorSubject(Object.assign({}, this._classz));
 
   // angular
 
@@ -45,20 +47,24 @@ export class DFormVariantComponent implements OnInit {
       value: '',
     });
     this.form.valueChanges.subscribe(change => {
-      console.log('CHANGE', this._index, change);
-      this.setClassz(change.isFav);
+      this._subject.next(this.setClassz(change.isFav));
     });
   }
 
   // public
+
+  public get classz(): Observable<any> {
+    return this._subject.asObservable();
+  }
 
   public fav() {
     this.isFaved.emit(this._index);
   }
 
   public setClassz(isFav: boolean) {
-    this.classz['fa-star'] = isFav;
-    this.classz['fa-star-o'] = !isFav;
+    this._classz['fa-star'] = isFav;
+    this._classz['fa-star-o'] = !isFav;
+    return this._classz;
   }
 
 };

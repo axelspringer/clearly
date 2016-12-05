@@ -3,7 +3,7 @@
     <ul class="o-dform">
       <li>{{ index }}</li>
       <li (click)="fav(index)">
-        <i [ngClass]="classz" class="fa" aria-hidden="true"></i>
+        <i [ngClass]="classz | async" class="fa" aria-hidden="true"></i>
       </li>
     </ul>
   </div>
