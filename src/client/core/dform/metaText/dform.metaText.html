@@ -2,7 +2,7 @@
   <div class="metaTextForm" *ngIf="variants.controls.length !== 0">
     <div [formGroup]="variants">
       <div *ngFor="let variant of variants.controls; let i=index">
-        <sg-dform-variant [index]="i" [form]="variant" (isFaved)="isFaved($event)">
+        <sg-dform-variant [index]="i" [form]="variant" (isFaved)="isFaved($event)" (removeVariant)="removeVariant($event)">
           <md-input [id]="variant.key"></md-input>
         </sg-dform-variant>
       </div>
