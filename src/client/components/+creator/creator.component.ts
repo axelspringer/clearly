@@ -98,15 +98,11 @@ export class CreatorComponent implements OnInit, OnDestroy {
   }
 
   public ngOnDestroy() {
-    // should be unsubscribed
+    // TODO(@sdoell): unsubscribe to all subscriptions
   }
 
   public onFormUpdate($event) {
     this.form = $event;
-
-    // update to dispatch
-    // this.store.dispatch(this.creatorActions.update($event.value));
-
   }
 
 };

@@ -27,4 +27,8 @@ export class DFormContextComponent {
     this.addVariant.emit(true);
   }
 
+  public doSetVariant(event: Event) {
+    event.preventDefault();
+  }
+
 };
