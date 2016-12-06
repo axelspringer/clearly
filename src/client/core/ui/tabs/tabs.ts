@@ -2,9 +2,7 @@ import { AfterContentChecked } from '@angular/core';
 import { ChangeDetectionStrategy } from '@angular/core';
 import { Component } from '@angular/core';
 import { ContentChildren } from '@angular/core';
-import { EventEmitter } from '@angular/core';
 import { Input } from '@angular/core';
-import { Output } from '@angular/core';
 import { QueryList } from '@angular/core';
 
 import { Tab } from './tab';
@@ -31,7 +29,6 @@ export class Tabs implements AfterContentChecked {
   get selectedTab(): number {
     return this._selectedTab;
   }
-  @Output() public onSelectTab = new EventEmitter();
   private _selectedTab: number = 0; // begin with no tab selected
 
   // DOM

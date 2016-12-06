@@ -10,7 +10,11 @@ export class Group {
   private _tab: BehaviorSubject<Tab> = new BehaviorSubject(null);
 
   public addTab(tab: Tab) {
-    return this._tabs.push(tab); // return length
+    this._tabs.push(tab);
+    if (this._tabs.length === 1) {
+      this.selectTab(this._tabs.length - 1); // be explicit
+    }
+    return this._tabs.length - 1; // return length
   }
 
   public selectTab(tabIndex: number) {
