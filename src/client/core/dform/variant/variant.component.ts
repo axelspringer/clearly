@@ -1,6 +1,5 @@
 // Importables
 import { ChangeDetectionStrategy } from '@angular/core';
-import { ChangeDetectorRef } from '@angular/core';
 import { Component } from '@angular/core';
 import { ViewEncapsulation } from '@angular/core';
 import { Output } from '@angular/core';
@@ -37,7 +36,7 @@ export class DFormVariantComponent implements OnInit {
   @Output() public isFaved = new EventEmitter();
   @Output() public removeVariant = new EventEmitter();
 
-  public showDelete: Observable;
+  public showDelete: Observable<boolean>;
 
   private _classz = {
     'fa-star': false,
@@ -45,10 +44,6 @@ export class DFormVariantComponent implements OnInit {
   };
   private _index = 1;
   private _subject = new BehaviorSubject(this._classz);
-
-  constructor(
-    private _changeRef: ChangeDetectorRef
-  ) { }
 
   // angular
 
