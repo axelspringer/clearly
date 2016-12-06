@@ -6,14 +6,12 @@ import { EventEmitter } from '@angular/core';
 import { Input } from '@angular/core';
 import { Output } from '@angular/core';
 import { QueryList } from '@angular/core';
-import { ViewEncapsulation } from '@angular/core';
 
 import { Tab } from './tab';
 import { Group } from './group';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None, // so that we address the view from a root
   selector: 'ui-tabs',
   templateUrl: './tabs.html',
   styleUrls: ['./tabs.scss'],
