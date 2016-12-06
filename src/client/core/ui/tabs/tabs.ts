@@ -3,13 +3,10 @@ import { ChangeDetectionStrategy } from '@angular/core';
 import { Component } from '@angular/core';
 import { ContentChildren } from '@angular/core';
 import { EventEmitter } from '@angular/core';
-import { forwardRef } from '@angular/core';
 import { Input } from '@angular/core';
 import { Output } from '@angular/core';
 import { QueryList } from '@angular/core';
-import { ViewContainerRef } from '@angular/core';
 import { ViewEncapsulation } from '@angular/core';
-import { Injectable } from '@angular/core';
 
 import { Tab } from './tab';
 import { Group } from './group';
@@ -44,10 +41,8 @@ export class Tabs implements AfterContentChecked {
   @ContentChildren(Tab) private _tabs: QueryList<Tab>;
 
   constructor(
-    private _viewRef: ViewContainerRef,
     private _group: Group,
   ) {
-    console.log('tabs', this._viewRef);
   }
 
   // angular

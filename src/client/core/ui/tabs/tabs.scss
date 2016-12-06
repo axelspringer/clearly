@@ -1,0 +1,39 @@
+@import '../variables';
+
+#{$_ui-prefix}-tabs {
+
+  ul {
+
+    display: flex;
+    min-width: 100%;
+    list-style: none;
+    // reset
+    padding: 0;
+    margin: 0;
+
+    li {
+
+      cursor: pointer;
+      padding: $_ui-tabs-tab-padding / 2 $_ui-tabs-tab-padding;
+
+      border-color: $_ui-tabs-tab-border-color;
+      border-style: $_ui-tabs-tab-border-style;
+      border-width: $_ui-tabs-tab-border-width;
+
+      &:hover {
+
+        background-color: $_ui-tabs-tab-background-color;
+
+      }
+
+    }
+
+    li + li {
+
+      border-left: none;
+
+    }
+
+  }
+
+}
