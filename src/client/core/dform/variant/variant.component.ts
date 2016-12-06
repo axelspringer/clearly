@@ -1,11 +1,11 @@
 // Importables
-import { ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import { ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectorRef } from '@angular/core';
 import { Component } from '@angular/core';
 import { ViewEncapsulation } from '@angular/core';
 import { Output } from '@angular/core';
 import { Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
-// import { OnInit } from '@angular/core';
 import { EventEmitter } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
@@ -26,19 +26,18 @@ import { DFormVariantAddEvent } from '../dform.element.abstract';
 export class DFormVariantComponent implements OnInit {
 
   @Input() public form: FormControl;
-  @Input()
-  public set index(newIndex: number) {
-    this._index = ++newIndex;
+  @Input() public get index(): number {
+    return this._index;
   };
 
-  public get index(): number {
-    return this._index;
+  public set index(newIndex: number) {
+    this._index = ++newIndex;
   };
 
   @Output() public isFaved = new EventEmitter();
   @Output() public removeVariant = new EventEmitter();
 
-  public showDelete: boolean = true;
+  public showDelete: Observable;
 
   private _classz = {
     'fa-star': false,
@@ -49,9 +48,7 @@ export class DFormVariantComponent implements OnInit {
 
   constructor(
     private _changeRef: ChangeDetectorRef
-  ) {
-
-  }
+  ) { }
 
   // angular
 
@@ -63,13 +60,14 @@ export class DFormVariantComponent implements OnInit {
     this.form.valueChanges.subscribe(change => {
       this._subject.next(this.setClassz(change.isFav));
     });
-    this._updateShowDelete();
-    EventEmitProvider
-      .connect(DFormVariantRemoveEvent.constructor.name)
-      .subscribe(() => this._updateShowDelete());
-    EventEmitProvider
-      .connect(DFormVariantAddEvent.constructor.name)
-      .subscribe(() => this._updateShowDelete());
+    this.showDelete = Observable.merge(
+      EventEmitProvider
+        .connect(DFormVariantRemoveEvent.constructor.name),
+      EventEmitProvider
+        .connect(DFormVariantAddEvent.constructor.name),
+    )
+    .combineLatest()
+    .map(() => this.form.parent.controls['length'] > 1);
   }
 
   // public
@@ -94,12 +92,6 @@ export class DFormVariantComponent implements OnInit {
     this._classz['fa-star'] = isFav;
     this._classz['fa-star-o'] = !isFav;
     return this._classz;
-  }
-
-  // private
-  private _updateShowDelete(shouldShow?: boolean) {
-    this.showDelete = shouldShow || this.form.parent.controls['length'] > 1;
-    this._changeRef.markForCheck();
   }
 
 };
