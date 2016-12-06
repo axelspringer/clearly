@@ -1,7 +1,23 @@
 // Importables
 import { OpaqueToken } from '@angular/core';
+import { Type } from '@angular/core';
 import * as dform from './index';
 import * as _ from 'lodash';
+
+import { DFormComponent } from './dform.component';
+import { DFormDropDownComponent } from './dropDown';
+import { DFormDynamicElementComponent } from './dform.element.component';
+import { DFormElementEventsDirective } from './dform.element.events';
+import { DFormMainTextComponent } from './mainText';
+import { DFormMetaBarComponent } from './metaBar';
+import { DFormMetaTextComponent } from './metaText';
+import { DFormPictureComponent } from './picture';
+    // DFormQuickBarComponent,
+import { DFormContextComponent } from './context';
+import { DFormSocialVideoComponent } from './socialVideo';
+import { DFormTextAreaComponent } from './textarea';
+import { DFormTextComponent } from './text';
+import { DFormVariantComponent } from './variant';
 
 export const DFORM_TYPES_TOKEN = new OpaqueToken('DFORM_TYPES');
 
@@ -85,3 +101,20 @@ export * from './socialVideo';
 export * from './text';
 export * from './textArea';
 export * from './variant';
+
+export const DFORM_DIRECTIVES: Array<Type<any>> = [
+  DFormComponent,
+  DFormDropDownComponent,
+  DFormDynamicElementComponent,
+  DFormElementEventsDirective,
+  DFormMainTextComponent,
+  DFormMetaBarComponent,
+  DFormMetaTextComponent,
+  DFormPictureComponent,
+  // DFormQuickBarComponent,
+  DFormContextComponent,
+  DFormSocialVideoComponent,
+  DFormTextAreaComponent,
+  DFormTextComponent,
+  DFormVariantComponent,
+];

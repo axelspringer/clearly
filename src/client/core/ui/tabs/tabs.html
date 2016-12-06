@@ -1,0 +1,4 @@
+<ul>
+  <li (click)="selectTab(idx)" *ngFor="let tab of tabs; let idx = index;">{{ tab.tabLabel }}</li>
+</ul>
+<ng-content></ng-content>

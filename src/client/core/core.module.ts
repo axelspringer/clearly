@@ -12,19 +12,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AtLeastValidatorDirective } from './forms';
 import { DATABASE_PROVIDERS } from './db';
 import { DatabaseProvider } from './db';
-import { DFormComponent } from './dform';
-import { DFormDropDownComponent } from './dform';
-import { DFormDynamicElementComponent } from './dform';
-import { DFormElementEventsDirective } from './dform';
-import { DFormMainTextComponent } from './dform';
-import { DFormMetaBarComponent } from './dform';
-import { DFormMetaTextComponent } from './dform';
-import { DFormContextComponent } from './dform';
-import { DFormSocialVideoComponent } from './dform';
-import { DFormTextAreaComponent } from './dform';
-import { DFormVariantComponent } from './dform';
-// import { DFormQuickBarComponent } from './dform';
-import { DFormTextComponent } from './dform';
+import { DFORM_DIRECTIVES } from './dform';
+import { DFORM_TYPES_PROVIDER } from './dform';
 import { EventEmitProvider } from './events';
 import { IteratableObjectPipe } from './pipes';
 import { LoadingComponent } from './loading';
@@ -33,10 +22,9 @@ import { LogService } from './log';
 import { MdModule } from '../components/app/app.material';
 import { NOTIFY_PROVIDERS } from './notify/notify.provider';
 import { NotifyProvider } from './notify';
-import { TranslateCustomLoader } from './i18n';
-import { DFormPictureComponent } from './dform';
 import { SgFileDroppableDirective } from './forms';
-import { DFORM_TYPES_PROVIDER } from './dform';
+import { TranslateCustomLoader } from './i18n';
+import { UIModule } from './ui';
 
 @NgModule({
   imports: [
@@ -44,6 +32,7 @@ import { DFORM_TYPES_PROVIDER } from './dform';
     FormsModule,
     MdModule,
     ReactiveFormsModule,
+    UIModule,
   ],
   exports: [
     TranslatePipe, // should be used
@@ -51,23 +40,10 @@ import { DFORM_TYPES_PROVIDER } from './dform';
     IteratableObjectPipe,
     LoadingComponent,
     SgFileDroppableDirective,
+    UIModule,
 
     // Dynamic Forms
-    // DFormAbstractComponent,
-    DFormComponent,
-    DFormDropDownComponent,
-    DFormDynamicElementComponent,
-    DFormElementEventsDirective,
-    DFormMainTextComponent,
-    DFormMetaBarComponent,
-    DFormMetaTextComponent,
-    DFormPictureComponent,
-    // DFormQuickBarComponent,
-    DFormContextComponent,
-    DFormSocialVideoComponent,
-    DFormTextAreaComponent,
-    DFormTextComponent,
-    DFormVariantComponent,
+    ...DFORM_DIRECTIVES,
   ],
   declarations: [
     // Pipes
@@ -83,20 +59,7 @@ import { DFORM_TYPES_PROVIDER } from './dform';
 
     // Dynamic Forms
     // DFormAbstractComponent,
-    DFormComponent,
-    DFormDropDownComponent,
-    DFormDynamicElementComponent,
-    DFormElementEventsDirective,
-    DFormMainTextComponent,
-    DFormMetaBarComponent,
-    DFormMetaTextComponent,
-    DFormPictureComponent,
-    // DFormQuickBarComponent,
-    DFormContextComponent,
-    DFormSocialVideoComponent,
-    DFormTextAreaComponent,
-    DFormTextComponent,
-    DFormVariantComponent,
+    ...DFORM_DIRECTIVES,
   ],
   providers: [
     // Events

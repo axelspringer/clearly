@@ -1,12 +1,25 @@
+<ui-tabs>
+  <ui-tab label="Test">
+    Test
+  </ui-tab>
+  <ui-tab label="Test2" selected>
+    Test2
+  </ui-tab>
+</ui-tabs>
 <md-tab-group>
-    <!-- Master -->
-    <md-tab label="{{ 'CREATOR.TAB.MASTER.LABEL' | translate }}">
+  <!-- Master -->
+  <div>
+    <md-tab>
+      <template md-tab-label>
+        {{ 'CREATOR.TAB.MASTER.LABEL' | translate }}
+      </template>
       <sg-dform [data]="(articleMaster | async)"></sg-dform>
     </md-tab>
-    <!-- Channels -->
-    <template ngFor let-channel [ngForOf]="(selectedType | async)?.channels" let-i="index">
-      <md-tab label="{{ channel.displayName }}">
-        <sg-dform [data]="(articleChannel(i) | async)"></sg-dform>
-      </md-tab>
-    </template>
+  </div>
+  <!-- Channels -->
+  <template ngFor let-channel [ngForOf]="(selectedType | async)?.channels" let-i="index">
+    <md-tab label="{{ channel.displayName }}">
+      <sg-dform [data]="(articleChannel(i) | async)"></sg-dform>
+    </md-tab>
+  </template>
 </md-tab-group>
