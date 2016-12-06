@@ -24,6 +24,12 @@
   },
 
   "DFORM": {
+    "CONTEXT": {
+      "TYPE": {
+        "META": "Meta",
+        "CONTENT": "Content"
+      }
+    },
     "SAMPLE_BUTTON": "Erstellen",
     "TEXT": {
       "PLACEHOLDER": "Text hinzufügen (z.B. Überschrift) ..."

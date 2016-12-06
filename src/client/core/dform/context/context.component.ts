@@ -16,8 +16,16 @@ import { EventEmitter } from '@angular/core';
 export class DFormContextComponent {
 
   @Input() public subject = 'Untitled';
+  @Input()
+    public set type (newType: string) {
+      this.contextType = newType === 'meta'
+        ? 'DFORM.CONTEXT.TYPE.META'
+        : 'DFORM.CONTEXT.TYPE.CONTENT';
+    }
   @Input() public variants = 0;
   @Output() public addVariant = new EventEmitter();
+
+  public contextType: string;
 
   // angular
 

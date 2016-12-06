@@ -1,4 +1,4 @@
-<sg-dform-context (addVariant)="addVariant($event)" [subject]="element.subject" [variants]="variants.controls.length">
+<sg-dform-context (addVariant)="addVariant($event)" [subject]="element.subject" [type]="element.type" [variants]="variants.controls.length">
   <div class="metaTextForm" *ngIf="variants.controls.length !== 0">
     <div [formGroup]="variants">
       <div *ngFor="let variant of variants.controls; let i=index">

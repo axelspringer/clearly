@@ -2,6 +2,7 @@
   <!-- initialized -->
   <div class="c-dform-context__subject" *ngIf="variants > 0">
     <h4>{{ subject }}</h4>
+    <h4 *ngIf="contextType">{{ contextType | translate }}</h4>
   </div>
   <div class="c-dform-context__variants" *ngIf="variants > 0">
     <ng-content></ng-content>
