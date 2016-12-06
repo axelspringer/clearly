@@ -1,3 +1,4 @@
+/* tslint:disable: max-classes-per-file */
 // Importables
 import { FormGroup } from '@angular/forms';
 import { Input } from '@angular/core';
@@ -8,6 +9,21 @@ import * as _ from 'lodash';
 
 // Components
 import { DFormElement } from './dform.element';
+import { Event } from '../events';
+import { EventEmitProvider } from '../events';
+
+// Interface
+export class DFormVariantRemoveEvent extends Event {
+  constructor(payload: any = {}) {
+    super(payload);
+  }
+}
+
+export class DFormVariantAddEvent extends Event {
+  constructor(payload: any = {}) {
+    super(payload);
+  }
+}
 
 // Directive
 export class DFormAbstractComponent implements OnInit {
@@ -37,6 +53,9 @@ export class DFormAbstractComponent implements OnInit {
 
   public addVariant() {
     this.variants.push(this._newFormControl());
+    EventEmitProvider
+      .connect(DFormVariantAddEvent.constructor.name)
+      .emit(event);
   }
 
   public isFaved(event) {
@@ -49,10 +68,13 @@ export class DFormAbstractComponent implements OnInit {
     });
   }
 
-  public removeVariant(index) {
+  public removeVariant(event) {
     if (this.variants.controls.length > 1) {
-      index -= 1;
-      this.variants.removeAt(index);
+      event -= 1;
+      this.variants.removeAt(event);
+      EventEmitProvider
+        .connect(DFormVariantRemoveEvent.constructor.name)
+        .emit(event);
     }
   }
 
