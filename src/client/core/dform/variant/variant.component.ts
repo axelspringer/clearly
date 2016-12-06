@@ -62,7 +62,7 @@ export class DFormVariantComponent implements OnInit {
         .connect(DFormVariantAddEvent.constructor.name),
     )
     .combineLatest()
-    .map(() => this.form.parent.controls['length'] > 1);
+    .switchMap(() => Observable.of(this.form.parent.controls['length'] > 1));
   }
 
   // public
