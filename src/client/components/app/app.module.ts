@@ -115,7 +115,7 @@ const APP_PROVIDERS = [
     StoreDevtoolsModule.instrumentStore({ // store dev tools for debug
       maxAge: 5,
       monitor: useLogMonitor({
-        visible: AppConfig.DEBUG, // init
+        visible: false, // init
         position: 'right',
       }),
     }),

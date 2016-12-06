@@ -11,7 +11,7 @@ export class AppConfig {
 
   public static HTML5_TITLE: string = 'Blackbeard';
 
-  public static LANGUAGES: Array<ILang> = [
+  public static LANGUAGES: ILang[] = [
     {
       code: 'de',
       default: true,
