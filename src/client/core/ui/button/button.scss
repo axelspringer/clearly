@@ -1,0 +1,10 @@
+@import '../variables';
+
+button[ui-button] {
+
+  outline: $_ui-button-outline;
+  border: $_ui-button-border;
+  background: $_ui-button-background;
+  // reset
+
+}

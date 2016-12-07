@@ -1,0 +1,23 @@
+@import '../variables';
+
+ui-toolbar {
+
+  display: flex;
+
+  align-items: $_ui-toolbar-align-items;
+  min-height: $_ui-toolbar-min-height;
+  padding: $_ui-toolbar-padding;
+
+  // reset
+  font-weight: 400;
+
+  .fill-remaining-space {
+
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: auto;
+    // this is the triade
+
+  }
+
+}

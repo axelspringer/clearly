@@ -50,7 +50,6 @@ export function vendors() {
     '@ngrx/store-log-monitor',
     '@ngrx/store',
     '@ngrx/effects',
-    '@angular/material',
     'pouchdb',
     'apollo-client',
     'lodash',

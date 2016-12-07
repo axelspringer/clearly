@@ -6,3 +6,13 @@ $_ui-tabs-tab-border-color: rgba(151, 151, 151, 1);
 $_ui-tabs-tab-border-style: solid;
 $_ui-tabs-tab-border-width: 1px;
 $_ui-tabs-tab-padding: 1rem;
+
+// tooolbar
+$_ui-toolbar-align-items: center;
+$_ui-toolbar-padding: 1rem (1rem / 2);
+$_ui-toolbar-min-height: 4 * 1rem;
+
+// button
+$_ui-button-outline: none;
+$_ui-button-border: none;
+$_ui-button-background: none;

@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 // Components
-import { MdModule } from '../app/app.material';
 import { DashboardComponent } from './dashboard.component';
 import { ArticlesListComponent } from './articles';
 import { CoreModule } from '../../core';
@@ -17,7 +16,6 @@ import { Routing } from './dashboard.routes';
     CommonModule,
     CoreModule,
     FormsModule,
-    MdModule,
     Routing,
   ],
   exports: [

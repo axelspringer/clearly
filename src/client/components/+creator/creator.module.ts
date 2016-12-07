@@ -18,7 +18,6 @@ import { CREATOR_RESOLVER_PROVIDERS } from './creator.resolver';
 import { CreatorActions } from './creator.actions';
 import { CreatorComponent } from './creator.component';
 import { CreatorService } from './creator.service';
-import { MdModule } from '../app/app.material';
 import { QuickAccessComponent } from './quickAccess';
 import { QuickWrite } from './quickWrite';
 import { QuickWriteComponent } from './quickWrite';
@@ -42,7 +41,6 @@ const CREATOR_PROVIDERS = [
     CommonModule,
     CoreModule,
     FormsModule,
-    MdModule,
     ReactiveFormsModule,
     RouterModule.forChild(ROUTES),
   ],

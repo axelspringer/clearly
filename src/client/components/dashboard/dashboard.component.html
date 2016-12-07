@@ -1,14 +1,1 @@
-<md-tab-group>
-  <md-tab label="Artikel">
-    GraphQL: {{ ok }}
-    <sg-articles-list [docs]="articles$"></sg-articles-list>
-  </md-tab>
-  <md-tab label="Metriken">
-  </md-tab>
-  <md-tab label="Pirates">
-    <md-card>
-      <img [src]="pirate$">
-      <button *ngIf="!isPirate$" md-raised-button color="primary" (click)="isPirate(true)">Are you a pirate?</button>
-    </md-card>
-  </md-tab>
-</md-tab-group>
+GraphQL: {{ ok }}

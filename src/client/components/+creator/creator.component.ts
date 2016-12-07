@@ -5,9 +5,9 @@ import { OnInit } from '@angular/core';
 import { TranslateService } from 'ng2-translate';
 import { Component } from '@angular/core';
 import { ViewContainerRef } from '@angular/core';
-import { MdDialog } from '@angular/material';
-import { MdDialogConfig } from '@angular/material';
-import { MdDialogRef } from '@angular/material';
+// import { MdDialog } from '@angular/material';
+// import { MdDialogConfig } from '@angular/material';
+// import { MdDialogRef } from '@angular/material';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import * as _ from 'lodash';
@@ -32,14 +32,17 @@ export class CreatorComponent implements OnInit, OnDestroy {
 
   public form: FormGroup;
 
-  public dialogRef: MdDialogRef<ChannelsDialogComponent>;
+  // public dialogRef: MdDialogRef<ChannelsDialogComponent>;
   public lastCloseResult: string;
 
   public i18nTitle = 'ORCHESTRA.CREATOR.TITLE';
   public form$: any;
 
+  public title = 'Test';
+  public icons = 'fa-user';
+
   constructor(
-    public dialog: MdDialog,
+    // public dialog: MdDialog,
 
     private _store: Store<IAppState>,
     private _articleActions: ArticleActions,
@@ -71,6 +74,10 @@ export class CreatorComponent implements OnInit, OnDestroy {
       .filter(master => !_.isUndefined(master));
   }
 
+  public test() {
+    console.log('test');
+  }
+
   // angular
 
   public ngOnInit() {
@@ -88,13 +95,13 @@ export class CreatorComponent implements OnInit, OnDestroy {
   }
 
   public toggleChannels() {
-    let config = new MdDialogConfig();
-    config.viewContainerRef = this._viewContainerRef;
-    this.dialogRef = this.dialog.open(ChannelsDialogComponent, config);
-    this.dialogRef.afterClosed().subscribe(result => {
-      this.lastCloseResult = result;
-      this.dialogRef = null;
-    });
+    // let config = new MdDialogConfig();
+    // config.viewContainerRef = this._viewContainerRef;
+    // this.dialogRef = this.dialog.open(ChannelsDialogComponent, config);
+    // this.dialogRef.afterClosed().subscribe(result => {
+    //   this.lastCloseResult = result;
+    //   this.dialogRef = null;
+    // });
   }
 
   public ngOnDestroy() {

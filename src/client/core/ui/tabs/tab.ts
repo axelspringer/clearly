@@ -12,7 +12,7 @@ import { Group } from './group';
   selector: 'ui-tab',
   templateUrl: './tab.html',
 })
-export class Tab implements OnInit {
+export class TabComponent implements OnInit {
 
   @Input('label') public tabLabel = '';
   @Input('selected') public tabSelected = null;

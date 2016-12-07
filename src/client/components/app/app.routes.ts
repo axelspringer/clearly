@@ -5,7 +5,7 @@ import { Routes } from '@angular/router';
 import { AuthGuard } from '../../guards';
 import { DashboardComponent } from '../dashboard';
 import { NoContentComponent } from '../404';
-import { SettingsComponent } from '../settings';
+// import { SettingsComponent } from '../settings';
 
 export const ROUTES: Routes = [
   {
@@ -15,10 +15,10 @@ export const ROUTES: Routes = [
     path: '',
     component: DashboardComponent, // TODO@sdoell: move to module
   },
-  {
-    path: 'settings',
-    component: SettingsComponent,
-  },
+  // {
+  //   path: 'settings',
+  //   component: SettingsComponent,
+  // },
   {
     path: '**',
     component: NoContentComponent,

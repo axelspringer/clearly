@@ -1,9 +1,9 @@
 import { Type } from '@angular/core';
 
-import { Tab } from './tab';
-import { Tabs } from './tabs';
+import { TabComponent } from './tab';
+import { TabsComponent } from './tabs';
 
 export const TABS_DIRECTIVES: Array<Type<any>> = [
-  Tab,
-  Tabs,
+  TabComponent,
+  TabsComponent,
 ];

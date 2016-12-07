@@ -1,3 +1,4 @@
+/* tslint:disable: max-classes-per-file */
 // Importables
 import { Component } from '@angular/core';
 import { forwardRef } from '@angular/core';
@@ -27,17 +28,18 @@ export class ToolbarComponent implements OnInit {
   public title: string = AppConfig.HTML5_TITLE; // TODO@sdoell: should be moved to service
 
   constructor(
-    @Inject(forwardRef(() => AppComponent)) private __app: AppComponent,
+    @Inject(forwardRef(() => AppComponent)) private _app: AppComponent,
   ) { }
 
-  public toggleMenu() {
-    this.__app['menu'].toggle();
+  public ngOnInit() {
+    console.log(this._app);
+    // EventEmitProvider
+    //   .connect(new ToolbarTitleUpdate())
+    //   .subscribe(value => this.title = value);
   }
 
-  public ngOnInit() {
-    EventEmitProvider
-      .connect(new ToolbarTitleUpdate())
-      .subscribe(value => this.title = value);
+  public toggleMenu() {
+    this._app['menu'].toggle();
   }
 
 };

@@ -19,7 +19,6 @@ import { IteratableObjectPipe } from './pipes';
 import { LoadingComponent } from './loading';
 import { LOGGING_ERROR_HANDLER_PROVIDERS } from './log';
 import { LogService } from './log';
-import { MdModule } from '../components/app/app.material';
 import { NOTIFY_PROVIDERS } from './notify/notify.provider';
 import { NotifyProvider } from './notify';
 import { SgFileDroppableDirective } from './forms';
@@ -30,7 +29,6 @@ import { UIModule } from './ui';
   imports: [
     CommonModule,
     FormsModule,
-    MdModule,
     ReactiveFormsModule,
     UIModule,
   ],

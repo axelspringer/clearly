@@ -5,7 +5,7 @@ import { ContentChildren } from '@angular/core';
 import { Input } from '@angular/core';
 import { QueryList } from '@angular/core';
 
-import { Tab } from './tab';
+import { TabComponent } from './tab';
 import { Group } from './group';
 
 @Component({
@@ -15,7 +15,7 @@ import { Group } from './group';
   styleUrls: ['./tabs.scss'],
   providers: [Group],
 })
-export class Tabs implements AfterContentChecked {
+export class TabsComponent implements AfterContentChecked {
 
   public get tabs() {
     return this._tabs;
@@ -33,7 +33,7 @@ export class Tabs implements AfterContentChecked {
 
   // DOM
 
-  @ContentChildren(Tab) private _tabs: QueryList<Tab>;
+  @ContentChildren(TabComponent) private _tabs: QueryList<TabComponent>;
 
   constructor(
     private _group: Group,
@@ -44,7 +44,7 @@ export class Tabs implements AfterContentChecked {
 
   public ngAfterContentChecked(): void {
     this._tabs.changes.subscribe(children => {
-      children.forEach((tab: Tab, index: number) => {
+      children.forEach((tab: TabComponent, index: number) => {
         if (tab.tabSelected) {
           this.selectedTab = index;
         }

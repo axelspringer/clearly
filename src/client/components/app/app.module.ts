@@ -4,7 +4,6 @@ import { BrowserModule, Title } from '@angular/platform-browser';
 import { EffectsModule } from '@ngrx/effects';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { MdModule } from './app.material';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { Store } from '@ngrx/store';
@@ -38,10 +37,10 @@ import { ROUTES } from './app.routes';
 
 
 // Components
-import { AvatarComponent } from '../avatar';
+// import { AvatarComponent } from '../avatar';
 import { MenuComponent } from '../menu';
 import { NoContentComponent } from '../404';
-import { SettingsComponent } from '../settings';
+// import { SettingsComponent } from '../settings';
 import { ToolbarComponent } from '../toolbar';
 import { AuthGuard } from '../../guards';
 
@@ -82,10 +81,10 @@ const APP_PROVIDERS = [
   ],
   declarations: [
     AppComponent,
-    AvatarComponent,
+    // AvatarComponent,
     MenuComponent,
     NoContentComponent,
-    SettingsComponent,
+    // SettingsComponent,
     ToolbarComponent,
   ],
   entryComponents: [
@@ -120,9 +119,6 @@ const APP_PROVIDERS = [
       }),
     }),
     StoreLogMonitorModule,
-
-    // Material
-    MdModule.forRoot(), // here is the magic,
 
     // Custom Modules
     DashboardModule,

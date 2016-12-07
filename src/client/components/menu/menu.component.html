@@ -1,15 +1,3 @@
-<md-nav-list>
-
-  <h3 md-subheader>Workflow</h3>
-
-  <template ngFor let-item [ngForOf]="$routes" let-i="index">
-    <md-list-item (click)="trigger(item.path)">
-        {{ item.data.title }}
-    </md-list-item>
-  </template>
-
-  <md-divider></md-divider>
-
-  <md-list-item (click)="trigger('settings')">{{ 'SIDENAV.SETTINGS' | translate }}</md-list-item>
-
-</md-nav-list>
+<nav>
+  <a (click)="trigger('create')">Artikel erstellen</a>
+</nav>
