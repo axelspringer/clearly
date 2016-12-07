@@ -1,9 +1,6 @@
 // Importables
 import { Component } from '@angular/core';
 import { ViewEncapsulation } from '@angular/core';
-import { MdDialog } from '@angular/material';
-import { MdDialogConfig } from '@angular/material';
-import { MdDialogRef } from '@angular/material';
 import { ViewContainerRef } from '@angular/core';
 
 // Composition
@@ -17,25 +14,25 @@ import { ChannelsDialogComponent } from '../dialogs';
 })
 export class QuickAccessComponent {
 
-  public dialogRef: MdDialogRef<ChannelsDialogComponent>;
+  // public dialogRef: MdDialogRef<ChannelsDialogComponent>;
   public lastCloseResult: string;
 
   constructor(
-    private dialog: MdDialog,
+    // private dialog: MdDialog,
     private viewContainerRef: ViewContainerRef,
   ) {
   }
 
   public toggleChannels() {
-    let config = new MdDialogConfig();
-    config.viewContainerRef = this.viewContainerRef;
+    // let config = new MdDialogConfig();
+    // config.viewContainerRef = this.viewContainerRef;
 
-    this.dialogRef = this.dialog.open(ChannelsDialogComponent, config);
+    // this.dialogRef = this.dialog.open(ChannelsDialogComponent, config);
 
-    this.dialogRef.afterClosed().subscribe(result => {
-      this.lastCloseResult = result;
-      this.dialogRef = null;
-    });
+    // this.dialogRef.afterClosed().subscribe(result => {
+    //   this.lastCloseResult = result;
+    //   this.dialogRef = null;
+    // });
   }
 
 };

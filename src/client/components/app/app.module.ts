@@ -20,6 +20,8 @@ import { client } from './app.apollo.ts';
 // Aot
 // import { getPlatform } from '@angular/core';
 
+import { TranslateModule } from 'ng2-translate';
+
 // Modules
 import { CoreModule } from '../../core';
 import { DashboardModule } from '../dashboard';
@@ -104,6 +106,8 @@ const APP_PROVIDERS = [
 
     // Apollo
     ApolloModule.withClient(client),
+
+    TranslateModule.forRoot(),
 
     // @ngrx
     EffectsModule.runAfterBootstrap(DocsEffects),

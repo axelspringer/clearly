@@ -24,6 +24,7 @@ import { NotifyProvider } from './notify';
 import { SgFileDroppableDirective } from './forms';
 import { TranslateCustomLoader } from './i18n';
 import { UIModule } from './ui';
+import { TranslateModule } from 'ng2-translate';
 
 @NgModule({
   imports: [
@@ -31,21 +32,23 @@ import { UIModule } from './ui';
     FormsModule,
     ReactiveFormsModule,
     UIModule,
+    TranslateModule,
   ],
   exports: [
-    TranslatePipe, // should be used
+    // TranslatePipe, // should be used
     AtLeastValidatorDirective,
     IteratableObjectPipe,
     LoadingComponent,
     SgFileDroppableDirective,
     UIModule,
+    TranslateModule,
 
     // Dynamic Forms
     ...DFORM_DIRECTIVES,
   ],
   declarations: [
     // Pipes
-    TranslatePipe,
+    // TranslatePipe,
     IteratableObjectPipe,
     SgFileDroppableDirective,
 

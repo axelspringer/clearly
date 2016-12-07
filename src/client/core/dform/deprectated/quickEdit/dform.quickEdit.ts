@@ -9,7 +9,6 @@ import { EventEmitter } from '@angular/core';
 import { forwardRef } from '@angular/core';
 import { Inject } from '@angular/core';
 import { Input } from '@angular/core';
-import { MdSnackBar } from '@angular/material';
 import { OnDestroy } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { state } from '@angular/core';
@@ -41,7 +40,6 @@ import { EventEmitProvider } from '../../events';
       transition('1 => 0', [animate(250)]),
     ]),
   ],
-  providers: [MdSnackBar],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DFormQuickEditComponent implements OnInit, OnDestroy, AfterViewInit {

@@ -2,9 +2,6 @@
 import { Component } from '@angular/core';
 import { Input } from '@angular/core';
 import { ViewEncapsulation } from '@angular/core';
-// import { MdDialog } from '@angular/material';
-// import { MdDialogConfig } from '@angular/material';
-// import { MdDialogRef } from '@angular/material';
 
 // Components
 import { DFormElement } from '../../../core';

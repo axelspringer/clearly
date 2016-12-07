@@ -15,8 +15,8 @@ import { DFormPictureComponent } from './picture';
     // DFormQuickBarComponent,
 import { DFormContextComponent } from './context';
 import { DFormSocialVideoComponent } from './socialVideo';
-import { DFormTextAreaComponent } from './textarea';
-import { DFormTextComponent } from './text';
+// import { DFormTextAreaComponent } from './textArea';
+// import { DFormTextComponent } from './text';
 import { DFormVariantComponent } from './variant';
 
 export const DFORM_TYPES_TOKEN = new OpaqueToken('DFORM_TYPES');
@@ -98,8 +98,8 @@ export * from './metaBar';
 export * from './metaText';
 export * from './picture';
 export * from './socialVideo';
-export * from './text';
-export * from './textArea';
+// export * from './text';
+// export * from './textArea';
 export * from './variant';
 
 export const DFORM_DIRECTIVES: Array<Type<any>> = [
@@ -114,7 +114,7 @@ export const DFORM_DIRECTIVES: Array<Type<any>> = [
   // DFormQuickBarComponent,
   DFormContextComponent,
   DFormSocialVideoComponent,
-  DFormTextAreaComponent,
-  DFormTextComponent,
+  // DFormTextAreaComponent,
+  // DFormTextComponent,
   DFormVariantComponent,
 ];

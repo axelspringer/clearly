@@ -1,7 +1,6 @@
 // Importables
 import { Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { MdDialogRef } from '@angular/material';
 import { OnDestroy } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { Validators } from '@angular/forms';
@@ -23,7 +22,7 @@ export class ChannelsDialogComponent implements OnInit, OnDestroy {
   public channels = [];
 
   constructor(
-    public dialogRef: MdDialogRef<ChannelsDialogComponent>,
+    // public dialogRef: MdDialogRef<ChannelsDialogComponent>,
     public creatorService: CreatorService,
   ) { }
 
@@ -44,8 +43,8 @@ export class ChannelsDialogComponent implements OnInit, OnDestroy {
 
   public onSubmit() {
     // this.store.dispatch(this.articleActions.updateChannels(this.channels));
-    this.creatorService.filter(this.form.value);
-    this.dialogRef.close();
+    // this.creatorService.filter(this.form.value);
+    // this.dialogRef.close();
   }
 
   public ngOnDestroy() {

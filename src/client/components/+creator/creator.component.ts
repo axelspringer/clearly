@@ -5,16 +5,13 @@ import { OnInit } from '@angular/core';
 import { TranslateService } from 'ng2-translate';
 import { Component } from '@angular/core';
 import { ViewContainerRef } from '@angular/core';
-// import { MdDialog } from '@angular/material';
-// import { MdDialogConfig } from '@angular/material';
-// import { MdDialogRef } from '@angular/material';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import * as _ from 'lodash';
 
 // Components
 import { ArticleActions } from './article';
-import { ChannelsDialogComponent } from './dialogs';
+// import { ChannelsDialogComponent } from './dialogs';
 import { CreatorActions } from './creator.actions';
 import { EventEmitProvider } from '../../core';
 import { getCreatorSelectedType } from '../app';
