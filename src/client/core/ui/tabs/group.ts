@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
-import { Tab } from './tab';
+import { TabComponent } from './tab';
 
 @Injectable()
 export class Group {
 
-  private _tabs: Tab[] = [];
-  private _tab: BehaviorSubject<Tab> = new BehaviorSubject(null);
+  private _tabs: TabComponent[] = [];
+  private _tab: BehaviorSubject<TabComponent> = new BehaviorSubject(null);
 
-  public addTab(tab: Tab) {
+  public addTab(tab: TabComponent) {
     this._tabs.push(tab);
     if (this._tabs.length === 1) {
       this.selectTab(this._tabs.length - 1); // be explicit
@@ -22,7 +22,7 @@ export class Group {
   }
 
   public get selectedTab () {
-    return this._tab.asObservable();
+    return this._tab;
   }
 
 };

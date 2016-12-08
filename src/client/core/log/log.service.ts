@@ -96,7 +96,7 @@ export class LogSubjectConsole extends LogSubject {
   }
 
   get emitter() {
-    return this._emitter$.asObservable();
+    return this._emitter$;
   }
 
   public log(event: LogEventLog): void {

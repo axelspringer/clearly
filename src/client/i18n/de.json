@@ -1,4 +1,15 @@
 {
+  "COMPONENT": {
+    "STATUS": {
+      "TYPE": {
+        "0": "",
+        "1": "Laden...",
+        "2": "Speichern ...",
+        "3": "Fehler"
+      }
+    }
+  },
+
   "HELLOWORLD": "Ho ho ho! Blackbeard",
   "404": "Komponente nicht gefunden",
 

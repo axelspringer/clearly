@@ -13,7 +13,11 @@ import { Input } from '@angular/core';
 })
 export class LabelComponent {
 
+  // public
+
   private _title: string;
+
+  // inputs
 
   @Input()
   public get title(): string {
@@ -23,7 +27,5 @@ export class LabelComponent {
   public set title(newTitle: string) {
     this._title = newTitle;
   }
-
-  // angular
 
 }

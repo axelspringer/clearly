@@ -10,6 +10,7 @@ import { Store } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreLogMonitorModule } from '@ngrx/store-log-monitor';
 import { StoreModule } from '@ngrx/store';
+import { Type } from '@angular/core';
 import { useLogMonitor } from '@ngrx/store-log-monitor';
 // import { WorkerAppModule } from '@angular/platform-webworker';
 
@@ -37,13 +38,21 @@ import { DBConfig } from './../../config/db.config';
 // import { ENV_PROVIDERS } from '../../environment';
 import { ROUTES } from './app.routes';
 
-
 // Components
-// import { AvatarComponent } from '../avatar';
 import { MenuComponent } from '../menu';
 import { NoContentComponent } from '../404';
-// import { SettingsComponent } from '../settings';
+import { StatusComponent } from '../status';
 import { ToolbarComponent } from '../toolbar';
+import { AvatarComponent } from '../avatar';
+
+export const COMPONENTS: Array<Type<any>> = [
+  AvatarComponent,
+  MenuComponent,
+  NoContentComponent,
+  StatusComponent,
+  ToolbarComponent,
+];
+
 import { AuthGuard } from '../../guards';
 
 // Store
@@ -83,11 +92,7 @@ const APP_PROVIDERS = [
   ],
   declarations: [
     AppComponent,
-    // AvatarComponent,
-    MenuComponent,
-    NoContentComponent,
-    // SettingsComponent,
-    ToolbarComponent,
+    ...COMPONENTS,
   ],
   entryComponents: [
     AppComponent,

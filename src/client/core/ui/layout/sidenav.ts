@@ -92,7 +92,7 @@ export class SideNavComponent implements OnInit {
 
   private _toggleAnimationObservable() {
     this._animationObservable = new AsyncSubject();
-    return this._animationObservable.asObservable();
+    return this._animationObservable;
   }
 
 }

@@ -45,7 +45,7 @@ export class CreatorResolver implements Resolve<any> {
       });
 
     // observe changes
-    return subject.asObservable();
+    return subject;
 
   }
 

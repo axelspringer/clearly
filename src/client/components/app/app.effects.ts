@@ -6,39 +6,38 @@ import { Effect } from '@ngrx/effects';
 import { Observable } from 'rxjs';
 
 // Components
-import { DatabaseProvider } from '../../core';
 import { AppActions } from './app.actions';
+import { CreatorActions } from '../+creator';
+import { StatusComponentType } from '../status';
+
+const LOAD_ACTIONS = [
+  CreatorActions.LOAD,
+];
+
+const IDLE_ACTIONS = [
+  CreatorActions.LOAD_SUCCESS,
+];
 
 @Injectable()
 export class AppEffects {
 
-  private _db: DatabaseProvider;
+  @Effect() public setStatusLoad$: Observable<Action> = this._actions
+    .ofType(...LOAD_ACTIONS)
+    .map(() => ({
+      type: AppActions.UPDATE_STATUS,
+      payload: StatusComponentType.LOADING,
+    }));
 
-  @Effect() public loadArticle$: Observable<Action> = this.actions$
-    .ofType(AppActions.BOOT)
-    .switchMap(() => {
-      return Observable.of(true)
-        .map(() => {
-          return {
-            type: AppActions.BOOT_SUCCESS,
-            payload: true
-          }
-        })
-    })
-    .catch(err => Observable.of({
-      type: 'LOAD_FAILURE',
-      paylod: err,
+  @Effect() public setStatusIdle$: Observable<Action> = this._actions
+    .ofType(...IDLE_ACTIONS)
+    .map(() => ({
+      type: AppActions.UPDATE_STATUS,
+      payload: StatusComponentType.IDLE,
     }));
 
   constructor(
-    private actions$: Actions,
-    db: DatabaseProvider, // have database connect
+    private _actions: Actions,
   ) {
-    this._db = db;
   }
 
 }
-
-export default [
-  AppEffects,
-];

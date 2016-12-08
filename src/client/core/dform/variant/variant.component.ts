@@ -68,7 +68,7 @@ export class DFormVariantComponent implements OnInit {
   // public
 
   public get classz(): Observable<any> {
-    return this._subject.asObservable();
+    return this._subject;
   }
 
   public fav() {

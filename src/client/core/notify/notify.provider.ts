@@ -62,7 +62,7 @@ export class NotifyProvider {
   }
 
   public subscribe(): Observable<NotifyEvent> {
-    return this._replay$.asObservable();
+    return this._replay$;
   }
 
 };

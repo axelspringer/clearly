@@ -56,6 +56,10 @@ export function getArticleState() {
 }
 
 // selectors
+export function getAppStatus() {
+  return compose(fromAppReducer.getStatus(), getAppState());
+}
+
 export function getCreatorSelectedType() {
   return compose(fromCreatorReducer.getSelectedType(), getCreatorState());
 }
