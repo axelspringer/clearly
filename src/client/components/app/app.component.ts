@@ -20,6 +20,10 @@ import { DatabaseProvider } from './../../core';
 export class AppComponent implements OnInit {
 
   @ViewChild('menu') public menu;
+  @ViewChild('progressBar') public progressBar;
+
+  public visible = true;
+  public progress = 0;
 
   constructor(
     private __translate: TranslateService,
@@ -35,6 +39,12 @@ export class AppComponent implements OnInit {
 
   public ngOnInit(): void {
     this.__title.setTitle(AppConfig.HTML5_TITLE);
+
+    this.progressBar.start();
+
+    setTimeout(() => {
+      this.progress = 50;
+    }, 6000);
 
   }
 

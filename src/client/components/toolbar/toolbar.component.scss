@@ -1,0 +1,8 @@
+@import '../../../_variables'; // could be redone
+
+:host {
+  position: fixed;
+  width: 100vw;
+
+  background-color: $_app-color-light-grey;
+}

@@ -1,7 +1,7 @@
 $_ui-prefix: 'ui';
 
 // tabs
-$_ui-tabs-tab-background-color: rgba(216, 216, 216, 1);
+$_ui-tabs-tab-background-color: rgba(216, 216, 216, 1); // to global variables
 $_ui-tabs-tab-border-color: rgba(151, 151, 151, 1);
 $_ui-tabs-tab-border-style: solid;
 $_ui-tabs-tab-border-width: 1px;
@@ -16,3 +16,9 @@ $_ui-toolbar-min-height: 4 * 1rem;
 $_ui-button-outline: none;
 $_ui-button-border: none;
 $_ui-button-background: none;
+
+// loadingbar
+$_ui-loading-bar-background-color: $_ui-tabs-tab-border-color;
+$_ui-loading-bar-color: $_ui-loading-bar-background-color;
+$_ui-loading-bar-height: 2px;
+$_ui-loading-bar-box-shadow: 0 0 10px 0;

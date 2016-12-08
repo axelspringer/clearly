@@ -16,7 +16,7 @@ import { DFormPictureComponent } from './picture';
 import { DFormContextComponent } from './context';
 import { DFormSocialVideoComponent } from './socialVideo';
 // import { DFormTextAreaComponent } from './textArea';
-// import { DFormTextComponent } from './text';
+import { DFormTextComponent } from './text';
 import { DFormVariantComponent } from './variant';
 
 export const DFORM_TYPES_TOKEN = new OpaqueToken('DFORM_TYPES');
@@ -115,6 +115,6 @@ export const DFORM_DIRECTIVES: Array<Type<any>> = [
   DFormContextComponent,
   DFormSocialVideoComponent,
   // DFormTextAreaComponent,
-  // DFormTextComponent,
+  DFormTextComponent,
   DFormVariantComponent,
 ];

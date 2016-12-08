@@ -29,12 +29,6 @@ button.active:hover{
   flex: 1;
 }
 
-md-content{
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
-
 footer {
   flex: 0 0 60px;
   padding: 10px;
@@ -42,64 +36,4 @@ footer {
   align-items: center;
   justify-content: center;
   background: #fff;
-}
-
-.notifications-list {
-
-  md-list md-list-item.md-2-line .md-list-item {
-
-    height: inherit;
-    padding-top: 4px;
-    padding-bottom: 4px;
-
-  }
-
-}
-
-// global
-.sg-app {
-
-  &-sidenav-layout {
-
-    min-height: 100%;
-    width: 100%;
-
-  }
-
-  &-sidenav {
-      // set to 30% of width; TODO@sdoell: perhaps should be in code
-      width: calc(.3 * 100vw);
-      max-width: 250px;
-
-      .md-list-item {
-        cursor: pointer;
-      }
-
-    }
-
-}
-
-.example-fill-remaining-space {
-  // This fills the remaining space, by using flexbox.
-  // Every toolbar row uses a flexbox row layout.
-  flex: 1 1 auto;
-}
-
-/** remove when fixed in angular2-material **/
-/** The overlay-container is an invisible element which contains all individual overlays. */
-.md-overlay-container {
-  position: absolute;
-  pointer-events: none;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  }
-
-/** A single overlay pane. */
-.md-overlay-pane {
-  position: absolute;
-  pointer-events: auto;
-  box-sizing: border-box;
-  z-index: 1000;
 }

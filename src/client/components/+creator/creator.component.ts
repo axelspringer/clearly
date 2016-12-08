@@ -4,7 +4,6 @@ import { OnDestroy } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { TranslateService } from 'ng2-translate';
 import { Component } from '@angular/core';
-import { ViewContainerRef } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import * as _ from 'lodash';
@@ -45,7 +44,6 @@ export class CreatorComponent implements OnInit, OnDestroy {
     private _articleActions: ArticleActions,
     private _creatorActions: CreatorActions,
     private _translate: TranslateService,
-    private _viewContainerRef: ViewContainerRef,
   ) {
   }
 

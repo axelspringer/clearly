@@ -4,6 +4,8 @@ import { Component } from '@angular/core';
 import { forwardRef } from '@angular/core';
 import { Inject } from '@angular/core';
 import { OnInit } from '@angular/core';
+import { ElementRef } from '@angular/core';
+import { Renderer } from '@angular/core';
 
 // Components
 import { AppComponent } from '../app';
@@ -20,7 +22,7 @@ export class ToolbarTitleUpdate extends Event {
 
 @Component({
   selector: 'sg-toolbar',  // <sg-toolbar></sg-toolbar>
-  styleUrls: ['./toolbar.style.scss'],
+  styleUrls: ['./toolbar.component.scss'],
   templateUrl: './toolbar.component.html',
 })
 export class ToolbarComponent implements OnInit {
@@ -28,11 +30,18 @@ export class ToolbarComponent implements OnInit {
   public title: string = AppConfig.HTML5_TITLE; // TODO@sdoell: should be moved to service
 
   constructor(
+    private _elRef: ElementRef,
+    private _renderer: Renderer,
     @Inject(forwardRef(() => AppComponent)) private _app: AppComponent,
   ) { }
 
   public ngOnInit() {
-    console.log(this._app);
+    // adjust next elements
+    const el = this.contentElement(this._elRef);
+    const height = this.height(this._elRef);
+    this._renderer.setElementStyle(el, 'position', 'relative');
+    this._renderer.setElementStyle(el, 'top', `${height}px`);
+
     // EventEmitProvider
     //   .connect(new ToolbarTitleUpdate())
     //   .subscribe(value => this.title = value);
@@ -40,6 +49,14 @@ export class ToolbarComponent implements OnInit {
 
   public toggleMenu() {
     this._app['menu'].toggle();
+  }
+
+  public get contentElement() {
+    return (__: ElementRef) => __.nativeElement.nextElementSibling;
+  }
+
+  public get height() {
+    return (__: ElementRef) => __.nativeElement.offsetHeight;
   }
 
 };

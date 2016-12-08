@@ -9,6 +9,7 @@ import { LABEL_DIRECTIVES } from './label';
 import { LAYOUT_DIRECTIVES } from './layout';
 import { TABS_DIRECTIVES } from './tabs';
 import { TOOLBAR_DIRECTIVES } from './toolbar';
+import { LOADINGBAR_DIRECTIVES } from './loadingBar';
 
 @NgModule({
   imports: [
@@ -21,6 +22,7 @@ import { TOOLBAR_DIRECTIVES } from './toolbar';
     ...LAYOUT_DIRECTIVES,
     ...TABS_DIRECTIVES,
     ...TOOLBAR_DIRECTIVES,
+    ...LOADINGBAR_DIRECTIVES,
   ],
   declarations: [
     ...BUTTON_DIRECTIVES,
@@ -29,6 +31,7 @@ import { TOOLBAR_DIRECTIVES } from './toolbar';
     ...LAYOUT_DIRECTIVES,
     ...TABS_DIRECTIVES,
     ...TOOLBAR_DIRECTIVES,
+    ...LOADINGBAR_DIRECTIVES,
   ],
   providers: [
   ],
