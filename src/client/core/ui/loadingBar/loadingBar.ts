@@ -72,9 +72,10 @@ export class LoadingBarComponent implements OnInit {
 
   // public
 
-  public start() {
+  public start(progress?: number) {
     this.stop();
     this.visible = true;
+    this.progress = progress || this.progress;
     this._interval = setInterval(() => {
       this.progress++;
       if (this.progress === 100) {
@@ -94,6 +95,12 @@ export class LoadingBarComponent implements OnInit {
     this.progress = 0;
   }
 
+  public error() {
+    this.progress = 100;
+    this.stop();
+    this._setColor('rgba(208, 2, 27, 1)');
+  }
+
   public complete() {
     this.progress = 100;
     this.stop();
@@ -101,8 +108,8 @@ export class LoadingBarComponent implements OnInit {
       this.visible = false;
       setTimeout(() => {
         this.progress = 0;
-      }, 250);
-    }, 250);
+      }, 1000);
+    }, 1000);
   }
 
   // private
@@ -127,6 +134,12 @@ export class LoadingBarComponent implements OnInit {
 
   private get _progressBar() {
     return this._elRef.nativeElement.querySelector('.ui-loading-bar-progress');
+  }
+
+  private get _setColor() {
+    return (__: string) => {
+      this._renderer.setElementStyle(this._progressBar, 'background-color', __);
+    };
   }
 
 }

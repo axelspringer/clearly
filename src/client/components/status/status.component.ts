@@ -49,14 +49,8 @@ export class StatusComponent implements OnInit {
 
   public ngOnInit() {
     EventEmitProvider
-      .connect(StatusTitleUpdate.constructor.name)
+      .connect(StatusTitleUpdate.prototype.constructor.name)
       .subscribe(this.title);
-
-    setTimeout(() => {
-      EventEmitProvider
-        .connect(StatusTitleUpdate.constructor.name)
-        .emit('test');
-    }, 1500); // demoing
   }
 
   // public

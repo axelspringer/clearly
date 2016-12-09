@@ -1,10 +1,7 @@
 // Authentication Guard
 import { Injectable } from '@angular/core';
 import { CanActivate } from '@angular/router';
-// import { CanDeactivate } from '@angular/router';
-// import { Router } from '@angular/router';
-// import { ActivatedRouteSnapshot } from '@angular/router';
-// import { RouterStateSnapshot } from '@angular/router';
+import { AsyncSubject } from 'rxjs';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
@@ -15,7 +12,14 @@ export class AuthGuard implements CanActivate {
   ) {
     console.log(`Authenticating route ...`);
 
-    return true || false; // this is foo -> bar
+    const subject = new AsyncSubject();
+
+    setTimeout(() => {
+      subject.next(true);
+      subject.complete();
+    }, 2500);
+
+    return subject;
   }
 
   public CanDeactivate() {

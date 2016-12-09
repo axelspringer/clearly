@@ -5,6 +5,10 @@ import { Title } from '@angular/platform-browser';
 import { TranslateService } from 'ng2-translate';
 import { ViewChild } from '@angular/core';
 import { ViewEncapsulation } from '@angular/core';
+import { Router } from '@angular/router';
+import { NavigationStart } from '@angular/router';
+import { NavigationEnd } from '@angular/router';
+import { NavigationCancel } from '@angular/router';
 
 // Compponents
 import { AppConfig } from '../../config';
@@ -22,15 +26,13 @@ export class AppComponent implements OnInit {
   @ViewChild('menu') public menu;
   @ViewChild('progressBar') public progressBar;
 
-  public visible = true;
-  public progress = 0;
-
   constructor(
-    private __translate: TranslateService,
-    private __title: Title,
+    private _translate: TranslateService,
+    private _title: Title,
+    private _router: Router,
   ) {
-    this.__translate.setDefaultLang(AppConfig.DEFAULT_LANGUAGE);
-    this.__translate.use(AppConfig.DEFAULT_LANGUAGE);
+    this._translate.setDefaultLang(AppConfig.DEFAULT_LANGUAGE);
+    this._translate.use(AppConfig.DEFAULT_LANGUAGE);
 
     EventEmitProvider
       .connect(DatabaseProvider.name)
@@ -38,13 +40,19 @@ export class AppComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    this.__title.setTitle(AppConfig.HTML5_TITLE);
+    this._title.setTitle(AppConfig.HTML5_TITLE);
 
-    this.progressBar.start();
-
-    setTimeout(() => {
-      this.progress = 50;
-    }, 6000);
+    this._router.events.subscribe(event => {
+      if (event instanceof NavigationStart) {
+        this.progressBar.start(25);
+      }
+      if (event instanceof NavigationEnd) {
+        this.progressBar.complete();
+      }
+      if (event instanceof NavigationCancel) {
+        this.progressBar.error();
+      }
+    });
 
   }
 

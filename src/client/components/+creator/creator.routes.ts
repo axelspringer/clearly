@@ -3,6 +3,9 @@ import { CreatorComponent } from './creator.component';
 import { CreatorResolver } from './creator.resolver';
 import { Routes } from '@angular/router';
 
+// Components
+import { AuthGuard } from '../../guards';
+
 export const ROUTES: Routes = [
   {
     path: 'create',
@@ -11,6 +14,11 @@ export const ROUTES: Routes = [
       order: 1,
       isMenu: true,
     },
+    canActivate: [
+      AuthGuard,
+    ],
+    canDeactivate: [
+    ],
     // canActivateChild: [CanActivateArticle],
     children: [
       {
@@ -23,8 +31,6 @@ export const ROUTES: Routes = [
         resolve: {
           types: CreatorResolver,
         },
-        // canActivate: [CreatorGuard],
-        // canDeactivate: [CreatorGuard]
       },
     ],
   },

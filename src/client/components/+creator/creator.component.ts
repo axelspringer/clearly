@@ -15,9 +15,9 @@ import { CreatorActions } from './creator.actions';
 import { EventEmitProvider } from '../../core';
 import { getCreatorSelectedType } from '../app';
 import { IAppState } from '../app';
-import { ToolbarTitleUpdate } from '../toolbar';
 import { getArticleChannel } from '../app';
 import { getArticleMaster } from '../app';
+import { StatusTitleUpdate } from '../status/status.component';
 
 @Component({
   selector: 'sg-creator',  // <creator></creator>
@@ -31,7 +31,7 @@ export class CreatorComponent implements OnInit, OnDestroy {
   // public dialogRef: MdDialogRef<ChannelsDialogComponent>;
   public lastCloseResult: string;
 
-  public i18nTitle = 'ORCHESTRA.CREATOR.TITLE';
+  public i18nTitle = 'COMPONENT.CREATOR.TITLE';
   public form$: any;
 
   public title = 'Test';
@@ -85,8 +85,8 @@ export class CreatorComponent implements OnInit, OnDestroy {
 
     this._store.dispatch(this._creatorActions.selectType(0));
 
-    this._translate.get(this.i18nTitle).subscribe(t =>
-      EventEmitProvider.connect(ToolbarTitleUpdate.prototype.constructor.name).emit(t));
+    this._translate.get(this.i18nTitle).subscribe(translation =>
+      EventEmitProvider.connect(StatusTitleUpdate.prototype.constructor.name).emit(translation));
   }
 
   public toggleChannels() {

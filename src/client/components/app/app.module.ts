@@ -53,7 +53,7 @@ export const COMPONENTS: Array<Type<any>> = [
   ToolbarComponent,
 ];
 
-import { AuthGuard } from '../../guards';
+import { GUARDS } from '../../guards';
 
 // Store
 import AppStore from './app.store';
@@ -73,7 +73,11 @@ const APP_PROVIDERS = [
       name: DBConfig.NAME,
     },
   },
-  AuthGuard,
+
+  // Guards
+  ...GUARDS,
+
+  // Others
   Title,
   DocsActions,
   CreatorResolver,
