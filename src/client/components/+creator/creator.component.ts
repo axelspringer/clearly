@@ -28,13 +28,9 @@ export class CreatorComponent implements OnInit, OnDestroy {
 
   public form: FormGroup;
 
-  // public dialogRef: MdDialogRef<ChannelsDialogComponent>;
-  public lastCloseResult: string;
-
   public i18nTitle = 'COMPONENT.CREATOR.TITLE';
   public form$: any;
 
-  public title = 'Test';
   public icons = 'fa-user';
 
   constructor(
@@ -69,10 +65,6 @@ export class CreatorComponent implements OnInit, OnDestroy {
       .filter(master => !_.isUndefined(master));
   }
 
-  public test() {
-    console.log('test');
-  }
-
   // angular
 
   public ngOnInit() {
@@ -85,26 +77,13 @@ export class CreatorComponent implements OnInit, OnDestroy {
 
     this._store.dispatch(this._creatorActions.selectType(0));
 
-    this._translate.get(this.i18nTitle).subscribe(translation =>
-      EventEmitProvider.connect(StatusTitleUpdate.prototype.constructor.name).emit(translation));
-  }
-
-  public toggleChannels() {
-    // let config = new MdDialogConfig();
-    // config.viewContainerRef = this._viewContainerRef;
-    // this.dialogRef = this.dialog.open(ChannelsDialogComponent, config);
-    // this.dialogRef.afterClosed().subscribe(result => {
-    //   this.lastCloseResult = result;
-    //   this.dialogRef = null;
-    // });
+    this._translate.get(this.i18nTitle).subscribe(translation => {
+      EventEmitProvider.connect(StatusTitleUpdate.prototype.constructor.name).emit(translation);
+    });
   }
 
   public ngOnDestroy() {
     // TODO(@sdoell): unsubscribe to all subscriptions
-  }
-
-  public onFormUpdate($event) {
-    this.form = $event;
   }
 
 };

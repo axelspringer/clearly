@@ -2,7 +2,8 @@
 
 :host {
   position: fixed;
-  width: 100vw;
+  z-index: 9999;
+  width: 100%;
 
   background-color: $_app-color-light-grey;
 }

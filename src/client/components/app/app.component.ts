@@ -10,6 +10,7 @@ import { NavigationStart } from '@angular/router';
 import { NavigationEnd } from '@angular/router';
 import { NavigationCancel } from '@angular/router';
 
+
 // Compponents
 import { AppConfig } from '../../config';
 import { EventEmitProvider } from '../../core';
@@ -30,6 +31,7 @@ export class AppComponent implements OnInit {
     private _translate: TranslateService,
     private _title: Title,
     private _router: Router,
+    // app ref
   ) {
     this._translate.setDefaultLang(AppConfig.DEFAULT_LANGUAGE);
     this._translate.use(AppConfig.DEFAULT_LANGUAGE);
@@ -53,7 +55,6 @@ export class AppComponent implements OnInit {
         this.progressBar.error();
       }
     });
-
   }
 
 }

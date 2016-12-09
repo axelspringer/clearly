@@ -20,10 +20,10 @@ export class MenuComponent implements AfterViewInit {
   public $routes: any = [];
 
   constructor(
-    @Inject(forwardRef(() => AppComponent)) public _app: AppComponent,
+    @Inject(forwardRef(() => AppComponent)) public _app: AppComponent, // TODO@sdoell: could be moved to service
     private _router: Router,
   ) {
-    // TODO@sdoell(adding again to routes)
+    // TODO@sdoell: adding again to routes
     // this.$routes = router.config.filter(route => route.data && route.data['isMenu']);
     // this.$routes = this.$routes.sort((a, b) => a.data['order'] > b.data['order']);
   }

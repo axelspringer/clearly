@@ -2,22 +2,20 @@
 import { Angular2Apollo } from 'angular2-apollo';
 import { ApolloQueryObservable } from 'angular2-apollo';
 import { OnInit } from '@angular/core';
-// import { ApolloQueryResult } from 'apollo-client';
 import { Component } from '@angular/core';
-// import { Inject } from 'angular/core';
 import { Store } from '@ngrx/store';
-import { Title } from '@angular/platform-browser';
 import { Observable } from 'rxjs';
+import { TranslateService } from 'ng2-translate';
 
 // We need this to parse graphql string
 import gql from 'graphql-tag';
 
 // Components
 import { EventEmitProvider } from '../../core';
-import { ToolbarTitleUpdate } from '../toolbar';
 import { DocsActions } from '../../actions';
 import { IAppState } from '../app';
 import { getDocs } from '../app';
+import { StatusTitleUpdate } from '../status';
 
 @Component({
   selector: 'sg-dashboard',  // <sg-dashboard></sg-dashboard>
@@ -26,18 +24,18 @@ import { getDocs } from '../app';
 })
 export class DashboardComponent implements OnInit {
 
-  public ok: ApolloQueryObservable<any>;
+  // properties
 
-  private title$ = 'Übersicht';
-  private pirate$ = '';
-  private isPirate$: boolean = false;
+  public i18nTitle = 'COMPONENT.DASHBOARD.TITLE';
+  public ok: ApolloQueryObservable<any>;
 
   private articles$: Observable<any>;
 
   // TypeScript public modifiers
   constructor(
+    private _translate: TranslateService,
+    // legacy
     private store: Store<IAppState>,
-    private title: Title,
     private docsActions: DocsActions,
     private apollo: Angular2Apollo,
   ) {
@@ -61,21 +59,10 @@ export class DashboardComponent implements OnInit {
 
   public ngOnInit() {
     console.log('hello `Dashboard` component');
-    this.title.setTitle(this.title$);
 
-    EventEmitProvider.connect(ToolbarTitleUpdate.prototype.constructor.name).emit(this.title$);
-
-    // this.db.allDocs()
-    //   .subscribe(val => console.log(val));
-
-  }
-
-  public isPirate(answer: boolean) {
-
-    if (answer) {
-      this.isPirate$ = answer;
-      this.pirate$ = 'http://i.giphy.com/26tn1ToaMhpOEetkA.gif';
-    }
+    this._translate.get(this.i18nTitle).subscribe(translation => {
+      EventEmitProvider.connect(StatusTitleUpdate.prototype.constructor.name).emit(translation);
+    });
 
   }
 

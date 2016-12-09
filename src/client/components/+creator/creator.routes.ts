@@ -19,7 +19,6 @@ export const ROUTES: Routes = [
     ],
     canDeactivate: [
     ],
-    // canActivateChild: [CanActivateArticle],
     children: [
       {
         path: ':id',
