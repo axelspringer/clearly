@@ -11,7 +11,6 @@ import { Renderer } from '@angular/core';
 import { AppComponent } from '../app';
 import { AppConfig } from '../../config';
 import { Event } from '../../core';
-import { EventEmitProvider } from '../../core';
 
 // Interface
 export class ToolbarTitleUpdate extends Event {

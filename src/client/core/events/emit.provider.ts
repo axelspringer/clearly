@@ -1,3 +1,4 @@
+/* tslint:disable: max-classes-per-file */
 // Importables
 import { EventEmitter } from '@angular/core';
 import { Injectable } from '@angular/core';
@@ -6,11 +7,11 @@ import { Injectable } from '@angular/core';
 export abstract class Event {
 
   constructor(
-    private __payload: any = {},
+    public payload?,
   ) { }
 
-  public get payload() {
-    return this.__payload;
+  public toString() {
+    return this.payload;
   }
 
 };
@@ -24,20 +25,20 @@ export class EventEmitProvider {
     const id = typeof event === 'string'
       ? event
       : event.constructor.name;
-    if (!this.__emitters$[id]) {
-      this.__emitters$[id] = new EventEmitter(); // EventEmitter -> Observable
+    if (!this._emitters$[id]) {
+      this._emitters$[id] = new EventEmitter(); // EventEmitter -> Observable
     }
-    this.log(id); return this.__emitters$[id];
+    this.log(id); return this._emitters$[id];
   }
 
   public static log(id: string): void {
     console.group(`Event: ${id}`);
-    console.log(this.__emitters$[id]);
+    console.log(this._emitters$[id]);
     console.groupEnd();
   }
 
   // private
 
-  private static __emitters$: { [id: string]: EventEmitter<any>; } = {};
+  private static _emitters$: { [id: string]: EventEmitter<any>; } = {};
 
 };
