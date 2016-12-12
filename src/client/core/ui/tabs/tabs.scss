@@ -1,42 +1,49 @@
 @import '../variables';
 
-:host {
+ui-tabs {
 
-  ul {
+  .#{&}-container {
 
-    display: flex;
-    min-width: 100%;
-    list-style: none;
-    // reset
-    padding: 0;
-    margin: 0;
+    background-color: $_ui-tabs-background-color;
+    width: 100%;
 
-    li {
+    ul {
 
-      cursor: pointer;
-      padding: $_ui-tabs-tab-padding / 2 $_ui-tabs-tab-padding;
+      display: flex;
+      min-width: 100%;
+      list-style: none;
+      // reset
+      padding: 0;
+      margin: 0;
 
-      border-color: $_ui-tabs-tab-border-color;
-      border-style: $_ui-tabs-tab-border-style;
-      border-width: $_ui-tabs-tab-border-width;
+      li {
 
-      &:hover {
+        cursor: pointer;
+        padding: $_ui-tabs-tab-padding / 2 $_ui-tabs-tab-padding;
 
-        background-color: $_ui-tabs-tab-background-color;
+        border-color: $_ui-tabs-tab-border-color;
+        border-style: $_ui-tabs-tab-border-style;
+        border-width: $_ui-tabs-tab-border-width;
+
+        &:hover {
+
+          background-color: $_ui-tabs-tab-background-color;
+
+        }
 
       }
 
-    }
+      li + li {
 
-    li + li {
+        border-left: none;
 
-      border-left: none;
+      }
 
-    }
+      li:nth-last-child(1) {
 
-    li:nth-last-child(1) {
+        flex-grow: 1;
 
-      flex-grow: 1;
+      }
 
     }
 

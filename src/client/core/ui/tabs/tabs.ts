@@ -1,25 +1,34 @@
+// Importables
 import { AfterContentChecked } from '@angular/core';
 import { ChangeDetectionStrategy } from '@angular/core';
 import { Component } from '@angular/core';
 import { ContentChildren } from '@angular/core';
 import { Input } from '@angular/core';
 import { QueryList } from '@angular/core';
+import { ViewChild } from '@angular/core';
+import { ViewEncapsulation } from '@angular/core';
+import { AfterViewInit } from '@angular/core';
+import { ElementRef } from '@angular/core';
+import { Renderer } from '@angular/core';
 
 import { TabComponent } from './tab';
 import { Group } from './group';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
   selector: 'ui-tabs',
   templateUrl: './tabs.html',
   styleUrls: ['./tabs.scss'],
   providers: [Group],
 })
-export class TabsComponent implements AfterContentChecked {
+export class TabsComponent implements AfterContentChecked, AfterViewInit {
 
-  public get tabs() {
-    return this._tabs;
-  }
+  // DOM
+
+  @ContentChildren(TabComponent) public tabs: QueryList<TabComponent>;
+  @ViewChild('uiTabsContainer') public uiTabsContainer: ElementRef;
+  @ViewChild('uiTabs') public uiTabs: ElementRef;
 
   // input outputs
 
@@ -31,19 +40,23 @@ export class TabsComponent implements AfterContentChecked {
   }
   private _selectedTab: number = 0; // begin with no tab selected
 
-  // DOM
-
-  @ContentChildren(TabComponent) private _tabs: QueryList<TabComponent>;
-
   constructor(
     private _group: Group,
+    private _renderer: Renderer,
   ) {
   }
 
   // angular
 
+  public ngAfterViewInit(): void {
+    const rect = this.uiTabsContainer.nativeElement.getBoundingClientRect();
+    this._renderer.setElementStyle(this.uiTabsContainer.nativeElement, 'position', 'fixed');
+    this._renderer.setElementStyle(this.uiTabsContainer.nativeElement, 'top', `${rect.top}px`);
+    this._renderer.setElementStyle(this.uiTabs.nativeElement, 'padding-top', `${rect.height}px`);
+  }
+
   public ngAfterContentChecked(): void {
-    this._tabs.changes.subscribe(children => {
+    this.tabs.changes.subscribe(children => {
       children.forEach((tab: TabComponent, index: number) => {
         if (tab.tabSelected) {
           this.selectedTab = index;

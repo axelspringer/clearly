@@ -2,10 +2,11 @@
 
 ui-layout-sidenav {
 
+  position: relative;
+
   .#{&}-container {
 
     position: relative;
-    // overflow: auto;
 
   }
 
