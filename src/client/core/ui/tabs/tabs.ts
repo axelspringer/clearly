@@ -1,5 +1,5 @@
 // Importables
-import { AfterContentChecked } from '@angular/core';
+import { AfterContentChecked, HostListener } from '@angular/core';
 import { ChangeDetectionStrategy } from '@angular/core';
 import { Component } from '@angular/core';
 import { ContentChildren } from '@angular/core';
@@ -27,8 +27,13 @@ export class TabsComponent implements AfterContentChecked, AfterViewInit {
   // DOM
 
   @ContentChildren(TabComponent) public tabs: QueryList<TabComponent>;
-  @ViewChild('uiTabsContainer') public uiTabsContainer: ElementRef;
   @ViewChild('uiTabs') public uiTabs: ElementRef;
+  @ViewChild('uiTab') public uiTab: ElementRef;
+
+  @HostListener('window:resize', ['$event'])
+  public onResize() {
+    this._setHeight(this.uiTab.nativeElement, this.uiTabs.nativeElement);
+  }
 
   // input outputs
 
@@ -49,10 +54,8 @@ export class TabsComponent implements AfterContentChecked, AfterViewInit {
   // angular
 
   public ngAfterViewInit(): void {
-    const rect = this.uiTabsContainer.nativeElement.getBoundingClientRect();
-    this._renderer.setElementStyle(this.uiTabsContainer.nativeElement, 'position', 'fixed');
-    this._renderer.setElementStyle(this.uiTabsContainer.nativeElement, 'top', `${rect.top}px`);
-    this._renderer.setElementStyle(this.uiTabs.nativeElement, 'padding-top', `${rect.height}px`);
+    this._fixPos(this.uiTabs.nativeElement);
+    this._setHeight(this.uiTab.nativeElement, this.uiTabs.nativeElement);
   }
 
   public ngAfterContentChecked(): void {
@@ -69,6 +72,24 @@ export class TabsComponent implements AfterContentChecked, AfterViewInit {
 
   public selectTab(newTab: number) {
     this._group.selectTab(newTab);
+  }
+
+  // private
+  public get _setHeight() {
+    return (el, __?, ___?) => {
+      const rect = __.getBoundingClientRect();
+      const height = ___ || window.innerHeight;
+      this._renderer.setElementStyle(el, 'height', `${height - rect.height - rect.top}px`);
+      this._renderer.setElementStyle(el, 'top', `${rect.height}px`);
+    };
+  }
+
+  public get _fixPos() {
+    return (__) => {
+      const rect = __.getBoundingClientRect();
+      this._renderer.setElementStyle(__, 'position', 'fixed');
+      this._renderer.setElementStyle(__, 'top', `${rect.top}px`);
+    };
   }
 
 }

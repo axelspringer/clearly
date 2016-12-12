@@ -5,6 +5,7 @@ ui-tabs {
   .#{&}-container {
 
     background-color: $_ui-tabs-background-color;
+    z-index: 9997;
     width: 100%;
 
     ul {
@@ -46,6 +47,13 @@ ui-tabs {
       }
 
     }
+
+  }
+
+  .ui-tab {
+
+    position: relative;
+    overflow-y: scroll;
 
   }
 

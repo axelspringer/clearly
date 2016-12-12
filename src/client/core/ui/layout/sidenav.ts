@@ -20,21 +20,6 @@ import * as _ from 'lodash';
 })
 export class SideNavComponent implements OnInit {
 
-  // private
-
-  private _opened: boolean = false;
-  private _animationObservable: AsyncSubject<any> = null;
-  private _classz = {
-    'is-open': false,
-    'is-close': true,
-  };
-
-  constructor(
-    private _elRef: ElementRef,
-    private _renderer: Renderer,
-  ) {
-  }
-
   // Outputs
 
   @Output() public onOpen = new EventEmitter<void>();
@@ -50,6 +35,20 @@ export class SideNavComponent implements OnInit {
     this.toggle(isOpen);
   }
 
+  // private
+
+  private _opened: boolean = false;
+  private _animationObservable: AsyncSubject<any> = null;
+  private _classz = {
+    'is-open': false,
+    'is-close': true,
+  };
+
+  constructor(
+    private _elRef: ElementRef,
+    private _renderer: Renderer,
+  ) {
+  }
 
   // angular
   public ngOnInit() {

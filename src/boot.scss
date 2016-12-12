@@ -8,6 +8,7 @@ $_spin-off-border-color: rgba($_spin-border-color, 0.2);
 
 html, body {
   height: 100%;
+  overflow: hidden;
 }
 
 .critical {

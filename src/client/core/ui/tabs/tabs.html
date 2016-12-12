@@ -1,8 +1,8 @@
-<div #uiTabsContainer class="ui-tabs-container">
+<div #uiTabs class="ui-tabs-container">
   <ul>
     <li (click)="selectTab(idx)" *ngFor="let tab of tabs; let idx = index;">{{ tab.tabLabel }}</li>
   </ul>
 </div>
-<div #uiTabs>
+<div #uiTab class="ui-tab">
   <ng-content></ng-content>
 </div>

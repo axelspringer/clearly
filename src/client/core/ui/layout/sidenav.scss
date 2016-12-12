@@ -2,8 +2,6 @@
 
 ui-layout-sidenav {
 
-  position: relative;
-
   .#{&}-container {
 
     position: relative;
@@ -17,13 +15,13 @@ ui-layout-sidenav {
     z-index: 999;
     min-height: 100%;
     transition: transform .5s;
+
   }
 
   .ui-layout {
 
     &-content {
 
-      // overflow: hidden;
       position: relative;
 
     }
