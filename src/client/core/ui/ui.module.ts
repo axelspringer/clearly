@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 
 // Components
 import { BUTTON_DIRECTIVES } from './button';
-import { ICON_DIRECTIVES } from './icon';
+import { ICON_DIRECTIVES } from './icn';
 import { LABEL_DIRECTIVES } from './label';
 import { LAYOUT_DIRECTIVES } from './layout';
 import { TABS_DIRECTIVES } from './tabs';
