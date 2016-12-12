@@ -1,5 +1,5 @@
 // Importables
-import { Routes } from '@angular/router';
+import { Routes } from './index';
 
 // Components
 import { AuthGuard } from '../../guards';
@@ -12,13 +12,14 @@ export const ROUTES: Routes = [
       AuthGuard,
     ],
     canDeactivate: [],
-    path: '',
     component: DashboardComponent, // TODO@sdoell: move to module
+    path: '',
+    menu: {
+      title: 'Dashboard',
+      show: true,
+      order: 0,
+    },
   },
-  // {
-  //   path: 'settings',
-  //   component: SettingsComponent,
-  // },
   {
     path: '**',
     component: NoContentComponent,

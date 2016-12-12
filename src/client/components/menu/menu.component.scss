@@ -1,0 +1,11 @@
+:host {
+  padding: initial;
+}
+
+:host nav {
+  padding: 1rem 0;
+  a {
+    display: block;
+    padding: .5rem 1rem;
+  }
+}

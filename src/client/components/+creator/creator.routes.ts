@@ -1,7 +1,7 @@
 // Importables
 import { CreatorComponent } from './creator.component';
 import { CreatorResolver } from './creator.resolver';
-import { Routes } from '@angular/router';
+import { Routes } from '../app';
 
 // Components
 import { AuthGuard } from '../../guards';
@@ -9,10 +9,10 @@ import { AuthGuard } from '../../guards';
 export const ROUTES: Routes = [
   {
     path: 'create',
-    data: {
+    menu: {
       title: 'Neuer Artikel',
+      show: true,
       order: 1,
-      isMenu: true,
     },
     canActivate: [
       AuthGuard,
