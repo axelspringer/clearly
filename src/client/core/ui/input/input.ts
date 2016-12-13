@@ -1,17 +1,17 @@
 /* tslint:disable no-input-rename */
-import { 
+import {
     ChangeDetectionStrategy,
-    Component, 
-    ElementRef, 
+    Component,
+    ElementRef,
     EventEmitter,
     forwardRef,
     Input,
     Output,
     Renderer,
     ViewEncapsulation,
- } from '@angular/core';
+} from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
-import {Observable} from 'rxjs/Observable';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
     changeDetection: ChangeDetectionStrategy.OnPush,
@@ -72,9 +72,9 @@ export class InputComponent implements ControlValueAccessor {
         return this._focusEmitter.asObservable();
     }
 
-    constructor(private _el: ElementRef, private _renderer: Renderer) {}
+    constructor(private _el: ElementRef, private _renderer: Renderer) { }
 
-     _handleFocus(event: FocusEvent) {
+    _handleFocus(event: FocusEvent) {
         this._focused = true;
         this._focusEmitter.emit(event);
         console.log("onFocus");
@@ -119,8 +119,8 @@ export class InputComponent implements ControlValueAccessor {
     get value(): any { return this._value; };
     @Input() set value(value: any) {
         if (value !== this._value) {
-        this._value = value;
-        this.onChangeCallback(value);
+            this._value = value;
+            this.onChangeCallback(value);
         }
     }
 }
