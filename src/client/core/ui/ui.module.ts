@@ -10,6 +10,7 @@ import { LAYOUT_DIRECTIVES } from './layout';
 import { TABS_DIRECTIVES } from './tabs';
 import { TOOLBAR_DIRECTIVES } from './toolbar';
 import { LOADINGBAR_DIRECTIVES } from './loadingBar';
+import { POPOVER_DIRECTIVES } from './popover';
 
 @NgModule({
   imports: [
@@ -20,18 +21,20 @@ import { LOADINGBAR_DIRECTIVES } from './loadingBar';
     ...ICON_DIRECTIVES,
     ...LABEL_DIRECTIVES,
     ...LAYOUT_DIRECTIVES,
+    ...LOADINGBAR_DIRECTIVES,
+    ...POPOVER_DIRECTIVES,
     ...TABS_DIRECTIVES,
     ...TOOLBAR_DIRECTIVES,
-    ...LOADINGBAR_DIRECTIVES,
   ],
   declarations: [
     ...BUTTON_DIRECTIVES,
     ...ICON_DIRECTIVES,
     ...LABEL_DIRECTIVES,
     ...LAYOUT_DIRECTIVES,
+    ...LOADINGBAR_DIRECTIVES,
+    ...POPOVER_DIRECTIVES,
     ...TABS_DIRECTIVES,
     ...TOOLBAR_DIRECTIVES,
-    ...LOADINGBAR_DIRECTIVES,
   ],
   providers: [
   ],

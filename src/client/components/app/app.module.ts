@@ -39,14 +39,16 @@ import { DBConfig } from './../../config/db.config';
 import { ROUTES } from './app.routes';
 
 // Components
+import { AvatarComponent } from '../avatar';
+import { ContextMenuComponent } from '../contextMenu';
 import { MenuComponent } from '../menu';
 import { NoContentComponent } from '../404';
 import { StatusComponent } from '../status';
 import { ToolbarComponent } from '../toolbar';
-import { AvatarComponent } from '../avatar';
 
 export const COMPONENTS: Array<Type<any>> = [
   AvatarComponent,
+  ContextMenuComponent,
   MenuComponent,
   NoContentComponent,
   StatusComponent,

@@ -3,7 +3,7 @@
 import { Component } from '@angular/core';
 import { forwardRef } from '@angular/core';
 import { Inject } from '@angular/core';
-import { OnInit } from '@angular/core';
+import { AfterViewInit } from '@angular/core';
 import { ElementRef } from '@angular/core';
 import { Renderer } from '@angular/core';
 
@@ -24,7 +24,7 @@ export class ToolbarTitleUpdate extends Event {
   styleUrls: ['./toolbar.component.scss'],
   templateUrl: './toolbar.component.html',
 })
-export class ToolbarComponent implements OnInit {
+export class ToolbarComponent implements AfterViewInit {
 
   public title: string = AppConfig.HTML5_TITLE; // TODO@sdoell: should be moved to service
 
@@ -34,12 +34,12 @@ export class ToolbarComponent implements OnInit {
     @Inject(forwardRef(() => AppComponent)) private _app: AppComponent,
   ) { }
 
-  public ngOnInit() {
+  public ngAfterViewInit() {
     // adjust next elements
     const el = this.contentElement(this._elRef);
-    const height = this.height(this._elRef);
+    console.log(this.height(this._elRef), this._elRef);
     this._renderer.setElementStyle(el, 'position', 'relative');
-    this._renderer.setElementStyle(el, 'top', `${height}px`);
+    this._renderer.setElementStyle(el, 'top', `${this.height(this._elRef)}px`);
 
     // EventEmitProvider
     //   .connect(new ToolbarTitleUpdate())
@@ -55,7 +55,7 @@ export class ToolbarComponent implements OnInit {
   }
 
   public get height() {
-    return (__: ElementRef) => __.nativeElement.offsetHeight;
+    return (__: ElementRef) => __.nativeElement.clientHeight;
   }
 
 };

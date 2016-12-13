@@ -57,14 +57,6 @@ export class SideNavComponent implements OnInit {
 
   // public
 
-  public open() {
-
-  }
-
-  public close() {
-
-  }
-
   public toggle(isOpen: boolean = !this.opened): Observable<boolean> {
 
     this._opened = isOpen;

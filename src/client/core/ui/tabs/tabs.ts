@@ -54,7 +54,7 @@ export class TabsComponent implements AfterContentChecked, AfterViewInit {
   // angular
 
   public ngAfterViewInit(): void {
-    this._fixPos(this.uiTabs.nativeElement);
+    // this._fixPos(this.uiTabs.nativeElement);
     this._setHeight(this.uiTab.nativeElement, this.uiTabs.nativeElement);
   }
 
@@ -80,17 +80,15 @@ export class TabsComponent implements AfterContentChecked, AfterViewInit {
       const rect = __.getBoundingClientRect();
       const height = ___ || window.innerHeight;
       this._renderer.setElementStyle(el, 'height', `${height - rect.height - rect.top}px`);
-      this._renderer.setElementStyle(el, 'top', `${rect.height}px`);
     };
   }
 
-  public get _fixPos() {
-    return (__) => {
-      const rect = __.getBoundingClientRect();
-      this._renderer.setElementStyle(__, 'position', 'fixed');
-      this._renderer.setElementStyle(__, 'top', `${rect.top}px`);
-    };
-  }
+  // public get _fixPos() {
+  //   return (__) => {
+  //     const rect = __.getBoundingClientRect();
+  //     this._renderer.setElementStyle(__, 'top', `${rect.top}px`);
+  //   };
+  // }
 
 }
 
