@@ -1,0 +1,30 @@
+@import '../variables';
+
+ui-textarea textarea {
+    display: block;
+    margin: 0;
+    width: 100%;
+    -webkit-appearance: none;
+    box-shadow: none;
+    border-radius: none;
+    border: none;
+    line-height: 2;
+    padding-left: 0.5em;
+
+    &:focus {
+        outline: none;
+        background-color: $_ui-input-focus-bg;
+
+        // Hide placeholder
+        &::-webkit-input-placeholder { /* WebKit browsers */
+            color:    transparent;
+        }
+    }
+
+    &:disabled, &:read-only {
+        background: $_ui-input-disabled-bg;
+        color: $_ui-input-disabled;
+        cursor: not-allowed;
+    }
+
+}
