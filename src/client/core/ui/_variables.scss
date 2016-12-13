@@ -23,3 +23,8 @@ $_ui-loading-bar-background-color: $_ui-tabs-tab-border-color;
 $_ui-loading-bar-color: $_ui-loading-bar-background-color;
 $_ui-loading-bar-height: 2px;
 $_ui-loading-bar-box-shadow: 0 0 10px 0;
+
+// inputs
+$_ui-input-disabled: rgba(181, 181, 181, 1);
+$_ui-input-disabled-bg: rgba(247, 247, 247, 1);
+$_ui-input-focus-bg: aliceblue;
