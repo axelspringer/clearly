@@ -3,7 +3,7 @@
     <div [formGroup]="variants">
       <div *ngFor="let variant of variants.controls; let i=index">
         <sg-dform-variant [index]="i" [form]="variant" (isFaved)="isFaved($event)" (removeVariant)="removeVariant($event)">
-          <input type="text" [id]="variant.key">
+          <ui-input type="text" id="variant.key" placeholder="Überschrift eingeben..." maxlength="80"></ui-input>
         </sg-dform-variant>
       </div>
     </div>

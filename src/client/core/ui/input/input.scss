@@ -1,0 +1,33 @@
+@import '../variables';
+
+ui-input input {
+
+    &[type="text"] {
+        display: block;
+        margin: 0;
+        width: 100%;
+        -webkit-appearance: none;
+        box-shadow: none;
+        border-radius: none;
+        border: none;
+        line-height: 2;
+        padding-left: 0.5em;
+    }
+
+    &[type="text"]:focus {
+        outline: none;
+        background-color: $_ui-input-focus-bg;
+
+        // Hide placeholder
+        &::-webkit-input-placeholder { /* WebKit browsers */
+            color:    transparent;
+        }
+    }
+
+    &[type="text"]:disabled, &[type="text"]:read-only {
+        background: $_ui-input-disabled-bg;
+        color: $_ui-input-disabled;
+        cursor: not-allowed;
+    }
+
+}

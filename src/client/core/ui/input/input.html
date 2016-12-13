@@ -1,0 +1,5 @@
+<input type="text" [id]="id" [placeholder]="placeholder" [attr.maxlength]="maxlength" 
+    (focus)="_handleFocus($event)"
+    (blur)="_handleBlur($event)"
+    [(ngModel)]="value"
+    (change)="_handleChange($event)">
