@@ -1,3 +1,5 @@
+@import '../../../variables';
+
 :host {
   padding: initial;
 }
@@ -6,6 +8,24 @@
   padding: 1rem 0;
   a {
     display: block;
-    padding: .5rem 1rem;
+    padding: $_menu-padding;
+
+    cursor: pointer;
+
+    border-top-color: $_menu-border-color;
+    border-top-width: $_menu-border-width;
+    border-top-style: $_menu-border-style;
+
+    border-bottom-color: $_menu-border-color;
+    border-bottom-width: $_menu-border-width;
+    border-bottom-style: $_menu-border-style;
+
+    &:hover {
+      background-color: $_menu-hover-background-color;
+    }
+  }
+
+  a + a {
+    border-top: none;
   }
 }

@@ -1,2 +1,10 @@
+// app
 $_app-color-light-grey: rgba(244, 245, 247, 1);
 $_app-color-grey: rgba(151, 151, 151, 1);
+
+// menu
+$_menu-border-color: $_app-color-grey;
+$_menu-border-width: 1px;
+$_menu-border-style: solid;
+$_menu-hover-background-color: lighten($_app-color-grey, 25%);
+$_menu-padding: .5rem 1rem;
