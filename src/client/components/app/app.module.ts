@@ -45,12 +45,14 @@ import { MenuComponent } from '../menu';
 import { NoContentComponent } from '../404';
 import { StatusComponent } from '../status';
 import { ToolbarComponent } from '../toolbar';
+import { NotificationsMenuComponent } from '../notifications';
 
 export const COMPONENTS: Array<Type<any>> = [
   AvatarComponent,
   ContextMenuComponent,
   MenuComponent,
   NoContentComponent,
+  NotificationsMenuComponent,
   StatusComponent,
   ToolbarComponent,
 ];
