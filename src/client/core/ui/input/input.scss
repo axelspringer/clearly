@@ -1,33 +1,45 @@
 @import '../variables';
 
-ui-input input {
-
-    &[type="text"] {
-        display: block;
-        margin: 0;
-        width: 100%;
-        -webkit-appearance: none;
-        box-shadow: none;
-        border-radius: none;
-        border: none;
-        line-height: 2;
-        padding-left: 0.5em;
-    }
-
-    &[type="text"]:focus {
-        outline: none;
-        background-color: $_ui-input-focus-bg;
-
-        // Hide placeholder
-        &::-webkit-input-placeholder { /* WebKit browsers */
-            color:    transparent;
+ui-input {
+    input {
+        &[type="text"] {
+            display: block;
+            margin: 0;
+            width: 99%;
+            -webkit-appearance: none;
+            box-shadow: none;
+            border-radius: 0;
+            line-height: 2;
+            padding: 0 0 0 1%;
+            transition: all 0.2s linear;
+            transition-property: border, background, color, box-shadow;
+            border: $_ui-input-border-size $_ui-input-border-style $_ui-input-border-color;
         }
+
+        &[type="text"]:focus {
+            outline: none;
+            box-shadow: 0 0 3px 1px $_ui-input-focus;
+            border: $_ui-input-border-size $_ui-input-border-style $_ui-input-focus-border-color;
+            background-color: rgba($_ui-input-focus-border-color, 0.2);
+        }
+
+        &[type="text"]:disabled, &[type="text"]:read-only {
+            background: $_ui-input-disabled-bg;
+            cursor: not-allowed;
+        }
+
     }
 
-    &[type="text"]:disabled, &[type="text"]:read-only {
-        background: $_ui-input-disabled-bg;
-        color: $_ui-input-disabled;
-        cursor: not-allowed;
+    &.error input {
+        border: $_ui-input-border-size $_ui-input-border-style rgba($_ui-error-color, 0.6);
+        border-left: 0;
+        background-color: rgba($_ui-error-color, 0.1);
+        color: rgba($_ui-error-color, 0.8);
+    }
+
+    &.success input {
+        border: $_ui-input-border-size $_ui-input-border-style rgba($_ui-success-color, 0.6);
+        background-color: rgba($_ui-success-color, 0.1);
     }
 
 }
