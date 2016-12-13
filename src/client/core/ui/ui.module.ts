@@ -7,6 +7,7 @@ import { FormsModule }   from '@angular/forms';
 import { BUTTON_DIRECTIVES } from './button';
 import { INPUT_DIRECTIVES } from './input';
 import { TEXTAREA_DIRECTIVES } from './textArea';
+import { CHECKBOX_DIRECTIVES } from './checkbox';
 import { ICON_DIRECTIVES } from './icn';
 import { LABEL_DIRECTIVES } from './label';
 import { LAYOUT_DIRECTIVES } from './layout';
@@ -23,6 +24,7 @@ import { POPOVER_DIRECTIVES } from './popover';
   exports: [
     ...INPUT_DIRECTIVES,
     ...TEXTAREA_DIRECTIVES,
+    ...CHECKBOX_DIRECTIVES,
     ...BUTTON_DIRECTIVES,
     ...ICON_DIRECTIVES,
     ...LABEL_DIRECTIVES,
@@ -35,6 +37,7 @@ import { POPOVER_DIRECTIVES } from './popover';
   declarations: [
     ...INPUT_DIRECTIVES,
     ...TEXTAREA_DIRECTIVES,
+    ...CHECKBOX_DIRECTIVES,
     ...BUTTON_DIRECTIVES,
     ...ICON_DIRECTIVES,
     ...LABEL_DIRECTIVES,
