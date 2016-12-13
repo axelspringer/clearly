@@ -62,11 +62,11 @@ export class PopoverComponent implements AfterViewChecked {
 
   public get contentElement(): HTMLElement {
     console.log(this._elRef);
-    return _.first(this._elRef.nativeElement.getElementsByClassName('ui-popover-content')) as HTMLElement;
+    return <HTMLInputElement> _.first(this._elRef.nativeElement.getElementsByClassName('ui-popover-content'));
   }
 
   public get iconElement(): HTMLElement {
-    return _.first(this._elRef.nativeElement.getElementsByTagName('ui-font-icon')) as HTMLElement;
+    return <HTMLInputElement> _.first(this._elRef.nativeElement.getElementsByTagName('ui-font-icon'));
   }
 
   public position() {
