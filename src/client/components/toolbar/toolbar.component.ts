@@ -37,7 +37,6 @@ export class ToolbarComponent implements AfterViewInit {
   public ngAfterViewInit() {
     // adjust next elements
     const el = this.contentElement(this._elRef);
-    console.log(this.height(this._elRef), this._elRef);
     this._renderer.setElementStyle(el, 'position', 'relative');
     this._renderer.setElementStyle(el, 'top', `${this.height(this._elRef)}px`);
 

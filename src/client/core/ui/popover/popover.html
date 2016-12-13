@@ -1,6 +1,6 @@
 <div class="ui-popover-container">
   <ui-font-icon (click)="toggle()" classz="fa-ellipsis-h"></ui-font-icon>
-  <div class="ui-popover-content" *ngIf="show">
+  <div class="ui-popover-content" [hidden]="show">
     <ng-content></ng-content>
   </div>
 </div>

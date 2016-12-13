@@ -26,7 +26,6 @@ export class MenuComponent implements AfterViewInit {
   ) {
     this.menu = _.sortBy(_.map(_.filter(this._router.config, (route) => route['menu'] && route['menu'].show), route => Object.assign({}, {path: route.path}, route['menu'])), config => config['order']);
     // TODO@sdoell: adding again to routes
-    console.log(this.menu);
   }
 
   public navigate(value: string) {
