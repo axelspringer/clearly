@@ -45,14 +45,14 @@ import { MenuComponent } from '../menu';
 import { NoContentComponent } from '../404';
 import { StatusComponent } from '../status';
 import { ToolbarComponent } from '../toolbar';
-import { NotificationsMenuComponent } from '../notifications';
+import { NotificationsComponent } from '../notifications';
 
 export const COMPONENTS: Array<Type<any>> = [
   AvatarComponent,
   ContextMenuComponent,
   MenuComponent,
   NoContentComponent,
-  NotificationsMenuComponent,
+  NotificationsComponent,
   StatusComponent,
   ToolbarComponent,
 ];
@@ -66,6 +66,7 @@ import { CreatorEffects } from '../+creator';
 import { AppEffects } from './app.effects';
 import { ArticleEffects } from '../+creator/article';
 import { DocsActions } from '../../actions';
+import { AppActions } from './app.actions';
 import { CreatorResolver } from '../+creator';
 
 // Application wide providers
@@ -84,6 +85,7 @@ const APP_PROVIDERS = [
   // Others
   Title,
   DocsActions,
+  AppActions,
   CreatorResolver,
 ];
 

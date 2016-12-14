@@ -6,11 +6,12 @@ import { Input } from '@angular/core';
 import { AfterViewChecked } from '@angular/core';
 import { ElementRef } from '@angular/core';
 import { Renderer } from '@angular/core';
-import * as _ from 'lodash';
+import { ViewChild } from '@angular/core';
 
 import { isElementInViewport } from '../helpers';
 import { isRightOffset } from '../helpers';
 import { toPx } from '../helpers';
+import { FontIconComponent } from '../icn/font';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -21,18 +22,21 @@ import { toPx } from '../helpers';
 })
 export class PopoverComponent implements AfterViewChecked {
 
+  // Dom
+  @ViewChild('uiPopoverContent') public uiPopoverContent: ElementRef;
+  @ViewChild('uiPopoverIcon') public uiPopoverIcon: FontIconComponent;
+
+  // inputs
+
+  @Input() public icon: string = null;
+
   // private
 
   private _show: boolean = false;
 
   constructor(
-    private _elRef: ElementRef,
     private _renderer: Renderer,
   ) {}
-
-  // inputs
-
-  @Input() public icon: string = null;
 
   // listeners
   @HostListener('window:resize', ['$event'])
@@ -61,12 +65,11 @@ export class PopoverComponent implements AfterViewChecked {
   }
 
   public get contentElement(): HTMLElement {
-    console.log(this._elRef);
-    return <HTMLInputElement> _.first(this._elRef.nativeElement.getElementsByClassName('ui-popover-content'));
+    return this.uiPopoverContent.nativeElement;
   }
 
   public get iconElement(): HTMLElement {
-    return <HTMLInputElement> _.first(this._elRef.nativeElement.getElementsByTagName('ui-font-icon'));
+    return this.uiPopoverIcon.elRef.nativeElement;
   }
 
   public position() {

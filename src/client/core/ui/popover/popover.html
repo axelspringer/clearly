@@ -1,6 +1,6 @@
 <div class="ui-popover-container">
-  <ui-font-icon (click)="toggle()" [classz]="icon"></ui-font-icon>
-  <div class="ui-popover-content" [hidden]="show">
+  <ui-font-icon #uiPopoverIcon (click)="toggle()" [classz]="icon"></ui-font-icon>
+  <div #uiPopoverContent class="ui-popover-content" [hidden]="show">
     <ng-content></ng-content>
   </div>
 </div>

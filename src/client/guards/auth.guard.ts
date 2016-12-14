@@ -17,7 +17,7 @@ export class AuthGuard implements CanActivate {
     setTimeout(() => {
       subject.next(true);
       subject.complete();
-    }, 2500);
+    }, 4500);
 
     return subject;
   }

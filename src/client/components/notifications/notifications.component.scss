@@ -1,23 +1,4 @@
 @import '../../../_variables'; // could be redone
 
 :host {
-  padding: 0 2rem;
-  font-size: 95%;
-}
-
-ui-label {
-  color: $_menu-label-color;
-  line-height: 2rem;
-}
-
-div + div {
-  border-top-color: $_menu-label-color;
-  border-top-width: 1px;
-  border-top-style: solid;
-  margin-top: 1rem;
-  padding-top: .5rem;
-}
-
-a {
-  display: block;
 }

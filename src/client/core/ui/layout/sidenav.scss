@@ -47,9 +47,7 @@ ui-sidenav {
     transform: translate3d(0, 0, 0);
 
     & + .ui-layout-sidenav-pusher {
-
       transform: translate3d(300px, 0, 0);
-
     }
 
   }

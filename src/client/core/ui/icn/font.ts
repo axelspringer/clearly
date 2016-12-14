@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { ChangeDetectionStrategy } from '@angular/core';
 import { ViewEncapsulation } from '@angular/core';
 import { Input } from '@angular/core';
+import { ElementRef } from '@angular/core';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -13,7 +14,16 @@ import { Input } from '@angular/core';
 })
 export class FontIconComponent {
 
+  // instance
+
   private _classz = [];
+
+  constructor(
+    public _elRef: ElementRef,
+  ) {
+  }
+
+  // inputs
 
   @Input()
   public get classz() {
@@ -22,6 +32,12 @@ export class FontIconComponent {
 
   public set classz(newClassz: string[] | string) {
     this._classz = ['fa'].concat(newClassz || []);
+  }
+
+  // public
+
+  public get elRef() {
+    return this._elRef;
   }
 
 }

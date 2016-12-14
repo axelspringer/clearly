@@ -2,25 +2,25 @@
 import { Injectable } from '@angular/core';
 import { Action } from '@ngrx/store';
 
+// components
+import { Notification } from '../notifications';
+
 @Injectable()
 export class AppActions {
 
-  public static BOOT             = '[CONFIG:BOOT]';
-  public static BOOT_SUCCESS     = '[CONFIG:BOOT_SUCESS]';
+  // definitions
+
+  public static ADD_NOTIFICATION = '[NOTIFICATIONS:ADD]';
 
   public static UPDATE_STATUS    = '[APP:UPDATE_STATUS]';
 
-  public boot(): Action { // do not do any query now
-    return {
-      type: AppActions.BOOT,
-    };
-  };
+  // actions
 
-  public bootSuccess(): Action {
+  public addNotifications(notifications: Notification[] | Notification): Action {
     return {
-      type: AppActions.BOOT_SUCCESS,
-      payload: true,
+      type: AppActions.ADD_NOTIFICATION,
+      payload: notifications,
     };
-  };
+  }
 
 }

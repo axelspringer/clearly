@@ -1,13 +1,6 @@
-<ui-popover icon="fa-bell-o">
-  <div>
-    <ui-label title="Artikel"></ui-label>
-    <a href="">Artikel löschen</a>
-    <ui-popover-item label="Artikel löschen"></ui-popover-item>
-    <ui-popover-item label="Revisionen"></ui-popover-item>
-  </div>
-  <div>
-    <ui-label title="Artikel"></ui-label>
-    <ui-popover-item label="Artikel löschen"></ui-popover-item>
-    <ui-popover-item label="Revisionen"></ui-popover-item>
-  </div>
+<ui-popover [icon]="icon">
+  <ul *ngIf="(notifications | async)?.length > 0">
+    <li *ngFor="let notification of (notifications | async)">{{ notification.message }}</li>
+  </ul>
+  <ui-label *ngIf="(notifications | async)?.length === 0" title="{{ 'COMPONENT.NOTIFICATIONS.LABEL.NO_NOTIFICATIONS' | translate }}"></ui-label>
 </ui-popover>

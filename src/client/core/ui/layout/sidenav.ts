@@ -1,15 +1,15 @@
-/* tslint:disable no-input-rename max-classes-per-file */
+/* tslint:disable max-line-length no-input-rename max-classes-per-file */
+import { AsyncSubject } from 'rxjs';
+import { ChangeDetectionStrategy } from '@angular/core';
 import { Component } from '@angular/core';
 import { ElementRef } from '@angular/core';
-import { Renderer } from '@angular/core';
-import { ChangeDetectionStrategy } from '@angular/core';
-import { ViewEncapsulation } from '@angular/core';
-import { Output } from '@angular/core';
-import { Input } from '@angular/core';
 import { EventEmitter } from '@angular/core';
-import { AsyncSubject } from 'rxjs';
+import { Input } from '@angular/core';
 import { Observable } from 'rxjs';
 import { OnInit } from '@angular/core';
+import { Output } from '@angular/core';
+import { Renderer } from '@angular/core';
+import { ViewEncapsulation } from '@angular/core';
 import * as _ from 'lodash';
 
 @Component({
@@ -22,7 +22,8 @@ export class SideNavComponent implements OnInit {
 
   // Outputs
 
-  @Output() public onOpen = new EventEmitter<void>();
+  @Output() public onOpen = new EventEmitter<boolean>();
+  @Output() public onClose = new EventEmitter<boolean>();
 
   // Inputs
 
@@ -51,6 +52,7 @@ export class SideNavComponent implements OnInit {
   }
 
   // angular
+
   public ngOnInit() {
     this._updateClassz();
   }
@@ -63,6 +65,15 @@ export class SideNavComponent implements OnInit {
 
     this._toggleClassz();
     this._updateClassz();
+
+    // this should be move to animation frame
+    if (this._opened) {
+      this.onOpen.emit(true);
+    }
+
+    if (!this._opened) {
+      this.onClose.emit(false);
+    }
 
     return this._toggleAnimationObservable();
 
@@ -85,17 +96,5 @@ export class SideNavComponent implements OnInit {
     this._animationObservable = new AsyncSubject();
     return this._animationObservable;
   }
-
-}
-
-@Component({
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None,
-  selector: 'ui-layout-sidenav',
-  styleUrls: ['./sidenav.scss'],
-  templateUrl: './sidenav.html',
-})
-export class SideNavLayoutComponent {
-
 
 }

@@ -88,8 +88,8 @@ export function getDocs() {
   return compose(fromDocsReducer.getDocs(), getDocsState());
 }
 
-export function isBooting() {
-  return compose(fromAppReducer.getAppBooting(), getAppState());
+export function getNotifications() {
+  return compose(fromAppReducer.getNotifications(), getAppState());
 }
 
 export function isDocsLoading() {

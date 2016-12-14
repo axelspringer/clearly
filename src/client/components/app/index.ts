@@ -17,5 +17,6 @@ export type Routes = IRoute[];
 export * from './app.module';
 export * from './app.component';
 export * from './app.store';
+export * from './app.actions';
 
 
