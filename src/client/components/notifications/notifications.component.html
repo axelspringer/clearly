@@ -1,6 +1,13 @@
 <ui-popover [icon]="icon">
-  <ul *ngIf="(notifications | async)?.length > 0">
-    <li *ngFor="let notification of (notifications | async)">{{ notification.message }}</li>
-  </ul>
-  <ui-label *ngIf="(notifications | async)?.length === 0" title="{{ 'COMPONENT.NOTIFICATIONS.LABEL.NO_NOTIFICATIONS' | translate }}"></ui-label>
+  <template [ngIf]="(notifications | async)?.length > 0">
+    <ul>
+      <li [ngClass]="classz(notification)" (click)="read(notification, idx)" *ngFor="let notification of (notifications | async); let idx = index">
+        <i></i>{{ notification.message }}
+      </li>
+    </ul>
+    <button ui-button (click)="removeAll()">{{ 'COMPONENT.NOTIFICATIONS.LABEL.DELETE_ALL' | translate }}</button>
+  </template>
+  <template [ngIf]="(notifications | async)?.length === 0">
+    <ui-label title="{{ 'COMPONENT.NOTIFICATIONS.LABEL.NO_NOTIFICATIONS' | translate }}"></ui-label>
+  </template>
 </ui-popover>

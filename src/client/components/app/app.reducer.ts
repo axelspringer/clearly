@@ -21,10 +21,19 @@ export default function (state = init, action: Action)  {
 
   switch (action.type) {
 
-    case AppActions.ADD_NOTIFICATION: {
+    case AppActions.ADD_NOTIFICATIONS: {
       return Object.assign({}, state, {
-        notifications: [].concat(state.notifications, action.payload)
+        notifications: [].concat(state.notifications, action.payload),
       });
+    }
+
+    case AppActions.READ_NOTIFICATION: {
+      state.notifications[action.payload].read = true;
+      return Object.assign({}, state);
+    }
+
+    case AppActions.REMOVE_NOTIFICATIONS: {
+      return Object.assign({}, state, {notifications: []});
     }
 
     case AppActions.UPDATE_STATUS: {

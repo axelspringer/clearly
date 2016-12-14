@@ -1,4 +1,4 @@
-/* tslint:disable: max-classes-per-file */
+/* tslint:disable: max-line-length max-classes-per-file */
 // Importables
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
@@ -19,6 +19,8 @@ export enum NOTIFICATION_TYPE {
 }
 
 export interface INotification {
+  read: false,
+  subject: string;
   message: string;
   type: NOTIFICATION_TYPE;
 }
@@ -38,7 +40,7 @@ export class NotificationsComponent {
 
   private _icon: string = 'fa-bell-o';
 
-  // public
+  // properties
 
   public get notifications() {
     return this._store.let(getNotifications());
@@ -53,7 +55,32 @@ export class NotificationsComponent {
   constructor(
     private _store: Store<IAppState>,
     @Inject(forwardRef(() => AppActions)) public _appActions: AppActions,
-  ) {}
+  ) {
+    this._store.dispatch(this._appActions.addNotifications([
+      {
+        read: false,
+        subject: 'test',
+        message: 'test',
+        type: NOTIFICATION_TYPE.INFO,
+      },
+    ]));
+  }
+
+  // public
+
+  public read(notification: Notification, idx: number) {
+    if (!notification.read) {
+      this._store.dispatch(this._appActions.readNotification(idx));
+    }
+  }
+
+  public removeAll() {
+    this._store.dispatch(this._appActions.removeNotifications());
+  }
+
+  public classz(notification: Notification) {
+    return [].concat(NOTIFICATION_TYPE[notification.type].toLowerCase(), notification.read ? 'read': 'unread');
+  }
 
   // angular
 

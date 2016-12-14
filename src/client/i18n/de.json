@@ -17,7 +17,8 @@
     "NOTIFICATIONS": {
       "TITLE": "Benachrichtigungen",
       "LABEL": {
-        "NO_NOTIFICATIONS": "Keine Benachrichtigungen"
+        "NO_NOTIFICATIONS": "Keine Benachrichtigungen",
+        "DELETE_ALL": "Alle löschen"
       }
     }
   },

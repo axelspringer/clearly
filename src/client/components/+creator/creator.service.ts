@@ -1,4 +1,4 @@
-/* tslint:disable:max-line-length */
+/* tslint:disable: max-line-length */
 // Importables
 import { Injectable } from '@angular/core';
 
