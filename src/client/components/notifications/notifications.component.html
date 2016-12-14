@@ -1,7 +1,7 @@
-<ui-popover [icon]="icon">
+<ui-popover [icon]="icon" [class]="status | async">
   <template [ngIf]="(notifications | async)?.length > 0">
     <ul>
-      <li [ngClass]="classz(notification)" (click)="read(notification, idx)" *ngFor="let notification of (notifications | async); let idx = index">
+      <li [ngClass]="notificationClassz(notification)" (click)="read(notification, idx)" *ngFor="let notification of (notifications | async); let idx = index">
         <i></i>{{ notification.message }}
       </li>
     </ul>
