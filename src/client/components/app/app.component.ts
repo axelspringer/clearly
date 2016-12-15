@@ -10,11 +10,12 @@ import { NavigationStart } from '@angular/router';
 import { NavigationEnd } from '@angular/router';
 import { NavigationCancel } from '@angular/router';
 
-
 // Compponents
 import { AppConfig } from '../../config';
 import { EventEmitProvider } from '../../core';
 import { DatabaseProvider } from './../../core';
+import { Toasty } from '../../core';
+import { TOASTY_TYPE } from '../../core';
 
 @Component({
   encapsulation: ViewEncapsulation.None,
@@ -26,6 +27,11 @@ export class AppComponent implements OnInit {
 
   @ViewChild('menu') public menu;
   @ViewChild('progressBar') public progressBar;
+
+  public toasty: Toasty = {
+    message: 'test',
+    type: TOASTY_TYPE.WARN,
+  };
 
   constructor(
     private _translate: TranslateService,

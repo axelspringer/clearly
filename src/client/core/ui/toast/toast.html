@@ -1,3 +1,5 @@
-<div class="ui-toast">
-  Toasty
+<div class="ui-toast-container" *ngIf="show">
+  <div class="ui-toast" [ngClass]="classz">
+    {{ toasty.message }}
+  </div>
 </div>

@@ -1,4 +1,3 @@
-<ui-toast></ui-toast>
 <ui-layout-sidenav>
   <ui-sidenav #menu>
     <sg-menu></sg-menu>
@@ -6,6 +5,7 @@
   <sg-toolbar></sg-toolbar>
   <main class="sg-content">
     <ui-loading-bar #progressBar [visible]="visible" [progress]="progress"></ui-loading-bar>
+    <ui-toast show="true" [toasty]="toasty"></ui-toast>
     <router-outlet></router-outlet>
   </main>
 </ui-layout-sidenav>

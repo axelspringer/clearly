@@ -1,9 +1,9 @@
-// Importables
+// imports
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule }   from '@angular/forms';
 
-// Components
+// components
 import { BUTTON_DIRECTIVES } from './button';
 import { CHECKBOX_DIRECTIVES } from './checkbox';
 import { ICON_DIRECTIVES } from './icn';
@@ -16,6 +16,9 @@ import { TABS_DIRECTIVES } from './tabs';
 import { TEXTAREA_DIRECTIVES } from './textArea';
 import { TOAST_DIRECTIVES } from './toast';
 import { TOOLBAR_DIRECTIVES } from './toolbar';
+
+// providers
+import { Toaster } from './toast';
 
 @NgModule({
   imports: [
@@ -51,6 +54,7 @@ import { TOOLBAR_DIRECTIVES } from './toolbar';
     ...TOOLBAR_DIRECTIVES,
   ],
   providers: [
+    Toaster,
   ],
 })
 export class UIModule {
