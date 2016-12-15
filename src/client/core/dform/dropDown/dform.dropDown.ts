@@ -1,3 +1,4 @@
+/* tslint:disable: max-classes-per-file */
 // Importables
 import { Component } from '@angular/core';
 import { Input } from '@angular/core';
@@ -5,7 +6,8 @@ import { FormGroup } from '@angular/forms';
 
 // Components
 import { DFormElement } from '../dform.element';
-
+import { IDFormElementOptions } from '../dform.element'
+;
 export class DFormDropDown extends DFormElement<string> {
 
   public controlType = 'dropDown';
@@ -21,7 +23,7 @@ export class DFormDropDown extends DFormElement<string> {
   public selectedValue = this.dOptions[1].value; // default
 
   constructor(options: {} = {}) {
-    super(options);
+    super(<IDFormElementOptions<string>> options);
     this.type = options['type'] || '';
   }
 

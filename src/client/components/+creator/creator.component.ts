@@ -10,7 +10,6 @@ import * as _ from 'lodash';
 
 // Components
 import { ArticleActions } from './article';
-// import { ChannelsDialogComponent } from './dialogs';
 import { CreatorActions } from './creator.actions';
 import { EventEmitProvider } from '../../core';
 import { getCreatorSelectedType } from '../app';

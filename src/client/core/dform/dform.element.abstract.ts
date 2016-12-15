@@ -40,7 +40,7 @@ export class DFormAbstractComponent implements OnInit {
   // angular
 
   public ngOnInit() {
-    if (!this.element.channel || _.includes(this.element.channels, this.element.channel)) {
+    if (!this.element.channel || _.includes(<any> this.element.channels, this.element.channel)) {
       this.variants.push(this._newFormControl());
     }
   }

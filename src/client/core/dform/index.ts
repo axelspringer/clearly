@@ -7,7 +7,6 @@ import * as _ from 'lodash';
 import { DFormComponent } from './dform.component';
 import { DFormDropDownComponent } from './dropDown';
 import { DFormDynamicElementComponent } from './dform.element.component';
-import { DFormElementEventsDirective } from './dform.element.events';
 import { DFormMainTextComponent } from './mainText';
 import { DFormMetaBarComponent } from './metaBar';
 import { DFormMetaTextComponent } from './metaText';
@@ -106,7 +105,6 @@ export const DFORM_DIRECTIVES: Array<Type<any>> = [
   DFormComponent,
   DFormDropDownComponent,
   DFormDynamicElementComponent,
-  DFormElementEventsDirective,
   DFormMainTextComponent,
   DFormMetaBarComponent,
   DFormMetaTextComponent,

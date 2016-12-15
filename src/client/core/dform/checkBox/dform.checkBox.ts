@@ -1,3 +1,4 @@
+/* tslint:disable: max-classes-per-file adjacent-overload-signatures */
 // Importables
 import { Component } from '@angular/core';
 import { Input } from '@angular/core';
@@ -5,6 +6,7 @@ import { FormGroup } from '@angular/forms';
 
 // Components
 import { DFormElement } from '../dform.element';
+import { IDFormElementOptions } from '../dform.element';
 
 export class DFormCheckBox extends DFormElement<string> {
 
@@ -14,7 +16,7 @@ export class DFormCheckBox extends DFormElement<string> {
   public checkboxLabel = 'Label of this checkbox';
 
   constructor(options: {} = {}) {
-    super(options);
+    super(<IDFormElementOptions<string>> options);
     this.type = options['type'] || '';
     this.isChecked = false;
     // TODO: Sollen checkboxLabel und isChecked aus db/mocks kommen oder intern verwaltet werden?

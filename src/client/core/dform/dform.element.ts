@@ -10,7 +10,7 @@ export interface IDFormElementOptions<T> {
   order?: number;
   required?: boolean;
   validators?: T[];
-  value?: T;
+  value?: any;
   subject?: string;
 }
 

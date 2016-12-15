@@ -12,7 +12,6 @@ import { ArticleContentComponent } from './article';
 import { ArticleMetaComponent } from './article';
 import { ArticleService } from './article';
 import { CanActivateArticle } from './creator.guard';
-import { ChannelsDialogComponent } from './dialogs';
 import { CoreModule } from '../../core';
 import { CREATOR_RESOLVER_PROVIDERS } from './creator.resolver';
 import { CreatorActions } from './creator.actions';
@@ -48,13 +47,11 @@ const CREATOR_PROVIDERS = [
     ArticleComponent,
     ArticleContentComponent,
     ArticleMetaComponent,
-    ChannelsDialogComponent,
     CreatorComponent,
     QuickAccessComponent,
     QuickWriteComponent,
   ],
   entryComponents: [
-    ChannelsDialogComponent,
   ],
   exports: [
     ArticleComponent,

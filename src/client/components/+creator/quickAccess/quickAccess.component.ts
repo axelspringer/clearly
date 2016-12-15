@@ -10,12 +10,6 @@ import { ViewEncapsulation } from '@angular/core';
 })
 export class QuickAccessComponent {
 
-  // public dialogRef: MdDialogRef<ChannelsDialogComponent>;
   public lastCloseResult: string;
-
-  constructor(
-    // private dialog: MdDialog,
-  ) {
-  }
 
 };

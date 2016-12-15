@@ -1,3 +1,4 @@
+/* tslint:disable: max-classes-per-file */
 // Importables
 import { Component } from '@angular/core';
 import { FormGroup } from '@angular/forms';
@@ -14,10 +15,10 @@ export class DFormSocialVideo extends DFormElement<string> {
   public controlType = 'socialVideo';
   public type: string;
   public isValidVideo = false;
-  public videoLink = "";
+  public videoLink = '';
 
   constructor(options: {} = {}) {
-    super(Object.assign(options, {
+    super(<any> Object.assign(options, {
       validators: [Validators.required, CustomValidators.socialVideoValidator]
     }));
     this.type = options['type'] || '';
@@ -44,17 +45,9 @@ export class DFormSocialVideoComponent implements OnInit {
   }
 
 
-  public validateVideoLink(key: string, value: string):void {
+  public validateVideoLink(key: string, value: string): void {
 
-      console.log("TADAAAAA! validateVideoLink");
-
-      // const VIDEO_REGEX = `(https:|)\/\/(player.|www.)?(vimeo\.com|youtube\.com)\/(video\/|embed\/)?([A-Za-z0-9.]*)?`;
-
-      // validiere videoLink
-      // set isValidVideo = true
-      //this.element["videoLink"] = value;
-      //this.element["isValidVideo"] = true;
-      // this.form.controls[key].setValidators([Validators.required, Validators.pattern(VIDEO_REGEX)]);
+      console.log('TADAAAAA! validateVideoLink');
 
       console.log(value);
       console.log(this.form.controls[key]);

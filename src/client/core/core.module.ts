@@ -2,7 +2,6 @@
 import { HTTP_PROVIDERS } from './http';
 import { NgModule } from '@angular/core';
 import { TranslateLoader } from 'ng2-translate/ng2-translate';
-import { TranslatePipe } from 'ng2-translate/ng2-translate';
 import { TranslateService } from 'ng2-translate/ng2-translate';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -35,7 +34,6 @@ import { TranslateModule } from 'ng2-translate';
     TranslateModule,
   ],
   exports: [
-    // TranslatePipe, // should be used
     AtLeastValidatorDirective,
     IteratableObjectPipe,
     LoadingComponent,
@@ -48,7 +46,6 @@ import { TranslateModule } from 'ng2-translate';
   ],
   declarations: [
     // Pipes
-    // TranslatePipe,
     IteratableObjectPipe,
     SgFileDroppableDirective,
 
