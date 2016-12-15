@@ -1,5 +1,5 @@
-<div class="ui-toast-container" *ngIf="show">
-  <div class="ui-toast" [ngClass]="classz">
-    {{ toasty.message }}
+<div (click)="dismiss($event)" class="ui-toast-container" *ngIf="toasty | async">
+  <div class="ui-toast" [ngClass]="classz((toasty | async)?.type)">
+    {{ (toasty | async)?.message }}
   </div>
 </div>

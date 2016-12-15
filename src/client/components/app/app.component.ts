@@ -15,7 +15,8 @@ import { AppConfig } from '../../config';
 import { EventEmitProvider } from '../../core';
 import { DatabaseProvider } from './../../core';
 import { Toasty } from '../../core';
-import { TOASTY_TYPE } from '../../core';
+import { Toaster } from '../../core';
+import { TOASTY_TYPE } from '../../core'
 
 @Component({
   encapsulation: ViewEncapsulation.None,
@@ -28,15 +29,11 @@ export class AppComponent implements OnInit {
   @ViewChild('menu') public menu;
   @ViewChild('progressBar') public progressBar;
 
-  public toasty: Toasty = {
-    message: 'test',
-    type: TOASTY_TYPE.WARN,
-  };
-
   constructor(
     private _translate: TranslateService,
     private _title: Title,
     private _router: Router,
+    private _toaster: Toaster,
     // app ref
   ) {
     this._translate.setDefaultLang(AppConfig.DEFAULT_LANGUAGE);
@@ -49,6 +46,14 @@ export class AppComponent implements OnInit {
 
   public ngOnInit(): void {
     this._title.setTitle(AppConfig.HTML5_TITLE);
+
+    setTimeout(() => {
+      this._toaster.push(new Toasty('test 1', TOASTY_TYPE.WARN));
+    }, 4000);
+
+    setTimeout(() => {
+      this._toaster.push(new Toasty('test2', TOASTY_TYPE.WARN));
+    }, 6000);
 
     this._router.events.subscribe(event => {
       if (event instanceof NavigationStart) {

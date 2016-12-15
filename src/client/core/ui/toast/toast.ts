@@ -1,30 +1,20 @@
 /* tslint:disable no-input-rename */
 // imports
 import { Component } from '@angular/core';
-import { Input } from '@angular/core';
 import { ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy } from '@angular/core';
 
 // components
+
 import { Toaster } from './toaster';
 
 // interface
 
-export enum TOASTY_TYPE {
-  INFO,
-  WARN,
-  ERROR,
-};
-
-export interface IToasty {
-  message: string;
-  type: TOASTY_TYPE;
-};
-
-export type Toasty = IToasty;
+import { TOASTY_TYPE } from './interface';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
-  providers: [Toaster],
   selector: 'ui-toast',
   styleUrls: ['./toast.scss'],
   templateUrl: './toast.html',
@@ -32,21 +22,29 @@ export type Toasty = IToasty;
 export class ToastComponent {
 
   // properties
-  public _toasty: Toasty = null;
 
-  // inputs
-
-  @Input()
-  public set toasty(newValue) {
-    console.log(newValue);
-    this._toasty = newValue;
+  public get toasty() {
+    return this._toaster.toasties;
   }
 
-  @Input() public show: boolean = false;
+  constructor(
+    private _toaster: Toaster,
+  ) {
+  }
+
+  // angular
+
+  public classz(type: TOASTY_TYPE): string {
+    return type ? TOASTY_TYPE[type].toLowerCase() : null;
+  }
 
   // public
-  public get classz(): string {
-    return TOASTY_TYPE[this.toasty.type].toLowerCase();
+
+  public dismiss(event: Event) {
+    event.preventDefault();
+    event.stopImmediatePropagation();
+
+    this._toaster.pop();
   }
 
 }
