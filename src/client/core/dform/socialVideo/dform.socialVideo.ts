@@ -18,9 +18,8 @@ export class DFormSocialVideo extends DFormElement<string> {
   public videoLink = '';
 
   constructor(options: {} = {}) {
-    super(<any> Object.assign(options, {
-      validators: [Validators.required, CustomValidators.socialVideoValidator]
-    }));
+    super(<any> { ... options,
+      validators: [Validators.required, CustomValidators.socialVideoValidator]});
     this.type = options['type'] || '';
   }
 

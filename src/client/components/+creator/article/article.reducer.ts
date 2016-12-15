@@ -24,11 +24,11 @@ export default function (state = init, action: Action): IArticleState  {
   switch (action.type) {
 
     case ArticleActions.UPDATE: {
-      return Object.assign({}, state, action.payload);
+      return { ...state, ...action.payload };
     }
 
     case ArticleActions.RESET: {
-      return Object.assign({}, init);
+      return { ...init };
     }
 
     default:

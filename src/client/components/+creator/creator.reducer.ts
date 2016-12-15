@@ -25,25 +25,21 @@ export default function (state = init, action: Action): ICreatorState  {
   switch (action.type) {
 
     case CreatorActions.SELECT_TYPE: {
-      return Object.assign({}, state, {
-        selectedType: state.types[action.payload]
+      return { ...state, selectedType: state.types[action.payload]
           ? action.payload
-          : _.first(state.types),
-        });
+          : _.first(state.types) };
     }
 
     case CreatorActions.LOAD: {
-      return Object.assign({}, state, {
-        loading: ++state.loading,
-      });
+      return { ...state, loading: ++state.loading };
     }
 
     case CreatorActions.LOAD_SUCCESS: {
-      return Object.assign({}, state, {types: action.payload}, {loading: --state.loading});
+      return { ...state, types: action.payload, loading: --state.loading };
     }
 
     case CreatorActions.UPDATE: {
-      return Object.assign({}, state, action.payload);
+      return { ...state, ...action.payload };
     }
 
     default:
