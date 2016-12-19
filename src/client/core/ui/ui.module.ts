@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule }   from '@angular/forms';
 
-// components
+// directives
 import { BUTTON_DIRECTIVES } from './button';
 import { CHECKBOX_DIRECTIVES } from './checkbox';
 import { ICON_DIRECTIVES } from './icn';
@@ -18,7 +18,8 @@ import { TOAST_DIRECTIVES } from './toast';
 import { TOOLBAR_DIRECTIVES } from './toolbar';
 
 // providers
-import { Toaster } from './toast';
+import { TOAST_PROVIDERS } from './toast';
+import { OVERLAY_PROVIDERS } from './overlay';
 
 @NgModule({
   imports: [
@@ -54,7 +55,8 @@ import { Toaster } from './toast';
     ...TOOLBAR_DIRECTIVES,
   ],
   providers: [
-    Toaster,
+    OVERLAY_PROVIDERS,
+    TOAST_PROVIDERS,
   ],
 })
 export class UIModule {

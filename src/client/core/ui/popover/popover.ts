@@ -1,17 +1,20 @@
 /* tslint:disable no-input-rename max-line-length */
-import { Component, HostListener } from '@angular/core';
-import { ChangeDetectionStrategy } from '@angular/core';
-import { ViewEncapsulation } from '@angular/core';
-import { Input } from '@angular/core';
 import { AfterViewChecked } from '@angular/core';
+import { ChangeDetectionStrategy } from '@angular/core';
+import { Component } from '@angular/core';
 import { ElementRef } from '@angular/core';
+import { HostListener } from '@angular/core';
+import { Input } from '@angular/core';
 import { Renderer } from '@angular/core';
 import { ViewChild } from '@angular/core';
+import { ViewEncapsulation } from '@angular/core';
 
+import { FontIconComponent } from '../icn/font';
 import { isElementInViewport } from '../helpers';
 import { isRightOffset } from '../helpers';
+import { Overlay } from '../overlay';
+import { OverlayRef } from '../overlay';
 import { toPx } from '../helpers';
-import { FontIconComponent } from '../icn/font';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -33,10 +36,14 @@ export class PopoverComponent implements AfterViewChecked {
   // private
 
   private _show: boolean = false;
+  private _overlayRef: OverlayRef = null;
 
   constructor(
     private _renderer: Renderer,
-  ) {}
+    private _overlay: Overlay,
+  ) {
+    this._overlayRef = this._overlay.create();
+  }
 
   // listeners
   @HostListener('window:resize', ['$event'])
