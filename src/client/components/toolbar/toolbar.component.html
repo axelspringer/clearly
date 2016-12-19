@@ -1,15 +1,3 @@
-<!--<ui-toolbar>
-  <button ui-button (click)="toggleMenu($event)">
-    <ui-font-icon classz="fa-bars"></ui-font-icon>
-  </button>
-  <sg-status></sg-status>
-  <span class="fill-remaining-space"></span>
-  <div class="context">
-    <sg-context-menu></sg-context-menu>
-    <sg-notifications></sg-notifications>
-    <sg-avatar></sg-avatar>
-  </div>
-</ui-toolbar>-->
 <header class="header-6">
   <div class="header-nav">
     <a href="#" (click)="toggleMenu($event)" class="nav-link nav-icon">
@@ -33,25 +21,7 @@
     </label>
   </form>
   <div class="header-actions">
-    <clr-dropdown class="dropdown bottom-right">
-      <button class="nav-icon" clrDropdownToggle>
-        <clr-icon shape="notification"></clr-icon>
-        <clr-icon shape="caret down"></clr-icon>
-      </button>
-      <div class="dropdown-menu">
-        <sg-notifications></sg-notifications>
-      </div>
-    </clr-dropdown>
-    <clr-dropdown class="dropdown bottom-right">
-      <button class="nav-icon" clrDropdownToggle>
-        <clr-icon shape="user"></clr-icon>
-        <clr-icon shape="caret down"></clr-icon>
-      </button>
-      <div class="dropdown-menu">
-        <a href="..." clrDropdownItem>About</a>
-        <a href="..." clrDropdownItem>Preferences</a>
-        <a href="..." clrDropdownItem>Log out</a>
-      </div>
-    </clr-dropdown>
+    <sg-notifications class="header-actions"></sg-notifications>
+    <sg-avatar class="header-actions"></sg-avatar>
   </div>
 </header>

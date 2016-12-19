@@ -6,14 +6,21 @@ import { TabComponent } from './tab';
 @Injectable()
 export class Group {
 
-  private _tabs: TabComponent[] = [];
+  // properties
+
+  public tabs: BehaviorSubject<any> = new BehaviorSubject(null);
+
   private _tab: BehaviorSubject<TabComponent> = new BehaviorSubject(null);
+  private _tabs: TabComponent[] = [];
+
+  // public
 
   public addTab(tab: TabComponent) {
     this._tabs.push(tab);
     if (this._tabs.length === 1) {
       this.selectTab(this._tabs.length - 1); // be explicit
     }
+    this.tabs.next(this._tabs);
     return this._tabs.length - 1; // return length
   }
 

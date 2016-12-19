@@ -1,13 +1,15 @@
 <ui-tabs>
 
-  <ui-tab label="{{ 'CREATOR.TAB.MASTER.LABEL' | translate }}">
+  <ui-tab label="{{ 'CREATOR.TAB.MASTER.LABEL' | translate }}" group="{{ 'COMPONENT.CREATOR.TAB.MASTER' | translate }}">
     <sg-dform [data]="(articleMaster | async)"></sg-dform>
   </ui-tab>
 
   <template ngFor let-channel [ngForOf]="(selectedType | async)?.channels" let-i="index">
-    <ui-tab label="{{ channel.displayName }}">
-      <sg-dform [data]="(articleChannel(i) | async)"></sg-dform>
-    </ui-tab>
+    <div>
+      <ui-tab label="{{ channel.displayName }}" group="{{ 'COMPONENT.CREATOR.TAB.CHANNELS' | translate }}">
+        <sg-dform [data]="(articleChannel(i) | async)"></sg-dform>
+      </ui-tab>
+    </div>
   </template>
 
 </ui-tabs>

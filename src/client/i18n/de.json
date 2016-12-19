@@ -9,7 +9,11 @@
       }
     },
     "CREATOR": {
-      "TITLE": "Artikel"
+      "TITLE": "Artikel",
+      "TAB": {
+        "MASTER": "Master",
+        "CHANNELS": "Kanäle"
+      }
     },
     "DASHBOARD": {
       "TITLE": "Übersicht"

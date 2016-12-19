@@ -16,13 +16,15 @@ export class TabComponent implements OnInit {
 
   @Input('label') public tabLabel = '';
   @Input('selected') public tabSelected = null;
+  @Input('group') public tabGroup = '';
 
   public showTab: Observable<boolean>;
+  public index: number = 0;
 
   constructor(
     private _group: Group,
   ) {
-    this._group.addTab(this);
+    this.index = this._group.addTab(this);
   }
 
   // angular

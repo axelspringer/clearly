@@ -10,18 +10,12 @@ ui-loading-bar {
   margin: 0;
   padding: 0;
 
-  .#{&}-progress {
-    margin: 0;
-    padding: 0;
-    z-index: 9998;
-    background-color: $_ui-loading-bar-background-color;
-    color: $_ui-loading-bar-color;
-    box-shadow: $_ui-loading-bar-box-shadow;
-    height: $_ui-loading-bar-height;
+  .progress {
+    max-height: 3px;
 
-    opacity: 0;
-
-    transition: all .5s ease-in; // +* magic *+
+    & > progress {
+      height: inherit;
+    }
   }
 
 }

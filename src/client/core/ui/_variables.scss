@@ -1,12 +1,15 @@
 $_ui-prefix: 'ui';
 
 // tabs
-$_ui-tabs-background-color: rgba(255, 255, 255, 1);
+$_ui-tabs-background-color: rgba(0, 37, 56, 1);
+$_ui-tabs-color: rgba(255, 255, 255, 1);
 $_ui-tabs-tab-background-color: rgba(216, 216, 216, 1); // to global variables
-$_ui-tabs-tab-border-color: rgba(151, 151, 151, 1);
+$_ui-tabs-tab-border-color: rgba(250, 250, 250, .15);
 $_ui-tabs-tab-border-style: solid;
 $_ui-tabs-tab-border-width: 1px;
 $_ui-tabs-tab-padding: 1rem;
+
+$_ui-tabs-group-label-color: rgba(250, 250, 250, .35);
 
 // tooolbar
 $_ui-toolbar-align-items: center;
@@ -19,7 +22,7 @@ $_ui-button-border: none;
 $_ui-button-background: none;
 
 // loadingbar
-$_ui-loading-bar-background-color: $_ui-tabs-tab-border-color;
+$_ui-loading-bar-background-color: rgba(250, 250, 250, .7);
 $_ui-loading-bar-color: $_ui-loading-bar-background-color;
 $_ui-loading-bar-height: 2px;
 $_ui-loading-bar-box-shadow: 0 0 10px 0;

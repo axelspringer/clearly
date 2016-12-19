@@ -7,6 +7,4 @@ import { Component } from '@angular/core';
   templateUrl: './avatar.component.html',
 })
 export class AvatarComponent {
-
-
 };

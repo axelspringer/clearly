@@ -2,48 +2,53 @@
 
 ui-tabs {
 
-  .#{&}-container {
+  .#{&}-group {
+    display: inline-block;
+    font-size: 1rem;
+  }
 
+  .#{&}-group-label {
+    color: $_ui-tabs-group-label-color;
+    padding: 0 $_ui-tabs-tab-padding;
+  }
+
+  .#{&}-container {
     background-color: $_ui-tabs-background-color;
     z-index: 9997;
     width: 100%;
 
-    ul {
+    font-size: 0;
+    padding: 1rem 0 .5rem 0;
 
+    ul {
       display: flex;
-      min-width: 100%;
       list-style: none;
       // reset
       padding: 0;
       margin: 0;
 
       li {
-
+        color: $_ui-tabs-color;
+        position: relative;
         cursor: pointer;
+        opacity: .75;
         padding: $_ui-tabs-tab-padding / 2 $_ui-tabs-tab-padding;
 
-        border-color: $_ui-tabs-tab-border-color;
-        border-style: $_ui-tabs-tab-border-style;
-        border-width: $_ui-tabs-tab-border-width;
-
         &:hover {
-
-          background-color: $_ui-tabs-tab-background-color;
-
+          opacity: 1;
         }
-
       }
 
-      li + li {
-
-        border-left: none;
-
-      }
-
-      li:nth-last-child(1) {
-
-        flex-grow: 1;
-
+      li.active:after {
+        background-color: $_ui-tabs-group-label-color;
+        border-radius: 50%;
+        content: '';
+        display: block;
+        height: 5px;
+        left: 50%;
+        margin-left: -5px;
+        position: absolute;
+        width: 5px;
       }
 
     }
@@ -51,10 +56,8 @@ ui-tabs {
   }
 
   .ui-tab {
-
     position: relative;
     overflow-y: auto;
-
   }
 
 }

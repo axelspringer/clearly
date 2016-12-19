@@ -1,7 +1,14 @@
 <div #uiTabs class="ui-tabs-container">
-  <ul>
-    <li (click)="selectTab(idx)" *ngFor="let tab of tabs; let idx = index;">{{ tab.tabLabel }}</li>
-  </ul>
+  <template ngFor let-group [ngForOf]="(tabs | async)" let-i="index">
+    <div class="ui-tabs-group">
+      <div class="ui-tabs-group-label" *ngIf="group?.key">{{ group?.key }}</div>
+      <div class="ui-tabs-group-tabs">
+        <ul>
+          <li (click)="selectTab(tab.index)" *ngFor="let tab of group?.tabs; let idx = index;" [ngClass]="{'active': (selectedTab | async)?.index == tab.index}">{{ tab.tabLabel }}</li>
+        </ul>
+      </div>
+    </div>
+  </template>
 </div>
 <div #uiTab class="ui-tab">
   <ng-content></ng-content>

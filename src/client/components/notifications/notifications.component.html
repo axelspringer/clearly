@@ -1,14 +1,22 @@
-<template [ngIf]="(notifications | async)?.length > 0">
-  <ul>
-    <li clrDropdownItem [ngClass]="notificationClassz(notification)" (click)="read(notification, idx)" *ngFor="let notification of (notifications | async); let idx = index">
-      <i></i>{{ notification.message }}
-    </li>
-  </ul>
-  <div class="dropdown-divider"></div>
-  <button type="submit" class="btn btn-link" (click)="removeAll()">{{ 'COMPONENT.NOTIFICATIONS.LABEL.DELETE_ALL' | translate }}</button>
-</template>
-<template [ngIf]="(notifications | async)?.length === 0">
-  <ul>
-    <li>{{ 'COMPONENT.NOTIFICATIONS.LABEL.NO_NOTIFICATIONS' | translate }}</li>
-  </ul>
-</template>
+<clr-dropdown class="dropdown bottom-right">
+  <button class="nav-icon" clrDropdownToggle>
+        <clr-icon shape="notification"></clr-icon>
+        <clr-icon shape="caret down"></clr-icon>
+      </button>
+  <div class="dropdown-menu">
+    <template [ngIf]="(notifications | async)?.length > 0">
+      <ul>
+        <li clrDropdownItem [ngClass]="notificationClassz(notification)" (click)="read(notification, idx)" *ngFor="let notification of (notifications | async); let idx = index">
+          <i></i>{{ notification.message }}
+        </li>
+      </ul>
+      <div class="dropdown-divider"></div>
+      <button type="submit" class="btn btn-link" (click)="removeAll()">{{ 'COMPONENT.NOTIFICATIONS.LABEL.DELETE_ALL' | translate }}</button>
+    </template>
+    <template [ngIf]="(notifications | async)?.length === 0">
+      <ul>
+        <li clrDropdownItem>{{ 'COMPONENT.NOTIFICATIONS.LABEL.NO_NOTIFICATIONS' | translate }}</li>
+      </ul>
+    </template>
+  </div>
+</clr-dropdown>
