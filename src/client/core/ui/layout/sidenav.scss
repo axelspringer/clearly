@@ -32,11 +32,11 @@ ui-layout-sidenav {
 
 ui-sidenav {
 
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
-  z-index: 1000;
-  visibility: hidden;
+  // z-index: 1000;
+  // visibility: hidden;
   height: 100%;
   width: 300px;
   transition: all .5s;
@@ -45,7 +45,7 @@ ui-sidenav {
 
   &.is-open {
 
-    visibility: visible;
+    // visibility: visible;
     transform: translate3d(0, 0, 0);
 
     & + .ui-layout-sidenav-pusher {

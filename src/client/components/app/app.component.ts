@@ -9,6 +9,8 @@ import { Router } from '@angular/router';
 import { NavigationStart } from '@angular/router';
 import { NavigationEnd } from '@angular/router';
 import { NavigationCancel } from '@angular/router';
+import { ElementRef } from '@angular/core';
+import { Renderer } from '@angular/core';
 
 // Compponents
 import { AppConfig } from '../../config';
@@ -16,7 +18,7 @@ import { EventEmitProvider } from '../../core';
 import { DatabaseProvider } from './../../core';
 import { Toasty } from '../../core';
 import { Toaster } from '../../core';
-import { TOASTY_TYPE } from '../../core'
+import { TOASTY_TYPE } from '../../core';
 
 @Component({
   encapsulation: ViewEncapsulation.None,
@@ -34,6 +36,8 @@ export class AppComponent implements OnInit {
     private _title: Title,
     private _router: Router,
     private _toaster: Toaster,
+    private _elRef: ElementRef,
+    private _renderer: Renderer,
     // app ref
   ) {
     this._translate.setDefaultLang(AppConfig.DEFAULT_LANGUAGE);
@@ -46,6 +50,7 @@ export class AppComponent implements OnInit {
 
   public ngOnInit(): void {
     this._title.setTitle(AppConfig.HTML5_TITLE);
+    this._renderer.setElementClass(this._elRef.nativeElement, 'critical', false);
 
     setTimeout(() => {
       this._toaster.push(new Toasty('test 1', TOASTY_TYPE.WARN));
