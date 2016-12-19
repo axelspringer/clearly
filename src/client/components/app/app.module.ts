@@ -14,6 +14,9 @@ import { Type } from '@angular/core';
 import { useLogMonitor } from '@ngrx/store-log-monitor';
 // import { WorkerAppModule } from '@angular/platform-webworker';
 
+// Clarity
+import { ClarityModule } from 'clarity-angular';
+
 // Apollo
 import { ApolloModule } from 'angular2-apollo';
 import { client } from './app.apollo.ts';
@@ -112,6 +115,9 @@ const APP_PROVIDERS = [
     BrowserModule,
     FormsModule,
     HttpModule,
+
+    // Clarity
+    ClarityModule,
 
     // Routing
     RouterModule.forRoot(ROUTES, {

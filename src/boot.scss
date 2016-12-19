@@ -3,9 +3,9 @@ $_spin-border-color: rgb(99, 99, 99);
 $_spin-border-width: 24px;
 $_spin-off-border-color: rgba($_spin-border-color, 0.2);
 
-@import '~normalize.scss/normalize';
-@import '~flexboxgrid/css/flexboxgrid';
 @import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css);
+@import '~clarity-icons/src/clarity-icons';
+@import '~clarity-ui/clarity-ui.min.css';
 
 html, body {
   height: 100%;

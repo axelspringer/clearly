@@ -86,7 +86,7 @@ if (!isDev && isAot) {
   tryAot();
 }
 
-const commonConfig = function webpackConfig(): WebpackConfig {
+const commonConfig = (): WebpackConfig => {
 
   const config: WebpackConfig = {} as WebpackConfig;
 
@@ -179,7 +179,7 @@ const devConfig = function () {
   };
 
   config.entry = {
-    main: [].concat(polyfills(), rxjs(), vendors(), './src/main.client',),
+    main: [].concat(polyfills(), rxjs(), vendors(), './src/main.client'),
   };
 
   config.output = {
@@ -189,7 +189,7 @@ const devConfig = function () {
     chunkFilename: '[id].chunk.js',
   };
 
-  COPY_FOLDERS.push({ from: `dll`, ignore: ['*.json'] });
+  COPY_FOLDERS.push(<any> { from: `dll`, ignore: ['*.json'] });
 
   config.plugins = [
     new LoaderOptionsPlugin({

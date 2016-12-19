@@ -6,6 +6,7 @@ import { TranslateService } from 'ng2-translate/ng2-translate';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ClarityModule } from 'clarity-angular';
 
 // Components
 import { AtLeastValidatorDirective } from './forms';
@@ -32,6 +33,7 @@ import { TranslateModule } from 'ng2-translate';
     ReactiveFormsModule,
     UIModule,
     TranslateModule,
+    ClarityModule,
   ],
   exports: [
     AtLeastValidatorDirective,

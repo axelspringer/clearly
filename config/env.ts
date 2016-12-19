@@ -19,7 +19,7 @@ export const EXCLUDE_SOURCEMAPS = [
 ];
 
 export const CUSTOM_COPY_FOLDERS = [
-
+  { from: 'node_modules/clarity-icons' },
 ];
 
 export const CUSTOM_PLUGINS_COMMON = [

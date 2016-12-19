@@ -10,7 +10,6 @@ import { Renderer } from '@angular/core';
 // Components
 import { AppComponent } from '../app';
 import { AppConfig } from '../../config';
-import { Event } from '../../core';
 
 // Interface
 export class ToolbarTitleUpdate extends Event {
@@ -45,7 +44,9 @@ export class ToolbarComponent implements AfterViewInit {
     //   .subscribe(value => this.title = value);
   }
 
-  public toggleMenu() {
+  public toggleMenu(event: Event) {
+    event.preventDefault();
+    event.stopImmediatePropagation();
     this._app['menu'].toggle();
   }
 

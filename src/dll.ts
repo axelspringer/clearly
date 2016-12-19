@@ -31,6 +31,12 @@ export function polyfills() {
     'zone.js/dist/zone',
     'zone.js/dist/long-stack-trace-zone',
 
+    // mutationobserver
+    'mutationobserver-shim',
+
+    // custom elements
+    '@webcomponents/custom-elements',
+
     // typescript helpers
     'ts-helpers',
   ];
@@ -50,6 +56,7 @@ export function vendors() {
     '@ngrx/store-log-monitor',
     '@ngrx/store',
     '@ngrx/effects',
+    'clarity-angular',
     'pouchdb',
     'apollo-client',
     'lodash',
@@ -69,6 +76,6 @@ export function rxjs() {
     'rxjs/add/operator/map',
     'rxjs/add/operator/mergeMap',
     'rxjs/add/operator/distinctUntilChanged',
-    'rxjs/add/operator/toPromise'
+    'rxjs/add/operator/toPromise',
   ];
 }
