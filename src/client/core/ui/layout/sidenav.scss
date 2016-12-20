@@ -5,6 +5,7 @@ ui-layout-sidenav {
 
   .#{&}-container {
     position: relative;
+    height: 100%;
   }
 
   .#{&}-pusher {
@@ -24,10 +25,9 @@ ui-layout-sidenav {
 }
 
 ui-sidenav {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
-  z-index: 1000;
   // visibility: hidden;
   height: 100%;
   width: 240px;
