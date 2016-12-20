@@ -48,7 +48,7 @@ export class TabsComponent implements AfterViewInit, AfterContentChecked, OnInit
     this._setHeight(this.uiTab.nativeElement, this.uiTabs.nativeElement);
   }
 
-  // angular
+// angular
 
   public ngOnInit() {
     this._group.selectedTab.subscribe(this.selectedTab);

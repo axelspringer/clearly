@@ -57,9 +57,9 @@ export class DFormVariantComponent implements OnInit {
     });
     this.showDelete = Observable.merge(
       EventEmitProvider
-        .connect(DFormVariantRemoveEvent.constructor.name),
+        .connect(DFormVariantRemoveEvent.prototype.constructor.name),
       EventEmitProvider
-        .connect(DFormVariantAddEvent.constructor.name),
+        .connect(DFormVariantAddEvent.prototype.constructor.name),
     )
     .combineLatest()
     .switchMap(() => Observable.of(this.form.parent.controls['length'] > 1));
