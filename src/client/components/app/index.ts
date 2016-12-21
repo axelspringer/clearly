@@ -5,6 +5,7 @@ export interface IMenu {
   title: string;
   show: true;
   order?: number;
+  icon?: string;
 }
 
 export interface IRoute extends Route {

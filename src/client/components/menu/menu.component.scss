@@ -1,3 +1,4 @@
+@import '../../core/ui/variables';
 @import '../../../variables';
 
 :host {
@@ -6,22 +7,33 @@
 
 :host nav {
   padding: 1rem 0;
+
+  clr-icon {
+    margin-right: .5rem;
+  }
+
   a {
+    align-items: center;
+    color: $_ui-sidenav-border-color;
     display: block;
+    display: flex;
     padding: $_menu-padding;
 
+    background-color: transparent;
     cursor: pointer;
 
-    border-top-color: $_menu-border-color;
-    border-top-width: $_menu-border-width;
-    border-top-style: $_menu-border-style;
+    // border-top-color: $_menu-border-color;
+    // border-top-width: $_menu-border-width;
+    // border-top-style: $_menu-border-style;
 
-    border-bottom-color: $_menu-border-color;
-    border-bottom-width: $_menu-border-width;
-    border-bottom-style: $_menu-border-style;
+    // border-bottom-color: $_menu-border-color;
+    // border-bottom-width: $_menu-border-width;
+    // border-bottom-style: $_menu-border-style;
+
+    text-decoration: none;
 
     &:hover {
-      background-color: $_menu-hover-background-color;
+      color: white;
     }
   }
 

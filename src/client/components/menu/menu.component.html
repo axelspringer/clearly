@@ -1,3 +1,4 @@
 <nav >
-  <a (click)="navigate(route.path)" *ngFor="let route of menu">{{ route.title }}</a>
+  <a (click)="navigate(route.path)" *ngFor="let route of menu">
+    <clr-icon [attr.shape]="route.icon"></clr-icon>{{ route.title }}</a>
 </nav>

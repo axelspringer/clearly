@@ -18,6 +18,7 @@ export const ROUTES: Routes = [
       title: 'Dashboard',
       show: true,
       order: 0,
+      icon: 'home',
     },
   },
   {

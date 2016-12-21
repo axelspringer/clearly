@@ -13,6 +13,7 @@ export const ROUTES: Routes = [
       title: 'Neuer Artikel',
       show: true,
       order: 1,
+      icon: 'document',
     },
     canActivate: [
       AuthGuard,

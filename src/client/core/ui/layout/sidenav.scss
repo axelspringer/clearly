@@ -23,15 +23,18 @@ ui-layout-sidenav {
 }
 
 ui-sidenav {
+  left: 0;
   position: absolute;
   top: 0;
-  left: 0;
+  background-color: $_ui-sidenav-background-color;
   // visibility: hidden;
   height: 100%;
   width: 240px;
   transition: all .5s;
 
-  border-right: 1px solid black; // has to be refactored
+  border-right-color: $_ui-sidenav-border-color;
+  border-right-style: $_ui-sidenav-border-style;
+  border-right-width: $_ui-sidenav-border-width;
 
   &.is-open {
     // visibility: visible;
