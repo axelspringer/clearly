@@ -1,5 +1,5 @@
 <clr-dropdown class="sg-notifications dropdown bottom-right">
-  <span class="badge badge-info" [hidden]="(notifications | async)?.length === 0">{{ (notifications | async)?.length }}</span>
+  <span class="badge badge-info" [hidden]="(unreadCount | async) === 0">{{ (unreadCount | async) }}</span>
   <button class="nav-icon" clrDropdownToggle>
     <clr-icon shape="notification"></clr-icon>
     <clr-icon shape="caret down"></clr-icon>

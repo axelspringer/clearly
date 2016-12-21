@@ -41,7 +41,7 @@ export type Notification = INotification;
 })
 export class NotificationsComponent {
 
-  public status: BehaviorSubject<string> = new BehaviorSubject(null);
+  public unreadCount: BehaviorSubject<number> = new BehaviorSubject(0);
 
   // instance
 
@@ -114,16 +114,7 @@ export class NotificationsComponent {
   // private
 
   private _updateStatus(notifications) {
-    let hasError = false;
-    let hasWarn = false;
-
-    let i = 0;
-    let len = notifications.length;
-    for ( ; i < len; i++) {
-      hasError = !notifications[i].read && notifications[i].type === NOTIFICATION_TYPE.ERROR;
-      hasWarn = !notifications[i].read && notifications[i].type === NOTIFICATION_TYPE.WARN;
-    }
-    this.status.next(hasError ? 'error' : hasWarn ? 'warn' : null);
+    this.unreadCount.next(notifications.filter(notification => !notification.read).length);
   }
 
 };
