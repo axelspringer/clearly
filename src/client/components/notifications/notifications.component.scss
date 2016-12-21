@@ -1,6 +1,17 @@
 @import '../../../_variables'; // could be redone
 
 :host {
+
+  .dropdown-menu {
+    min-width: 240px;
+  }
+
+  .badge {
+    position: absolute;
+    left: 6px;
+    top: 6px;
+  }
+
   ul {
     padding: 0;
     margin: 0;

@@ -64,6 +64,7 @@ export class NotificationsComponent {
     private _store: Store<IAppState>,
     @Inject(forwardRef(() => AppActions)) public _appActions: AppActions,
   ) {
+    // demo
     this._store.dispatch(this._appActions.addNotifications([
       {
         read: false,

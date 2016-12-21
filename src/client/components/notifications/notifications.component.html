@@ -1,8 +1,9 @@
 <clr-dropdown class="dropdown bottom-right">
+  <span class="badge badge-info" [hidden]="(notifications | async)?.length === 0">{{ (notifications | async)?.length }}</span>
   <button class="nav-icon" clrDropdownToggle>
-        <clr-icon shape="notification"></clr-icon>
-        <clr-icon shape="caret down"></clr-icon>
-      </button>
+    <clr-icon shape="notification"></clr-icon>
+    <clr-icon shape="caret down"></clr-icon>
+  </button>
   <div class="dropdown-menu">
     <template [ngIf]="(notifications | async)?.length > 0">
       <ul>
