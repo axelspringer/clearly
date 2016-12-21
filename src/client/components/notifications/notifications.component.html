@@ -1,4 +1,4 @@
-<clr-dropdown class="dropdown bottom-right">
+<clr-dropdown class="sg-notifications dropdown bottom-right">
   <span class="badge badge-info" [hidden]="(notifications | async)?.length === 0">{{ (notifications | async)?.length }}</span>
   <button class="nav-icon" clrDropdownToggle>
     <clr-icon shape="notification"></clr-icon>
@@ -8,7 +8,7 @@
     <template [ngIf]="(notifications | async)?.length > 0">
       <ul>
         <li clrDropdownItem [ngClass]="notificationClassz(notification)" (click)="read(notification, idx)" *ngFor="let notification of (notifications | async); let idx = index">
-          <i></i>{{ notification.message }}
+          {{ notification.message }}
         </li>
       </ul>
       <div class="dropdown-divider"></div>

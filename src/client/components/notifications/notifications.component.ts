@@ -1,6 +1,7 @@
 /* tslint:disable: max-line-length max-classes-per-file */
 // Importables
 import { ChangeDetectionStrategy } from '@angular/core';
+import { ViewEncapsulation } from '@angular/core';
 import { Component } from '@angular/core';
 import { forwardRef } from '@angular/core';
 import { getNotifications } from '../app';
@@ -33,6 +34,7 @@ export type Notification = INotification;
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
   selector: 'sg-notifications',  // <sg-notifications></sg-notifications>
   styleUrls: ['./notifications.component.scss'],
   templateUrl: './notifications.component.html',

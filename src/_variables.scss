@@ -9,3 +9,9 @@ $_menu-border-style: solid;
 $_menu-hover-background-color: lighten($_app-color-grey, 25%);
 $_menu-padding: .5rem 1rem;
 $_menu-label-color: $_app-color-grey;
+
+// notifications
+$_notifications-read-opacity: .7;
+$_notifications-info-color: cadetblue;
+$_notifications-warn-color: orange;
+$_notifications-error-color: red;

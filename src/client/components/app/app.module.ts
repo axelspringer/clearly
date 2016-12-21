@@ -58,6 +58,10 @@ export const COMPONENTS: Array<Type<any>> = [
   ToolbarComponent,
 ];
 
+// directives
+import { DIRECTIVES } from '../../directives';
+
+// Guards
 import { GUARDS } from '../../guards';
 
 // Store
@@ -104,6 +108,7 @@ const APP_PROVIDERS = [
   declarations: [
     AppComponent,
     ...COMPONENTS,
+    ...DIRECTIVES,
   ],
   entryComponents: [
     AppComponent,
