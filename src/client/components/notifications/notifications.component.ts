@@ -1,34 +1,24 @@
-/* tslint:disable: max-line-length max-classes-per-file */
-// Importables
+// importables
+
+import { BehaviorSubject } from 'rxjs';
 import { ChangeDetectionStrategy } from '@angular/core';
-import { ViewEncapsulation } from '@angular/core';
 import { Component } from '@angular/core';
 import { forwardRef } from '@angular/core';
 import { getNotifications } from '../app';
 import { Inject } from '@angular/core';
+import { OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { BehaviorSubject } from 'rxjs';
+import { ViewEncapsulation } from '@angular/core';
 
 // components
-import { IAppState } from '../app';
+
 import { AppActions } from '../app';
+import { IAppState } from '../app';
 
 // interface
 
-export enum NOTIFICATION_TYPE {
-  INFO,
-  WARN,
-  ERROR,
-};
-
-export interface INotification {
-  read: boolean;
-  subject: string;
-  message: string;
-  type: NOTIFICATION_TYPE;
-};
-
-export type Notification = INotification;
+import { Notification } from './notifications.interface';
+import { NOTIFICATION_TYPE } from './notifications.interface';
 
 // component
 
@@ -39,15 +29,11 @@ export type Notification = INotification;
   styleUrls: ['./notifications.component.scss'],
   templateUrl: './notifications.component.html',
 })
-export class NotificationsComponent {
-
-  public unreadCount: BehaviorSubject<number> = new BehaviorSubject(0);
-
-  // instance
-
-  private _icon: string = 'fa-bell-o';
+export class NotificationsComponent implements OnInit {
 
   // properties
+
+  public unreadCount: BehaviorSubject<number> = new BehaviorSubject(0);
 
   public get notifications() {
     return this._store
@@ -56,16 +42,16 @@ export class NotificationsComponent {
       .do(notifications => this._updateStatus(notifications));
   }
 
-  public get icon() {
-    return this._icon;
-  }
-
   // constructor
 
   constructor(
     private _store: Store<IAppState>,
     @Inject(forwardRef(() => AppActions)) public _appActions: AppActions,
   ) {
+  }
+
+  // angular
+  public ngOnInit(): void {
     // demo
     this._store.dispatch(this._appActions.addNotifications([
       {
@@ -93,27 +79,27 @@ export class NotificationsComponent {
     ]));
   }
 
-  // angular
-
   // public
 
-  public read(notification: Notification, idx: number) {
+  public read(notification: Notification, idx: number): void {
     if (!notification.read) {
       this._store.dispatch(this._appActions.readNotification(idx));
     }
   }
 
-  public removeAll() {
+  public removeAll(): void {
     this._store.dispatch(this._appActions.removeNotifications());
   }
 
-  public notificationClassz(notification: Notification) {
-    return [].concat(NOTIFICATION_TYPE[notification.type].toLowerCase(), notification.read ? 'read' : 'unread');
+  public notificationClassz(notification: Notification): string[] {
+    return []
+      .concat(NOTIFICATION_TYPE[notification.type]
+      .toLowerCase(), notification.read ? 'read' : 'unread');
   }
 
   // private
 
-  private _updateStatus(notifications) {
+  private _updateStatus(notifications): void {
     this.unreadCount.next(notifications.filter(notification => !notification.read).length);
   }
 
