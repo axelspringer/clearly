@@ -4,6 +4,8 @@ import { AfterViewInit } from '@angular/core';
 import { Component } from '@angular/core';
 import { NavigationStart } from '@angular/router';
 import { Router } from '@angular/router';
+import { RoutesRecognized } from '@angular/router';
+import { Route } from '@angular/router';
 import * as _ from 'lodash';
 
 // Components
@@ -22,9 +24,11 @@ export class MenuComponent implements AfterViewInit {
     private _main: MainComponent,
     private _router: Router,
   ) {
-    this.menu = _.sortBy(_.map(_.filter(this._router.config, (route) => route['menu'] && route['menu'].show), route => Object.assign({}, {path: route.path}, route['menu'])), config => config['order']);
     // TODO@sdoell: adding again to routes
+    this.menu = this._findMenuItems(this._router.config);
   }
+
+  // public
 
   public navigate(value: string) {
     this._router.navigate([value]);
@@ -32,11 +36,32 @@ export class MenuComponent implements AfterViewInit {
 
   public ngAfterViewInit() {
     this._router.events.subscribe(event => {
+      if (event instanceof RoutesRecognized) {
+        this.menu = this._findMenuItems(this._router.config);
+      }
       if (event instanceof NavigationStart &&
         this._main.menu.opened) {
         this._main.menu.toggle();
       }
     });
+  }
+
+  // private
+
+  private _findMenuItems(routes: Route[]) {
+    const menu = [];
+    const search = _ => {
+      _.forEach(route => {
+        if (route['menu']) {
+          menu.push({ path: route.path, ...route['menu'] });
+        }
+        if (route.children) {
+          search(route.children);
+        }
+      });
+    };
+    search(routes);
+    return _.sortBy(menu, item => item['order']);
   }
 
 };
