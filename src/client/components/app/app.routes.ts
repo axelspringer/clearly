@@ -1,25 +1,44 @@
-// Importables
-import { Routes } from './index';
-
-// Components
+// components
 import { AuthGuard } from '../../guards';
-import { DashboardComponent } from '../dashboard';
+import { MainComponent } from '../main';
 import { NoContentComponent } from '../404';
+import { DashboardComponent } from '../dashboard';
 
-export const ROUTES: Routes = [
+export const ROUTES: any = [
   {
     canActivate: [
       AuthGuard,
     ],
-    canDeactivate: [],
-    component: DashboardComponent, // TODO@sdoell: move to module
     path: '',
-    menu: {
-      title: 'Dashboard',
-      show: true,
-      order: 0,
-      icon: 'home',
-    },
+    canDeactivate: [],
+    component: MainComponent, // TODO@sdoell: move to module
+    children: [
+      {
+        path: '',
+        component: DashboardComponent,
+        menu: {
+          title: 'Dashboard',
+          show: true,
+          order: 0,
+          icon: 'home',
+        },
+      },
+      {
+        path: 'create',
+        menu: {
+          title: 'Neuer Artikel',
+          show: true,
+          order: 1,
+          icon: 'document',
+        },
+        canActivate: [
+          AuthGuard,
+        ],
+        canDeactivate: [
+        ],
+        loadChildren: '../+creator/creator.module#CreatorModule',
+      },
+    ],
   },
   {
     path: '**',

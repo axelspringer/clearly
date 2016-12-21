@@ -1,9 +1,10 @@
 // Importables
-import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { EffectsModule } from '@ngrx/effects';
 import { RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 // Components
 import { ArticleActions } from './article';
@@ -12,7 +13,6 @@ import { ArticleContentComponent } from './article';
 import { ArticleMetaComponent } from './article';
 import { ArticleService } from './article';
 import { CanActivateArticle } from './creator.guard';
-import { CoreModule } from '../../core';
 import { CREATOR_RESOLVER_PROVIDERS } from './creator.resolver';
 import { CreatorActions } from './creator.actions';
 import { CreatorComponent } from './creator.component';
@@ -21,6 +21,8 @@ import { QuickAccessComponent } from './quickAccess';
 import { QuickWrite } from './quickWrite';
 import { QuickWriteComponent } from './quickWrite';
 import { ROUTES } from './creator.routes';
+import { ArticleEffects } from './article';
+import { CoreModule } from '../../core';
 
 // providers
 const CREATOR_PROVIDERS = [
@@ -37,11 +39,12 @@ const CREATOR_PROVIDERS = [
 
 @NgModule({
   imports: [
-    CommonModule,
     CoreModule,
+    CommonModule,
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forChild(ROUTES),
+    EffectsModule.run(ArticleEffects),
   ],
   declarations: [
     ArticleComponent,
@@ -57,12 +60,11 @@ const CREATOR_PROVIDERS = [
     ArticleComponent,
     ArticleContentComponent,
     ArticleMetaComponent,
-    CommonModule,
-    CoreModule,
     CreatorComponent,
     QuickAccessComponent,
     QuickWriteComponent,
     ReactiveFormsModule,
+    RouterModule,
   ],
   providers: [
     ...CREATOR_PROVIDERS,

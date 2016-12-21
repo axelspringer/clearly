@@ -1,6 +1,7 @@
 // Importables
 import { ApplicationRef } from '@angular/core';
 import { BrowserModule, Title } from '@angular/platform-browser';
+import { TranslateLoader } from 'ng2-translate/ng2-translate';
 import { EffectsModule } from '@ngrx/effects';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
@@ -12,6 +13,7 @@ import { StoreLogMonitorModule } from '@ngrx/store-log-monitor';
 import { StoreModule } from '@ngrx/store';
 import { Type } from '@angular/core';
 import { useLogMonitor } from '@ngrx/store-log-monitor';
+import { PreloadAllModules } from '@angular/router';
 // import { WorkerAppModule } from '@angular/platform-webworker';
 
 // Clarity
@@ -29,7 +31,7 @@ import { TranslateModule } from 'ng2-translate';
 // Modules
 import { CoreModule } from '../../core';
 import { DashboardModule } from '../dashboard';
-import { CreatorModule } from '../+creator';
+// import { CreatorModule } from '../+creator';
 
 // Environment
 import { AppComponent } from './app.component';
@@ -38,6 +40,7 @@ import { AppConfig } from '../../config';
 import { AppLocale } from '../../config';
 import { DATABASE_PROVIDER_OPTIONS } from '../../core';
 import { DBConfig } from './../../config/db.config';
+import { TranslateCustomLoader } from '../../core';
 // import { ENV_PROVIDERS } from '../../environment';
 import { ROUTES } from './app.routes';
 
@@ -48,6 +51,7 @@ import { NoContentComponent } from '../404';
 import { StatusComponent } from '../status';
 import { ToolbarComponent } from '../toolbar';
 import { NotificationsComponent } from '../notifications';
+import { MainComponent } from '../main';
 
 export const COMPONENTS: Array<Type<any>> = [
   AvatarComponent,
@@ -56,6 +60,7 @@ export const COMPONENTS: Array<Type<any>> = [
   NotificationsComponent,
   StatusComponent,
   ToolbarComponent,
+  MainComponent,
 ];
 
 // directives
@@ -69,7 +74,7 @@ import AppStore from './app.store';
 import { DocsEffects } from '../../effects';
 import { CreatorEffects } from '../+creator';
 import { AppEffects } from './app.effects';
-import { ArticleEffects } from '../+creator/article';
+// import { ArticleEffects } from '../+creator/article';
 import { DocsActions } from '../../actions';
 import { AppActions } from './app.actions';
 import { CreatorResolver } from '../+creator';
@@ -113,6 +118,11 @@ const APP_PROVIDERS = [
   entryComponents: [
     AppComponent,
   ],
+  exports: [
+    TranslateModule,
+    CoreModule,
+    RouterModule,
+  ],
   imports: [
     // Angular
     BrowserModule,
@@ -126,17 +136,22 @@ const APP_PROVIDERS = [
     RouterModule.forRoot(ROUTES, {
       useHash: true,
       enableTracing: AppConfig.DEBUG,
+      preloadingStrategy: PreloadAllModules,
     }),
 
     // Apollo
     ApolloModule.withClient(client),
 
-    TranslateModule.forRoot(),
+    TranslateModule.forRoot({ // custom translation provider
+        provide: TranslateLoader,
+        useFactory: () => {
+          return new TranslateCustomLoader(AppLocale.languages);
+        },
+      }),
 
     // @ngrx
     EffectsModule.runAfterBootstrap(DocsEffects),
     EffectsModule.runAfterBootstrap(CreatorEffects),
-    EffectsModule.runAfterBootstrap(ArticleEffects),
     EffectsModule.run(AppEffects),
     StoreModule.provideStore(AppStore),
     StoreDevtoolsModule.instrumentStore({ // store dev tools for debug
@@ -150,8 +165,8 @@ const APP_PROVIDERS = [
 
     // Custom Modules
     DashboardModule,
-    CreatorModule,
-    CoreModule.forRoot(AppLocale.languages),
+    // CreatorModule,
+    CoreModule.forRoot(),
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     // ...ENV_PROVIDERS,

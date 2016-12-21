@@ -1,14 +1,12 @@
 /* tslint:disable: max-classes-per-file */
 // Importables
 import { Component } from '@angular/core';
-import { forwardRef } from '@angular/core';
-import { Inject } from '@angular/core';
 import { AfterViewInit } from '@angular/core';
 import { ElementRef } from '@angular/core';
 import { Renderer } from '@angular/core';
 
 // Components
-import { AppComponent } from '../app';
+import { MainComponent } from '../main';
 import { AppConfig } from '../../config';
 
 // Interface
@@ -29,8 +27,8 @@ export class ToolbarComponent implements AfterViewInit {
 
   constructor(
     private _elRef: ElementRef,
+    private _main: MainComponent,
     private _renderer: Renderer,
-    @Inject(forwardRef(() => AppComponent)) private _app: AppComponent,
   ) { }
 
   public ngAfterViewInit() {
@@ -47,7 +45,7 @@ export class ToolbarComponent implements AfterViewInit {
   public toggleMenu(event: Event) {
     event.preventDefault();
     event.stopImmediatePropagation();
-    this._app['menu'].toggle();
+    this._main.menu.toggle();
   }
 
   public get contentElement() {

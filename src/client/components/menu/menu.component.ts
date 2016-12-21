@@ -2,14 +2,12 @@
 // Importables
 import { AfterViewInit } from '@angular/core';
 import { Component } from '@angular/core';
-import { forwardRef } from '@angular/core';
-import { Inject } from '@angular/core';
 import { NavigationStart } from '@angular/router';
 import { Router } from '@angular/router';
 import * as _ from 'lodash';
 
 // Components
-import { AppComponent } from '../app';
+import { MainComponent } from '../main';
 
 @Component({
   selector: 'sg-menu',  // <sg-menu></sg-menu>
@@ -21,7 +19,7 @@ export class MenuComponent implements AfterViewInit {
   public menu: any = [];
 
   constructor(
-    @Inject(forwardRef(() => AppComponent)) public _app: AppComponent, // TODO@sdoell: could be moved to service
+    private _main: MainComponent,
     private _router: Router,
   ) {
     this.menu = _.sortBy(_.map(_.filter(this._router.config, (route) => route['menu'] && route['menu'].show), route => Object.assign({}, {path: route.path}, route['menu'])), config => config['order']);
@@ -35,8 +33,8 @@ export class MenuComponent implements AfterViewInit {
   public ngAfterViewInit() {
     this._router.events.subscribe(event => {
       if (event instanceof NavigationStart &&
-        this._app.menu.opened) {
-        this._app.menu.toggle();
+        this._main.menu.opened) {
+        this._main.menu.toggle();
       }
     });
   }
