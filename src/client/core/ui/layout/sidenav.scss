@@ -27,7 +27,6 @@ ui-sidenav {
   position: absolute;
   top: 0;
   background-color: $_ui-sidenav-background-color;
-  // visibility: hidden;
   height: 100%;
   width: 240px;
   transition: all .5s;
@@ -37,7 +36,6 @@ ui-sidenav {
   border-right-width: $_ui-sidenav-border-width;
 
   &.is-open {
-    // visibility: visible;
     transform: translate3d(0, 0, 0);
 
     & + .ui-layout-sidenav-pusher {
@@ -46,7 +44,6 @@ ui-sidenav {
   }
 
   &.is-close {
-    visibility: visible;
     transform: translate3d(-100%, 0, 0);
   }
 

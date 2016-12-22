@@ -10,6 +10,11 @@ import { OnInit } from '@angular/core';
 import { Output } from '@angular/core';
 import { Renderer } from '@angular/core';
 import { ViewEncapsulation } from '@angular/core';
+import { trigger } from '@angular/core';
+import { state } from '@angular/core';
+import { transition } from '@angular/core';
+import { animate } from '@angular/core';
+import { style } from '@angular/core';
 import * as _ from 'lodash';
 
 @Component({
@@ -17,6 +22,18 @@ import * as _ from 'lodash';
   encapsulation: ViewEncapsulation.None,
   selector: 'ui-sidenav',
   template: '<ng-content></ng-content>',
+  animations: [
+    trigger('menuState', [
+      state('opened', style({
+        transform: 'translate3d(0, 0, 0)',
+      })),
+      state('closed', style({
+        transform: 'translate3d(-100%, 0, 0)',
+      })),
+      transition('opened => closed', animate('400ms ease-in-out')),
+      transition('closed => opened', animate('400ms ease-in-out')),
+    ]),
+  ],
 })
 export class SideNavComponent implements OnInit {
 

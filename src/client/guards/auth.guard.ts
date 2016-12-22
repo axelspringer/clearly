@@ -40,7 +40,7 @@ export class AuthGuard implements CanActivate, OnDestroy {
     setTimeout(() => {
       subject.next(true);
       subject.complete();
-    }, 4500);
+    }, 1500);
 
     return subject;
   }

@@ -3,24 +3,23 @@ query rootQuery {
       name,
       displayName,
       channels {
+        id,
         name,
         displayName,
         isEnabled
       },
       contexts {
+        id,
         name,
         displayName,
         formType {
           name,
           options {
-            required
+            required,
+            type,
+            channels
           }
-        },
-        type {
-          name,
-          displayName
         }
-        channels
       }
     }
   }

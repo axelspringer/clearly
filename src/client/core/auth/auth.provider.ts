@@ -1,18 +1,14 @@
-// importables
-// import { Inject, EventEmitter } from '@angular/core';
-import { Injectable } from '@angular/core';
-// import { Observable, BehaviorSubject } from 'rxjs';
+// imports
 import { BehaviorSubject } from 'rxjs';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Inject } from '@angular/core';
 
 // interface
 import { IAuthProviderOptions } from './auth.interface';
+import { AuthProviderOptions } from './auth.interface';
 
 // components
-// import { EventEmitProvider } from '../events';
-// import { LogEventError } from '../log';
-// import { LogEventLog } from '../log';
-// import { LogService } from '../log';
 
 // put here to avoid side-effects
 export const AUTH_PROVIDER_OPTIONS: IAuthProviderOptions = {
@@ -24,6 +20,13 @@ export class AuthProvider {
   // properties
 
   public isAuthenticated: BehaviorSubject<boolean> = new BehaviorSubject(false);
+
+  constructor(
+    @Inject(AUTH_PROVIDER_OPTIONS) public options: AuthProviderOptions,
+  ) {
+    console.log('Instantiating `AuthProvider`');
+    console.log(this.options);
+  }
 
   // public
 
