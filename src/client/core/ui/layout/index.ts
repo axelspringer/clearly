@@ -7,3 +7,6 @@ export const LAYOUT_DIRECTIVES: Array<Type<any>> = [
   SideNavLayoutComponent,
   SideNavComponent,
 ];
+
+export * from './layout';
+export * from './sidenav';

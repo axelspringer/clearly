@@ -1,7 +1,7 @@
 // importables
 import { Component } from '@angular/core';
-import { ViewChild } from '@angular/core';
 import { ViewEncapsulation } from '@angular/core';
+import { ViewChild } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NavigationStart } from '@angular/router';
@@ -19,6 +19,8 @@ export class MainComponent implements OnInit {
 
   @ViewChild('menu') public menu;
   @ViewChild('progressBar') public progressBar;
+
+  public opened = true;
 
   constructor(
     private _router: Router,

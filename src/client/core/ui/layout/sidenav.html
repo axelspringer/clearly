@@ -1,6 +1,6 @@
 <div class="ui-layout-sidenav-container">
   <ng-content select="ui-sidenav"></ng-content>
-  <div #uiLayoutSidenavPusher class="ui-layout-sidenav-pusher">
+  <div #uiLayoutSidenavPusher [@menuState]="opened" class="ui-layout-sidenav-pusher">
     <div class="ui-layout-content">
       <ng-content></ng-content>
     </div>

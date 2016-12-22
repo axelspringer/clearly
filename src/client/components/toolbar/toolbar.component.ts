@@ -6,7 +6,7 @@ import { ElementRef } from '@angular/core';
 import { Renderer } from '@angular/core';
 
 // Components
-import { MainComponent } from '../main';
+import { SideNavLayoutComponent } from '../../core/ui/layout';
 import { AppConfig } from '../../config';
 
 // Interface
@@ -27,7 +27,7 @@ export class ToolbarComponent implements AfterViewInit {
 
   constructor(
     private _elRef: ElementRef,
-    private _main: MainComponent,
+    private _sidenavLayout: SideNavLayoutComponent,
     private _renderer: Renderer,
   ) { }
 
@@ -45,7 +45,7 @@ export class ToolbarComponent implements AfterViewInit {
   public toggleMenu(event: Event) {
     event.preventDefault();
     event.stopImmediatePropagation();
-    this._main.menu.toggle();
+    this._sidenavLayout.toggle();
   }
 
   public get contentElement() {
