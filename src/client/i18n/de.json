@@ -8,6 +8,16 @@
         "3": "Fehler"
       }
     },
+    "LOGIN": {
+      "LABEL": {
+        "TITLE": "Blackbeard",
+        "USERNAME": "Benutzername",
+        "PASSWORD": "Password",
+        "STAYLOGIN": "Eingeloggt bleiben",
+        "LOGIN": "Anmelden",
+        "FAILURE": "Ungültiger Benutzername oder Password"
+      }
+    },
     "CREATOR": {
       "TITLE": "Artikel",
       "TAB": {

@@ -23,6 +23,9 @@ import { SgFileDroppableDirective } from './forms';
 import { UIModule } from './ui';
 import { TranslateModule } from 'ng2-translate';
 
+// providers
+import { AUTH_PROVIDERS } from './auth';
+
 @NgModule({
   imports: [
     ClarityModule,
@@ -59,6 +62,9 @@ import { TranslateModule } from 'ng2-translate';
     ...DFORM_DIRECTIVES,
   ],
   providers: [
+    // Auth
+    ...AUTH_PROVIDERS,
+
     // Events
     EventEmitProvider,
 

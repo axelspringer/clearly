@@ -1,69 +1,55 @@
-// Importables
-import { Angular2Apollo } from 'angular2-apollo';
-import { ApolloQueryObservable } from 'angular2-apollo';
+// importables
 import { OnInit } from '@angular/core';
 import { Component } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
-import { TranslateService } from 'ng2-translate';
+import { BehaviorSubject } from 'rxjs';
+import { Subscription } from 'rxjs';
+import { ChangeDetectionStrategy } from '@angular/core';
+import { Router } from '@angular/router';
 
-// We need this to parse graphql string
-import gql from 'graphql-tag';
-
-// Components
-import { EventEmitProvider } from '../../core';
-import { DocsActions } from '../../actions';
-import { IAppState } from '../app';
-import { getDocs } from '../app';
-import { StatusTitleUpdate } from '../status';
+// components
+import { AuthProvider } from '../../core/auth';
 
 @Component({
-  selector: 'sg-dashboard',  // <sg-dashboard></sg-dashboard>
-  styleUrls: ['./dashboard.component.scss'],
-  templateUrl: './dashboard.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  selector: 'sg-login',  // <sg-dashboard></sg-dashboard>
+  styleUrls: ['./login.component.scss'],
+  templateUrl: './login.component.html',
 })
-export class DashboardComponent implements OnInit {
+export class LoginComponent implements OnInit {
 
   // properties
 
-  public i18nTitle = 'COMPONENT.DASHBOARD.TITLE';
-  public ok: ApolloQueryObservable<any>;
+  public isAuthenticating: BehaviorSubject<boolean> = new BehaviorSubject(false);
+  private _sub: Subscription = null;
 
-  private articles$: Observable<any>;
-
-  // TypeScript public modifiers
   constructor(
-    private _translate: TranslateService,
-    // legacy
-    private store: Store<IAppState>,
-    private docsActions: DocsActions,
-    private apollo: Angular2Apollo,
-  ) {
+    private _auth: AuthProvider,
+    private _router: Router,
+  ) {}
 
-    this.ok = this.apollo.query({
-      query: gql`
-        query RootQuery {
-          ok {
-            status
-          }
-        }
-      `,
-    }) as ApolloQueryObservable<any>;
-
-    // this.ok.then(res => this.ok = res.data.ok.status);
-
-    this.articles$ = this.store.let(getDocs());
-    this.store.dispatch(this.docsActions.load());
-
-  }
+  // angular
 
   public ngOnInit() {
-    console.log('hello `Dashboard` component');
+    console.log('hello `Login` component');
+  }
 
-    this._translate.get(this.i18nTitle).subscribe(translation => {
-      EventEmitProvider.connect(StatusTitleUpdate.prototype.constructor.name).emit(translation);
-    });
+  // public
 
+  public login() {
+    if (this._sub !== null) {
+      this._sub.unsubscribe();
+    }
+    this.isAuthenticating.next(true);
+    this._sub = this._auth
+      .login()
+      .take(1)
+      .delay(2500)
+      .subscribe(grant => {
+        if (grant) {
+          this.isAuthenticating.next(false);
+          this._router.navigate(['']);
+        }
+      });
   }
 
 }

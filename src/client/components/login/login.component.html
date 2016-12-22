@@ -1,29 +1,27 @@
 <div class="login-wrapper">
-  <form class="login">
+  <form class="login" (ngSubmit)="login()" #loginForm="ngForm">
     <label class="title">
-      Company Name<span class="trademark">&#8482;</span>
-      Product Name&#174;
+      {{ 'COMPONENT.LOGIN.LABEL.TITLE' | translate }}<span class="trademark">&#8482;</span>
     </label>
     <div class="login-group">
       <div class="auth-source select">
         <select id="login-auth-source-1">
-          <option>Local Users</option>
-          <option>Administrator</option>
+          <option>Redaktion</option>
+          <option>Administration</option>
         </select>
       </div>
-      <input class="username" type="text" id="login_username" placeholder="Username">
-      <input class="password" type="password" id="login_password" placeholder="Password">
+      <input class="username" type="text" id="login_username" placeholder="{{ 'COMPONENT.LOGIN.LABEL.USERNAME' | translate }}">
+      <input class="password" type="password" id="login_password" placeholder="{{ 'COMPONENT.LOGIN.LABEL.PASSWORD' | translate }}">
       <div class="checkbox">
         <input type="checkbox" id="rememberme">
         <label for="rememberme">
-          Remember me
+          {{ 'COMPONENT.LOGIN.LABEL.STAYLOGIN' | translate }}
         </label>
       </div>
       <div class="error active">
-        Invalid user name or password
+        {{ 'COMPONENT.LOGIN.LABEL.FAILURE' | translate }}
       </div>
-      <button type="submit" class="btn btn-primary">LOG IN</button>
-      <a href="..." class="signup">Sign up for an account</a>
+      <button type="submit" class="btn btn-primary" [disabled]="(isAuthenticating | async)">{{ 'COMPONENT.LOGIN.LABEL.LOGIN' | translate }}</button>
     </div>
   </form>
 </div>

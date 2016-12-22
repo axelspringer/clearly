@@ -46,21 +46,23 @@ import { ROUTES } from './app.routes';
 
 // Components
 import { AvatarComponent } from '../avatar';
+import { LoginComponent } from '../login';
+import { MainComponent } from '../main';
 import { MenuComponent } from '../menu';
 import { NoContentComponent } from '../404';
+import { NotificationsComponent } from '../notifications';
 import { StatusComponent } from '../status';
 import { ToolbarComponent } from '../toolbar';
-import { NotificationsComponent } from '../notifications';
-import { MainComponent } from '../main';
 
 export const COMPONENTS: Array<Type<any>> = [
   AvatarComponent,
+  LoginComponent,
+  MainComponent,
   MenuComponent,
   NoContentComponent,
   NotificationsComponent,
   StatusComponent,
   ToolbarComponent,
-  MainComponent,
 ];
 
 // directives

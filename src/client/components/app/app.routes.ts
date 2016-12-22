@@ -3,6 +3,7 @@ import { AuthGuard } from '../../guards';
 import { MainComponent } from '../main';
 import { NoContentComponent } from '../404';
 import { DashboardComponent } from '../dashboard';
+import { LoginComponent } from '../login';
 
 export const ROUTES: any = [
   {
@@ -16,6 +17,7 @@ export const ROUTES: any = [
       {
         path: '',
         component: DashboardComponent,
+        name: 'Dashboard',
         menu: {
           title: 'Dashboard',
           show: true,
@@ -25,6 +27,7 @@ export const ROUTES: any = [
       },
       {
         path: 'create',
+        name: 'Creator',
         menu: {
           title: 'Neuer Artikel',
           show: true,
@@ -39,6 +42,13 @@ export const ROUTES: any = [
         loadChildren: '../+creator/creator.module#CreatorModule',
       },
     ],
+  },
+  {
+    path: 'login',
+    name: 'Login',
+    canActivate: [],
+    canDeactivate: [],
+    component: LoginComponent,
   },
   {
     path: '**',
