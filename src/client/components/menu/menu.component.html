@@ -1,4 +1,5 @@
 <nav >
-  <a (click)="navigate(route.path)" *ngFor="let route of menu">
+  <a *ngFor="let route of menu" routerLink="/{{route.path}}" routerLinkActive="is-active" [routerLinkActiveOptions]="{exact:
+true}">
     <clr-icon [attr.shape]="route.icon"></clr-icon>{{ route.title }}</a>
 </nav>

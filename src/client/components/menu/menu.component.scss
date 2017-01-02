@@ -14,7 +14,7 @@
 
   a {
     align-items: center;
-    color: $_ui-sidenav-border-color;
+    color: rgba(white, .5);
     display: block;
     display: flex;
     padding: $_menu-padding;
@@ -31,9 +31,16 @@
     // border-bottom-style: $_menu-border-style;
 
     text-decoration: none;
+    margin: 0 1rem;
 
     &:hover {
       color: white;
+    }
+    &.is-active {
+      color: white;
+      background-color: darken($_ui-sidenav-background-color, 3%);
+      border-radius: $_ui-sidenav-border-radius;
+      box-shadow: inset 0px 0px 1rem 4px darken($_ui-sidenav-background-color, 5%);
     }
   }
 
