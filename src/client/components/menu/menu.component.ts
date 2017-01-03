@@ -9,7 +9,7 @@ import { Route } from '@angular/router';
 import * as _ from 'lodash';
 
 // Components
-import { MainComponent } from '../main';
+import { SideNav } from '../../core';
 
 @Component({
   selector: 'sg-menu',  // <sg-menu></sg-menu>
@@ -21,8 +21,8 @@ export class MenuComponent implements AfterViewInit {
   public menu: any = [];
 
   constructor(
-    private _main: MainComponent,
     private _router: Router,
+    private _sideNav: SideNav,
   ) {
     // TODO@sdoell: adding again to routes
     this.menu = this._findMenuItems(this._router.config);
@@ -39,9 +39,8 @@ export class MenuComponent implements AfterViewInit {
       if (event instanceof RoutesRecognized) {
         this.menu = this._findMenuItems(this._router.config);
       }
-      if (event instanceof NavigationStart &&
-        this._main.menu.opened) {
-        this._main.menu.toggle();
+      if (event instanceof NavigationStart) {
+        this._sideNav.toggle();
       }
     });
   }

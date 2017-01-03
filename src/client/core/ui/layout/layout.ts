@@ -1,14 +1,16 @@
-// Importables
-import { Component } from '@angular/core';
-// import { ChangeDetectionStrategy } from '@angular/core';
-import { ViewEncapsulation } from '@angular/core';
-import { ViewChild } from '@angular/core';
-import { QueryList } from '@angular/core';
-import { trigger } from '@angular/core';
-import { state } from '@angular/core';
-import { transition } from '@angular/core';
+// imports
 import { animate } from '@angular/core';
+import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
+import { OnInit } from '@angular/core';
+import { state } from '@angular/core';
 import { style } from '@angular/core';
+import { transition } from '@angular/core';
+import { trigger } from '@angular/core';
+import { ViewEncapsulation } from '@angular/core';
+
+// components
+import { SideNav } from './state';
 
 @Component({
   // changeDetection: ChangeDetectionStrategy.OnPush,
@@ -29,14 +31,17 @@ import { style } from '@angular/core';
     ]),
   ],
 })
-export class SideNavLayoutComponent {
+export class SideNavLayoutComponent implements OnInit {
 
-  @ViewChild('uiLayoutSidenavPusher') public pusher: QueryList<any>;
+  public state: Observable<string>;
 
-  public opened = 'closed';
+  constructor(
+    private _sideNav: SideNav,
+  ) {}
 
-  public toggle() {
-    this.opened = this.opened === 'closed' ? 'opened' : 'closed';
+  public ngOnInit() {
+    this.state = this._sideNav.opened
+      .switchMap(opened => Observable.of(opened ? 'opened' : 'close'));
   }
 
 }

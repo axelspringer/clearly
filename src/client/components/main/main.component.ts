@@ -9,6 +9,9 @@ import { NavigationEnd } from '@angular/router';
 import { NavigationCancel } from '@angular/router';
 import { ElementRef } from '@angular/core';
 
+// components
+// import { SideNav } from './state';
+
 // compponents
 @Component({
   encapsulation: ViewEncapsulation.None,
@@ -17,18 +20,17 @@ import { ElementRef } from '@angular/core';
 })
 export class MainComponent implements OnInit {
 
-  @ViewChild('menu') public menu;
   @ViewChild('progressBar') public progressBar;
-
-  public opened = true;
 
   constructor(
     private _router: Router,
     private _el: ElementRef,
+    // private _sideNav: SideNav,
   ) {
   }
 
   public ngOnInit() {
+
     const nativeElement: HTMLElement = this._el.nativeElement;
     const parentElement: HTMLElement = nativeElement.parentElement;
 

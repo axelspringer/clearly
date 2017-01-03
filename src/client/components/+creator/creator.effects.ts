@@ -7,12 +7,9 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ApolloQueryObservable } from 'angular2-apollo';
 import gql from 'graphql-tag';
-import * as articleQuery from './creator.graphql';
 
 // Components
 import { CreatorActions } from './creator.actions';
-
-console.log('TEST1', articleQuery);
 
 const query = gql`
   query rootQuery {

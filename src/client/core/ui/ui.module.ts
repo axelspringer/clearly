@@ -15,6 +15,7 @@ import { TOAST_DIRECTIVES } from './toast';
 
 // providers
 import { TOAST_PROVIDERS } from './toast';
+import { LAYOUT_PROVIDERS } from './layout';
 
 @NgModule({
   imports: [
@@ -43,6 +44,7 @@ import { TOAST_PROVIDERS } from './toast';
   ],
   providers: [
     TOAST_PROVIDERS,
+    LAYOUT_PROVIDERS,
   ],
 })
 export class UIModule {
