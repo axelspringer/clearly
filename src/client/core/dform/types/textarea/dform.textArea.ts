@@ -1,16 +1,16 @@
 /* tslint:disable max-classes-per-file */
 // Importables
 import { Component } from '@angular/core';
-import { Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { Input } from '@angular/core';
 
 // Components
-import { DFormElement } from '../dform.element';
-import { IDFormElementOptions } from '../dform.element';
+import { DFormElement } from '../../dform.element';
+import { IDFormElementOptions } from '../../dform.element';
 
-export class DFormText extends DFormElement<string> {
+export class DFormTextArea extends DFormElement<string> {
 
-  public controlType = 'text';
+  public controlType = 'textArea';
   public type: string;
 
   constructor(options: {} = {}) {
@@ -21,11 +21,12 @@ export class DFormText extends DFormElement<string> {
 };
 
 @Component({
-  selector: 'sg-dform-text',
-  templateUrl: './dform.text.html',
-  styleUrls: ['./dform.text.scss'],
+  selector: 'sg-dform-textarea',
+  templateUrl: './dform.textArea.html',
+  styleUrls: ['./dform.textArea.scss'],
 })
-export class DFormTextComponent {
+
+export class DFormTextAreaComponent {
 
   @Input() public element: DFormElement<string>;
   @Input() public form: FormGroup;

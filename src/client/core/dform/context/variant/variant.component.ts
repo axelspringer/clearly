@@ -11,9 +11,9 @@ import { Output } from '@angular/core';
 import { ViewEncapsulation } from '@angular/core';
 
 // Components
-import { EventEmitProvider } from '../../events';
-import { DFormVariantRemoveEvent } from '../dform.element.abstract';
-import { DFormVariantAddEvent } from '../dform.element.abstract';
+import { EventEmitProvider } from '../../../events';
+import { DFormVariantRemoveEvent } from '../../dform.element.abstract';
+import { DFormVariantAddEvent } from '../../dform.element.abstract';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,

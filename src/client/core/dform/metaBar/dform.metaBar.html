@@ -1,9 +1,0 @@
-<div class="sg-dform-metabar" *ngIf="formElement?.fromMaster">
-  <ul>
-    <li (click)="toggleEdit(formElement.key, $event)" class="sg-dform-metabar-action">{{ (formElement?.disabled ? 'DFORM.META_TEXT.LABEL.EDIT.OFF' : 'DFORM.META_TEXT.LABEL.EDIT.ON') | translate }}</li>
-  </ul>
-  <ul>
-    <li [hidden]="formElement?.disabled" class="sg-dform-metabar-tag">{{ 'DFORM.META_BAR.LABEL.FROM_MASTER' | translate }}</li>
-  </ul>
-  <div class="sg-dform-metabar-id">{{ formElement.key }}</div>
-</div>

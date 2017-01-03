@@ -5,8 +5,8 @@ import { Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
 // Components
-import { DFormElement } from '../dform.element';
-import { IDFormElementOptions } from '../dform.element'
+import { DFormElement } from '../../dform.element';
+import { IDFormElementOptions } from '../../dform.element'
 ;
 export class DFormDropDown extends DFormElement<string> {
 

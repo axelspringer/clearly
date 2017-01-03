@@ -5,8 +5,8 @@ import { FormGroup } from '@angular/forms';
 import { Input } from '@angular/core';
 
 // Components
-import { DFormElement } from '../dform.element';
-import { IDFormElementOptions } from '../dform.element';
+import { DFormElement } from '../../dform.element';
+import { IDFormElementOptions } from '../../dform.element';
 
 export class DFormMainText extends DFormElement<string> {
 

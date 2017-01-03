@@ -29,8 +29,8 @@ export class ArticleService {
 
   // private
   private _transformToFormElement(context: any, channel?: number) {
-    return this._formTypes.toFormType(context.formType.name,
-      _.assign(context.formType.options, {channel}, {key: context.name, subject: context.displayName}));
+    return this._formTypes(context.formType.name,
+      _.assign(context.formType.options, {channel}, {key: context.name, subject: context.displayName})).toClass();
   }
 
 }

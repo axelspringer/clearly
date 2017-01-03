@@ -7,9 +7,8 @@ import { Input } from '@angular/core';
 import { ViewChild } from '@angular/core';
 
 // Components
-import { DFormElement } from '../dform.element';
-// import { EventEmitProvider } from '../../events';
-import { IDFormElementOptions } from '../dform.element';
+import { DFormElement } from '../../dform.element';
+import { IDFormElementOptions } from '../../dform.element';
 
 export class DFormPicture extends DFormElement<string> {
 

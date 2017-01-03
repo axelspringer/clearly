@@ -4,9 +4,9 @@ import { Component } from '@angular/core';
 import { ViewEncapsulation } from '@angular/core';
 
 // Components
-import { DFormElement } from '../dform.element';
-import { IDFormElementOptions } from '../dform.element';
-import { DFormAbstractComponent } from '../dform.element.abstract';
+import { DFormElement } from '../../dform.element';
+import { IDFormElementOptions } from '../../dform.element';
+import { DFormAbstractComponent } from '../../dform.element.abstract';
 
 export class DFormMetaText extends DFormElement<string> {
 
