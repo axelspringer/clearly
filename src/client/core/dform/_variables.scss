@@ -1,7 +1,10 @@
 $_dform-prefix: 'dform';
 
-$_dform-padding: 1rem;
-$_dform-border-color: rgba(151, 151, 151, 1);
-$_dform-background-color: rgba(216, 216, 216, 1);
-$_dform-border-style: solid;
-$_dform-border-width: 1px;
+$_dform-context-padding: 1rem;
+$_dform-context-border-color: rgba(151, 151, 151, 1);
+$_dform-context-background-color: rgba(216, 216, 216, 1);
+$_dform-context-border-style: solid;
+$_dform-context-border-width: 1px;
+
+// variants
+$_dform-context-variants-background-color: rgba(255, 255, 255, 1);

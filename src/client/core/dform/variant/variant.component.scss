@@ -1,8 +1,4 @@
-// not so nice, but needed
-// @import '../../../../../lib/sass/mixins';
-
 @import '../variables';
-
 
 .c-#{$_dform-prefix} {
 
@@ -26,7 +22,7 @@
 
     display: flex;
 
-    margin: $_dform-padding 0;
+    margin: $_dform-context-padding 0;
 
     &__actions {
 

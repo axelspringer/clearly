@@ -1,5 +1,9 @@
 @import 'variables';
 
+$_dform-border-color: $_dform-context-border-color;
+$_dform-border-style: $_dform-context-border-style;
+$_dform-border-width: $_dform-context-border-width;
+
 // objects
 ul.o-#{$_dform-prefix} {
 

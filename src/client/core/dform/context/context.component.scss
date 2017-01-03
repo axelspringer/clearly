@@ -1,13 +1,5 @@
 // not so nice, but needed
-// @import '../../../../../lib/sass/mixins';
-
-$_dform-context-padding: 1rem;
-$_dform-context-border-color: rgba(151, 151, 151, 1);
-$_dform-context-background-color: rgba(216, 216, 216, 1);
-$_dform-context-border-style: solid;
-$_dform-context-border-width: 1px;
-
-$_dform-prefix: 'dform';
+@import '../variables';
 
 .c-#{$_dform-prefix} {
 
@@ -43,6 +35,8 @@ $_dform-prefix: 'dform';
     }
 
     &__variants {
+
+      background-color: $_dform-context-variants-background-color;
 
       border-color: $_dform-context-border-color;
       border-style: $_dform-context-border-style;

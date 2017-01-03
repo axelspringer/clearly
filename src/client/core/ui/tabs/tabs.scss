@@ -58,6 +58,7 @@ ui-tabs {
   .ui-tab {
     position: relative;
     overflow-y: auto;
+    background-color: $_ui-tabs-tab-background-color;
   }
 
 }
