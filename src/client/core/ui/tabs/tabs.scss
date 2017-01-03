@@ -14,11 +14,14 @@ ui-tabs {
 
   .#{&}-container {
     background-color: $_ui-tabs-background-color;
+    position: relative;
     z-index: 9997;
     width: 100%;
 
     font-size: 0;
     padding: 1rem 0 .5rem 0;
+
+    box-shadow: $_ui-tabs-box-shadow;
 
     ul {
       display: flex;

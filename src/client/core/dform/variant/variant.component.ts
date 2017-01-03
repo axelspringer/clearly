@@ -1,14 +1,14 @@
 // Importables
+import { BehaviorSubject } from 'rxjs';
 import { ChangeDetectionStrategy } from '@angular/core';
 import { Component } from '@angular/core';
-import { ViewEncapsulation } from '@angular/core';
-import { Output } from '@angular/core';
-import { Input } from '@angular/core';
-import { FormControl } from '@angular/forms';
 import { EventEmitter } from '@angular/core';
-import { OnInit } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { FormControl } from '@angular/forms';
+import { Input } from '@angular/core';
 import { Observable } from 'rxjs';
+import { OnInit } from '@angular/core';
+import { Output } from '@angular/core';
+import { ViewEncapsulation } from '@angular/core';
 
 // Components
 import { EventEmitProvider } from '../../events';
