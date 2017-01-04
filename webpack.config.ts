@@ -331,7 +331,7 @@ const prodConfig = (): WebpackConfig => {
     new CopyWebpackPlugin(COPY_FOLDERS),
     new HtmlWebpackPlugin({
       template: `src/index.html`,
-      meta: meta,
+      meta,
       inject: true,
     }),
 

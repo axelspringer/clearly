@@ -5,8 +5,10 @@ import ApolloClient from 'apollo-client';
 // Components
 import { ApolloConfig } from '../../config';
 
-export const client: ApolloClient = new ApolloClient({
-  networkInterface: createNetworkInterface({
-    uri: ApolloConfig.uri,
-  }),
-});
+export const Client = (): ApolloClient => {
+  return new ApolloClient({
+    networkInterface: createNetworkInterface({
+      uri: ApolloConfig.uri,
+    }),
+  });
+};

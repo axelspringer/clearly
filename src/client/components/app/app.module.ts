@@ -1,19 +1,19 @@
 // Importables
 import { ApplicationRef } from '@angular/core';
 import { BrowserModule, Title } from '@angular/platform-browser';
-import { TranslateLoader } from 'ng2-translate/ng2-translate';
 import { EffectsModule } from '@ngrx/effects';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { NgModule } from '@angular/core';
+import { PreloadAllModules } from '@angular/router';
 import { RouterModule } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreLogMonitorModule } from '@ngrx/store-log-monitor';
 import { StoreModule } from '@ngrx/store';
+import { TranslateLoader } from 'ng2-translate/ng2-translate';
 import { Type } from '@angular/core';
 import { useLogMonitor } from '@ngrx/store-log-monitor';
-import { PreloadAllModules } from '@angular/router';
 // import { WorkerAppModule } from '@angular/platform-webworker';
 
 // Clarity
@@ -21,7 +21,7 @@ import { ClarityModule } from 'clarity-angular';
 
 // Apollo
 import { ApolloModule } from 'angular2-apollo';
-import { client } from './app.apollo.ts';
+import { Client } from './app.apollo.ts';
 
 // Aot
 // import { getPlatform } from '@angular/core';
@@ -31,18 +31,16 @@ import { TranslateModule } from 'ng2-translate';
 // Modules
 import { CoreModule } from '../../core';
 import { DashboardModule } from '../dashboard';
-// import { CreatorModule } from '../+creator';
 
 // Environment
-import { AppComponent } from './app.component';
 import { APP_RESOLVER_PROVIDERS } from './app.resolver';
+import { AppComponent } from './app.component';
 import { AppConfig } from '../../config';
 import { AppLocale } from '../../config';
 import { DATABASE_PROVIDER_OPTIONS } from '../../core';
 import { DBConfig } from './../../config/db.config';
-import { TranslateCustomLoader } from '../../core';
-// import { ENV_PROVIDERS } from '../../environment';
 import { ROUTES } from './app.routes';
+import { TranslateCustomLoader } from '../../core';
 
 // Components
 import { AvatarComponent } from '../avatar';
@@ -76,7 +74,6 @@ import AppStore from './app.store';
 import { DocsEffects } from '../../effects';
 import { CreatorEffects } from '../+creator';
 import { AppEffects } from './app.effects';
-// import { ArticleEffects } from '../+creator/article';
 import { DocsActions } from '../../actions';
 import { AppActions } from './app.actions';
 import { CreatorResolver } from '../+creator';
@@ -142,14 +139,15 @@ const APP_PROVIDERS = [
     }),
 
     // Apollo
-    ApolloModule.withClient(client),
+    ApolloModule.withClient(Client),
 
+    // ng2-translate
     TranslateModule.forRoot({ // custom translation provider
-        provide: TranslateLoader,
-        useFactory: () => {
-          return new TranslateCustomLoader(AppLocale.languages);
-        },
-      }),
+      provide: TranslateLoader,
+      useFactory: () => {
+        return new TranslateCustomLoader(AppLocale.languages);
+      },
+    }),
 
     // @ngrx
     EffectsModule.runAfterBootstrap(DocsEffects),
@@ -176,7 +174,6 @@ const APP_PROVIDERS = [
   ],
 })
 export class AppModule {
-
   private _appRef: ApplicationRef;
   private _store$: Store<any>;
 
@@ -184,10 +181,7 @@ export class AppModule {
     appRef: ApplicationRef,
     store$: Store<any>,
   ) {
-
     this._appRef = appRef;
     this._store$ = store$;
-
   }
-
 }
