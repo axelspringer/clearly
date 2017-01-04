@@ -9,6 +9,19 @@
 
   <meta name="description" content="<%= htmlWebpackPlugin.options.meta.title %>">
 
+  <!-- we load this here, due to construction of package -->
+  <script src="hammer.min.js" defer></script>
+  <script src="mutationobserver.min.js" defer></script>
+  <script src="custom-elements.min.js" defer></script>
+  <script src="clarity-icons.min.js" defer></script>
+
+  <% if (htmlWebpackPlugin.options.isDev) { %>
+  <!-- Webpack Dev Server reload -->
+  <script src="/polyfills.dll.js" defer="true"></script>
+  <script src="/vendors.dll.js" defer="true"></script>
+  <script src="/rxjs.dll.js" defer="true"></script>
+  <% } %>
+
   <% if (webpackConfig.htmlElements.headTags) { %>
   <!-- Configured Head Tags  -->
   <%= webpackConfig.htmlElements.headTags %>
@@ -16,7 +29,6 @@
 
   <!-- base url -->
   <base href="/">
-
 
 </head>
 
@@ -27,22 +39,6 @@
       <div class="spinner"></div>
     </div>
   </sg-app>
-
-
-  <% if (htmlWebpackPlugin.options.isWebpackDevServer) { %>
-  <!-- Webpack Dev Server reload -->
-  <script src="/webpack-dev-server.js"></script>
-  <% } %>
-
-  <% if (htmlWebpackPlugin.options.isDev) { %>
-  <!-- Webpack Dev Server reload -->
-  <script src="/polyfills.dll.js"></script>
-  <script src="/vendors.dll.js"></script>
-  <script src="/rxjs.dll.js"></script>
-  <% } %>
-
-  <!-- we have to keep this here, for now -->
-  <script src="clarity-icons.min.js"></script>
 
 </body>
 </html>

@@ -31,12 +31,6 @@ export function polyfills() {
     'zone.js/dist/zone',
     'zone.js/dist/long-stack-trace-zone',
 
-    // mutationobserver
-    'mutationobserver-shim',
-
-    // custom elements
-    '@webcomponents/custom-elements',
-
     // typescript helpers
     'ts-helpers',
   ];

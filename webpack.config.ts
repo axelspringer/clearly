@@ -48,7 +48,7 @@ const NamedModulesPlugin      = require('webpack/lib/NamedModulesPlugin');
 
 const CommonsChunkPlugin      = require('webpack/lib/optimize/CommonsChunkPlugin');
 const MinChunkSizePlugin      = require('webpack/lib/optimize/MinChunkSizePlugin');
-const UglifyJsPlugin     = require('webpack/lib/optimize/UglifyJsPlugin');
+const UglifyJsPlugin          = require('webpack/lib/optimize/UglifyJsPlugin');
 
 const CompressionPlugin       = require('compression-webpack-plugin');
 const CopyWebpackPlugin       = require('copy-webpack-plugin');
@@ -56,6 +56,7 @@ const HtmlElementsPlugin      = require('./config/html-elements-plugin');
 const HtmlWebpackPlugin       = require('html-webpack-plugin');
 const WebpackMd5Hash          = require('webpack-md5-hash');
 const webpackMerge            = require('webpack-merge');
+const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 
 const EVENT = process.env.npm_lifecycle_event;
 const ENV = process.env.NODE_ENV || 'development';
@@ -71,8 +72,12 @@ const HOST = process.env.HOST || 'localhost';
 const COPY_FOLDERS = [
   { from: `src/assets` },
   { from: `src/meta` },
-  // { from: 'node_modules/hammerjs/hammer.min.js' },
-  // { from: 'node_modules/hammerjs/hammer.min.js.map' },
+  { from: 'node_modules/hammerjs/hammer.min.js' },
+  { from: 'node_modules/hammerjs/hammer.min.js.map' },
+  { from: 'node_modules/clarity-icons/clarity-icons.min.js' },
+  { from: 'node_modules/mutationobserver-shim/dist/mutationobserver.min.js' },
+  { from: 'node_modules/@webcomponents/custom-elements/custom-elements.min.js' },
+  { from: 'node_modules/@webcomponents/custom-elements/custom-elements.min.js.map' },
 
   ...CUSTOM_COPY_FOLDERS,
 
@@ -169,7 +174,7 @@ const commonConfig = (): WebpackConfig => {
 
 };
 
-const devConfig = function () {
+const devConfig = (): WebpackConfig => {
 
   const config: WebpackConfig = {} as WebpackConfig;
 
@@ -206,10 +211,13 @@ const devConfig = function () {
     }),
     new HtmlWebpackPlugin({
       template: 'src/index.html',
-      meta: meta,
-      isDev: isDev,
-      isWebpackDevServer: isWebpackDevServer,
-      inject: true,
+      meta,
+      isDev,
+      isWebpackDevServer,
+      inject: 'head',
+    }),
+    new ScriptExtHtmlWebpackPlugin({
+      defaultAttribute: 'defer',
     }),
     new CopyWebpackPlugin(COPY_FOLDERS),
 
@@ -233,7 +241,7 @@ const devConfig = function () {
 
 };
 
-const dllConfig = function () {
+const dllConfig = (): WebpackConfig => {
 
   const config: WebpackConfig = {} as WebpackConfig;
 
@@ -261,7 +269,7 @@ const dllConfig = function () {
 
 };
 
-const prodConfig = function () {
+const prodConfig = (): WebpackConfig => {
 
   const config: WebpackConfig = {} as WebpackConfig;
 
@@ -335,7 +343,7 @@ const prodConfig = function () {
 
 };
 
-const defaultConfig = function () {
+const defaultConfig = (): WebpackConfig => {
 
   const config: WebpackConfig = {} as WebpackConfig;
 
