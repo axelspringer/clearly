@@ -2,14 +2,13 @@
 import { BehaviorSubject } from 'rxjs';
 import { ChangeDetectionStrategy } from '@angular/core';
 import { Component } from '@angular/core';
-import { getNotifications } from '../app';
 import { OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { ViewEncapsulation } from '@angular/core';
 
 // components
-
-import * as fromAppActions from '../app/app.actions';
+import { fromAppActions } from '../app';
+import { fromStore } from '../app';
 import { IAppState } from '../app';
 
 // interface
@@ -34,7 +33,7 @@ export class NotificationsComponent implements OnInit {
 
   public get notifications() {
     return this._store
-      .let(getNotifications())
+      .select(fromStore.getNotifications)
       .distinctUntilChanged()
       .do(notifications => this._updateStatus(notifications));
   }

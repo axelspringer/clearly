@@ -47,7 +47,6 @@ export function vendors() {
     '@angular/common',
     '@angular/core',
     '@angular/http',
-    '@ngrx/store-log-monitor',
     '@ngrx/store',
     '@ngrx/effects',
     'clarity-angular',

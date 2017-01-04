@@ -1,10 +1,11 @@
-// Importables
+// imports
 import { combineReducers } from '@ngrx/store';
 import { compose } from '@ngrx/core/compose';
 import { Observable } from 'rxjs/Observable';
 import { storeLogger } from 'ngrx-store-logger';
+import { createSelector } from 'reselect';
 
-// Reducers
+// reducers
 import { articleReducer } from '../+creator/article';
 import appReducer from './app.reducer';
 import * as fromAppReducer from './app.reducer';
@@ -22,24 +23,15 @@ export interface IAppState {
   article: any;
 };
 
-// slices as interface
-export {
-}
-
 // metareducers
 export default compose(storeLogger(), combineReducers)({
   app: appReducer,
+  article: articleReducer,
   creator: creatorReducer,
   docs: docsReducer,
-  article: articleReducer,
 });
 
 // slices
-export function getAppState() {
-  return (state$: Observable<IAppState>) => state$
-    .map(s => s.app);
-}
-
 export function getCreatorState() {
   return (state$: Observable<IAppState>) => state$
     .map(s => s.creator);
@@ -55,14 +47,12 @@ export function getArticleState() {
     .map(s => s.article);
 }
 
-// selectors
-export function getAppStatus() {
-  return compose(fromAppReducer.getStatus(), getAppState());
-}
+export const getAppState = (state: IAppState) => state.app;
 
-export function getIsBooting() {
-  return compose(fromAppReducer.isBooting(), getAppState());
-}
+// selectors
+export const getIsBooting = createSelector(getAppState, fromAppReducer.isBooting);
+export const getAppStatus = createSelector(getAppState, fromAppReducer.getStatus);
+export const getNotifications = createSelector(getAppState, fromAppReducer.getNotifications);
 
 export function getCreatorSelectedType() {
   return compose(fromCreatorReducer.getSelectedType(), getCreatorState());
@@ -90,10 +80,6 @@ export function getArticleChannel(channel: number) {
 
 export function getDocs() {
   return compose(fromDocsReducer.getDocs(), getDocsState());
-}
-
-export function getNotifications() {
-  return compose(fromAppReducer.getNotifications(), getAppState());
 }
 
 export function isDocsLoading() {

@@ -8,7 +8,7 @@ import { TranslateService } from 'ng2-translate';
 
 // Components
 import { IAppState } from '../app';
-import { getAppStatus } from '../app';
+import { fromStore } from '../app';
 import { EventEmitProvider } from '../../core';
 import { Event } from '../../core';
 
@@ -56,7 +56,7 @@ export class StatusComponent implements OnInit {
   // public
   public get subject(): Observable<{}> {
     return Observable.combineLatest(
-      this._store.let(getAppStatus()).distinctUntilChanged(),
+      this._store.select(fromStore.getAppStatus).distinctUntilChanged(),
       this.title,
     )
     .switchMap(arr => arr[0] !== 0

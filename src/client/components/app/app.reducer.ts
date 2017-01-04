@@ -1,6 +1,3 @@
-// Importables
-import { Observable } from 'rxjs/Observable';
-
 // Components
 import * as fromAppActions from './app.actions';
 import { StatusComponentType } from '../status';
@@ -50,17 +47,6 @@ export default function (state = init, action: fromAppActions.Actions): IAppStat
 
 }
 
-export function getStatus() {
-  return (state$: Observable<IAppState>) => state$
-    .map(s => s.status);
-}
-
-export function getNotifications() {
-  return (state$: Observable<IAppState>) => state$
-    .map(s => s.notifications);
-}
-
-export function isBooting() {
-  return (state$: Observable<IAppState>) => state$
-    .map(s => s.isBooting);
-}
+export const isBooting = (state: IAppState) => state.isBooting;
+export const getStatus = (state: IAppState) => state.status;
+export const getNotifications = (state: IAppState) => state.notifications;

@@ -49,7 +49,8 @@
   "TOOLBAR": {
     "VERSION": "Version",
     "HELP": "Hilfe",
-    "SIGNOUT": "Abmelden"
+    "SIGNOUT": "Abmelden",
+    "SEARCH": "Suchen"
   },
 
   "BUTTON": {
