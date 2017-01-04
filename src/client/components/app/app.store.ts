@@ -60,6 +60,10 @@ export function getAppStatus() {
   return compose(fromAppReducer.getStatus(), getAppState());
 }
 
+export function getIsBooting() {
+  return compose(fromAppReducer.isBooting(), getAppState());
+}
+
 export function getCreatorSelectedType() {
   return compose(fromCreatorReducer.getSelectedType(), getCreatorState());
 }

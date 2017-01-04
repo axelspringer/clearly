@@ -1,18 +1,15 @@
 // importables
-
 import { BehaviorSubject } from 'rxjs';
 import { ChangeDetectionStrategy } from '@angular/core';
 import { Component } from '@angular/core';
-import { forwardRef } from '@angular/core';
 import { getNotifications } from '../app';
-import { Inject } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { ViewEncapsulation } from '@angular/core';
 
 // components
 
-import { AppActions } from '../app';
+import * as fromAppActions from '../app/app.actions';
 import { IAppState } from '../app';
 
 // interface
@@ -46,14 +43,13 @@ export class NotificationsComponent implements OnInit {
 
   constructor(
     private _store: Store<IAppState>,
-    @Inject(forwardRef(() => AppActions)) public _appActions: AppActions,
   ) {
   }
 
   // angular
   public ngOnInit(): void {
     // demo
-    this._store.dispatch(this._appActions.addNotifications([
+    this._store.dispatch(new fromAppActions.AddNotifcationAction([
       {
         read: false,
         subject: 'test',
@@ -61,7 +57,7 @@ export class NotificationsComponent implements OnInit {
         type: NOTIFICATION_TYPE.INFO,
       },
     ]));
-    this._store.dispatch(this._appActions.addNotifications([
+    this._store.dispatch(new fromAppActions.AddNotifcationAction([
       {
         read: false,
         subject: 'test',
@@ -69,7 +65,7 @@ export class NotificationsComponent implements OnInit {
         type: NOTIFICATION_TYPE.WARN,
       },
     ]));
-    this._store.dispatch(this._appActions.addNotifications([
+    this._store.dispatch(new fromAppActions.AddNotifcationAction([
       {
         read: false,
         subject: 'test',
@@ -83,12 +79,12 @@ export class NotificationsComponent implements OnInit {
 
   public read(notification: Notification, idx: number): void {
     if (!notification.read) {
-      this._store.dispatch(this._appActions.readNotification(idx));
+      this._store.dispatch(new fromAppActions.ReadNotificationAction(idx));
     }
   }
 
   public removeAll(): void {
-    this._store.dispatch(this._appActions.removeNotifications());
+    this._store.dispatch(new fromAppActions.RemoveNotificationAction());
   }
 
   public notificationClassz(notification: Notification): string[] {

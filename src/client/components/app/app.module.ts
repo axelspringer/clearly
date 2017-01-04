@@ -44,6 +44,7 @@ import { TranslateCustomLoader } from '../../core';
 
 // Components
 import { AvatarComponent } from '../avatar';
+import { BootComponent } from '../boot';
 import { LoginComponent } from '../login';
 import { MainComponent } from '../main';
 import { MenuComponent } from '../menu';
@@ -54,6 +55,7 @@ import { ToolbarComponent } from '../toolbar';
 
 export const COMPONENTS: Array<Type<any>> = [
   AvatarComponent,
+  BootComponent,
   LoginComponent,
   MainComponent,
   MenuComponent,
@@ -75,7 +77,6 @@ import { DocsEffects } from '../../effects';
 import { CreatorEffects } from '../+creator';
 import { AppEffects } from './app.effects';
 import { DocsActions } from '../../actions';
-import { AppActions } from './app.actions';
 import { CreatorResolver } from '../+creator';
 
 // Application wide providers
@@ -94,7 +95,6 @@ const APP_PROVIDERS = [
   // Others
   Title,
   DocsActions,
-  AppActions,
   CreatorResolver,
 ];
 

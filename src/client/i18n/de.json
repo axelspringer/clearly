@@ -8,6 +8,12 @@
         "3": "Fehler"
       }
     },
+    "BOOT": {
+      "MESSAGE": {
+        "INIT": "Initialisieren ...",
+        "READY": "Fertig!"
+      }
+    },
     "LOGIN": {
       "LABEL": {
         "TITLE": "Blackbeard",

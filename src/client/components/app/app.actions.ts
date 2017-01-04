@@ -1,41 +1,47 @@
-// Importables
-import { Injectable } from '@angular/core';
+/* tslint:disable max-classes-per-file */
+// imports
 import { Action } from '@ngrx/store';
+
+// interfaces
+import { ActionType } from './app.util';
 
 // components
 import { Notification } from '../notifications';
+import { Actions } from '@ngrx/effects';
 
-@Injectable()
-export class AppActions {
+export const ActionTypes = {
+  ADD_NOTIFICATIONS:    ActionType('[NOTIFICATIONS:ADD]'),
+  READ_NOTIFICATION:    ActionType('[NOTIFICATION:READ]'),
+  REMOVE_NOTIFICATIONS: ActionType('[NOTIFICATIONS:REMOVE]'),
 
-  // definitions
+  UPDATE_STATUS:        ActionType('[APP:UPDATE_STATUS]'),
+  UPDATE_BOOTING:       ActionType('[APP:UPDATE_BOOTING]'),
+};
 
-  public static ADD_NOTIFICATIONS    = '[NOTIFICATIONS:ADD]';
-  public static READ_NOTIFICATION    = '[NOTIFICATION:READ]';
-  public static REMOVE_NOTIFICATIONS  = '[NOTIFICATIONS:REMOVE]';
+export class AddNotifcationAction implements Action {
+  public type = ActionTypes.ADD_NOTIFICATIONS;
 
-  public static UPDATE_STATUS    = '[APP:UPDATE_STATUS]';
-
-  // actions
-
-  public addNotifications(notifications: Notification[] | Notification): Action {
-    return {
-      type: AppActions.ADD_NOTIFICATIONS,
-      payload: notifications,
-    };
-  }
-
-  public removeNotifications(): Action {
-    return {
-      type: AppActions.REMOVE_NOTIFICATIONS,
-    };
-  }
-
-  public readNotification(idx: number): Action {
-    return {
-      type: AppActions.READ_NOTIFICATION,
-      payload: idx,
-    };
-  }
-
+  constructor(public payload: Notification[] | Notification) { }
 }
+
+export class RemoveNotificationAction implements Action {
+  public type = ActionTypes.REMOVE_NOTIFICATIONS;
+  public payload = null;
+}
+
+export class ReadNotificationAction implements Action {
+  public type = ActionTypes.READ_NOTIFICATION;
+
+  constructor(public payload: number) {}
+}
+
+export class HasBootedAction implements Action {
+  public type = ActionTypes.UPDATE_BOOTING;
+  public payload = false;
+}
+
+export type Actions
+  = AddNotifcationAction
+  | RemoveNotificationAction
+  | ReadNotificationAction
+  | HasBootedAction;

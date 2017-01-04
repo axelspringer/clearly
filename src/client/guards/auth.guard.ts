@@ -1,11 +1,11 @@
 // imports
-import { Injectable } from '@angular/core';
-import { CanActivate } from '@angular/router';
-import { OnDestroy } from '@angular/core';
 import { AsyncSubject } from 'rxjs';
-import { Subscription } from 'rxjs';
+import { CanActivate } from '@angular/router';
+import { Injectable } from '@angular/core';
 import { Location } from '@angular/common';
+import { OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 // components
 import { AuthProvider } from '../core/auth';
@@ -43,11 +43,6 @@ export class AuthGuard implements CanActivate, OnDestroy {
     }, 1500);
 
     return subject;
-  }
-
-  public CanDeactivate() {
-    console.log('can be deactived');
-    // this should be done when nothing more to be done
   }
 
   /**

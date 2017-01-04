@@ -1,23 +1,13 @@
-// Importables
-import { Route } from '@angular/router';
+// imports
+import * as fromAppActions from './app.actions';
 
-export interface IMenu {
-  title: string;
-  show: true;
-  order?: number;
-  icon?: string;
-}
-
-export interface IRoute extends Route {
-  menu?: IMenu;
-}
-
-export type Routes = IRoute[];
-
-// App
+// exports
+export * from './app.interface';
 export * from './app.module';
 export * from './app.component';
 export * from './app.store';
-export * from './app.actions';
+export {
+  fromAppActions
+};
 
 

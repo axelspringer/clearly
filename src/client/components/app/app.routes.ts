@@ -1,17 +1,21 @@
-// components
+// guards
 import { AuthGuard } from '../../guards';
+import { BootGuard } from '../../guards';
+
+// components
 import { MainComponent } from '../main';
 import { NoContentComponent } from '../404';
 import { DashboardComponent } from '../dashboard';
 import { LoginComponent } from '../login';
+import { BootComponent } from '../boot';
 
 export const ROUTES: any = [
   {
     canActivate: [
+      BootGuard,
       AuthGuard,
     ],
     path: '',
-    canDeactivate: [],
     component: MainComponent, // TODO@sdoell: move to module
     children: [
       {
@@ -44,9 +48,18 @@ export const ROUTES: any = [
     ],
   },
   {
+    path: 'boot',
+    name: 'Boot',
+    canActivate: [],
+    canDeactivate: [],
+    component: BootComponent,
+  },
+  {
     path: 'login',
     name: 'Login',
-    canActivate: [],
+    canActivate: [
+      BootGuard,
+    ],
     canDeactivate: [],
     component: LoginComponent,
   },

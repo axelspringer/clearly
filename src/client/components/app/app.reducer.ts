@@ -1,40 +1,45 @@
 // Importables
-import { Action } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 
 // Components
-import { AppActions } from './app.actions';
+import * as fromAppActions from './app.actions';
 import { StatusComponentType } from '../status';
 import { Notification } from '../notifications';
 
 export interface IAppState {
+  isBooting: boolean;
   status: StatusComponentType;
   notifications: Notification[];
 }
 
 const init = {
+  isBooting: true,
   status: StatusComponentType.IDLE,
   notifications: [],
 };
 
-export default function (state = init, action: Action)  {
+export default function (state = init, action: fromAppActions.Actions): IAppState  {
 
   switch (action.type) {
 
-    case AppActions.ADD_NOTIFICATIONS: {
+    case fromAppActions.ActionTypes.UPDATE_BOOTING: {
+      return { ...state, isBooting: action.payload }
+    }
+
+    case fromAppActions.ActionTypes.ADD_NOTIFICATIONS: {
       return { ...state, notifications: [].concat(state.notifications, action.payload) };
     }
 
-    case AppActions.READ_NOTIFICATION: {
+    case fromAppActions.ActionTypes.READ_NOTIFICATION: {
       state.notifications[action.payload].read = true;
       return { ...state };
     }
 
-    case AppActions.REMOVE_NOTIFICATIONS: {
+    case fromAppActions.ActionTypes.REMOVE_NOTIFICATIONS: {
       return { ...state, notifications: [] };
     }
 
-    case AppActions.UPDATE_STATUS: {
+    case fromAppActions.ActionTypes.UPDATE_STATUS: {
       return { ...state, status: action.payload };
     }
 
@@ -53,4 +58,9 @@ export function getStatus() {
 export function getNotifications() {
   return (state$: Observable<IAppState>) => state$
     .map(s => s.notifications);
+}
+
+export function isBooting() {
+  return (state$: Observable<IAppState>) => state$
+    .map(s => s.isBooting);
 }

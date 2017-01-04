@@ -6,7 +6,7 @@ import { Effect } from '@ngrx/effects';
 import { Observable } from 'rxjs';
 
 // Components
-import { AppActions } from './app.actions';
+import * as fromAppActions from './app.actions';
 import { CreatorActions } from '../+creator';
 import { StatusComponentType } from '../status';
 
@@ -24,14 +24,14 @@ export class AppEffects {
   @Effect() public setStatusLoad$: Observable<Action> = this._actions
     .ofType(...LOAD_ACTIONS)
     .map(() => ({
-      type: AppActions.UPDATE_STATUS,
+      type: fromAppActions.ActionTypes.UPDATE_STATUS,
       payload: StatusComponentType.LOADING,
     }));
 
   @Effect() public setStatusIdle$: Observable<Action> = this._actions
     .ofType(...IDLE_ACTIONS)
     .map(() => ({
-      type: AppActions.UPDATE_STATUS,
+      type: fromAppActions.ActionTypes.UPDATE_STATUS,
       payload: StatusComponentType.IDLE,
     }));
 

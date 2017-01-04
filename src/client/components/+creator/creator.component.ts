@@ -1,4 +1,4 @@
-// Importables
+// imports
 import { FormGroup } from '@angular/forms';
 import { OnDestroy } from '@angular/core';
 import { OnInit } from '@angular/core';
@@ -8,12 +8,14 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import * as _ from 'lodash';
 
-// Components
+// interfaces
+import { IAppState } from '../app';
+
+// components
 import { ArticleActions } from './article';
 import { CreatorActions } from './creator.actions';
 import { EventEmitProvider } from '../../core';
 import { getCreatorSelectedType } from '../app';
-import { IAppState } from '../app';
 import { getArticleChannel } from '../app';
 import { getArticleMaster } from '../app';
 import { StatusTitleUpdate } from '../status/status.component';
