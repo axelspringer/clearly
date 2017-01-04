@@ -85,7 +85,6 @@
     "@ngrx/effects": "^2.0.0",
     "@ngrx/store": "^2.2.1",
     "@ngrx/store-devtools": "^3.2.2",
-    "@ngrx/store-log-monitor": "^3.0.2",
     "@webcomponents/custom-elements": "^1.0.0-alpha.3",
     "angular2-apollo": "0.9.0-rc.1",
     "apollo-client": "^0.5.25",

@@ -9,11 +9,9 @@ import { PreloadAllModules } from '@angular/router';
 import { RouterModule } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { StoreLogMonitorModule } from '@ngrx/store-log-monitor';
 import { StoreModule } from '@ngrx/store';
 import { TranslateLoader } from 'ng2-translate/ng2-translate';
 import { Type } from '@angular/core';
-import { useLogMonitor } from '@ngrx/store-log-monitor';
 // import { WorkerAppModule } from '@angular/platform-webworker';
 
 // Clarity
@@ -154,14 +152,7 @@ const APP_PROVIDERS = [
     EffectsModule.runAfterBootstrap(CreatorEffects),
     EffectsModule.run(AppEffects),
     StoreModule.provideStore(AppStore),
-    StoreDevtoolsModule.instrumentStore({ // store dev tools for debug
-      maxAge: 5,
-      monitor: useLogMonitor({
-        visible: false, // init
-        position: 'right',
-      }),
-    }),
-    StoreLogMonitorModule,
+    StoreDevtoolsModule.instrumentOnlyWithExtension(),
 
     // Custom Modules
     DashboardModule,
