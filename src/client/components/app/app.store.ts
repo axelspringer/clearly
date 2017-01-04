@@ -45,9 +45,7 @@ export const getNotifications = createSelector(getAppState, fromAppReducer.getNo
 // creator selectors
 export const getCreatorTypes  = createSelector(getCreatorState, fromCreatorReducer.getTypes);
 export const getCreatorSelectedType = createSelector(getCreatorState, fromCreatorReducer.getSelectedType);
-export const getCreatorSelected     = createSelector(getCreatorTypes, getCreatorSelectedType, (types, selectedType) => {
-  return types[selectedType];
-});
+export const getCreatorSelected     = createSelector(getCreatorTypes, getCreatorSelectedType, (types, selectedType) => types[selectedType]);
 
 // export function getCreatorSelectedType() {
 //   return compose(fromCreatorReducer.getSelectedType(), getCreatorState());
