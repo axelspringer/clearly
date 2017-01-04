@@ -11,10 +11,8 @@ import { articleReducer } from '../+creator/article';
 import appReducer from './app.reducer';
 import * as fromAppReducer from './app.reducer';
 import { creatorReducer } from '../+creator';
-import { docsReducer } from '../../reducers';
 import { fromArticleReducer } from '../+creator/article';
 import { fromCreatorReducer } from '../+creator';
-import { fromDocsReducer } from '../../reducers';
 
 // app state
 export interface IAppState {
@@ -29,13 +27,7 @@ export default compose(storeLogger(), combineReducers)({
   app: appReducer,
   article: articleReducer,
   creator: creatorReducer,
-  docs: docsReducer,
 });
-
-export function getDocsState() {
-  return (state$: Observable<IAppState>) => state$
-    .map(s => s.docs);
-}
 
 export function getArticleState() {
   return (state$: Observable<IAppState>) => state$
@@ -71,18 +63,6 @@ export function getArticleMaster() {
 
 export function getArticleChannel(channel: number) {
   return compose(fromArticleReducer.getChannel(channel), getArticleState());
-}
-
-export function getDocs() {
-  return compose(fromDocsReducer.getDocs(), getDocsState());
-}
-
-export function isDocsLoading() {
-  return compose(fromDocsReducer.getDocsLoading(), getDocsState());
-}
-
-export function isDocsLoaded() {
-  return compose(fromDocsReducer.getDocsLoaded(), getDocsState());
 }
 
 export function isChannelsLoaded() {

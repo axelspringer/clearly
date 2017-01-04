@@ -3,8 +3,6 @@ import { Angular2Apollo } from 'angular2-apollo';
 import { ApolloQueryObservable } from 'angular2-apollo';
 import { OnInit } from '@angular/core';
 import { Component } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
 import { TranslateService } from 'ng2-translate';
 
 // We need this to parse graphql string
@@ -12,9 +10,6 @@ import gql from 'graphql-tag';
 
 // Components
 import { EventEmitProvider } from '../../core';
-import { DocsActions } from '../../actions';
-import { IAppState } from '../app';
-import { getDocs } from '../app';
 import { StatusTitleUpdate } from '../status';
 
 @Component({
@@ -29,14 +24,10 @@ export class DashboardComponent implements OnInit {
   public i18nTitle = 'COMPONENT.DASHBOARD.TITLE';
   public ok: ApolloQueryObservable<any>;
 
-  private articles$: Observable<any>;
-
   // TypeScript public modifiers
   constructor(
     private _translate: TranslateService,
     // legacy
-    private store: Store<IAppState>,
-    private docsActions: DocsActions,
     private apollo: Angular2Apollo,
   ) {
 
@@ -49,11 +40,6 @@ export class DashboardComponent implements OnInit {
         }
       `,
     }) as ApolloQueryObservable<any>;
-
-    // this.ok.then(res => this.ok = res.data.ok.status);
-
-    this.articles$ = this.store.let(getDocs());
-    this.store.dispatch(this.docsActions.load());
 
   }
 

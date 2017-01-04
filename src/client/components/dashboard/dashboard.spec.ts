@@ -10,7 +10,6 @@ import { StoreModule } from '@ngrx/store';
 
 // Load the implementations that should be tested
 import { DashboardComponent } from './dashboard.component';
-import reducer from '../../reducers';
 
 describe('Dashboard', () => {
   // provide our implementations or mocks to the dependency injector
@@ -29,7 +28,7 @@ describe('Dashboard', () => {
       Title,
     ],
     imports: [
-      StoreModule.provideStore(reducer),
+      // StoreModule.provideStore(reducer),
     ],
   }));
 

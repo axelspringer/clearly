@@ -12,20 +12,20 @@ import { ArticleService } from './article.service';
 @Injectable()
 export class ArticleEffects {
 
-  @Effect() public updateArticle$: Observable<Action> = this._actions
+  @Effect() public updateArticle$: Observable<Action> = this.actions$
     .ofType(ArticleActions.UPDATE_ARTICLE)
     .map(action => action.payload)
     .map(type => ({
       type: ArticleActions.UPDATE,
       payload: {
-        channels: this._articleService.transformToChannels(type.contexts, type.channels),
-        master: this._articleService.transformToMaster(type.contexts),
+        channels: this.articleService.transformToChannels(type.contexts, type.channels),
+        master: this.articleService.transformToMaster(type.contexts),
       },
     }));
 
   constructor(
-    private _actions: Actions,
-    private _articleService: ArticleService,
+    private actions$: Actions,
+    private articleService: ArticleService,
   ) {
   }
 
