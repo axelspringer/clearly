@@ -8,7 +8,6 @@
   <title><%= htmlWebpackPlugin.options.meta.title %></title>
 
   <meta name="description" content="<%= htmlWebpackPlugin.options.meta.title %>">
-  <script src="clarity-icons.min.js"></script>
 
   <% if (webpackConfig.htmlElements.headTags) { %>
   <!-- Configured Head Tags  -->
@@ -41,6 +40,9 @@
   <script src="/vendors.dll.js"></script>
   <script src="/rxjs.dll.js"></script>
   <% } %>
+
+  <!-- we have to keep this here, for now -->
+  <script src="clarity-icons.min.js"></script>
 
 </body>
 </html>
