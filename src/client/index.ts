@@ -2,5 +2,4 @@
 export * from './components';
 export * from './config';
 export * from './directives';
-export * from './effects';
 export * from './guards';

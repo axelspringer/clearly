@@ -10,25 +10,21 @@ import { CommonModule } from '@angular/common';
 import { ArticleActions } from './article';
 import { ArticleComponent } from './article';
 import { ArticleContentComponent } from './article';
+import { ArticleEffects } from './article';
 import { ArticleMetaComponent } from './article';
 import { ArticleService } from './article';
-import { CanActivateArticle } from './creator.guard';
+import { CoreModule } from '../../core';
 import { CREATOR_RESOLVER_PROVIDERS } from './creator.resolver';
 import { CreatorComponent } from './creator.component';
-import { CreatorService } from './creator.service';
 import { QuickAccessComponent } from './quickAccess';
 import { QuickWrite } from './quickWrite';
 import { QuickWriteComponent } from './quickWrite';
 import { ROUTES } from './creator.routes';
-import { ArticleEffects } from './article';
-import { CoreModule } from '../../core';
 
 // providers
 const CREATOR_PROVIDERS = [
   ArticleActions,
   ArticleService,
-  CanActivateArticle,
-  CreatorService,
   QuickWrite,
 
   ...CREATOR_RESOLVER_PROVIDERS,

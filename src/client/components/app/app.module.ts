@@ -71,7 +71,6 @@ import { GUARDS } from '../../guards';
 
 // Store
 import AppStore from './app.store';
-import { DocsEffects } from '../../effects';
 import { CreatorEffects } from '../+creator';
 import { AppEffects } from './app.effects';
 import { DocsActions } from '../../actions';
@@ -148,7 +147,6 @@ const APP_PROVIDERS = [
     }),
 
     // @ngrx
-    EffectsModule.runAfterBootstrap(DocsEffects),
     EffectsModule.runAfterBootstrap(CreatorEffects),
     EffectsModule.run(AppEffects),
     StoreModule.provideStore(AppStore),
