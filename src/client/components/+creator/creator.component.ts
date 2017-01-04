@@ -13,9 +13,9 @@ import { IAppState } from '../app';
 
 // components
 import { ArticleActions } from './article';
-import { CreatorActions } from './creator.actions';
 import { EventEmitProvider } from '../../core';
-import { getCreatorSelectedType } from '../app';
+import * as fromCreatorActions from './creator.actions';
+import { fromStore } from '../app';
 import { getArticleChannel } from '../app';
 import { getArticleMaster } from '../app';
 import { StatusTitleUpdate } from '../status/status.component';
@@ -39,7 +39,6 @@ export class CreatorComponent implements OnInit, OnDestroy {
 
     private _store: Store<IAppState>,
     private _articleActions: ArticleActions,
-    private _creatorActions: CreatorActions,
     private _translate: TranslateService,
   ) {
   }
@@ -47,7 +46,7 @@ export class CreatorComponent implements OnInit, OnDestroy {
   // public
 
   public get selectedType(): Observable<any> {
-    return this._store.let(getCreatorSelectedType())
+    return this._store.select(fromStore.getCreatorSelected)
       .distinctUntilChanged()
       .filter(selectedType => !_.isUndefined(selectedType));
   }
@@ -76,7 +75,7 @@ export class CreatorComponent implements OnInit, OnDestroy {
         this._store.dispatch(this._articleActions.updateArticle(selectedType));
       });
 
-    this._store.dispatch(this._creatorActions.selectType(0));
+    this._store.dispatch(new fromCreatorActions.SelectTypeAction(0));
 
     this._translate.get(this.i18nTitle).subscribe(translation => {
       EventEmitProvider.connect(StatusTitleUpdate.prototype.constructor.name).emit(translation);

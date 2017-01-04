@@ -1,3 +1,4 @@
+/* tslint:disable max-line-length */
 // imports
 import { combineReducers } from '@ngrx/store';
 import { compose } from '@ngrx/core/compose';
@@ -31,12 +32,6 @@ export default compose(storeLogger(), combineReducers)({
   docs: docsReducer,
 });
 
-// slices
-export function getCreatorState() {
-  return (state$: Observable<IAppState>) => state$
-    .map(s => s.creator);
-}
-
 export function getDocsState() {
   return (state$: Observable<IAppState>) => state$
     .map(s => s.docs);
@@ -47,24 +42,24 @@ export function getArticleState() {
     .map(s => s.article);
 }
 
-export const getAppState = (state: IAppState) => state.app;
+export const getAppState      = (state: IAppState) => state.app;
+export const getCreatorState  = (state: IAppState) => state.creator;
 
-// selectors
-export const getIsBooting = createSelector(getAppState, fromAppReducer.isBooting);
-export const getAppStatus = createSelector(getAppState, fromAppReducer.getStatus);
+// app selectors
+export const getIsBooting     = createSelector(getAppState, fromAppReducer.isBooting);
+export const getAppStatus     = createSelector(getAppState, fromAppReducer.getStatus);
 export const getNotifications = createSelector(getAppState, fromAppReducer.getNotifications);
 
-export function getCreatorSelectedType() {
-  return compose(fromCreatorReducer.getSelectedType(), getCreatorState());
-}
+// creator selectors
+export const getCreatorTypes  = createSelector(getCreatorState, fromCreatorReducer.getTypes);
+export const getCreatorSelectedType = createSelector(getCreatorState, fromCreatorReducer.getSelectedType);
+export const getCreatorSelected     = createSelector(getCreatorTypes, getCreatorSelectedType, (types, selectedType) => {
+  return types[selectedType];
+});
 
-export function getCreatorTypes() {
-  return compose(fromCreatorReducer.getTypes(), getCreatorState());
-}
-
-export function getCreatorType(id: number) {
-  return compose(fromCreatorReducer.getType(id), getCreatorState());
-}
+// export function getCreatorSelectedType() {
+//   return compose(fromCreatorReducer.getSelectedType(), getCreatorState());
+// }
 
 export function getArticleChannels() {
   return compose(fromArticleReducer.getChannels(), getArticleState());

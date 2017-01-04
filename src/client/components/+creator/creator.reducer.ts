@@ -1,10 +1,8 @@
 // Importables
-import { Action } from '@ngrx/store';
-import { Observable } from 'rxjs/Observable';
 import * as _ from 'lodash';
 
-// Actions
-import { CreatorActions } from './creator.actions';
+// interfaces
+import * as fromCreatorActions from './creator.actions';
 
 export interface ICreatorState {
   loaded: boolean;
@@ -20,25 +18,25 @@ const init: ICreatorState = {
   selectedType: undefined,
 };
 
-export default function (state = init, action: Action): ICreatorState  {
+export default function (state = init, action: fromCreatorActions.Actions): ICreatorState  {
 
   switch (action.type) {
 
-    case CreatorActions.SELECT_TYPE: {
+    case fromCreatorActions.ActionTypes.SELECT_TYPE: {
       return { ...state, selectedType: state.types[action.payload]
           ? action.payload
           : _.first(state.types) };
     }
 
-    case CreatorActions.LOAD: {
+    case fromCreatorActions.ActionTypes.LOAD: {
       return { ...state, loading: ++state.loading };
     }
 
-    case CreatorActions.LOAD_SUCCESS: {
+    case fromCreatorActions.ActionTypes.LOAD_SUCCESS: {
       return { ...state, types: action.payload, loading: --state.loading };
     }
 
-    case CreatorActions.UPDATE: {
+    case fromCreatorActions.ActionTypes.UPDATE: {
       return { ...state, ...action.payload };
     }
 
@@ -49,28 +47,8 @@ export default function (state = init, action: Action): ICreatorState  {
 
 }
 
-// selectors
-export function getTypes() {
-  return (state$: Observable<ICreatorState>) => state$
-    .map(s => s.types);
-}
-
-export function getSelectedType() {
-  return (state$: Observable<ICreatorState>) => state$
-    .map(s => s.types[s.selectedType] || _.first(s.types));
-}
-
-export function getType(id: number) {
-  return (state$: Observable<ICreatorState>) => state$
-    .map(s => s.types[id] || []);
-}
-
-export function getArticleLoading() {
-  return (state$: Observable<ICreatorState>) => state$
-    .map(s => s.loading);
-}
-
-export function getArticleLoaded() {
-  return (state$: Observable<ICreatorState>) => state$
-    .map(s => s.loaded);
-}
+// slices
+export const getTypes = (state: ICreatorState) => state.types;
+export const getSelectedType   = (state: ICreatorState) => state.selectedType;
+export const getArticleLoading  = (state: ICreatorState) => state.loading;
+export const getArticleLoaded   = (state: ICreatorState) => state.loaded;

@@ -1,13 +1,13 @@
 /* tslint:disable max-classes-per-file */
 // imports
 import { Action } from '@ngrx/store';
+import { Actions } from '@ngrx/effects';
 
 // interfaces
 import { ActionType } from './app.util';
 
 // components
 import { Notification } from '../notifications';
-import { Actions } from '@ngrx/effects';
 
 export const ActionTypes = {
   ADD_NOTIFICATIONS:    ActionType('[NOTIFICATIONS:ADD]'),

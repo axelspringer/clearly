@@ -1,46 +1,46 @@
-// Importables
-import { Injectable } from '@angular/core';
+/* tslint:disable max-classes-per-file */
+// imports
 import { Action } from '@ngrx/store';
+import { Actions } from '@ngrx/effects';
 
-// Components
-// import { CreatorState } from './creator.reducer';
+// interfaces
+import { ActionType } from '../app/app.util';
 
-@Injectable()
-export class CreatorActions {
+export const ActionTypes = {
+  LOAD:         ActionType('[CREATOR:LOAD]'),
+  LOAD_SUCCESS: ActionType('[CREATOR:LOAD_SUCCESS]'),
+  LOAD_FAILURE: ActionType('[CREATOR:LOAD_FAILURE]'),
 
-  public static LOAD          = '[CREATOR:LOAD]';
-  public static LOAD_SUCCESS  = '[CREATOR:LOAD_SUCCESS]';
-  public static LOAD_FAILURE  = '[CREATOR:LOAD_FAILURE]';
+  RESET:        ActionType('[CREATOR:RESET]'),
+  UPDATE:       ActionType('[CREATOR:UPDATE]'),
 
-  public static RESET         = '[CREATOR:RESET]';
-  public static UPDATE        = '[CREATOR:UPDATE]';
+  SELECT_TYPE:  ActionType('[CREATOR:SELECT_TYPE]'),
+};
 
-  public static SELECT_TYPE   = '[CREATOR:SELECT_TYPE]';
+export class SelectTypeAction implements Action {
+  public type = ActionTypes.SELECT_TYPE;
 
-  public selectType(id: number): Action {
-    return {
-      type: CreatorActions.SELECT_TYPE,
-      payload: id,
-    };
-  }
-
-  public load(): Action { // do not do any query now
-    return {
-      type: CreatorActions.LOAD,
-    };
-  }
-
-  public update(newState: any): Action {
-    return {
-      type: CreatorActions.UPDATE,
-      payload: newState,
-    };
-  }
-
-  public reset(): Action {
-    return {
-      type: CreatorActions.RESET,
-    };
-  }
-
+  constructor(public payload: number) {}
 }
+
+export class LoadAction implements Action {
+  public type = ActionTypes.LOAD;
+  public payload = null;
+};
+
+export class UpdateAction implements Action {
+  public type = ActionTypes.UPDATE;
+
+  constructor(public payload: any) {}
+}
+
+export class ResetAction implements Action {
+  public type = ActionTypes.RESET;
+  public payload = null;
+}
+
+export type Actions
+  = SelectTypeAction
+  | LoadAction
+  | UpdateAction
+  | ResetAction;

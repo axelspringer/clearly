@@ -14,7 +14,6 @@ import { ArticleMetaComponent } from './article';
 import { ArticleService } from './article';
 import { CanActivateArticle } from './creator.guard';
 import { CREATOR_RESOLVER_PROVIDERS } from './creator.resolver';
-import { CreatorActions } from './creator.actions';
 import { CreatorComponent } from './creator.component';
 import { CreatorService } from './creator.service';
 import { QuickAccessComponent } from './quickAccess';
@@ -29,8 +28,6 @@ const CREATOR_PROVIDERS = [
   ArticleActions,
   ArticleService,
   CanActivateArticle,
-  CreatorActions,
-  CreatorActions,
   CreatorService,
   QuickWrite,
 

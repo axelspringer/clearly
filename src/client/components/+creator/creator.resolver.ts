@@ -1,13 +1,13 @@
 // Importables
 import { Injectable } from '@angular/core';
-import { Observable, AsyncSubject } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Resolve } from '@angular/router';
 import { Store } from '@ngrx/store';
 
 // Components
 import { IAppState } from '../app';
-import { CreatorActions } from './creator.actions';
-import { getCreatorTypes } from '../app';
+import { fromStore } from '../app';
+import * as fromCreatorActions from './creator.actions';
 
 export interface ICreatorResolverOptions {
 };
@@ -21,32 +21,21 @@ export class CreatorResolver implements Resolve<any> {
 
   constructor(
     private store: Store<IAppState>,
-    private creatorActions: CreatorActions,
   ) {
   }
 
-  public resolve(): Observable<any> | any {
-
-    // subject to emit
-    const subject = new AsyncSubject();
-
-    // dispatch resolution
-    this.store.dispatch(this.creatorActions.load());
-
-    // subscribe to store and forward
-    this.store
-      .let(getCreatorTypes())
+  public waitForTypesLoaded(): Observable<any> {
+    return this.store.select(fromStore.getCreatorTypes)
       .distinctUntilChanged()
       .filter(types => types.length > 0)
       .map(types => types)
-      .subscribe(types => {
-        subject.next(types);
-        subject.complete();
-      });
+      .take(1);
+  }
 
-    // observe changes
-    return subject;
-
+  public resolve(): Observable<any> | any {
+    // dispatch resolution
+    this.store.dispatch(new fromCreatorActions.LoadAction());
+    return this.waitForTypesLoaded();
   }
 
 }

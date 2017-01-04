@@ -7,15 +7,15 @@ import { Observable } from 'rxjs';
 
 // Components
 import * as fromAppActions from './app.actions';
-import { CreatorActions } from '../+creator';
+import { fromCreatorActions } from '../+creator';
 import { StatusComponentType } from '../status';
 
 const LOAD_ACTIONS = [
-  CreatorActions.LOAD,
+  fromCreatorActions.ActionTypes.LOAD,
 ];
 
 const IDLE_ACTIONS = [
-  CreatorActions.LOAD_SUCCESS,
+  fromCreatorActions.ActionTypes.LOAD_SUCCESS,
 ];
 
 @Injectable()
