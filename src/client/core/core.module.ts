@@ -1,10 +1,13 @@
 // Importables
-import { HTTP_PROVIDERS } from './http';
-import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
 import { ClarityModule } from 'clarity-angular';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { HTTP_PROVIDERS } from './http';
+import { ModuleWithProviders } from '@angular/core';
+import { NgModule } from '@angular/core';
+import { Optional } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
+import { SkipSelf } from '@angular/core';
 
 // Components
 import { AtLeastValidatorDirective } from './forms';
@@ -89,10 +92,17 @@ import { AUTH_PROVIDERS } from './auth';
 })
 export class CoreModule {
 
-  public static forRoot() {
+  public static forRoot(configuredProviders: any[]): ModuleWithProviders {
     return {
       ngModule: CoreModule,
+      providers: configuredProviders,
     };
+  }
+
+  constructor(@Optional() @SkipSelf() parentModule: CoreModule) {
+    if (parentModule) {
+      throw new Error('CoreModule already loaded; Only import in root module');
+    }
   }
 
 };

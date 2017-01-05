@@ -33,8 +33,7 @@
       "selenium-webdriver",
       "isomorphic-fetch",
       "source-map",
-      "uglify-js",
-      "webpack"
+      "uglify-js"
     ]
   },
   "exclude": [
@@ -45,8 +44,7 @@
   ],
   "awesomeTypescriptLoaderOptions": {
     "forkChecker": true,
-    "useWebpackText": true,
-    "useCache": true
+    "useWebpackText": true
   },
   "compileOnSave": false,
   "buildOnSave": false,

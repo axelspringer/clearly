@@ -154,8 +154,9 @@ const APP_PROVIDERS = [
 
     // Custom Modules
     DashboardModule,
-    // CreatorModule,
-    CoreModule.forRoot(),
+
+    // Core Module,
+    CoreModule.forRoot([]),
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     // ...ENV_PROVIDERS,

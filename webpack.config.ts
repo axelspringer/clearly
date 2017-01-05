@@ -1,18 +1,52 @@
 /* tslint:disable: variable-name max-line-length no-var-requires no-unused-variable */
-/**
- * @author: @AngularClass
- */
-import 'ts-helpers';
-import 'core-js/es6';
-import 'core-js/es7/reflect';
 
+/**
+ *
+ * - imports
+ * - custom
+ * - config
+ * - common
+ * - dev
+ * - dll
+ * - prod
+ * - webpack
+ */
+
+// imports
+import 'ts-helpers';
+import {
+  DllPlugin,
+  DllReferencePlugin,
+  DefinePlugin,
+  // NoErrorsPlugin, // quality
+  ProgressPlugin,
+} from 'webpack';
+import * as process from 'process';
+import { AotPlugin } from '@ngtools/webpack';
+import { CheckerPlugin } from 'awesome-typescript-loader';
+import * as LoaderOptionsPlugin from 'webpack/lib/LoaderOptionsPlugin';
+import * as ContextReplacementPlugin from 'webpack/lib/ContextReplacementPlugin';
+
+import * as CommonsChunkPlugin from 'webpack/lib/optimize/CommonsChunkPlugin';
+import * as MinChunkSizePlugin from 'webpack/lib/optimize/MinChunkSizePlugin';
+import * as NamedModulesPlugin from 'webpack/lib/NamedModulesPlugin';
+import * as OccurrenceOrderPlugin from 'webpack/lib/optimize/OccurrenceOrderPlugin';
+import * as UglifyJsPlugin from 'webpack/lib/optimize/UglifyJsPlugin';
+
+import * as CompressionPlugin from 'compression-webpack-plugin';
+import * as CopyWebpackPlugin from 'copy-webpack-plugin';
+import * as HtmlElementsPlugin from './config/html-elements-plugin';
+import * as HtmlWebpackPlugin from 'html-webpack-plugin';
+import * as WebpackMd5Hash from 'webpack-md5-hash';
+import * as webpackMerge from 'webpack-merge';
+import * as V8LazyParseWebpackPlugin from 'v8-lazy-parse-webpack-plugin';
+import * as ScriptExtHtmlWebpackPlugin from 'script-ext-html-webpack-plugin';
+
+// custom
 import {
   CUSTOM_COPY_FOLDERS,
   CUSTOM_DEV_SERVER_OPTIONS,
-  // HTML5_BASE_URL,
   CUSTOM_RULES_COMMON,
-  // CUSTOM_RULES_PROD,
-  // CUSTOM_RULES_DEV,
   CUSTOM_PLUGINS_COMMON,
   CUSTOM_PLUGINS_DEV,
   CUSTOM_PLUGINS_PROD,
@@ -22,9 +56,7 @@ import {
 import {
   root,
   isWebpackDevServer,
-  // hasProcessFlag,
   tryDll,
-  tryAot,
 } from './config/helpers';
 
 import {
@@ -35,41 +67,24 @@ import {
 
 import head from './config/head';
 import meta from './config/meta';
+import tsconfigJson = require('./tsconfig.json');
 
-const { ContextReplacementPlugin }  = require('webpack');
-const { DefinePlugin }        = require('webpack');
-const { DllPlugin }           = require('webpack');
-const { DllReferencePlugin }  = require('webpack');
-// const { NoErrorsPlugin }      = require('webpack');
-const { ProgressPlugin }      = require('webpack');
+const tsCompilerConfig =
+  Object.assign(tsconfigJson['compilerOptions'], { module: 'es2015'});
 
-const LoaderOptionsPlugin     = require('webpack/lib/LoaderOptionsPlugin');
-const NamedModulesPlugin      = require('webpack/lib/NamedModulesPlugin');
-
-const CommonsChunkPlugin      = require('webpack/lib/optimize/CommonsChunkPlugin');
-const MinChunkSizePlugin      = require('webpack/lib/optimize/MinChunkSizePlugin');
-const UglifyJsPlugin          = require('webpack/lib/optimize/UglifyJsPlugin');
-
-const CompressionPlugin       = require('compression-webpack-plugin');
-const CopyWebpackPlugin       = require('copy-webpack-plugin');
-const HtmlElementsPlugin      = require('./config/html-elements-plugin');
-const HtmlWebpackPlugin       = require('html-webpack-plugin');
-const WebpackMd5Hash          = require('webpack-md5-hash');
-const webpackMerge            = require('webpack-merge');
-const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
-
+// config
 const EVENT = process.env.npm_lifecycle_event;
-const ENV = process.env.NODE_ENV || 'development';
+const ENV   = process.env.NODE_ENV || 'development';
 
 const isDev = EVENT.includes('dev');
 const isDll = EVENT.includes('dll');
 const isAot = EVENT.includes('aot');
 
-const PORT = process.env.PORT ||
+const PORT  = process.env.PORT ||
   ENV === 'development' ? 3000 : 8080;
-const HOST = process.env.HOST || 'localhost';
+const HOST  = process.env.HOST || 'localhost';
 
-const COPY_FOLDERS = [
+const COPY_FOLDERS: WebpackCopyFolder[] = [
   { from: `src/assets` },
   { from: `src/meta` },
   { from: 'node_modules/hammerjs/hammer.min.js' },
@@ -83,15 +98,13 @@ const COPY_FOLDERS = [
 
 ];
 
-if (!isDll && isDev) { // if we not aim for creating dll
+// is dll
+if (!isDll && isDev) {
   tryDll(['polyfills', 'vendors', 'rxjs']);
 }
 
-if (!isDev && isAot) {
-  tryAot();
-}
-
-const commonConfig = (): WebpackConfig => {
+// common
+const commonConfig = () => {
 
   const config: WebpackConfig = {} as WebpackConfig;
 
@@ -99,38 +112,42 @@ const commonConfig = (): WebpackConfig => {
     rules: [
       {
         test: /\.js$/,
-        loader: 'source-map-loader',
+        use: 'source-map-loader',
         exclude: [EXCLUDE_SOURCEMAPS],
       },
       {
         test: /\.ts$/,
-        loaders: [
-          // '@angularclass/hmr-loader',
-          'awesome-typescript-loader',
+        use: [
+          {
+            loader: 'awesome-typescript-loader',
+            options: {
+              compilerConfig: tsCompilerConfig,
+            },
+          },
           'angular2-template-loader',
-          'angular2-router-loader',
+          'angular-router-loader',
         ],
-        exclude: [
-          /\.(spec|e2e)\.ts$/,
-          /(node_modules)/,
-        ],
+        exclude: [/\.(spec|e2e)\.ts$/],
       },
       {
         test: /\.json$/,
-        loader: 'json-loader',
+        use: 'json-loader',
       },
       {
         test: /\.css$/,
-        loaders: ['to-string-loader', 'css-loader'],
+        use: [
+          'to-string-loader',
+          'css-loader',
+        ],
       },
       {
         test: /\.html$/,
-        loader: 'raw-loader',
+        use: 'raw-loader',
         exclude: [root('src/index.html')],
       },
       {
         test: /\.(jpg|png|gif)$/,
-        loader: 'file-loader',
+        use: 'file-loader',
       },
 
       ...CUSTOM_RULES_COMMON,
@@ -140,18 +157,22 @@ const commonConfig = (): WebpackConfig => {
   };
 
   config.plugins = [
-    new ContextReplacementPlugin(
-      /angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
-      root(`src`),
-    ),
-    new ProgressPlugin(),
-    new NamedModulesPlugin(),
-    new HtmlElementsPlugin({
-      headTags: head,
-    }),
+    new V8LazyParseWebpackPlugin(),
     new DefinePlugin({
       'ENV': JSON.stringify(ENV),
       'process.env': JSON.stringify(process.env),
+    }),
+    new HtmlElementsPlugin({
+      headTags: head,
+    }),
+    new NamedModulesPlugin(),
+    new ProgressPlugin(),
+    new CheckerPlugin(),
+    new ContextReplacementPlugin(
+      /angular(\\|\/)core(\\|\/)src(\\|\/)linker/, root(`src`),
+    ),
+    new ScriptExtHtmlWebpackPlugin({
+      defaultAttribute: 'defer',
     }),
 
     ...CUSTOM_PLUGINS_COMMON,
@@ -174,18 +195,19 @@ const commonConfig = (): WebpackConfig => {
 
 };
 
-const devConfig = (): WebpackConfig => {
+// dev
+const devConfig = () => {
 
   const config: WebpackConfig = {} as WebpackConfig;
 
-  config.devtool = 'cheap-module-source-map';
+  config.devtool = 'eval-source-map';
 
   config.resolve = {
     modules: [root(`src`), `node_modules`],
   };
 
   config.entry = {
-    main: [].concat(polyfills(), rxjs(), vendors(), './src/main.client'),
+    main: [].concat(polyfills(), './src/main.client', rxjs()),
   };
 
   config.output = {
@@ -195,7 +217,7 @@ const devConfig = (): WebpackConfig => {
     chunkFilename: '[id].chunk.js',
   };
 
-  COPY_FOLDERS.push(<any> { from: `dll`, ignore: ['*.json'] });
+  COPY_FOLDERS.push({ from: `dll`, ignore: ['*.json'] });
 
   config.plugins = [
     new LoaderOptionsPlugin({
@@ -215,9 +237,6 @@ const devConfig = (): WebpackConfig => {
       isDev,
       isWebpackDevServer,
       inject: 'head',
-    }),
-    new ScriptExtHtmlWebpackPlugin({
-      defaultAttribute: 'defer',
     }),
     new CopyWebpackPlugin(COPY_FOLDERS),
 
@@ -241,7 +260,8 @@ const devConfig = (): WebpackConfig => {
 
 };
 
-const dllConfig = (): WebpackConfig => {
+// dll
+const dllConfig = () => {
 
   const config: WebpackConfig = {} as WebpackConfig;
 
@@ -269,16 +289,16 @@ const dllConfig = (): WebpackConfig => {
 
 };
 
-const prodConfig = (): WebpackConfig => {
+// prod
+const prodConfig = () => {
 
   const config: WebpackConfig = {} as WebpackConfig;
 
   config.devtool = 'source-map';
 
   config.entry = {
-    main: !isAot ? `./src/main.client` : `./src/main.client.aot`,
+    main: `./src/main.client`,
     polyfills: polyfills(),
-    sw: './src/sw',
     rxjs: rxjs(),
     vendors: vendors(),
   };
@@ -291,8 +311,11 @@ const prodConfig = (): WebpackConfig => {
   };
 
   config.plugins = [
-    // new NoErrorsPlugin(),
-    new WebpackMd5Hash(),
+    // new NoErrorsPlugin(), // quality
+    new CommonsChunkPlugin({
+      name: ['polyfills', 'vendors', 'rxjs'].reverse(),
+    }),
+    new OccurrenceOrderPlugin(),
     new CompressionPlugin({
       asset: '[path].gz[query]',
       algorithm: 'gzip',
@@ -300,11 +323,14 @@ const prodConfig = (): WebpackConfig => {
       threshold: 10240,
       minRatio: 0.8,
     }),
+    new CopyWebpackPlugin(COPY_FOLDERS),
+    new HtmlWebpackPlugin({
+      template: `src/index.html`,
+      meta,
+      inject: true,
+    }),
     new LoaderOptionsPlugin({
       debug: false,
-    }),
-    new CommonsChunkPlugin({
-      name: ['sw', 'polyfills', , 'vendors', 'rxjs'].reverse(),
     }),
     new MinChunkSizePlugin({
       minChunkSize: 10000,
@@ -317,33 +343,38 @@ const prodConfig = (): WebpackConfig => {
       },
       compress: {
         screw_ie8: true,
+        warnings: false,
+        conditionals: true,
+        unused: true,
+        comparisons: true,
         sequences: true,
         dead_code: true,
-        conditionals: true,
-        booleans: true,
-        unused: true,
+        evaluate: true,
         if_return: true,
         join_vars: true,
-        drop_console: true,
+        negate_iife: false // we need this for lazy v8
       },
       comments: false,
     }),
-    new CopyWebpackPlugin(COPY_FOLDERS),
-    new HtmlWebpackPlugin({
-      template: `src/index.html`,
-      meta,
-      inject: true,
-    }),
+    new WebpackMd5Hash(),
 
     ...CUSTOM_PLUGINS_PROD,
 
   ];
 
+  if (isAot) {
+    config.plugins.push(new AotPlugin({
+      tsConfigPath: 'tsconfig.json',
+      mainPath: 'src/main.client.ts',
+    }));
+  }
+
   return config;
 
 };
 
-const defaultConfig = (): WebpackConfig => {
+// default
+const defaultConfig = () => {
 
   const config: WebpackConfig = {} as WebpackConfig;
 
@@ -355,7 +386,8 @@ const defaultConfig = (): WebpackConfig => {
 
 };
 
-switch (ENV) { // it is the most simple logic
+// webpack
+switch (ENV) {
   case 'prod':
   case 'production':
     module.exports = webpackMerge({}, defaultConfig(), commonConfig(), prodConfig());

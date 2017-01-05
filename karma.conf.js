@@ -1,6 +1,3 @@
-/**
- * @author: @AngularClass
- */
 const helpers = require('./config/helpers');
 const path = require('path');
 
@@ -9,7 +6,7 @@ const LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin');
 const ContextReplacementPlugin = require('webpack/lib/ContextReplacementPlugin');
 const ProvidePlugin = require('webpack/lib/ProvidePlugin');
 
-const ENV = process.env.NODE_ENV || 'production';
+const ENV = process.env.NODE_ENV || 'testing';
 
 module.exports = config => {
 
@@ -28,22 +25,43 @@ module.exports = config => {
     // list of files to exclude
     exclude: [],
 
+    client: {
+      captureConsole: false
+    },
+
     /*
      * list of files / patterns to load in the browser
      *
      * we are building the test environment in ./spec-bundle.js
      */
-    files: [{
-      pattern: './config/spec-bundle.js',
-      watched: false
-    }],
+    files: [
+      { pattern: './config/spec.js', watched: false },
+      { pattern: './src/assets/**/*', watched: false, included: false, served: true, nocache: false }
+    ],
+
+    /*
+     * By default all assets are served at http://localhost:[PORT]/base/
+     */
+    proxies: {
+      "/assets/": "/base/src/assets/"
+    },
 
     /*
      * preprocess matching files before serving them to the browser
      * available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
      */
     preprocessors: {
-      './config/spec-bundle.js': ['coverage', 'webpack', 'sourcemap']
+      './config/spec.js': ['coverage', 'webpack', 'sourcemap']
+    },
+
+    coverageReporter: {
+      type: 'in-memory'
+    },
+
+    remapCoverageReporter: {
+      'text-summary': null,
+      json: './coverage/coverage.json',
+      html: './coverage/html'
     },
 
     // Webpack Config at ./webpack.test.js
@@ -55,51 +73,39 @@ module.exports = config => {
       },
       module: {
         rules: [
-          // {
-          //   enforce: 'pre',
-          //   test: /\.ts$/,
-          //   loader: 'tslint-loader',
-          //   exclude: [helpers.root('node_modules')]
-          // },
           {
             enforce: 'pre',
             test: /\.js$/,
-            loader: 'source-map-loader',
+            use: 'source-map-loader',
             exclude: [
               helpers.root('node_modules/rxjs'),
               helpers.root('node_modules/@angular')
             ]
           }, {
             test: /\.ts$/,
-            loader: 'awesome-typescript-loader',
-            query: {
-              sourceMap: false,
-              inlineSourceMap: true,
-              compilerOptions: {
-
-                // Remove TypeScript helpers to be injected
-                // below by DefinePlugin
-                removeComments: true
-
-              }
-            },
+            use: [
+              {
+                loader: 'awesome-typescript-loader',
+              },
+              'angular2-template-loader',
+            ],
             exclude: [/\.e2e\.ts$/]
           }, {
             test: /\.json$/,
-            loader: 'json-loader',
+            use: 'json-loader',
             exclude: [helpers.root('src/index.html')]
           }, {
             test: /\.css$/,
-            loaders: ['to-string-loader', 'css-loader'],
+            use: ['to-string-loader', 'css-loader'],
             exclude: [helpers.root('src/index.html')]
           }, {
             test: /\.html$/,
-            loader: 'raw-loader',
+            use: 'raw-loader',
             exclude: [helpers.root('src/index.html')]
           }, {
             enforce: 'post',
             test: /\.(js|ts)$/,
-            loader: 'istanbul-instrumenter-loader',
+            use: 'istanbul-instrumenter-loader',
             include: helpers.root('src'),
             exclude: [
               /\.(e2e|spec)\.ts$/,
@@ -125,25 +131,16 @@ module.exports = config => {
           /angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
           helpers.root('src') // location of your src
         ),
-        new LoaderOptionsPlugin({
-          debug: true,
-          options: {
-
-            /**
-             * Static analysis linter for TypeScript advanced options configuration
-             * Description: An extensible linter for the TypeScript language.
-             *
-             * See: https://github.com/wbuchwalter/tslint-loader
-             */
-            tslint: {
-              emitErrors: false,
-              failOnHint: false,
-              resourcePath: 'src'
-            },
-          }
-        }),
-
       ],
+
+      /**
+       * Disable performance hints
+       *
+       * See: https://github.com/a-tarasyuk/rr-boilerplate/blob/master/webpack/dev.config.babel.js#L41
+       */
+      performance: {
+        hints: false
+      },
 
       /**
        * Include polyfills or mocks for various node stuff
@@ -161,19 +158,16 @@ module.exports = config => {
       }
     },
 
-    coverageReporter: {
-      type: 'in-memory'
-    },
-
-    // remapCoverageReporter: {
-    //   'text-summary': null,
-    //   json: './coverage/coverage.json',
-    //   html: './coverage/html'
-    // },
-
     // Webpack please don't spam the console when running in karma!
     webpackMiddleware: {
-      stats: 'errors-only'
+      // webpack-dev-middleware configuration
+      // i.e.
+      noInfo: true,
+      // and use stats to turn off verbose output
+      stats: {
+        // options i.e.
+        chunks: false
+      }
     },
 
     /*
@@ -182,7 +176,7 @@ module.exports = config => {
      * possible values: 'dots', 'progress'
      * available reporters: https://npmjs.org/browse/keyword/karma-reporter
      */
-    reporters: ['mocha', 'coverage'],
+    reporters: ['mocha', 'coverage', 'remap-coverage'],
 
     // web server port
     port: 9876,
@@ -194,7 +188,7 @@ module.exports = config => {
      * level of logging
      * possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
      */
-    logLevel: config.LOG_INFO,
+    logLevel: config.LOG_WARN,
 
     // enable / disable watching file and executing tests whenever any file changes
     autoWatch: false,

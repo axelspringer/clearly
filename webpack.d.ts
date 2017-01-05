@@ -37,3 +37,10 @@ interface WebpackConfig {
     __filename?: boolean;
   };
 }
+
+interface WebPackCopyFolders {
+  from: string | string[];
+  ignore?: string | string[];
+}
+
+type WebpackCopyFolder = WebPackCopyFolders;
