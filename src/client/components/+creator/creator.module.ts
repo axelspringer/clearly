@@ -1,5 +1,7 @@
 // Importables
 import { FormsModule } from '@angular/forms';
+import { Optional } from '@angular/core';
+import { SkipSelf } from '@angular/core';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { EffectsModule } from '@ngrx/effects';
@@ -46,4 +48,12 @@ const CREATOR_PROVIDERS = [
     ...CREATOR_PROVIDERS,
   ],
 })
-export class CreatorModule { };
+export class CreatorModule {
+
+  constructor(@Optional() @SkipSelf() parentModule: CreatorModule) {
+    if (parentModule) {
+      throw new Error('CreatorModile already loaded; Only import it once.');
+    }
+  }
+
+};

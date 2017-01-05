@@ -1,3 +1,4 @@
+/* tslint:disable object-literal-key-quotes */
 export interface IAuthProviderOptions {
 };
 
@@ -9,7 +10,7 @@ export class AuthProviderOptions {
       retry: 5,
       debugFilter: 'pouchdb:api',
     };
-    return {...defaults, ...options};
+    return { ...defaults, ...options};
   }
 
 };

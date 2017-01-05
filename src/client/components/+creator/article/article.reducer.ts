@@ -1,3 +1,4 @@
+/* tslint:disable object-literal-key-quotes */
 // Importables
 import { Action } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';

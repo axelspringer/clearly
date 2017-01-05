@@ -1,3 +1,4 @@
+/* tslint:disable object-literal-key-quotes */
 // Components
 import * as fromAppActions from './app.actions';
 import { StatusComponentType } from '../status';
