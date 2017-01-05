@@ -12,7 +12,6 @@ import { CommonModule } from '@angular/common';
 import { ArticleActions } from './article';
 import { ArticleEffects } from './article';
 import { ArticleService } from './article';
-import { CoreModule } from '../../core';
 import { CREATOR_RESOLVER_PROVIDERS } from './creator.resolver';
 import { CreatorComponent } from './creator.component';
 import { ROUTES } from './creator.routes';
@@ -27,7 +26,6 @@ const CREATOR_PROVIDERS = [
 
 @NgModule({
   imports: [
-    CoreModule,
     CommonModule,
     FormsModule,
     ReactiveFormsModule,

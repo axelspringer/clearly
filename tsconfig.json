@@ -9,6 +9,7 @@
     "strictNullChecks": false,
     "noUnusedParameters": true,
     "noUnusedLocals": true,
+    "skipDefaultLibCheck": true,
     "pretty": true,
     "baseUrl": "./src",
     "typeRoots": [
