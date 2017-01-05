@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 // components
-import { AuthProvider } from '../core/auth';
+import { AuthProvider } from '../frameworks/core/auth';
 
 @Injectable()
 export class AuthGuard implements CanActivate, OnDestroy {

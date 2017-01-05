@@ -6,7 +6,7 @@ import { TestBed } from '@angular/core/testing';
 import { AppComponent } from './app';
 import { AppConfig } from '../../config';
 import { Title } from '@angular/platform-browser';
-import { TranslateCustomLoader } from '../../core';
+import { TranslateCustomLoader } from '../../frameworks/core';
 import { TranslateLoader } from 'ng2-translate/ng2-translate';
 import { TranslateModule } from 'ng2-translate/ng2-translate';
 

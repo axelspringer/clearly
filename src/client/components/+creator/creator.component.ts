@@ -13,7 +13,7 @@ import { IAppState } from '../app';
 
 // components
 import { ArticleActions } from './article';
-import { EventEmitProvider } from '../../core';
+import { EventEmitProvider } from '../../frameworks/core';
 import * as fromCreatorActions from './creator.actions';
 import { fromStore } from '../app';
 import { getArticleChannel } from '../app';

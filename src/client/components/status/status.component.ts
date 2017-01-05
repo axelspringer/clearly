@@ -9,8 +9,8 @@ import { TranslateService } from 'ng2-translate';
 // Components
 import { IAppState } from '../app';
 import { fromStore } from '../app';
-import { EventEmitProvider } from '../../core';
-import { Event } from '../../core';
+import { EventEmitProvider } from '../../frameworks/core';
+import { Event } from '../../frameworks/core';
 
 export class StatusTitleUpdate extends Event {}
 

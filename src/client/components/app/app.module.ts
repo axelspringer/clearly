@@ -1,18 +1,19 @@
 // Importables
 import { ApplicationRef } from '@angular/core';
 import { BrowserModule, Title } from '@angular/platform-browser';
-import { EffectsModule } from '@ngrx/effects';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { NgModule } from '@angular/core';
 import { PreloadAllModules } from '@angular/router';
 import { RouterModule } from '@angular/router';
+import { Type } from '@angular/core';
+// import { WorkerAppModule } from '@angular/platform-webworker';
+
+// @ngrx
+import { EffectsModule } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreModule } from '@ngrx/store';
-import { TranslateLoader } from 'ng2-translate/ng2-translate';
-import { Type } from '@angular/core';
-// import { WorkerAppModule } from '@angular/platform-webworker';
 
 // Clarity
 import { ClarityModule } from 'clarity-angular';
@@ -25,9 +26,11 @@ import { Client } from './app.apollo.ts';
 // import { getPlatform } from '@angular/core';
 
 import { TranslateModule } from 'ng2-translate';
+import { TranslateLoader } from 'ng2-translate/ng2-translate';
+import { translateCustomLoaderFactory } from '../../frameworks';
 
 // Modules
-import { CoreModule } from '../../core';
+import { CoreModule } from '../../frameworks/core';
 import { DashboardModule } from '../dashboard';
 
 // Environment
@@ -35,10 +38,9 @@ import { APP_RESOLVER_PROVIDERS } from './app.resolver';
 import { AppComponent } from './app.component';
 import { AppConfig } from '../../config';
 import { AppLocale } from '../../config';
-import { DATABASE_PROVIDER_OPTIONS } from '../../core';
+import { DATABASE_PROVIDER_OPTIONS } from '../../frameworks/core';
 import { DBConfig } from './../../config/db.config';
 import { ROUTES } from './app.routes';
-import { TranslateCustomLoader } from '../../core';
 
 // Components
 import { AvatarComponent } from '../avatar';
@@ -141,9 +143,7 @@ const APP_PROVIDERS = [
     // ng2-translate
     TranslateModule.forRoot({ // custom translation provider
       provide: TranslateLoader,
-      useFactory: () => {
-        return new TranslateCustomLoader(AppLocale.languages);
-      },
+      useFactory: translateCustomLoaderFactory(AppLocale.languages),
     }),
 
     // @ngrx

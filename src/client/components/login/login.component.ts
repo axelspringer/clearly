@@ -7,7 +7,7 @@ import { ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 
 // components
-import { AuthProvider } from '../../core/auth';
+import { AuthProvider } from '../../frameworks/core/auth';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,

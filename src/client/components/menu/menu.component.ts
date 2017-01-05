@@ -9,7 +9,7 @@ import { Route } from '@angular/router';
 import * as _ from 'lodash';
 
 // Components
-import { SideNav } from '../../core';
+import { SideNav } from '../../frameworks/core';
 
 @Component({
   selector: 'sg-menu',  // <sg-menu></sg-menu>

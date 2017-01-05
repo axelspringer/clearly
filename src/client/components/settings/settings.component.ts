@@ -4,7 +4,7 @@ import { OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 
 // Composition
-import { EventEmitProvider } from '../../core';
+import { EventEmitProvider } from '../../frameworks/core';
 import { ToolbarComponent } from '../toolbar';
 
 @Component({

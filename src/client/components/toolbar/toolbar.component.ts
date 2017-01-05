@@ -7,7 +7,7 @@ import { Renderer } from '@angular/core';
 
 // Components
 import { AppConfig } from '../../config';
-import { SideNav } from '../../core';
+import { SideNav } from '../../frameworks/core';
 
 // Interface
 export class ToolbarTitleUpdate extends Event {

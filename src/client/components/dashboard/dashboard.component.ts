@@ -9,7 +9,7 @@ import { TranslateService } from 'ng2-translate';
 import gql from 'graphql-tag';
 
 // Components
-import { EventEmitProvider } from '../../core';
+import { EventEmitProvider } from '../../frameworks/core';
 import { StatusTitleUpdate } from '../status';
 
 @Component({

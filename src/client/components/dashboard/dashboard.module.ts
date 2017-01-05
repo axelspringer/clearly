@@ -8,7 +8,7 @@ import { SkipSelf } from '@angular/core';
 // Components
 import { DashboardComponent } from './dashboard.component';
 import { ArticlesListComponent } from './articles';
-import { CoreModule } from '../../core';
+import { CoreModule } from '../../frameworks';
 
 // Routes
 import { Routing } from './dashboard.routes';

@@ -10,8 +10,8 @@ import { Renderer } from '@angular/core';
 
 // components
 import { AppConfig } from '../../config';
-import { EventEmitProvider } from '../../core';
-import { DatabaseProvider } from './../../core';
+import { EventEmitProvider } from '../../frameworks/core';
+import { DatabaseProvider } from './../../frameworks/core';
 
 @Component({
   encapsulation: ViewEncapsulation.None,

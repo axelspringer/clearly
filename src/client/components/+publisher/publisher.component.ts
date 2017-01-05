@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { EventEmitProvider } from '../../../core';
+import { EventEmitProvider } from '../../../frameworks/core';
 import { OnInit } from '@angular/core';
 import { ToolbarTitleUpdate } from '../../toolbar';
 

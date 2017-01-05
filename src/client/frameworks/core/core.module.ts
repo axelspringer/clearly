@@ -8,6 +8,7 @@ import { NgModule } from '@angular/core';
 import { Optional } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SkipSelf } from '@angular/core';
+import { TranslateModule } from 'ng2-translate';
 
 // Components
 import { AtLeastValidatorDirective } from './forms';
@@ -24,7 +25,7 @@ import { NOTIFY_PROVIDERS } from './notify/notify.provider';
 import { NotifyProvider } from './notify';
 import { SgFileDroppableDirective } from './forms';
 import { UIModule } from './ui';
-import { TranslateModule } from 'ng2-translate';
+
 
 // providers
 import { AUTH_PROVIDERS } from './auth';
@@ -35,15 +36,14 @@ import { AUTH_PROVIDERS } from './auth';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    TranslateModule,
     UIModule,
+    TranslateModule,
   ],
   exports: [
     AtLeastValidatorDirective,
     IteratableObjectPipe,
     LoadingComponent,
     SgFileDroppableDirective,
-    TranslateModule,
     UIModule,
 
     // Dynamic Forms

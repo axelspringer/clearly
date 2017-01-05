@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
 import { Input } from '@angular/core';
 
 // Components
-import { DFormElement } from '../../../core';
+import { DFormElement } from '../../../frameworks/core';
 
 @Component({
   selector: 'sg-article',  // <sg-article></sg-article>

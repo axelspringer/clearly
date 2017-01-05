@@ -2,6 +2,11 @@
 import { TranslateLoader } from 'ng2-translate/ng2-translate';
 import { Observable } from 'rxjs/Rx';
 
+// factory
+export function translateCustomLoaderFactory(locales: any) {
+  return () => new TranslateCustomLoader(locales);
+};
+
 // provided
 export class TranslateCustomLoader implements TranslateLoader {
 
