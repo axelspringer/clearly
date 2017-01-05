@@ -116,11 +116,6 @@ const APP_PROVIDERS = [
   entryComponents: [
     AppComponent,
   ],
-  exports: [
-    TranslateModule,
-    CoreModule,
-    RouterModule,
-  ],
   imports: [
     // Angular
     BrowserModule,

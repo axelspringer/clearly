@@ -1,4 +1,4 @@
-import { ILang } from '../core';
+import { ILang } from '../frameworks';
 
 // Application Configuration
 export class AppConfig {

@@ -5,9 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { HTTP_PROVIDERS } from './http';
 import { ModuleWithProviders } from '@angular/core';
 import { NgModule } from '@angular/core';
-import { Optional } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { SkipSelf } from '@angular/core';
 import { TranslateModule } from 'ng2-translate';
 
 // Components
@@ -25,7 +23,6 @@ import { NOTIFY_PROVIDERS } from './notify/notify.provider';
 import { NotifyProvider } from './notify';
 import { SgFileDroppableDirective } from './forms';
 import { UIModule } from './ui';
-
 
 // providers
 import { AUTH_PROVIDERS } from './auth';
@@ -97,12 +94,6 @@ export class CoreModule {
       ngModule: CoreModule,
       providers: configuredProviders,
     };
-  }
-
-  constructor(@Optional() @SkipSelf() parentModule: CoreModule) {
-    if (parentModule) {
-      throw new Error('CoreModule already loaded; Only import in root module');
-    }
   }
 
 };

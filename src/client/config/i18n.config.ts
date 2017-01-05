@@ -1,10 +1,6 @@
 // Languages
-import de = require('../i18n/de');
+import de = require('../../assets/i18n/de');
 
 export class AppLocale {
-
-  public static languages = {
-    de,
-  };
-
+  public static languages = { de, };
 }
