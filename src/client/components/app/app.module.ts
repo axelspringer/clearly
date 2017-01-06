@@ -76,7 +76,6 @@ import { GUARDS } from '../../guards';
 import AppStore from './app.store';
 import { CreatorEffects } from '../+creator';
 import { AppEffects } from './app.effects';
-import { DocsActions } from '../../actions';
 import { CreatorResolver } from '../+creator';
 
 // Application wide providers
@@ -94,7 +93,6 @@ const APP_PROVIDERS = [
 
   // Others
   Title,
-  DocsActions,
   CreatorResolver,
 ];
 
