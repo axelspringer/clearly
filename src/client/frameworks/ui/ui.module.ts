@@ -47,5 +47,5 @@ import { LAYOUT_PROVIDERS } from './layout';
     LAYOUT_PROVIDERS,
   ],
 })
-export class UIModule {
+export class UiModule {
 };

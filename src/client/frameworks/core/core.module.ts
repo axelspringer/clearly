@@ -12,8 +12,6 @@ import { TranslateModule } from 'ng2-translate';
 import { AtLeastValidatorDirective } from './forms';
 import { DATABASE_PROVIDERS } from './db';
 import { DatabaseProvider } from './db';
-import { DFORM_DIRECTIVES } from './dform';
-import { DFORM_TYPES_PROVIDER } from './dform';
 import { EventEmitProvider } from './events';
 import { IteratableObjectPipe } from './pipes';
 import { LoadingComponent } from './loading';
@@ -22,7 +20,6 @@ import { LogService } from './log';
 import { NOTIFY_PROVIDERS } from './notify/notify.provider';
 import { NotifyProvider } from './notify';
 import { SgFileDroppableDirective } from './forms';
-import { UIModule } from './ui';
 
 // providers
 import { AUTH_PROVIDERS } from './auth';
@@ -33,7 +30,6 @@ import { AUTH_PROVIDERS } from './auth';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    UIModule,
     TranslateModule,
   ],
   exports: [
@@ -41,10 +37,6 @@ import { AUTH_PROVIDERS } from './auth';
     IteratableObjectPipe,
     LoadingComponent,
     SgFileDroppableDirective,
-    UIModule,
-
-    // Dynamic Forms
-    ...DFORM_DIRECTIVES,
   ],
   declarations: [
     // Pipes
@@ -56,10 +48,6 @@ import { AUTH_PROVIDERS } from './auth';
 
     // Components
     LoadingComponent,
-
-    // Dynamic Forms
-    // DFormAbstractComponent,
-    ...DFORM_DIRECTIVES,
   ],
   providers: [
     // Auth
@@ -79,9 +67,6 @@ import { AUTH_PROVIDERS } from './auth';
     // Error
     LogService,
     ...LOGGING_ERROR_HANDLER_PROVIDERS,
-
-    // Dynamic Forms
-    DFORM_TYPES_PROVIDER,
 
     // Angular
     ...HTTP_PROVIDERS,

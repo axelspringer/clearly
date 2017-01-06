@@ -9,7 +9,11 @@ import { RouterModule } from '@angular/router';
 import { SkipSelf } from '@angular/core';
 import { TranslateModule } from 'ng2-translate';
 
-// Components
+// modules
+import { UiModule } from '../../frameworks';
+import { DFormModule } from '../../frameworks';
+
+// components
 import { ArticleActions } from './article';
 import { ArticleEffects } from './article';
 import { ArticleService } from './article';
@@ -30,11 +34,13 @@ const CREATOR_PROVIDERS = [
   imports: [
     CommonModule,
     CoreModule,
+    DFormModule,
     EffectsModule.run(ArticleEffects),
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forChild(ROUTES),
     TranslateModule,
+    UiModule,
   ],
   declarations: [
     CreatorComponent,

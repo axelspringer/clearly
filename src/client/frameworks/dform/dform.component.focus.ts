@@ -1,5 +1,5 @@
 // Importables
-import { Event } from '../events';
+import { Event } from '../core';
 
 // Interface
 export class DFormComponentFocus extends Event {

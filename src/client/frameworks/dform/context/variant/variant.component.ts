@@ -11,7 +11,7 @@ import { Output } from '@angular/core';
 import { ViewEncapsulation } from '@angular/core';
 
 // Components
-import { EventEmitProvider } from '../../../events';
+import { EventEmitProvider } from '../../../core';
 import { DFormVariantRemoveEvent } from '../../dform.element.abstract';
 import { DFormVariantAddEvent } from '../../dform.element.abstract';
 

@@ -9,8 +9,8 @@ import * as _ from 'lodash';
 
 // Components
 import { DFormElement } from './dform.element';
-import { Event } from '../events';
-import { EventEmitProvider } from '../events';
+import { Event } from '../core';
+import { EventEmitProvider } from '../core';
 
 // Interface
 export class DFormVariantRemoveEvent extends Event {

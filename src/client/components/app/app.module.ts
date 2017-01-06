@@ -32,6 +32,7 @@ import { translateCustomLoaderFactory } from '../../frameworks';
 // Modules
 import { CoreModule } from '../../frameworks/core';
 import { DashboardModule } from '../dashboard';
+import { UiModule } from '../../frameworks';
 
 // Environment
 import { APP_RESOLVER_PROVIDERS } from './app.resolver';
@@ -149,6 +150,7 @@ const APP_PROVIDERS = [
 
     // Custom Modules
     DashboardModule,
+    UiModule,
 
     // Core Module,
     CoreModule.forRoot([]),

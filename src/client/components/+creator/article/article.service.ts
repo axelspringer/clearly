@@ -2,7 +2,7 @@
 // Importables
 import { Injectable } from '@angular/core';
 import { Inject } from '@angular/core';
-import { DFORM_TYPES_TOKEN } from '../../../frameworks/core';
+import { DFORM_TYPES_TOKEN } from '../../../frameworks/dform';
 import * as _ from 'lodash';
 
 @Injectable()
