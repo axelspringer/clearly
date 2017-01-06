@@ -21,7 +21,7 @@ export default function (state = init, action: fromAppActions.Actions): IAppStat
   switch (action.type) {
 
     case fromAppActions.ActionTypes.UPDATE_BOOTING: {
-      return { ...state, isBooting: action.payload }
+      return { ...state, isBooting: action.payload };
     }
 
     case fromAppActions.ActionTypes.ADD_NOTIFICATIONS: {

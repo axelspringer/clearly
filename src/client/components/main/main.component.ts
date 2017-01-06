@@ -1,16 +1,13 @@
 // importables
 import { Component } from '@angular/core';
-import { ViewEncapsulation } from '@angular/core';
-import { ViewChild } from '@angular/core';
+import { NavigationCancel } from '@angular/router';
+import { NavigationEnd } from '@angular/router';
+import { NavigationStart } from '@angular/router';
 import { OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { NavigationStart } from '@angular/router';
-import { NavigationEnd } from '@angular/router';
-import { NavigationCancel } from '@angular/router';
+import { ViewChild } from '@angular/core';
 import { ElementRef } from '@angular/core';
-
-// components
-// import { SideNav } from './state';
+import { ViewEncapsulation } from '@angular/core';
 
 // compponents
 @Component({
@@ -20,12 +17,11 @@ import { ElementRef } from '@angular/core';
 })
 export class MainComponent implements OnInit {
 
-  @ViewChild('progressBar') public progressBar;
+  @ViewChild('progressBar') public progressBar: any;
 
   constructor(
     private _router: Router,
     private _el: ElementRef,
-    // private _sideNav: SideNav,
   ) {
   }
 

@@ -3,7 +3,7 @@ import socialVideoValidator from './socialVideo';
 
 // Exportables
 export const CustomValidators = {
-  socialVideoValidator
-}
+  socialVideoValidator,
+};
 
 export * from './atLeast';

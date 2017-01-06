@@ -23,7 +23,6 @@ import {
 } from 'webpack';
 import * as process from 'process';
 import { AotPlugin } from '@ngtools/webpack';
-import { CheckerPlugin } from 'awesome-typescript-loader';
 import * as LoaderOptionsPlugin from 'webpack/lib/LoaderOptionsPlugin';
 import * as ContextReplacementPlugin from 'webpack/lib/ContextReplacementPlugin';
 
@@ -69,7 +68,7 @@ import head from './config/head';
 import meta from './config/meta';
 import tsconfigJson = require('./tsconfig.json');
 
-const tsCompilerConfig =
+const compilerConfig =
   Object.assign(tsconfigJson['compilerOptions'], { module: 'es2015' });
 
 // config
@@ -85,7 +84,8 @@ const PORT = process.env.PORT ||
 const HOST = process.env.HOST || 'localhost';
 
 const COPY_FOLDERS: WebpackCopyFolder[] = [
-  { from: `src/assets` },
+  { from: `src/assets`, ignore: ['favicon.ico'] },
+  { from: `src/assets/icon/favicon.ico` },
   { from: `src/meta` },
   { from: 'node_modules/hammerjs/hammer.min.js' },
   { from: 'node_modules/hammerjs/hammer.min.js.map' },
@@ -119,10 +119,8 @@ const commonConfig = () => {
         test: /\.ts$/,
         use: [
           {
-            loader: 'awesome-typescript-loader',
-            options: {
-              compilerConfig: tsCompilerConfig,
-            },
+            loader: 'ts-loader',
+            options: { compilerConfig },
           },
           'angular2-template-loader',
           'angular-router-loader',
@@ -167,7 +165,6 @@ const commonConfig = () => {
     }),
     new NamedModulesPlugin(),
     new ProgressPlugin(),
-    new CheckerPlugin(),
     new ContextReplacementPlugin(
       /angular(\\|\/)core(\\|\/)src(\\|\/)linker/, root(`src`),
     ),
@@ -206,20 +203,20 @@ const devConfig = () => {
     modules: [root(`src`), `node_modules`],
   };
 
-  // config.module = {
-  //   rules: [
-  //     {
-  //       enforce: 'pre',
-  //       test: /\.ts$/,
-  //       use: [
-  //         {
-  //           loader: 'tslint-loader',
-  //           options: {},
-  //         },
-  //       ],
-  //     },
-  //   ],
-  // };
+  config.module = {
+    rules: [
+      {
+        enforce: 'pre',
+        test: /\.ts$/,
+        use: [
+          {
+            loader: 'tslint-loader',
+            options: {},
+          },
+        ],
+      },
+    ],
+  };
 
   config.entry = {
     main: [].concat(polyfills(), './src/main.client', rxjs()),
@@ -228,7 +225,7 @@ const devConfig = () => {
   config.output = {
     path: root(`dist`),
     filename: '[name].bundle.js',
-    sourceMapFilename: '[name].map',
+    sourceMapFilename: '[file].map',
     chunkFilename: '[id].chunk.js',
   };
 

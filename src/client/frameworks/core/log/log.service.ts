@@ -1,3 +1,5 @@
+/* tslint:disable max-classes-per-file */
+
 // Importables
 import { EventEmitter } from '@angular/core';
 import { Injectable } from '@angular/core';

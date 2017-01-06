@@ -28,7 +28,7 @@ export class ToolbarComponent implements AfterViewInit {
   constructor(
     private _elRef: ElementRef,
     private _renderer: Renderer,
-    private _sideNav: SideNav
+    private _sideNav: SideNav,
   ) { }
 
   public ngAfterViewInit() {
@@ -36,10 +36,6 @@ export class ToolbarComponent implements AfterViewInit {
     const el = this.contentElement(this._elRef);
     this._renderer.setElementStyle(el, 'position', 'relative');
     this._renderer.setElementStyle(el, 'top', `${this.height(this._elRef)}px`);
-
-    // EventEmitProvider
-    //   .connect(new ToolbarTitleUpdate())
-    //   .subscribe(value => this.title = value);
   }
 
   public toggleMenu(event: Event) {

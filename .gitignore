@@ -52,6 +52,7 @@ npm-debug.log
 /dist/**
 /dll
 .webpack.json
+!/icon
 
 # Doc #
 /doc/

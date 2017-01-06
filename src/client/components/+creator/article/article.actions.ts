@@ -15,15 +15,15 @@ export class ArticleActions {
   public updateArticle(newArticleType: any): Action {
     return {
       type: ArticleActions.UPDATE_ARTICLE,
-      payload: newArticleType
-    }
+      payload: newArticleType,
+    };
   }
 
   public update(newState: any): Action {
     return {
       type: ArticleActions.UPDATE,
-      payload: newState
-    }
+      payload: newState,
+    };
   }
 
   public reset(): Action {

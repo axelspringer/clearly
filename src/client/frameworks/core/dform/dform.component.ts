@@ -1,4 +1,3 @@
-/* tslint:disable:max-line-length */
 // Importables
 import { ChangeDetectionStrategy } from '@angular/core';
 import { Component } from '@angular/core';
@@ -51,33 +50,5 @@ export class DFormComponent implements OnChanges {
     index = 0; // remove later
     return element.key;
   }
-
-  // public addFormElement(afterFormEntity: DFormElement<any>, newFormType?: string) {
-  //   const el = this.dForm.data.findIndex(formEntity => formEntity.key === afterFormEntity.key) + 1;
-  //   if (el !== -1) {
-  //     this.dForm.data.splice(el, 0, this.__dForm.newFormType(newFormType)());
-  //     this.dForm.form.addControl(this.dForm.data[el].key, this.__dForm.dFormElementToFormControl(this.dForm.data[el]));
-  //   }
-  // }
-
-  // public removeFormElement(oldFormEntity: DFormElement<any>) {
-  //   if (this.dForm.data.length > 1) {
-  //     this.dForm.data.splice(this.dForm.data.findIndex(formEntity => formEntity.key === oldFormEntity.key), 1);
-  //   }
-  // }
-
-  // public changeFormElementType(changeFormEntity: DFormElement<any>, newFormType: string) {
-  //   const el = this.dForm.data.findIndex(formEntity => formEntity.key === changeFormEntity.key);
-  //   if (el !== -1) {
-  //     this.dForm.data[el] = this.__dForm.newFormType(newFormType)();
-  //     this.dForm.form.setControl(this.dForm.data[el].key, this.__dForm.dFormElementToFormControl(this.dForm.data[el]));
-  //   }
-  // }
-
-  // // private
-
-  // private __trackDFormChanges(dform: DFormObservable) {
-  //   return this.__dFormDiffer.diff(dform.data);
-  // }
 
 };

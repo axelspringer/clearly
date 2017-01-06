@@ -1,3 +1,4 @@
+/* tslint:disable max-classes-per-file */
 // Importables
 import { Injectable } from '@angular/core';
 import { EventEmitter } from '@angular/core';
@@ -39,7 +40,7 @@ export class NotifyProvider {
 
   private _emitter$: EventEmitter<any>;
   private _replay$: ReplaySubject<any>;
-  private _events: Array<any> = [];
+  private _events: any[] = [];
 
   constructor() {
 

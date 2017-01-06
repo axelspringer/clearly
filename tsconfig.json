@@ -42,10 +42,6 @@
     "src/**/*.spec.ts",
     "src/**/*.e2e.ts"
   ],
-  "awesomeTypescriptLoaderOptions": {
-    "forkChecker": true,
-    "useWebpackText": true
-  },
   "compileOnSave": false,
   "buildOnSave": false,
   "atom": { "rewriteTsconfig": false }
