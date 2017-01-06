@@ -1,0 +1,18 @@
+.sg-avatar {
+  @at-root &.dropdown {
+    .dropdown-toggle:not(.btn) clr-icon[shape^="caret"] {
+      right: 12px;
+    }
+    .dropdown-toggle clr-icon[shape^="user"] {
+      height: 24px;
+      width: 24px;
+    }
+    .dropdown-toggle {
+      color: #fafafa;
+      opacity: .65;
+    }
+    .dropdown-toggle:hover {
+      opacity: 1;
+    }
+  }
+}

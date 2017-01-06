@@ -1,10 +1,9 @@
 @import '../../../_variables'; // could be redone
+
 .sg-notifications {
 
   .dropdown-menu {
-
     min-width: 240px;
-
     .dropdown-item {
       display: flex;
       align-items: center;
@@ -33,7 +32,6 @@
       &.warn:before {
         background-color: $_notifications-warn-color;
       }
-
     }
   }
 
@@ -41,6 +39,23 @@
     position: absolute;
     left: 6px;
     top: 6px;
+  }
+
+  @at-root &.dropdown {
+    .dropdown-toggle:not(.btn) clr-icon[shape^="caret"] {
+      right: 12px;
+    }
+    .dropdown-toggle clr-icon[shape^="notification"] {
+      height: 24px;
+      width: 24px;
+    }
+    .dropdown-toggle {
+      color: #fafafa;
+      opacity: .65;
+    }
+    .dropdown-toggle:hover {
+      opacity: 1;
+    }
   }
 
   button {
