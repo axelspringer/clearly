@@ -95,7 +95,6 @@
     "ng2-translate": "^5.0.0",
     "ngrx-store-logger": "^0.1.7",
     "offline-plugin": "^4.5.2",
-    "pouchdb": "^6.0.7",
     "reselect": "^2.5.4",
     "rxjs": "5.0.1",
     "zone.js": "~0.7.4"
@@ -110,7 +109,6 @@
     "@types/jasmine": "^2.5.40",
     "@types/lodash": "^4.14.45",
     "@types/node": "^6.0.55",
-    "@types/pouchdb": "^5.4.28",
     "@types/selenium-webdriver": "2.53.38",
     "@types/source-map": "^0.5.0",
     "@types/uglify-js": "^2.0.27",

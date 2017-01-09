@@ -33,14 +33,14 @@ import { translateCustomLoaderFactory } from '../../frameworks';
 import { CoreModule } from '../../frameworks/core';
 import { DashboardModule } from '../dashboard';
 import { UiModule } from '../../frameworks';
+import { DbModule } from '../../frameworks';
 
 // Environment
 import { APP_RESOLVER_PROVIDERS } from './app.resolver';
 import { AppComponent } from './app.component';
 import { AppConfig } from '../../config';
 import { AppLocale } from '../../config';
-import { DATABASE_PROVIDER_OPTIONS } from '../../frameworks/core';
-import { DBConfig } from './../../config/db.config';
+// import { DBConfig } from './../../config/db.config';
 import { ROUTES } from './app.routes';
 
 // Components
@@ -78,12 +78,6 @@ import { CreatorResolver } from '../+creator';
 // Application wide providers
 const APP_PROVIDERS = [
   ...APP_RESOLVER_PROVIDERS,
-  {
-    provide: DATABASE_PROVIDER_OPTIONS,
-    useValue: {
-      name: DBConfig.NAME,
-    },
-  },
 
   // Guards
   ...GUARDS,
@@ -145,6 +139,15 @@ const APP_PROVIDERS = [
     // Custom Modules
     DashboardModule,
     UiModule,
+    DbModule.forRoot({
+      name: 'blackbeardDB',
+      version: 2,
+      stores: {
+        documents: {
+          autoIncrement: true,
+        },
+      },
+    }),
 
     // Core Module,
     CoreModule.forRoot([]),

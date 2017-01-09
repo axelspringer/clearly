@@ -10,8 +10,6 @@ import { TranslateModule } from 'ng2-translate';
 
 // Components
 import { AtLeastValidatorDirective } from './forms';
-import { DATABASE_PROVIDERS } from './db';
-import { DatabaseProvider } from './db';
 import { EventEmitProvider } from './events';
 import { IteratableObjectPipe } from './pipes';
 import { LoadingComponent } from './loading';
@@ -55,10 +53,6 @@ import { AUTH_PROVIDERS } from './auth';
 
     // Events
     EventEmitProvider,
-
-    // Database
-    DatabaseProvider,
-    ...DATABASE_PROVIDERS,
 
     // NotifyEvent
     NotifyProvider,

@@ -39,21 +39,20 @@ export function polyfills() {
 // Angular 2 and other Vendor imports
 export function vendors() {
   return [
-    '@angular/platform-browser',
-    '@angular/platform-browser-dynamic',
-    '@angular/compiler',
-    '@angular/router',
-    '@angular/forms',
     '@angular/common',
+    '@angular/compiler',
     '@angular/core',
+    '@angular/forms',
     '@angular/http',
-    '@ngrx/store',
+    '@angular/platform-browser-dynamic',
+    '@angular/platform-browser',
+    '@angular/router',
     '@ngrx/effects',
-    'clarity-angular',
-    'pouchdb',
+    '@ngrx/store',
     'apollo-client',
-    'lodash',
+    'clarity-angular',
     'hammerjs',
+    'lodash',
 
     // '@angularclass/form-validators',
   ];

@@ -10,8 +10,6 @@ import { Renderer } from '@angular/core';
 
 // components
 import { AppConfig } from '../../config';
-import { EventEmitProvider } from '../../frameworks/core';
-import { DatabaseProvider } from './../../frameworks/core';
 
 @Component({
   encapsulation: ViewEncapsulation.None,
@@ -33,10 +31,6 @@ export class AppComponent implements OnInit {
   ) {
     this._translate.setDefaultLang(AppConfig.DEFAULT_LANGUAGE);
     this._translate.use(AppConfig.DEFAULT_LANGUAGE);
-
-    EventEmitProvider
-      .connect(DatabaseProvider.name)
-      .subscribe(val => console.log(val));
   }
 
   public ngOnInit(): void {
