@@ -247,7 +247,7 @@ export class DatabaseProvider {
       if (dbRef.objectStoreNames.contains(store)) {
         dbRef.deleteObjectStore(store);
       }
-      dbRef.createObjectStore(store, <IDBObjectStoreParameters>schema.stores[store]);
+      dbRef.createObjectStore(store, <IDBObjectStoreParameters> schema.stores[store]);
     });
 
     return dbRef;

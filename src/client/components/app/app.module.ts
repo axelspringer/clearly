@@ -33,7 +33,7 @@ import { translateCustomLoaderFactory } from '../../frameworks';
 import { CoreModule } from '../../frameworks/core';
 import { DashboardModule } from '../dashboard';
 import { UiModule } from '../../frameworks';
-import { DbModule } from '../../frameworks';
+import { DatabaseModule } from '../../frameworks';
 
 // Environment
 import { APP_RESOLVER_PROVIDERS } from './app.resolver';
@@ -139,9 +139,9 @@ const APP_PROVIDERS = [
     // Custom Modules
     DashboardModule,
     UiModule,
-    DbModule.forRoot({
+    DatabaseModule.forRoot({
       name: 'blackbeardDB',
-      version: 2,
+      version: 1,
       stores: {
         documents: {
           autoIncrement: true,

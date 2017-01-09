@@ -24,11 +24,11 @@ export const DATABASE_PROVIDER = [
     ...DATABASE_PROVIDER,
   ],
 })
-export class DbModule {
+export class DatabaseModule {
 
   public static forRoot(schema: IDBSchema): ModuleWithProviders {
     return {
-      ngModule: DbModule,
+      ngModule: DatabaseModule,
       providers: [
         {
           provide: IDB_SCHEMA,
@@ -39,10 +39,10 @@ export class DbModule {
   }
 
   constructor(
-    @Optional() @SkipSelf() parentModule: DbModule,
+    @Optional() @SkipSelf() parentModule: DatabaseModule,
   ) {
     if (parentModule) {
-      throw new Error(`DbModule already loaded; Import in root module only`);
+      throw new Error(`DatabaseModule already loaded! Import only in the root module.`);
     }
   }
 
