@@ -9,17 +9,17 @@ import * as _ from 'lodash';
 
 // Components
 import { DFormElement } from './dform.element';
-import { Event } from '../core';
+import { CoreEvent } from '../core';
 import { EventEmitProvider } from '../core';
 
 // Interface
-export class DFormVariantRemoveEvent extends Event {
+export class DFormVariantRemoveEvent extends CoreEvent {
   constructor(payload: any = {}) {
     super(payload);
   }
 }
 
-export class DFormVariantAddEvent extends Event {
+export class DFormVariantAddEvent extends CoreEvent {
   constructor(payload: any = {}) {
     super(payload);
   }

@@ -12,7 +12,6 @@ import { EventEmitter } from '@angular/core';
 // Components
 import { DFormComponent } from './dform.component';
 import { DFormElement } from './dform.element';
-// import { EventEmitProvider } from '../events';
 import { KEY_CODES } from './dform.interface';
 
 @Directive({

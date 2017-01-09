@@ -29,10 +29,8 @@ export class LoggingErrorHandler implements ErrorHandler {
     logService: LogService,
     @Inject(LOGGING_ERROR_HANDLER_OPTIONS) options: ILoggingErrorHandlerOptions,
   ) {
-
     this._logService = logService;
     this._options = options;
-
   }
 
   public handleError(error: any): void {

@@ -12,11 +12,8 @@ import { TranslateModule } from 'ng2-translate';
 import { AtLeastValidatorDirective } from './forms';
 import { EventEmitProvider } from './events';
 import { IteratableObjectPipe } from './pipes';
-import { LoadingComponent } from './loading';
 import { LOGGING_ERROR_HANDLER_PROVIDERS } from './log';
 import { LogService } from './log';
-import { NOTIFY_PROVIDERS } from './notify/notify.provider';
-import { NotifyProvider } from './notify';
 import { SgFileDroppableDirective } from './forms';
 
 // providers
@@ -33,7 +30,6 @@ import { AUTH_PROVIDERS } from './auth';
   exports: [
     AtLeastValidatorDirective,
     IteratableObjectPipe,
-    LoadingComponent,
     SgFileDroppableDirective,
   ],
   declarations: [
@@ -43,9 +39,6 @@ import { AUTH_PROVIDERS } from './auth';
 
     // Validators
     AtLeastValidatorDirective,
-
-    // Components
-    LoadingComponent,
   ],
   providers: [
     // Auth
@@ -53,10 +46,6 @@ import { AUTH_PROVIDERS } from './auth';
 
     // Events
     EventEmitProvider,
-
-    // NotifyEvent
-    NotifyProvider,
-    ...NOTIFY_PROVIDERS,
 
     // Error
     LogService,

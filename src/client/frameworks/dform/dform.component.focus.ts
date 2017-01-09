@@ -1,8 +1,8 @@
 // Importables
-import { Event } from '../core';
+import { CoreEvent } from '../core';
 
 // Interface
-export class DFormComponentFocus extends Event {
+export class DFormComponentFocus extends CoreEvent {
   constructor(payload: any = {}) {
     super(payload);
   }

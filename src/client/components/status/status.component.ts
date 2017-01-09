@@ -7,12 +7,12 @@ import { OnInit } from '@angular/core';
 import { TranslateService } from 'ng2-translate';
 
 // Components
-import { IAppState } from '../app';
-import { fromStore } from '../app';
+import { CoreEvent } from '../../frameworks/core';
 import { EventEmitProvider } from '../../frameworks/core';
-import { Event } from '../../frameworks/core';
+import { fromStore } from '../app';
+import { IAppState } from '../app';
 
-export class StatusTitleUpdate extends Event {}
+export class StatusTitleUpdate extends CoreEvent {}
 
 export enum StatusComponentType {
   IDLE,
@@ -40,10 +40,6 @@ export class StatusComponent implements OnInit {
     private _translate: TranslateService,
   ) {
   }
-
-  // inputs
-
-  // ouputs
 
   // angular
 

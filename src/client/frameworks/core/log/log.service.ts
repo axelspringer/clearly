@@ -4,12 +4,11 @@
 import { EventEmitter } from '@angular/core';
 import { Injectable } from '@angular/core';
 
-// Components
+// components
 import { EventEmitProvider } from './../events';
 
-export interface ILogEvent {
-  level;
-}
+// interface
+import { ILogSubject } from './log.interface';
 
 export class LogLevel {
   public static error: string = 'error';
@@ -60,10 +59,6 @@ export class LogEventLog extends LogEvent {
   constructor(message?: any) {
     super(LogLevel.log, message);
   }
-}
-
-export interface ILogSubject {
-  name;
 }
 
 export abstract class LogSubject implements ILogSubject {
@@ -126,7 +121,7 @@ export class LogSubjectConsole extends LogSubject {
 @Injectable()
 export class LogService {
 
-  private _emitters$: Array<any> = [];
+  private _emitters$: any[] = [];
 
   constructor() {
     this._emitters$ = this._emitters$.concat(this._emitters$.length ||

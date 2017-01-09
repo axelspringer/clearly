@@ -3,24 +3,9 @@
 import { EventEmitter } from '@angular/core';
 import { Injectable } from '@angular/core';
 
-// Abstracts, classes, interfaces ...
-export abstract class Event {
-
-  constructor(
-    public payload?,
-  ) { }
-
-  public toString() {
-    return this.payload;
-  }
-
-};
-
 @Injectable()
 export class EventEmitProvider {
-
   // public
-
   public static connect(event: Object): EventEmitter<any> {
     const id = typeof event === 'string'
       ? event

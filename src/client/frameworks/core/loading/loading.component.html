@@ -1,4 +1,0 @@
-<div [ngClass]="cssClazz" *ngIf="shouldBeLoading | async">
-  <div class="spinner"></div>
-</div>
-<ng-content *ngIf="!(shouldBeLoading | async)"></ng-content>
