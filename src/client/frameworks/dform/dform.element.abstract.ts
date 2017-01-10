@@ -60,7 +60,7 @@ export class DFormAbstractComponent implements OnInit {
 
   public isFaved(event) {
     event -= 1;
-    _.forEach(this.variants.controls, (variant, index) => {
+    this.variants.controls.forEach((variant, index) => {
       variant.setValue({
         isFav: event === index ? !variant.value.isFav : false,
         value: '',

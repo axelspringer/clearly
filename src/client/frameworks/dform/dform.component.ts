@@ -1,4 +1,4 @@
-// Importables
+// imports
 import { ChangeDetectionStrategy } from '@angular/core';
 import { Component } from '@angular/core';
 import { EventEmitter } from '@angular/core';
@@ -6,41 +6,40 @@ import { FormGroup } from '@angular/forms';
 import { Input } from '@angular/core';
 import { IterableDiffer } from '@angular/core';
 import { IterableDiffers } from '@angular/core';
-import { Output } from '@angular/core';
 import { OnChanges } from '@angular/core';
+import { Output } from '@angular/core';
 
-// Components
-import { DFormService } from './dform.service';
+// components
+import { DFormProvider } from './dform.service';
 import { DFormElement } from './dform.element';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [DFormProvider],
   selector: 'sg-dform',
   templateUrl: './dform.component.html',
-  providers: [DFormService],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DFormComponent implements OnChanges {
 
   @Input() public data: Array<DFormElement<any>>; // maps to a channel, or something else
-  @Output() public update: EventEmitter<FormGroup> = new EventEmitter<FormGroup>();
+  @Output() public valueChanges: EventEmitter<any> = new EventEmitter<any>();
 
   public form = new FormGroup({});
-
-  private _dataDiffer: IterableDiffer;
+  public differ: IterableDiffer = null;
 
   constructor(
-    private _differs: IterableDiffers,
-    private _dformService: DFormService,
+    private differs: IterableDiffers,
+    private dformProvider: DFormProvider,
   ) {
-    this._dataDiffer = this._differs.find([]).create(null); // re-use existing changeDetector
+    this.differ = this.differs.find([]).create(null); // re-use existing changeDetector
   }
 
   // angular
 
   public ngOnChanges(changes: any) {
-    const differs = this._dataDiffer.diff(changes['data'].currentValue);
-    if (differs) { // if 'data' differs, render to FormGroup
-      this.form = this._dformService.dformElementsToFormGroup(changes['data'].currentValue);
+    const diff = this.differ.diff(changes['data'].currentValue);
+    if (diff) { // if 'data' differs, render to FormGroup
+      this.form = this.dformProvider.dformElementsToFormGroup(changes['data'].currentValue);
     }
   }
 

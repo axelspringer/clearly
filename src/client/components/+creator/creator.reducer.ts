@@ -3,13 +3,7 @@ import * as _ from 'lodash';
 
 // interfaces
 import * as fromCreatorActions from './creator.actions';
-
-export interface ICreatorState {
-  loaded: boolean;
-  loading: number;
-  types: any[];
-  selectedType: number | undefined;
-}
+import { ICreatorState } from './creator.interface';
 
 const init: ICreatorState = {
   loaded: false, // means to load data

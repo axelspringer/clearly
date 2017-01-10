@@ -33,8 +33,8 @@ export class DFormVariantComponent implements OnInit {
     this._index = ++newIndex;
   };
 
-  @Output() public isFaved = new EventEmitter();
-  @Output() public removeVariant = new EventEmitter();
+  @Output() public isFaved: EventEmitter<any> = new EventEmitter<any>();
+  @Output() public removeVariant: EventEmitter<any> = new EventEmitter<any>();
 
   public showDelete: Observable<boolean>;
 

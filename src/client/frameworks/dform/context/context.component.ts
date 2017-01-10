@@ -27,8 +27,6 @@ export class DFormContextComponent {
 
   public contextType: string;
 
-  // angular
-
   // public
 
   public doAddVariant(event: Event) {

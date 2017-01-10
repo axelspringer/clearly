@@ -8,6 +8,7 @@ export * from './creator.effects';
 export * from './creator.resolver';
 export * from './creator.routes';
 export * from './creator.module';
+export * from './creator.interface';
 
 // Exportables
 export {

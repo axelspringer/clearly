@@ -49,7 +49,7 @@ import {
   CUSTOM_PLUGINS_COMMON,
   CUSTOM_PLUGINS_DEV,
   CUSTOM_PLUGINS_PROD,
-  EXCLUDE_SOURCEMAPS,
+  // EXCLUDE_SOURCEMAPS,
 } from './config/env';
 
 import {
@@ -66,10 +66,10 @@ import {
 
 import head from './config/head';
 import meta from './config/meta';
-import tsconfigJson = require('./tsconfig.json');
+// import tsconfigJson = require('./tsconfig.json');
 
-const compilerConfig =
-  Object.assign(tsconfigJson['compilerOptions'], { module: 'es2015' });
+// const compilerConfig =
+//   Object.assign(tsconfigJson['compilerOptions'], { module: 'es2015' });
 
 // config
 const EVENT = process.env.npm_lifecycle_event;
@@ -112,16 +112,21 @@ const commonConfig = () => {
     rules: [
       {
         test: /\.js$/,
-        use: 'source-map-loader',
-        exclude: [EXCLUDE_SOURCEMAPS],
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              compact: false,
+            },
+          },
+        ],
+        include: /angular/,
+        exclude: /node_modules/,
       },
       {
         test: /\.ts$/,
         use: [
-          {
-            loader: 'ts-loader',
-            options: { compilerConfig },
-          },
+          'awesome-typescript-loader',
           'angular2-template-loader',
           'angular-router-loader',
         ],

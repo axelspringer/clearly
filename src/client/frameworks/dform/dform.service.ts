@@ -8,7 +8,7 @@ import { FormGroup } from '@angular/forms';
 import { DFormElement } from './dform.element';
 
 @Injectable()
-export class DFormService { // central service of a dynamic form
+export class DFormProvider { // central service of a dynamic form
 
   constructor() {
     console.log(`Initializing ${this.constructor.name} ...`);
