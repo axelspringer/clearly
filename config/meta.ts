@@ -1,3 +1,3 @@
 export default {
-  title: 'Blackbeard',
+  title: 'Angular2 Preboot',
 };

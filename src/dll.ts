@@ -1,7 +1,3 @@
-/**
- * @author: @AngularClass
- */
-
 // Polyfills
 export function polyfills(isDev?: boolean) {
 
@@ -42,7 +38,6 @@ export function polyfills(isDev?: boolean) {
   return !isDev ? common : common.concat(dev);
 }
 
-
 // Angular 2 and other Vendor imports
 export function vendors() {
   return [
@@ -60,8 +55,6 @@ export function vendors() {
     'clarity-angular',
     'hammerjs',
     'lodash',
-
-    // '@angularclass/form-validators',
   ];
 }
 
