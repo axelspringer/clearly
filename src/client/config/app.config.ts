@@ -1,4 +1,14 @@
+// imports
+import { OpaqueToken } from '@angular/core';
+
+// interfaces
 import { ILang } from '../frameworks';
+
+// tokens
+export const CONFIG_HTTP    = new OpaqueToken('CONFIG_HTTP');
+export const CONFIG_API     = new OpaqueToken('CONFIG_API');
+export const CONFIG_DEBUG   = new OpaqueToken('CONFIG_DEBUG');
+export const CONFIG_VERSION = new OpaqueToken('CONFIG_VERSION');
 
 // Application Configuration
 export class AppConfig {
@@ -26,10 +36,29 @@ export class AppConfig {
     },
   };
 
-  public static DEBUG: boolean = 'development' === ENV;
+  public static DEBUG: boolean = __DEV__;
 
-  public static API_BASE: string = 'production' === ENV
+  public static API_BASE: string = __PROD__
     ? 'http://editor.test.tortuga.cloud:5012/'
     : 'https://localhost:8080';
 
 };
+
+export const CONFIG_PROVIDERS = [
+  {
+    provide: CONFIG_API,
+    useValue: AppConfig.API_BASE,
+  },
+  {
+    provide: CONFIG_VERSION,
+    useValue: AppConfig.VERSION,
+  },
+  {
+    provide: CONFIG_DEBUG,
+    useValue: AppConfig.DEBUG,
+  },
+  {
+    provide: CONFIG_HTTP,
+    useValue: AppConfig.HTTP,
+  },
+];

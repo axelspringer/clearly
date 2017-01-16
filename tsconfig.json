@@ -1,34 +1,28 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "allowSyntheticDefaultImports": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "allowSyntheticDefaultImports": true,
-    "sourceMap": true,
+    "noEmit": false,
     "noEmitHelpers": true,
-    "strictNullChecks": false,
-    "noUnusedParameters": true,
     "noUnusedLocals": true,
-    "skipDefaultLibCheck": true,
+    "noUnusedParameters": true,
     "pretty": true,
-    "baseUrl": "./src",
-    "typeRoots": [
-      "node_modules/@types"
-    ],
+    "skipDefaultLibCheck": true,
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "strictNullChecks": false,
+    "target": "es5",
     "lib": [
       "dom",
-      "es2015.core",
-      "es6",
-      "es7"
+      "es5",
+      "es6"
     ],
     "types": [
-      "chai",
       "hammerjs",
       "jasmine",
-      "lodash",
       "node",
       "selenium-webdriver",
-      "isomorphic-fetch",
       "source-map",
       "uglify-js"
     ]
@@ -45,6 +39,10 @@
     "emitRequireType": false,
     "useWebpackText": true,
     "forkChecker": true
+  },
+  "angularCompilerOptions": {
+    "debug": true,
+    "skipMetadataEmit": true
   },
   "compileOnSave": false,
   "buildOnSave": false,

@@ -6,6 +6,7 @@ import { Actions } from '@ngrx/effects';
 // interfaces
 import { ActionType } from '../app/app.util';
 
+// actions
 export const ActionTypes = {
   LOAD:         ActionType('[CREATOR:LOAD]'),
   LOAD_SUCCESS: ActionType('[CREATOR:LOAD_SUCCESS]'),

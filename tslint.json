@@ -6,6 +6,11 @@
     "node_modules/codelyzer"
   ],
   "rules": {
+    "semicolon": [false, "never"],
+    "max-classes-per-file": [false],
+    // Custom
+    "trailing-comma": [false, {"multiline": "always", "singleline": "never"}],
+    "interface-name": [false, "always-prefix"],
     // Angular 2
     "directive-selector": [true, "attribute", ["sg", "ui"], "camelCase"],
     "component-selector": [true, "element", ["sg", "ui"], "kebab-case"],

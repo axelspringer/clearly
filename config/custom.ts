@@ -1,13 +1,9 @@
-/**
- * @author: @AngularClass
- */
 import { root } from './helpers.ts';
 
 import * as Autoprefixer from 'autoprefixer';
 import * as CssNano from 'cssnano';
 import * as ExtractTextPlugin from 'extract-text-webpack-plugin';
 import * as LoaderOptionsPlugin from 'webpack/lib/LoaderOptionsPlugin';
-// import * as OfflinePlugin from 'offline-plugin';
 
 export const EXCLUDE_SOURCEMAPS = [
   // these packages have problems with their sourcemaps
@@ -20,6 +16,12 @@ export const EXCLUDE_SOURCEMAPS = [
 
 export const CUSTOM_COPY_FOLDERS = [
   { from: 'node_modules/clarity-icons' },
+  { from: 'node_modules/hammerjs/hammer.min.js' },
+  { from: 'node_modules/hammerjs/hammer.min.js.map' },
+  { from: 'node_modules/clarity-icons/clarity-icons.min.js' },
+  { from: 'node_modules/mutationobserver-shim/dist/mutationobserver.min.js' },
+  { from: 'node_modules/@webcomponents/custom-elements/custom-elements.min.js' },
+  { from: 'node_modules/@webcomponents/custom-elements/custom-elements.min.js.map' },
 ];
 
 export const CUSTOM_PLUGINS_COMMON = [
@@ -42,7 +44,7 @@ export const CUSTOM_PLUGINS_DEV = [
 ];
 
 export const CUSTOM_PLUGINS_PROD = [
-  // new OfflinePlugin(),
+
 ];
 
 export const CUSTOM_RULES_COMMON = [
@@ -103,5 +105,3 @@ export const CUSTOM_DEV_SERVER_OPTIONS = {
 export const CUSTOM_DEV_PLUGINS = [
 
 ];
-
-export const HTML5_BASE_URL = '/';

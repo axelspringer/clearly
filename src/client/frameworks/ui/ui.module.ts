@@ -12,10 +12,12 @@ import { LOADINGBAR_DIRECTIVES } from './loadingBar';
 import { TABS_DIRECTIVES } from './tabs';
 import { TEXTAREA_DIRECTIVES } from './textArea';
 import { TOAST_DIRECTIVES } from './toast';
+import { DIALOG_COMPONENTS } from './dialog';
 
 // providers
 import { TOAST_PROVIDERS } from './toast';
 import { LAYOUT_PROVIDERS } from './layout';
+import { DIALOG_PROVIDERS } from './dialog';
 
 @NgModule({
   imports: [
@@ -31,6 +33,7 @@ import { LAYOUT_PROVIDERS } from './layout';
     ...TABS_DIRECTIVES,
     ...TEXTAREA_DIRECTIVES,
     ...TOAST_DIRECTIVES,
+    ...DIALOG_COMPONENTS
   ],
   declarations: [
     ...CHECKBOX_DIRECTIVES,
@@ -41,10 +44,12 @@ import { LAYOUT_PROVIDERS } from './layout';
     ...TABS_DIRECTIVES,
     ...TEXTAREA_DIRECTIVES,
     ...TOAST_DIRECTIVES,
+    ...DIALOG_COMPONENTS
   ],
   providers: [
     TOAST_PROVIDERS,
     LAYOUT_PROVIDERS,
+    DIALOG_PROVIDERS
   ],
 })
 export class UiModule {

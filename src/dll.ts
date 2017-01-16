@@ -3,8 +3,9 @@
  */
 
 // Polyfills
-export function polyfills() {
-  return [
+export function polyfills(isDev?: boolean) {
+
+  const common = [
     // 'ie-shim',
 
     'core-js/es6/symbol',
@@ -29,12 +30,18 @@ export function polyfills() {
 
     // zone.js
     'zone.js/dist/zone',
-    'zone.js/dist/long-stack-trace-zone',
 
-    // typescript helpers
+     // typescript helpers
     'ts-helpers',
   ];
+
+  const dev = [
+    'zone.js/dist/long-stack-trace-zone',
+  ];
+
+  return !isDev ? common : common.concat(dev);
 }
+
 
 // Angular 2 and other Vendor imports
 export function vendors() {

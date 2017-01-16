@@ -1,35 +1,37 @@
-// Importables
-import { Injectable } from '@angular/core';
+// importables
 import { Action } from '@ngrx/store';
+import { Actions } from '@ngrx/effects';
 
-@Injectable()
-export class ArticleActions {
+// interfaces
+import { ActionType } from '../../app/app.util';
 
-  public static LOAD            = '[ARTICLE:LOAD]';
-  public static LOAD_SUCCESS    = '[ARTICLE:LOAD_SUCCESS]';
-  public static RESET           = '[ARTICLE:RESET]';
+export const ActionTypes = {
+  LOAD:           ActionType('[ARTICLE:LOAD]'),
+  LOAD_SUCCESS:   ActionType('[ARTICLE:LOAD_SUCCES]'),
 
-  public static UPDATE          = '[ARTICLE:UPDATE]';
-  public static UPDATE_ARTICLE  = '[ARTICLE:UPDATE_ARTICLE]';
+  UPDATE:         ActionType('[ARTICLE:UPDATE]'),
+  UPDATE_ARTICLE: ActionType('[ARTICLE:UPDATE_ARTICLE]'),
 
-  public updateArticle(newArticleType: any): Action {
-    return {
-      type: ArticleActions.UPDATE_ARTICLE,
-      payload: newArticleType,
-    };
-  }
+  RESET:          ActionType('[ARTICLE:RESET]')
+};
 
-  public update(newState: any): Action {
-    return {
-      type: ArticleActions.UPDATE,
-      payload: newState,
-    };
-  }
+export class UpdateArticleAction implements Action {
+  public type = ActionTypes.UPDATE_ARTICLE
 
-  public reset(): Action {
-    return {
-      type: ArticleActions.RESET,
-    };
-  }
-
+  constructor(public payload: any) {}
 }
+
+export class UpdateAction implements Action {
+  public type = ActionTypes.UPDATE
+
+  constructor(public payload: any) {}
+}
+export class ResetAction implements Action {
+  public type = ActionTypes.RESET
+  public payload = null
+}
+
+export type Actions
+  = UpdateArticleAction
+  | UpdateAction
+  | ResetAction;

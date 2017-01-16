@@ -1,6 +1,3 @@
-// Importables
-import * as _ from 'lodash';
-
 // interfaces
 import * as fromCreatorActions from './creator.actions';
 import { ICreatorState } from './creator.interface';
@@ -19,7 +16,7 @@ export default function (state = init, action: fromCreatorActions.Actions): ICre
     case fromCreatorActions.ActionTypes.SELECT_TYPE: {
       return { ...state, selectedType: state.types[action.payload]
           ? action.payload
-          : _.first(state.types) };
+          : state.types[0] };
     }
 
     case fromCreatorActions.ActionTypes.LOAD: {

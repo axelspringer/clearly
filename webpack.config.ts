@@ -13,63 +13,65 @@
  */
 
 // imports
+// import { AotPlugin } from '@ngtools/webpack';
+import { TsConfigPathsPlugin } from 'awesome-typescript-loader';
+import { CheckerPlugin } from 'awesome-typescript-loader';
+import * as process from 'process';
 import 'ts-helpers';
 import {
+  ContextReplacementPlugin,
+  DefinePlugin,
   DllPlugin,
   DllReferencePlugin,
-  DefinePlugin,
-  // NoErrorsPlugin, // quality
-  ProgressPlugin,
+  ProgressPlugin
 } from 'webpack';
-import * as process from 'process';
-import { AotPlugin } from '@ngtools/webpack';
-import * as LoaderOptionsPlugin from 'webpack/lib/LoaderOptionsPlugin';
-import * as ContextReplacementPlugin from 'webpack/lib/ContextReplacementPlugin';
 
-import * as CommonsChunkPlugin from 'webpack/lib/optimize/CommonsChunkPlugin';
-import * as MinChunkSizePlugin from 'webpack/lib/optimize/MinChunkSizePlugin';
 import * as NamedModulesPlugin from 'webpack/lib/NamedModulesPlugin';
+import * as CommonsChunkPlugin from 'webpack/lib/optimize/CommonsChunkPlugin';
 import * as OccurrenceOrderPlugin from 'webpack/lib/optimize/OccurrenceOrderPlugin';
 import * as UglifyJsPlugin from 'webpack/lib/optimize/UglifyJsPlugin';
+import * as HtmlElementsPlugin from './config/html-elements-plugin';
 
 import * as CompressionPlugin from 'compression-webpack-plugin';
+import * as ScriptExtHtmlWebpackPlugin from 'script-ext-html-webpack-plugin';
 import * as CopyWebpackPlugin from 'copy-webpack-plugin';
-import * as HtmlElementsPlugin from './config/html-elements-plugin';
 import * as HtmlWebpackPlugin from 'html-webpack-plugin';
+import * as V8LazyParseWebpackPlugin from 'v8-lazy-parse-webpack-plugin';
 import * as WebpackMd5Hash from 'webpack-md5-hash';
 import * as webpackMerge from 'webpack-merge';
-import * as V8LazyParseWebpackPlugin from 'v8-lazy-parse-webpack-plugin';
-import * as ScriptExtHtmlWebpackPlugin from 'script-ext-html-webpack-plugin';
+import { NgcWebpackPlugin } from 'ngc-webpack';
+
+import {
+  loader
+} from './config/webpack';
+
+// helpers
+import {
+  isWebpackDevServer,
+  root,
+  tryDll,
+} from './config/helpers';
+
+// dll's
+import {
+  polyfills,
+  rxjs,
+  vendors,
+} from './src/dll';
 
 // custom
 import {
   CUSTOM_COPY_FOLDERS,
   CUSTOM_DEV_SERVER_OPTIONS,
-  CUSTOM_RULES_COMMON,
   CUSTOM_PLUGINS_COMMON,
   CUSTOM_PLUGINS_DEV,
   CUSTOM_PLUGINS_PROD,
-  // EXCLUDE_SOURCEMAPS,
-} from './config/env';
+  CUSTOM_RULES_COMMON
+} from './config/custom';
 
-import {
-  root,
-  isWebpackDevServer,
-  tryDll,
-} from './config/helpers';
-
-import {
-  polyfills,
-  vendors,
-  rxjs,
-} from './src/dll';
-
-import head from './config/head';
+// html
+import headTags from './config/head';
 import meta from './config/meta';
-// import tsconfigJson = require('./tsconfig.json');
-
-// const compilerConfig =
-//   Object.assign(tsconfigJson['compilerOptions'], { module: 'es2015' });
 
 // config
 const EVENT = process.env.npm_lifecycle_event;
@@ -77,22 +79,19 @@ const ENV = process.env.NODE_ENV || 'development';
 
 const isDev = EVENT.includes('dev');
 const isDll = EVENT.includes('dll');
-const isAot = EVENT.includes('aot');
+const isAoT = !isDev;
+// const isJiT = !isAoT;
 
 const PORT = process.env.PORT ||
   ENV === 'development' ? 3000 : 8080;
 const HOST = process.env.HOST || 'localhost';
 
-const COPY_FOLDERS: WebpackCopyFolder[] = [
-  { from: `src/assets`, ignore: ['favicon.ico'] },
+const COPY_FOLDERS = [
+  { from: `src/assets`, ignore: [`favicon.ico`] },
   { from: `src/assets/icon/favicon.ico` },
   { from: `src/meta` },
-  { from: 'node_modules/hammerjs/hammer.min.js' },
-  { from: 'node_modules/hammerjs/hammer.min.js.map' },
-  { from: 'node_modules/clarity-icons/clarity-icons.min.js' },
-  { from: 'node_modules/mutationobserver-shim/dist/mutationobserver.min.js' },
-  { from: 'node_modules/@webcomponents/custom-elements/custom-elements.min.js' },
-  { from: 'node_modules/@webcomponents/custom-elements/custom-elements.min.js.map' },
+  { from: `node_modules/hammerjs/hammer.min.js` },
+  { from: `node_modules/hammerjs/hammer.min.js.map` },
 
   ...CUSTOM_COPY_FOLDERS,
 
@@ -105,80 +104,36 @@ if (!isDll && isDev) {
 
 // common
 const commonConfig = () => {
-
-  const config: WebpackConfig = {} as WebpackConfig;
+  const config: WebpackConfig = <WebpackConfig>{};
 
   config.module = {
     rules: [
-      {
-        test: /\.js$/,
-        use: [
-          {
-            loader: 'babel-loader',
-            options: {
-              compact: false,
-            },
-          },
-        ],
-        include: /angular/,
-        exclude: /node_modules/,
-      },
-      {
-        test: /\.ts$/,
-        use: [
-          'awesome-typescript-loader',
-          'angular2-template-loader',
-          'angular-router-loader',
-        ],
-        exclude: [/\.(spec|e2e)\.ts$/],
-      },
-      {
-        test: /\.json$/,
-        use: 'json-loader',
-      },
-      {
-        test: /\.css$/,
-        use: [
-          'to-string-loader',
-          'css-loader',
-        ],
-      },
-      {
-        test: /\.html$/,
-        use: 'raw-loader',
-        exclude: [root('src/index.html')],
-      },
-      {
-        test: /\.(jpg|png|gif)$/,
-        use: 'file-loader',
-      },
+      loader.jsonLoader,
+      loader.cssLoader,
+      loader.htmlLoader,
+      loader.fileLoader,
 
       ...CUSTOM_RULES_COMMON,
 
     ],
-
   };
 
   config.plugins = [
-    new V8LazyParseWebpackPlugin(),
+    new ProgressPlugin(),
+    new CheckerPlugin(),
+    new TsConfigPathsPlugin(),
     new DefinePlugin({
-      'ENV': JSON.stringify(ENV),
-      'process.env': JSON.stringify(process.env),
-    }),
-    new HtmlElementsPlugin({
-      headTags: head,
+      __DEV__: isDev,
+      __PROD__: !isDev
     }),
     new NamedModulesPlugin(),
-    new ProgressPlugin(),
     new ContextReplacementPlugin(
-      /angular(\\|\/)core(\\|\/)src(\\|\/)linker/, root(`src`),
+      /angular(\\|\/)core(\\|\/)src(\\|\/)linker/,
+      root(`src`)
     ),
-    new ScriptExtHtmlWebpackPlugin({
-      defaultAttribute: 'defer',
-    }),
+    new HtmlElementsPlugin({ headTags }),
 
     ...CUSTOM_PLUGINS_COMMON,
-
   ];
 
   config.node = {
@@ -194,37 +149,27 @@ const commonConfig = () => {
   };
 
   return config;
-
 };
 
 // dev
 const devConfig = () => {
-
-  const config: WebpackConfig = {} as WebpackConfig;
+  const config: WebpackConfig = <WebpackConfig>{};
 
   config.devtool = 'eval-source-map';
+
+  config.module = {
+    rules: [
+      loader.tsLintLoader,
+      loader.tsLoader(isAoT)
+    ]
+  };
 
   config.resolve = {
     modules: [root(`src`), `node_modules`],
   };
 
-  config.module = {
-    rules: [
-      {
-        enforce: 'pre',
-        test: /\.ts$/,
-        use: [
-          {
-            loader: 'tslint-loader',
-            options: {},
-          },
-        ],
-      },
-    ],
-  };
-
   config.entry = {
-    main: [].concat(polyfills(), './src/main.client', rxjs()),
+    main: [].concat(polyfills(isDev), './src/main.client', rxjs()),
   };
 
   config.output = {
@@ -237,9 +182,6 @@ const devConfig = () => {
   COPY_FOLDERS.push({ from: `dll`, ignore: ['*.json'] });
 
   config.plugins = [
-    new LoaderOptionsPlugin({
-      debug: true,
-    }),
     new DllReferencePlugin({
       context: '.',
       manifest: require(`./dll/polyfills-manifest.json`),
@@ -251,14 +193,14 @@ const devConfig = () => {
     new HtmlWebpackPlugin({
       template: 'src/index.html',
       meta,
-      isDev,
-      isWebpackDevServer,
-      inject: 'head',
+      inject: 'head'
     }),
     new CopyWebpackPlugin(COPY_FOLDERS),
+    new ScriptExtHtmlWebpackPlugin({
+      defaultAttribute: 'defer'
+    }),
 
     ...CUSTOM_PLUGINS_DEV,
-
   ];
 
   if (isWebpackDevServer) {
@@ -274,16 +216,15 @@ const devConfig = () => {
   }
 
   return config;
-
 };
 
 // dll
 const dllConfig = () => {
 
-  const config: WebpackConfig = {} as WebpackConfig;
+  const config: WebpackConfig = <WebpackConfig>{};
 
   config.entry = {
-    polyfills: polyfills(),
+    polyfills: polyfills(isDev),
     rxjs: rxjs(),
     vendors: vendors(),
   };
@@ -309,15 +250,24 @@ const dllConfig = () => {
 // prod
 const prodConfig = () => {
 
-  const config: WebpackConfig = {} as WebpackConfig;
+  const config: WebpackConfig = <WebpackConfig>{};
 
   config.devtool = 'source-map';
 
+  config.module = {
+    rules: [
+      loader.tsLoader(isAoT)
+    ]
+  };
+
+  config.performance = {
+    hints: 'warning'
+  }
+
   config.entry = {
-    main: `./src/main.client`,
-    polyfills: polyfills(),
+    main: `./src/main.client.aot`,
+    polyfills: polyfills(isDev),
     rxjs: rxjs(),
-    vendors: vendors(),
   };
 
   config.output = {
@@ -328,7 +278,14 @@ const prodConfig = () => {
   };
 
   config.plugins = [
-    // new NoErrorsPlugin(), // quality
+    new V8LazyParseWebpackPlugin(),
+    // new NoEmitOnErrorsPlugin(), // quality
+    // This enables tree shaking of the vendor modules
+    new CommonsChunkPlugin({
+      name: 'vendors',
+      chunks: ['main'],
+      minChunks: (module) => /node_modules\//.test(module.resource)
+    }),
     new CommonsChunkPlugin({
       name: ['polyfills', 'vendors', 'rxjs'].reverse(),
     }),
@@ -337,20 +294,17 @@ const prodConfig = () => {
       asset: '[path].gz[query]',
       algorithm: 'gzip',
       test: /\.js$|\.html$/,
-      threshold: 10240,
+      threshold: 2 * 1024,
       minRatio: 0.8,
     }),
     new CopyWebpackPlugin(COPY_FOLDERS),
     new HtmlWebpackPlugin({
       template: `src/index.html`,
       meta,
-      inject: true,
+      inject: 'head'
     }),
-    new LoaderOptionsPlugin({
-      debug: false,
-    }),
-    new MinChunkSizePlugin({
-      minChunkSize: 10000,
+    new ScriptExtHtmlWebpackPlugin({
+      defaultAttribute: 'defer'
     }),
     new UglifyJsPlugin({
       beautify: false,
@@ -359,30 +313,31 @@ const prodConfig = () => {
         keep_fnames: true,
       },
       compress: {
-        screw_ie8: true,
-        warnings: false,
-        conditionals: true,
-        unused: true,
         comparisons: true,
-        sequences: true,
+        conditionals: true,
         dead_code: true,
+        drop_console: true,
         evaluate: true,
         if_return: true,
         join_vars: true,
-        negate_iife: false // we need this for lazy v8
+        negate_iife: false, // we need this for lazy v8
+        screw_ie8: true,
+        sequences: true,
+        unused: true,
+        warnings: false
       },
       comments: false,
     }),
     new WebpackMd5Hash(),
 
     ...CUSTOM_PLUGINS_PROD,
-
   ];
 
-  if (isAot) {
-    config.plugins.push(new AotPlugin({
-      tsConfigPath: 'tsconfig.json',
-      mainPath: 'src/main.client.ts',
+  if (isAoT) {
+    config.plugins.unshift(new NgcWebpackPlugin({
+      disabled: !isAoT,
+      tsConfig: root('tsconfig.es2015.json'),
+      resourceOverride: ''
     }));
   }
 
@@ -392,7 +347,6 @@ const prodConfig = () => {
 
 // default
 const defaultConfig = () => {
-
   const config: WebpackConfig = {} as WebpackConfig;
 
   config.resolve = {
@@ -400,14 +354,13 @@ const defaultConfig = () => {
   };
 
   return config;
-
 };
 
 // webpack
 switch (ENV) {
   case 'prod':
   case 'production':
-    module.exports = webpackMerge({}, defaultConfig(), commonConfig(), prodConfig());
+    module.exports = webpackMerge({}, defaultConfig(), prodConfig(), commonConfig());
     break;
   case 'dev':
   case 'development':

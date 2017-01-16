@@ -2,10 +2,8 @@
  * Angular bootstraping
  */
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-import { bootloader } from './bootloader';
-
-// for later, with Web Worker
-// import { platformWorkerAppDynamic } from '@angular/platform-webworker-dynamic';
+import { bootstrapDomLoading } from './bootstrap';
+import { decorateModuleRef } from './env';
 
 // require critical Css
 import './boot.scss';
@@ -19,9 +17,13 @@ import { AppModule } from './client';
 /*
  * Bootstrap our Angular app with a top level NgModule
  */
-export function main() {
-  platformBrowserDynamic().bootstrapModule(AppModule);
+export function main(): Promise<any> {
+  return platformBrowserDynamic()
+    .bootstrapModule(AppModule)
+    .then(decorateModuleRef)
+    .catch((err) => console.error(err));
 }
 
 // use bootloader in case of async tag
-bootloader(main);
+bootstrapDomLoading(main);
+

@@ -14,33 +14,34 @@ import { UiModule } from '../../frameworks';
 import { DFormModule } from '../../frameworks';
 
 // components
-import { ArticleActions } from './article';
-import { ArticleEffects } from './article';
-import { ArticleService } from './article';
+import { CreatorEffects } from './creator.effects';
+import { ArticleUtils } from './article';
 import { CoreModule } from '../../frameworks';
-import { CREATOR_RESOLVER_PROVIDERS } from './creator.resolver';
 import { CreatorComponent } from './creator.component';
 import { ROUTES } from './creator.routes';
+import { CREATOR_GUARD } from './creator.guard';
+import { ClarityModule } from 'clarity-angular';
 
 // providers
 const CREATOR_PROVIDERS = [
-  ArticleActions,
-  ArticleService,
+  ArticleUtils,
 
-  ...CREATOR_RESOLVER_PROVIDERS,
+  // guard
+  CREATOR_GUARD,
 ];
 
 @NgModule({
   imports: [
+    ClarityModule,
     CommonModule,
     CoreModule,
     DFormModule,
-    EffectsModule.run(ArticleEffects),
+    EffectsModule.run(CreatorEffects),
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forChild(ROUTES),
     TranslateModule,
-    UiModule,
+    UiModule
   ],
   declarations: [
     CreatorComponent,

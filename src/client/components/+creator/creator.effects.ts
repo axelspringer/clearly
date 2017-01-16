@@ -10,6 +10,8 @@ import { ApolloQueryObservable } from 'angular2-apollo';
 // interface
 import * as query from './creator.graphql';
 import * as fromCreatorActions from './creator.actions';
+// import { fromArticleActions } from './article';
+// import { ArticleUtils } from './article.service';
 
 @Injectable()
 export class CreatorEffects {
@@ -33,11 +35,24 @@ export class CreatorEffects {
         }));
     });
 
+  // @Effect() public updateArticle$: Observable<Action> = this.actions$
+  //   .ofType(fromCreatorActions.ActionTypes.LOAD_SUCCESS)
+  //   .map(action => action.payload)
+  //   .do(action => console.log(action))
+  //   .map(() => ({
+  //     type: fromArticleActions.ActionTypes.UPDATE,
+  //     payload: {
+  //       channels: [],
+  //       master: [],
+  //     },
+  //   }));
+
   private query: ApolloQueryObservable<any> = null;
 
   constructor(
     private actions$: Actions,
     private apollo: Angular2Apollo,
+    // private articleService: ArticleUtils,
   ) {
   }
 

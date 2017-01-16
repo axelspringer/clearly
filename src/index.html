@@ -9,19 +9,6 @@
 
   <meta name="description" content="<%= htmlWebpackPlugin.options.meta.title %>">
 
-  <!-- we load this here, due to construction of package -->
-  <script src="hammer.min.js" defer></script>
-  <script src="mutationobserver.min.js" defer></script>
-  <script src="custom-elements.min.js" defer></script>
-  <script src="clarity-icons.min.js" defer></script>
-
-  <% if (htmlWebpackPlugin.options.isDev) { %>
-  <!-- Webpack Dev Server reload -->
-  <script src="/polyfills.dll.js" defer="true"></script>
-  <script src="/vendors.dll.js" defer="true"></script>
-  <script src="/rxjs.dll.js" defer="true"></script>
-  <% } %>
-
   <% if (webpackConfig.htmlElements.headTags) { %>
   <!-- Configured Head Tags  -->
   <%= webpackConfig.htmlElements.headTags %>
@@ -29,6 +16,19 @@
 
   <!-- base url -->
   <base href="/">
+
+  <!-- we load this here, due to construction of package -->
+  <script src="hammer.min.js" defer></script>
+  <script src="mutationobserver.min.js" defer></script>
+  <script src="custom-elements.min.js" defer></script>
+  <script src="clarity-icons.min.js" defer></script>
+
+  <% if (__DEV__) { %>
+  <!-- Webpack Dev Server reload -->
+  <script src="/polyfills.dll.js" defer></script>
+  <script src="/vendors.dll.js" defer></script>
+  <script src="/rxjs.dll.js" defer></script>
+  <% } %>
 
 </head>
 

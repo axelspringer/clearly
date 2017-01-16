@@ -36,12 +36,12 @@ import { UiModule } from '../../frameworks';
 import { DatabaseModule } from '../../frameworks';
 
 // Environment
-import { APP_RESOLVER_PROVIDERS } from './app.resolver';
 import { AppComponent } from './app.component';
 import { AppConfig } from '../../config';
 import { AppLocale } from '../../config';
 // import { DBConfig } from './../../config/db.config';
 import { ROUTES } from './app.routes';
+import { CONFIG_PROVIDERS } from '../../config';
 
 // Components
 import { AvatarComponent } from '../avatar';
@@ -71,20 +71,18 @@ import { GUARDS } from '../../guards';
 
 // Store
 import AppStore from './app.store';
-import { CreatorEffects } from '../+creator';
 import { AppEffects } from './app.effects';
-import { CreatorResolver } from '../+creator';
 
 // Application wide providers
 const APP_PROVIDERS = [
-  ...APP_RESOLVER_PROVIDERS,
+  // config providers
+  ...CONFIG_PROVIDERS,
 
   // Guards
   ...GUARDS,
 
   // Others
   Title,
-  CreatorResolver,
 ];
 
 // class NullLoggingErrorHandler implements ErrorHandler {
@@ -131,7 +129,6 @@ const APP_PROVIDERS = [
     }),
 
     // @ngrx
-    EffectsModule.runAfterBootstrap(CreatorEffects),
     EffectsModule.run(AppEffects),
     StoreModule.provideStore(AppStore),
     StoreDevtoolsModule.instrumentOnlyWithExtension(),
