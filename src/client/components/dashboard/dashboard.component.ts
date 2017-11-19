@@ -1,6 +1,5 @@
 // Importables
-import { Angular2Apollo } from 'angular2-apollo';
-import { ApolloQueryObservable } from 'angular2-apollo';
+import { Apollo } from 'apollo-angular';
 import { OnInit } from '@angular/core';
 import { Component } from '@angular/core';
 import { TranslateService } from 'ng2-translate';
@@ -22,24 +21,24 @@ export class DashboardComponent implements OnInit {
   // properties
 
   public i18nTitle = 'COMPONENT.DASHBOARD.TITLE';
-  public ok: ApolloQueryObservable<any>;
+  // public ok: ApolloQueryObservable<any>;
 
   // TypeScript public modifiers
   constructor(
     private _translate: TranslateService,
     // legacy
-    private apollo: Angular2Apollo,
+    private apollo: Apollo,
   ) {
 
-    this.ok = this.apollo.query({
-      query: gql`
-        query RootQuery {
-          ok {
-            status
-          }
-        }
-      `,
-    }) as ApolloQueryObservable<any>;
+    // this.ok = this.apollo.query({
+    //   query: gql`
+    //     query RootQuery {
+    //       ok {
+    //         status
+    //       }
+    //     }
+    //   `,
+    // }) as ApolloQueryObservable<any>;
 
   }
 

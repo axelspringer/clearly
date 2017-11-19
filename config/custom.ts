@@ -15,6 +15,8 @@
 
 // vendor
 import * as PreloadWebpackPlugin from 'preload-webpack-plugin';
+import * as Autoprefixer from 'autoprefixer'
+import * as CssNano from 'cssnano'
 
 // common
 export const CustomCommonConfig: CustomConfig = {
@@ -22,6 +24,29 @@ export const CustomCommonConfig: CustomConfig = {
     new PreloadWebpackPlugin()
   ],
   rules: [
+    {
+      test: /\.scss$/,
+      use: [
+        'to-string-loader',
+        'css-loader',
+        {
+          loader: 'postcss-loader',
+          options: {
+            plugins: () => [
+              Autoprefixer(),
+              CssNano({ zindex: false })
+            ]
+          }
+        },
+        'sass-loader'
+      ],
+      exclude: /boot\.scss/
+    },
+    {
+      test: /\.(graphql|gql)$/,
+      exclude: /node_modules/,
+      loader: 'graphql-tag/loader',
+    },
   ]
 };
 

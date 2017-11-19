@@ -19,7 +19,7 @@ import { StoreModule } from '@ngrx/store';
 import { ClarityModule } from 'clarity-angular';
 
 // Apollo
-import { ApolloModule } from 'angular2-apollo';
+import { ApolloModule } from 'apollo-angular';
 import { Client } from './app.apollo.ts';
 
 // Aot
