@@ -20,7 +20,8 @@ import { ClarityModule } from 'clarity-angular';
 
 // Apollo
 import { ApolloModule } from 'apollo-angular';
-import { Client } from './app.apollo.ts';
+import { HttpLinkModule } from 'apollo-angular-link-http';
+// import { Client } from './app.apollo.ts';
 
 // Aot
 // import { getPlatform } from '@angular/core';
@@ -120,7 +121,8 @@ const APP_PROVIDERS = [
     }),
 
     // Apollo
-    ApolloModule.withClient(Client),
+    ApolloModule,
+    HttpLinkModule,
 
     // ng2-translate
     TranslateModule.forRoot({ // custom translation provider
@@ -131,7 +133,7 @@ const APP_PROVIDERS = [
     // @ngrx
     EffectsModule.run(AppEffects),
     StoreModule.provideStore(AppStore),
-    StoreDevtoolsModule.instrumentOnlyWithExtension(),
+    // StoreDevtoolsModule.instrumentOnlyWithExtension(),
 
     // Custom Modules
     DashboardModule,

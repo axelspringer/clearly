@@ -137,7 +137,7 @@ export const DefaultDevConfig = ({ isAoT, isDev }): DefaultConfig => {
     plugins: [
       new AutoDllPlugin({
         context: root(),
-        debug: true,
+        debug: false,
         inject: false, // will inject the DLL bundles to index.html
         filename: '[name].dll.js',
         entry: {

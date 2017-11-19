@@ -5,7 +5,7 @@ import { Apollo } from 'apollo-angular';
 import { Effect } from '@ngrx/effects';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-// import { ApolloQueryObservable } from 'angular2-apollo';
+// import { ApolloQueryObservable } from 'apollo-angular';
 
 // interface
 import * as query from './creator.graphql';
@@ -47,7 +47,7 @@ export class CreatorEffects {
   //     },
   //   }));
 
-  private query: ApolloQueryObservable<any> = null;
+  private query = null;
 
   constructor(
     private actions$: Actions,

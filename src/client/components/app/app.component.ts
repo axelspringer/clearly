@@ -13,7 +13,7 @@ import { AppConfig } from '../../config';
 
 @Component({
   encapsulation: ViewEncapsulation.None,
-  selector: 'sg-app',
+  selector: 'app',
   styleUrls: ['./app.component.scss'],
   templateUrl: './app.component.html',
 })

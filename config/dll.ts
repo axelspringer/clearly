@@ -51,6 +51,18 @@ export function vendor() {
     // import in bootstrap file
     'hammerjs',
 
+    'apollo-angular',
+    'clarity-angular',
+    'clarity-ui',
+    'clarity-icons',
+
+    // ngrx
+    '@ngrx/core',
+    '@ngrx/store',
+    '@ngrx/effects',
+    'graphql',
+    'graphql-tag',
+
     // RxJS
     'rxjs/Observable',
     'rxjs/Subscription',
