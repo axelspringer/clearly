@@ -1,5 +1,3 @@
-/* tslint:disable: variable-name max-line-length no-var-requires no-unused-variable */
-
 /**
  *
  * - imports
@@ -12,128 +10,59 @@
  * - webpack
  */
 
-// imports
-// import { AotPlugin } from '@ngtools/webpack';
-import { TsConfigPathsPlugin } from 'awesome-typescript-loader';
-import { CheckerPlugin } from 'awesome-typescript-loader';
+// node
 import * as process from 'process';
-import 'ts-helpers';
-import {
-  ContextReplacementPlugin,
-  DefinePlugin,
-  DllPlugin,
-  DllReferencePlugin,
-  ProgressPlugin
-} from 'webpack';
+import 'reflect-metadata';
 
-import * as NamedModulesPlugin from 'webpack/lib/NamedModulesPlugin';
-import * as CommonsChunkPlugin from 'webpack/lib/optimize/CommonsChunkPlugin';
-import * as OccurrenceOrderPlugin from 'webpack/lib/optimize/OccurrenceOrderPlugin';
-import * as UglifyJsPlugin from 'webpack/lib/optimize/UglifyJsPlugin';
-import * as HtmlElementsPlugin from './config/html-elements-plugin';
-
-import * as CompressionPlugin from 'compression-webpack-plugin';
-import * as ScriptExtHtmlWebpackPlugin from 'script-ext-html-webpack-plugin';
-import * as CopyWebpackPlugin from 'copy-webpack-plugin';
-import * as HtmlWebpackPlugin from 'html-webpack-plugin';
-import * as V8LazyParseWebpackPlugin from 'v8-lazy-parse-webpack-plugin';
-import * as WebpackMd5Hash from 'webpack-md5-hash';
-import * as webpackMerge from 'webpack-merge';
 import { NgcWebpackPlugin } from 'ngc-webpack';
-
-import {
-  loader
-} from './config/webpack';
+import * as webpackMerge from 'webpack-merge';
 
 // helpers
-import {
-  isWebpackDevServer,
-  root,
-  tryDll,
-} from './config/helpers';
+import { isWebpackDevServer, root } from './config/helpers';
 
-// dll's
+// defaults
 import {
-  polyfills,
-  rxjs,
-  vendors,
-} from './src/dll';
+  DefaultCommonConfig,
+  DefaultDevConfig,
+  DefaultProdConfig
+} from './config/default';
 
 // custom
 import {
-  CUSTOM_COPY_FOLDERS,
-  CUSTOM_DEV_SERVER_OPTIONS,
-  CUSTOM_PLUGINS_COMMON,
-  CUSTOM_PLUGINS_DEV,
-  CUSTOM_PLUGINS_PROD,
-  CUSTOM_RULES_COMMON
+  CustomCommonConfig,
+  CustomDevConfig,
+  CustomProdConfig,
+  DevServerConfig
 } from './config/custom';
-
-// html
-import headTags from './config/head';
-import meta from './config/meta';
 
 // config
 const EVENT = process.env.npm_lifecycle_event;
 const ENV = process.env.NODE_ENV || 'development';
 
-const isDev = EVENT.includes('dev');
-const isDll = EVENT.includes('dll');
-const isAoT = !isDev;
-// const isJiT = !isAoT;
+// dll's
+import { polyfills } from './config/dll';
 
-const PORT = process.env.PORT ||
-  ENV === 'development' ? 3000 : 8080;
-const HOST = process.env.HOST || 'localhost';
-
-const COPY_FOLDERS = [
-  { from: `src/assets`, ignore: [`favicon.ico`] },
-  { from: `src/assets/icon/favicon.ico` },
-  { from: `src/meta` },
-  { from: `node_modules/hammerjs/hammer.min.js` },
-  { from: `node_modules/hammerjs/hammer.min.js.map` },
-
-  ...CUSTOM_COPY_FOLDERS,
-
-];
-
-// is dll
-if (!isDll && isDev) {
-  tryDll(['polyfills', 'vendors', 'rxjs']);
-}
+const envConfig = {
+  isDev: EVENT.includes('dev'),
+  isAoT: !EVENT.includes('dev'),
+  port: process.env.PORT || ENV === 'development' ? DevServerConfig.port : 8080,
+  host: process.env.HOST || 'localhost'
+};
 
 // common
 const commonConfig = () => {
-  const config: WebpackConfig = <WebpackConfig>{};
+  const config: WebpackConfig = {} as WebpackConfig;
 
   config.module = {
     rules: [
-      loader.jsonLoader,
-      loader.cssLoader,
-      loader.htmlLoader,
-      loader.fileLoader,
-
-      ...CUSTOM_RULES_COMMON,
-
-    ],
+      ...DefaultCommonConfig(envConfig).rules,
+      ...CustomCommonConfig.rules
+    ]
   };
 
   config.plugins = [
-    new ProgressPlugin(),
-    new CheckerPlugin(),
-    new TsConfigPathsPlugin(),
-    new DefinePlugin({
-      __DEV__: isDev,
-      __PROD__: !isDev
-    }),
-    new NamedModulesPlugin(),
-    new ContextReplacementPlugin(
-      /angular(\\|\/)core(\\|\/)src(\\|\/)linker/,
-      root(`src`)
-    ),
-    new HtmlElementsPlugin({ headTags }),
-
-    ...CUSTOM_PLUGINS_COMMON,
+    ...DefaultCommonConfig(envConfig).plugins,
+    ...CustomCommonConfig.plugins
   ];
 
   config.node = {
@@ -145,7 +74,7 @@ const commonConfig = () => {
     module: false,
     process: true,
     setImmediate: false,
-    setTimeout: true,
+    setTimeout: true
   };
 
   return config;
@@ -153,196 +82,90 @@ const commonConfig = () => {
 
 // dev
 const devConfig = () => {
-  const config: WebpackConfig = <WebpackConfig>{};
+  const config: WebpackConfig = {} as WebpackConfig;
 
   config.devtool = 'eval-source-map';
 
   config.module = {
-    rules: [
-      loader.tsLintLoader,
-      loader.tsLoader(isAoT)
-    ]
+    rules: [...DefaultDevConfig(envConfig).rules, ...CustomDevConfig.rules]
   };
 
+  config.plugins = [
+    ...DefaultDevConfig(envConfig).plugins,
+    ...CustomDevConfig.plugins
+  ];
+
   config.resolve = {
-    modules: [root(`src`), `node_modules`],
+    modules: [root(`src`), `node_modules`]
   };
 
   config.entry = {
-    main: [].concat(polyfills(isDev), './src/main.client', rxjs()),
+    main: [].concat(polyfills(envConfig.isDev), './src/browser')
   };
 
   config.output = {
-    path: root(`dist`),
+    path: root(`public`),
     filename: '[name].bundle.js',
     sourceMapFilename: '[file].map',
-    chunkFilename: '[id].chunk.js',
+    chunkFilename: '[id].chunk.js'
   };
 
-  COPY_FOLDERS.push({ from: `dll`, ignore: ['*.json'] });
-
-  config.plugins = [
-    new DllReferencePlugin({
-      context: '.',
-      manifest: require(`./dll/polyfills-manifest.json`),
-    }),
-    new DllReferencePlugin({
-      context: '.',
-      manifest: require(`./dll/vendors-manifest.json`),
-    }),
-    new HtmlWebpackPlugin({
-      template: 'src/index.html',
-      meta,
-      inject: 'head'
-    }),
-    new CopyWebpackPlugin(COPY_FOLDERS),
-    new ScriptExtHtmlWebpackPlugin({
-      defaultAttribute: 'defer'
-    }),
-
-    ...CUSTOM_PLUGINS_DEV,
-  ];
-
   if (isWebpackDevServer) {
-    config.devServer = Object.assign(
-      {
-        contentBase: root(`src`),
-        historyApiFallback: true,
-        host: HOST,
-        port: PORT,
-      },
-      CUSTOM_DEV_SERVER_OPTIONS,
-    );
+    config.devServer = {
+      contentBase: root(`src`),
+      historyApiFallback: true,
+      host: envConfig.host,
+      port: envConfig.port,
+
+      ...DevServerConfig.options
+    };
   }
 
   return config;
-};
-
-// dll
-const dllConfig = () => {
-
-  const config: WebpackConfig = <WebpackConfig>{};
-
-  config.entry = {
-    polyfills: polyfills(isDev),
-    rxjs: rxjs(),
-    vendors: vendors(),
-  };
-
-  config.output = {
-    path: root(`dll`),
-    filename: '[name].dll.js',
-    sourceMapFilename: '[name].dll.map',
-    library: '__[name]',
-  };
-
-  config.plugins = [
-    new DllPlugin({
-      name: '__[name]',
-      path: root('dll/[name]-manifest.json'),
-    }),
-  ];
-
-  return config;
-
 };
 
 // prod
 const prodConfig = () => {
+  const config: WebpackConfig = {} as WebpackConfig;
 
-  const config: WebpackConfig = <WebpackConfig>{};
-
-  config.devtool = 'source-map';
+  config.devtool = false;
 
   config.module = {
-    rules: [
-      loader.tsLoader(isAoT)
-    ]
+    rules: [...DefaultProdConfig(envConfig).rules, ...CustomProdConfig.rules]
   };
 
   config.performance = {
     hints: 'warning'
-  }
+  };
 
   config.entry = {
-    main: `./src/main.client.aot`,
-    polyfills: polyfills(isDev),
-    rxjs: rxjs(),
+    main: './src/browser.aot',
+    polyfills: polyfills(envConfig)
   };
 
   config.output = {
-    path: root(`dist`),
+    path: root(`public`),
     filename: '[name].[chunkhash].bundle.js',
     sourceMapFilename: '[name].[chunkhash].bundle.map',
-    chunkFilename: '[id].[chunkhash].chunk.js',
+    chunkFilename: '[id].[chunkhash].chunk.js'
   };
 
   config.plugins = [
-    new V8LazyParseWebpackPlugin(),
-    // new NoEmitOnErrorsPlugin(), // quality
-    // This enables tree shaking of the vendor modules
-    new CommonsChunkPlugin({
-      name: 'vendors',
-      chunks: ['main'],
-      minChunks: (module) => /node_modules\//.test(module.resource)
-    }),
-    new CommonsChunkPlugin({
-      name: ['polyfills', 'vendors', 'rxjs'].reverse(),
-    }),
-    new OccurrenceOrderPlugin(),
-    new CompressionPlugin({
-      asset: '[path].gz[query]',
-      algorithm: 'gzip',
-      test: /\.js$|\.html$/,
-      threshold: 2 * 1024,
-      minRatio: 0.8,
-    }),
-    new CopyWebpackPlugin(COPY_FOLDERS),
-    new HtmlWebpackPlugin({
-      template: `src/index.html`,
-      meta,
-      inject: 'head'
-    }),
-    new ScriptExtHtmlWebpackPlugin({
-      defaultAttribute: 'defer'
-    }),
-    new UglifyJsPlugin({
-      beautify: false,
-      mangle: {
-        screw_ie8: true,
-        keep_fnames: true,
-      },
-      compress: {
-        comparisons: true,
-        conditionals: true,
-        dead_code: true,
-        drop_console: true,
-        evaluate: true,
-        if_return: true,
-        join_vars: true,
-        negate_iife: false, // we need this for lazy v8
-        screw_ie8: true,
-        sequences: true,
-        unused: true,
-        warnings: false
-      },
-      comments: false,
-    }),
-    new WebpackMd5Hash(),
-
-    ...CUSTOM_PLUGINS_PROD,
+    ...DefaultProdConfig(envConfig).plugins,
+    ...CustomProdConfig.plugins
   ];
 
-  if (isAoT) {
-    config.plugins.unshift(new NgcWebpackPlugin({
-      disabled: !isAoT,
-      tsConfig: root('tsconfig.es2015.json'),
-      resourceOverride: ''
-    }));
+  if (envConfig.isAoT) {
+    config.plugins.unshift(
+      new NgcWebpackPlugin({
+        disabled: !envConfig.isAoT,
+        tsConfig: root('tsconfig.es2015.json'),
+        resourceOverride: ''
+      })
+    );
   }
 
   return config;
-
 };
 
 // default
@@ -350,7 +173,7 @@ const defaultConfig = () => {
   const config: WebpackConfig = {} as WebpackConfig;
 
   config.resolve = {
-    extensions: ['.ts', '.js', '.json'],
+    extensions: ['.ts', '.js', '.json']
   };
 
   return config;
@@ -360,12 +183,20 @@ const defaultConfig = () => {
 switch (ENV) {
   case 'prod':
   case 'production':
-    module.exports = webpackMerge({}, defaultConfig(), prodConfig(), commonConfig());
+    module.exports = webpackMerge(
+      {},
+      defaultConfig(),
+      prodConfig(),
+      commonConfig()
+    );
     break;
   case 'dev':
   case 'development':
   default:
-    module.exports = isDll
-      ? webpackMerge({}, defaultConfig(), commonConfig(), dllConfig())
-      : webpackMerge({}, defaultConfig(), commonConfig(), devConfig());
+    module.exports = webpackMerge(
+      {},
+      defaultConfig(),
+      commonConfig(),
+      devConfig()
+    );
 }

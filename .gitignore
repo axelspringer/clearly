@@ -17,37 +17,31 @@ coverage
 # Users Environment Variables
 .lock-wscript
 
-# OS generated files #
+# OS generated files
 .DS_Store
 ehthumbs.db
 Icon?
 Thumbs.db
 
-# Node Files #
+# Node
 /node_modules
-/bower_components
 npm-debug.log
+npm-debug.log.*
 yarn-error.log
+lighthouse.*
 
-# Coverage #
-/coverage/
+# Coverage
+/coverage
 
-# Dist #
+# Public, AoT, Dll's etc.
 .webpack.json
-/__build__/**
-/.awcache
-/dist
-/dist/**
+/public
 /dll
-/public/__build__/
-/public/dist/
-/src/*/__build__/
-/src/*/dist/
-!icon/
 /aot
+!icon/
 
 # Doc #
-/doc/
+/doc
 
 # IDE #
 .idea/

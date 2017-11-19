@@ -1,8 +1,12 @@
-// Polyfills
-export function polyfills(isDev?: boolean) {
-
+/**
+ * Dll's
+ *
+ * These are the libraries that should be resolved for the different environments
+ *
+ */
+export function polyfills(isDev) {
   const common = [
-    // 'ie-shim',
+    // 'ie-shim'
 
     'core-js/es6/symbol',
     'core-js/es6/object',
@@ -25,49 +29,35 @@ export function polyfills(isDev?: boolean) {
     'core-js/es7/reflect',
 
     // zone.js
-    'zone.js/dist/zone',
-
-     // typescript helpers
-    'ts-helpers',
+    'zone.js/dist/zone'
   ];
 
-  const dev = [
-    'zone.js/dist/long-stack-trace-zone',
-  ];
+  const dev = ['zone.js/dist/long-stack-trace-zone'];
 
   return !isDev ? common : common.concat(dev);
 }
 
 // Angular 2 and other Vendor imports
-export function vendors() {
+export function vendor() {
   return [
-    '@angular/common',
-    '@angular/compiler',
-    '@angular/core',
-    '@angular/forms',
-    '@angular/http',
-    '@angular/platform-browser-dynamic',
     '@angular/platform-browser',
+    '@angular/platform-browser-dynamic',
     '@angular/router',
-    '@ngrx/effects',
-    '@ngrx/store',
-    'apollo-client',
-    'clarity-angular',
-    'hammerjs',
-    'lodash',
-  ];
-}
+    '@angular/forms',
+    '@angular/common',
+    '@angular/core',
+    '@angular/http',
 
-// RxJS
-export function rxjs() {
-  return [
+    // import in bootstrap file
+    'hammerjs',
+
+    // RxJS
     'rxjs/Observable',
     'rxjs/Subscription',
     'rxjs/Subject',
     'rxjs/BehaviorSubject',
     'rxjs/add/operator/map',
     'rxjs/add/operator/mergeMap',
-    'rxjs/add/operator/distinctUntilChanged',
-    'rxjs/add/operator/toPromise',
+    'rxjs/add/operator/distinctUntilChanged'
   ];
 }

@@ -5,9 +5,7 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title><%= htmlWebpackPlugin.options.meta.title %></title>
-
-  <meta name="description" content="<%= htmlWebpackPlugin.options.meta.title %>">
+  <title><%= htmlWebpackPlugin.options.title %></title>
 
   <% if (webpackConfig.htmlElements.headTags) { %>
   <!-- Configured Head Tags  -->
@@ -17,28 +15,19 @@
   <!-- base url -->
   <base href="/">
 
-  <!-- we load this here, due to construction of package -->
-  <script src="hammer.min.js" defer></script>
-  <script src="mutationobserver.min.js" defer></script>
-  <script src="custom-elements.min.js" defer></script>
-  <script src="clarity-icons.min.js" defer></script>
-
   <% if (__DEV__) { %>
   <!-- Webpack Dev Server reload -->
   <script src="/polyfills.dll.js" defer></script>
-  <script src="/vendors.dll.js" defer></script>
-  <script src="/rxjs.dll.js" defer></script>
+  <script src="/vendor.dll.js" defer></script>
   <% } %>
 
 </head>
 
 <body>
 
-  <sg-app class="critical">
-    <div class="loading">
-      <div class="spinner"></div>
-    </div>
-  </sg-app>
+  <my-app>
+    Booting...
+  </my-app>
 
 </body>
 </html>

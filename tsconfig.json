@@ -3,6 +3,7 @@
     "allowSyntheticDefaultImports": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "importHelpers": true,
     "noEmit": false,
     "noEmitHelpers": true,
     "noUnusedLocals": true,
@@ -20,7 +21,7 @@
     ],
     "types": [
       "hammerjs",
-      "jasmine",
+      "jest",
       "node",
       "selenium-webdriver",
       "source-map",
@@ -29,15 +30,15 @@
   },
   "exclude": [
     "node_modules",
-    "dist",
+    "public",
     "src/**/*.spec.ts",
     "src/**/*.e2e.ts"
   ],
   "awesomeTypescriptLoaderOptions": {
     "useBabel": true,
-    "useCache": false,
+    "useCache": true,
     "emitRequireType": false,
-    "useWebpackText": true,
+    "useWebpackText": false,
     "forkChecker": true
   },
   "angularCompilerOptions": {

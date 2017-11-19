@@ -1,31 +1,33 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "module": "es2015",
-    "skipDefaultLibCheck": true,
-    "skipLibCheck": true,
-    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "allowSyntheticDefaultImports": true,
-    "sourceMap": true,
+    "importHelpers": true,
+    "module": "es2015",
+    "moduleResolution": "node",
     "noEmit": true,
     "noEmitHelpers": true,
+    "skipDefaultLibCheck": true,
+    "skipLibCheck": true,
+    "sourceMap": true,
     "strictNullChecks": false,
+    "target": "es5",
     "lib": [
       "es2015",
-      "es6",
-      "es7",
       "dom"
     ],
     "types": [
       "hammerjs",
       "node"
+    ],
+    "typeRoots": [
+      "node_modules/@types"
     ]
   },
   "exclude": [
     "node_modules",
-    "dist",
+    "public",
     "config",
     "webpack.config.ts",
     "src/**/*.spec.ts",
@@ -33,7 +35,7 @@
   ],
   "awesomeTypescriptLoaderOptions": {
     "forkChecker": true,
-    "useWebpackText": true
+    "useWebpackText": false
   },
   "angularCompilerOptions": {
     "genDir": "./aot",
